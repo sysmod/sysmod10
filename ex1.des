@@ -1,0 +1,53 @@
+STATECHART:
+    top [DS]
+        LampOn
+        Flashing
+            FlashOff
+            FlashOn [DS]
+        LampOff [DS]
+
+ENTER:
+   N: top.LampOff
+   O: g.setLightBulbOff()
+
+ENTER:
+   N: top.LampOn
+   O: g.setLightBulbOn()
+
+ENTER:
+   N: top.Flashing.FlashOff
+   O: g.setLightBulbOff()
+
+ENTER:
+   N: top.Flashing.FlashOn
+   O: g.setLightBulbOn()
+
+TRANSITION:
+    S: top.Flashing
+    N: top.LampOn
+    E: on
+
+TRANSITION:
+    S: top.Flashing.FlashOff
+    N: top.Flashing.FlashOn
+    T: 2
+
+TRANSITION:
+    S: top.Flashing.FlashOn
+    N: top.Flashing.FlashOff
+    T: 2
+
+TRANSITION:
+    S: top.LampOn
+    N: top.LampOff
+    E: off
+
+TRANSITION:
+    S: top.LampOff
+    N: top.LampOn
+    E: on
+
+TRANSITION:
+    S: top.LampOff
+    N: top.Flashing
+    E: flash
