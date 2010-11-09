@@ -31,9 +31,9 @@ class GUI:
     def setLightBulbOff(self):
         self.label.config(image = self.imageOff)
 
-root = Tk()
-root.title("Flasing machine!!!")
-g = GUI(root, eventhandler)
-eventhandler.start()
-root.mainloop()
+#root = Tk()
+#root.title("Flasing machine!!!")
+#g = GUI(root, eventhandler)
+#eventhandler.start()
+#root.mainloop()
         

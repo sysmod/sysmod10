@@ -1,3 +1,12 @@
+INITIALIZER:
+   from Tkinter import *
+   from gui import GUI
+   root = Tk()
+   root.title("Title")
+   g = GUI(root, eventhandler)
+   eventhandler.start()
+   root.mainloop()
+
 STATECHART:
     top [DS]
         LampOn
