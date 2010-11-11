@@ -1,0 +1,22 @@
+STATECHART:
+  A [CS] [DS]
+    A1 [DS]
+  B [CS] [DS]
+
+TRANSITION:
+  S: A
+  N: A
+  E: e
+  O: [DUMP("A")]
+
+TRANSITION:
+  S: B
+  N: B
+  E: e
+  O: [DUMP("B")]
+
+TRANSITION:
+  S: A.A1
+  N: A.A1
+  E: e
+  O: [DUMP("A.A1")]

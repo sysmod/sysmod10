@@ -1,0 +1,20 @@
+STATECHART:
+  A [DS]
+  B [FS]
+
+INTERACTOR:
+  import thread
+  lock=thread.allocate_lock()
+  lock.acquire()
+  eventhandler.start()
+  lock.acquire()
+  lock.release()
+
+FINALIZER:
+  lock.release()
+
+TRANSITION:
+  S: A
+  N: B
+  T: 0
+  O: [DUMP("T1")]

@@ -1,0 +1,18 @@
+IMPORTATION:
+  test6 = test6.des  # test6 has its own InnerTransitionFirst global option (=1)
+
+STATECHART:
+  A [DS]
+    A1 [DS]
+  B [test6]
+  C
+
+TRANSITION:
+  S: A
+  N: B
+  E: e
+
+TRANSITION:
+  S: A.A1
+  N: C
+  E: e

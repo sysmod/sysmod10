@@ -1,0 +1,14 @@
+STATECHART:
+  A [DS]
+
+INTERACTOR:
+  i=0
+  def print_msg(msg):
+    global i
+    [DUMP("Message %d is: %s" % (i, str(msg)))]
+    i=i+1
+  def print_msgs():
+    print_msg("hello")
+    print_msg([1, 2, 3, 4])
+    print_msg("exit ...")
+  print_msgs()

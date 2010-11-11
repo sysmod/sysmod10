@@ -1,0 +1,182 @@
+#mainTitle {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 28px;
+	font-style: italic;
+	font-weight: bold;
+	margin-top: 0;
+	margin-right: 83;
+	position: absolute;
+	top: 26px;
+	right: 0px;
+	text-align: right;
+	align: right;
+}
+#sub1 {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 17px;
+	font-weight: bold;
+	margin-bottom: 10;
+	margin-top: 20;
+	margin-right: 40;
+	color: #CC0000;
+}
+#txt1 {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 14px;
+	text-indent: 30px;
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-top: 5px;
+	margin-right: 40px;
+	line-height: 23px;
+}
+#img1 {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 14px;
+	text-indent: 30px;
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-top: 0;
+	margin-right: 40;
+}
+#hrline {
+	margin-bottom: 0;
+	margin-top: 20;
+	margin-right: 40;
+}
+#maintain {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 13px;
+	margin-bottom: 0;
+	text-align: right;
+	margin-top: 0;
+	margin-right: 40;
+	line-height: 25px;
+}
+#imgbar {
+	position: absolute;
+	right: 0px;
+	top: 60px;
+	align: right;
+}
+#twistcorner {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	align: right;
+}
+#maindiv {
+	position: absolute;
+	left: 0px;
+	top: 100px;
+}
+#linktxt {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+#desc1 {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 14px;
+	text-indent: 0px;
+	margin-bottom: 0;
+	margin-top: 10;
+	margin-right: 40;
+	margin-left: 40;
+	line-height: 20px;
+}
+#desc1ind {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 14px;
+	text-indent: 20px;
+	margin-bottom: 10;
+	margin-top: 10;
+	margin-right: 40;
+	margin-left: 40;
+	line-height: 20px;
+}
+#docdesc1 {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 14px;
+	text-indent: 0px;
+	margin-bottom: 10;
+	margin-top: 5;
+	margin-right: 40;
+	margin-left: 50;
+	line-height: 17px;
+}
+#galdiv1 {
+	position: relative;
+	left: 30px;
+}
+#galtxt1 {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 13px;
+	text-indent: 0px;
+	font-weight: bold;
+	margin-bottom: 10;
+	margin-top: 0;
+	margin-right: 0;
+	text-align: center;
+}
+#a {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+#listxt1 {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 13px;
+	margin-top: 0px;
+	margin-right: 40;
+	margin-bottom: 5px;
+}
+#listing {
+	margin-right: 40px;
+	margin-bottom: 13px;
+	position: relative;
+	margin-top: 5px;
+	left: 5px;
+	line-height: 20px;
+}
+#paperlist{
+	margin-left: 20px
+}
+#paperlistxt1{
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 14px;
+	text-indent: 0px;
+	font-weight: bold;
+	margin-bottom: 0;
+	margin-top: 0;
+	margin-right: 40;
+	line-height: 23px;
+}
+#centerdesc{
+  font-size: 14px;
+  font-family: Courier;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#galtxt1l {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 13px;
+	text-indent: 0px;
+	font-weight: bold;
+	margin-bottom: 10;
+	margin-top: 0;
+	margin-right: 0;
+	text-align: left;
+}
+#galtxt1r {
+	font-family: Arial,Helvetica,Geneva,Sans-Serif,Lucida,Verdana;
+	font-size: 13px;
+	text-indent: 0px;
+	font-weight: bold;
+	margin-bottom: 10;
+	margin-top: 0;
+	margin-right: 0;
+	text-align: right;
+}

@@ -1,0 +1,19 @@
+IMPORTATION:
+  test3 = test3.des
+
+STATECHART:
+  A [DS] [FS]
+  B [HS]
+    C [DS]
+    D
+  E
+
+TRANSITION:
+  S: A
+  N: B
+  E: e  # disabled because the default state of the model (A) is final
+
+TRANSITION:
+  S: B
+  N: E
+  E: f  # disabled because the default state of the model (A) is final

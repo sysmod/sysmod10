@@ -1,0 +1,36 @@
+IMPORTATION:
+  test=test.des
+
+STATECHART:
+  State1 [DS] [HS*]
+    State2 [DS] [test] [CS]
+    State3 [HS] [DS] [CS]
+      State5 [DS]
+      State6
+      State7
+  State4
+
+TRANSITION:
+  S: State1.State2
+  N: State1.State3
+  E: 2 to 3
+
+TRANSITION:
+  S: State1.State3
+  N: State4
+  E: 3 to 4
+
+TRANSITION: [HS]
+  S: State4
+  N: State1
+  E: 4 to 1
+
+TRANSITION:
+  S: State1.State3.State5
+  N: State1.State3.State6
+  E: 5 to 6
+
+TRANSITION: [HS]
+  S: State4
+  N: State1.State3
+  E: 4 to 3

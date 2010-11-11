@@ -1,0 +1,77 @@
+enter A
+['A'] > transition to B
+exit A
+enter B
+enter A
+['B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.B.B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.B.B.B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.B.B.B.B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.B.B.B.B.B.A'] > transition to A
+exit A
+exit B
+exit B
+exit B
+exit B
+exit B
+exit B
+exit B
+enter A
+['A'] > ['A'] > ['A'] > ['A'] > transition to B
+exit A
+enter B
+enter A
+['B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.A'] > transition to A
+exit A
+exit B
+exit B
+enter A
+['A'] > transition to B
+exit A
+enter B
+enter A
+['B.A'] > transition to A
+exit A
+exit B
+enter A
+['A'] > transition to B
+exit A
+enter B
+enter A
+['B.A'] > transition to A
+exit A
+exit B
+enter A
+['A'] > ['A'] > transition to B
+exit A
+enter B
+enter A
+['B.A'] > transition to B
+exit A
+enter B
+enter A
+['B.B.A'] > 

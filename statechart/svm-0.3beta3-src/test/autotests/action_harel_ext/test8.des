@@ -1,0 +1,11 @@
+DESCRIPTION:
+  This is a dummy description ...
+
+  ... written by Thomas.
+
+INITIALIZER:
+  [DUMP("Description:")]
+  [DUMP([DESCRIPTION])]
+
+STATECHART:
+  A [DS]

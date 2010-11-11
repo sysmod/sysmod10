@@ -1,0 +1,90 @@
+#---------------------------------------------------------------------
+#    SVM (Statechart Virtual Machine)
+#         -- an interpreter for an extended statechart formalism
+#---------------------------------------------------------------------
+#
+# Copyright (C) 2003 Thomas Huining Feng
+#
+#---------------------------------------------------------------------
+# Address:      MSDL, SOCS, McGill Univ., Montreal, Canada
+# HomePage:     http://msdl.cs.mcgill.ca/people/tfeng/
+# SVM HomePage: http://msdl.cs.mcgill.ca/people/tfeng/?research=svm
+# Download:     http://savannah.nongnu.org/files/?group=svm
+# CVS:          :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm
+#               (projects "svm" and "jsvm")
+# Email:        hfeng2@cs.mcgill.ca
+#---------------------------------------------------------------------
+#
+# This file is part of SVM.
+#
+#---------------------------------------------------------------------
+# SVM is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or (at your
+# option) any later version.
+#
+# SVM is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with SVM; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#---------------------------------------------------------------------
+
+
+# The lowest "RIGHT" in the state hierachy denotes the current character
+# All "LEFT" means the character is uninitiated.
+# 10*11 transitions are created at a time without any dynamic technique
+
+MACRO:
+  MIN = 0
+  MAX = 9
+  INIT = [MIN]
+  FIRST = 1
+
+IMPORTATION:
+  myself = Integer.des
+
+OPTIONS:
+  InnerTransitionFirst = 1
+  
+STATECHART:
+  STABLE [DS]
+  TEMP
+  LEFT [myself] [MIN = [EVAL([MIN]+1)]] [INIT = [INIT]] [FIRST = [FIRST]] [MAX = [MAX]]
+  RIGHT [myself] [MIN = [EVAL([MIN]+1)]] [INIT = [INIT]] [FIRST = 0] [MAX = [MAX]]
+
+TRANSITION:
+  S:STABLE
+  T:0
+  C:[MIN] <= [MAX]
+  N:LEFT
+
+TRANSITION:
+  S:STABLE
+  T:0
+  C:[MIN] > [MAX] and [FIRST]==1
+  N:TEMP
+  O:[EVENT('[INIT]')]
+# When the bottom is reached and it is initiating,
+# sent an event of the [INIT] character
+
+TRANSITION:
+  S:LEFT
+  E:[MIN]
+  N:RIGHT
+  O:[DUMP('Current value is [MIN].')]
+
+TRANSITION:
+  S:RIGHT
+  E:[MIN]
+  N:RIGHT
+  O:[DUMP('Current value is [MIN].')]
+
+TRANSITION:
+  S:RIGHT
+  E:get
+  N:RIGHT
+  O:[EVENT('[MIN]')]

@@ -1,0 +1,10 @@
+STATECHART:
+  A [DS]
+  B
+    C [DS]
+    D
+
+TRANSITION:
+  S: A
+  N: B.D
+  E: e

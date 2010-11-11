@@ -1,0 +1,624 @@
+#---------------------------------------------------------------------
+#    SVM (Statechart Virtual Machine)
+#         -- an interpreter for an extended statechart formalism
+#---------------------------------------------------------------------
+#
+# Copyright (C) 2003 Thomas Huining Feng
+#
+#---------------------------------------------------------------------
+# Address:      MSDL, SOCS, McGill Univ., Montreal, Canada
+# HomePage:     http://msdl.cs.mcgill.ca/people/tfeng/
+# SVM HomePage: http://msdl.cs.mcgill.ca/people/tfeng/?research=svm
+# Download:     http://savannah.nongnu.org/files/?group=svm
+# CVS:          :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm
+#               (projects "svm" and "jsvm")
+# Email:        hfeng2@cs.mcgill.ca
+#---------------------------------------------------------------------
+#
+# This file is part of SVM.
+#
+#---------------------------------------------------------------------
+# SVM is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or (at your
+# option) any later version.
+#
+# SVM is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with SVM; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#---------------------------------------------------------------------
+
+
+# Statechart description file
+# All the empty lines or lines containing only space and tabs are deleted.
+
+# History states are temporarily not supported
+
+# Comments starts with '#' in any line. Be aware that Python-styled """ comment is not allowed.
+
+# Model description is specified in the DESCRIPTION section (followed by a ":")
+# The simulator may display this description to the user or it may not. How to use
+# this information depends on the implementation of the simulator.
+
+OPTIONS:
+  Harel = 0
+
+MACRO:
+  Author		= Thomas
+  Email			= hfeng2@cs.mcgill.ca
+  BlankDelay	= 0.5
+  Date			= Nov. 2003
+  ForwardDelay	= 0.1
+  BackwardDelay	= 0.1
+  Version		= 0.3
+
+  Import(NAME)	= from [NAME] import [NAME]
+  DUMP(msg) = print [msg]
+
+  SetTimeTrack(Time, Track) = \
+    gui.timestr.set([Time]); \
+    gui.trackstr.set([Track]);
+  ResetTrack = [SetTimeTrack('00:00', '[track 1]')]
+  UpdateTrack(IncreaseNumber=0) = [SetTimeTrack(cd.ElapsedTime(), \
+                '[track '+str(cd.TrackNumber()+[IncreaseNumber])+']')]
+  ClearTrack = [SetTimeTrack('--:--', '[no track]')]
+  SetButtons(PP, ST, FF, FB, TF, TB) = \
+    gui.b_playpause.config(state=[PP]); \	# multiline Python command requires ending ';'
+    gui.b_stop.config(state=[ST]); \
+    gui.b_ffwd.config(state=[FF]); \
+    gui.b_fback.config(state=[FB]); \
+    gui.b_tfwd.config(state=[TF]); \
+    gui.b_tback.config(state=[TB]);
+  ChangeCD(Number) = cd.ChangeCDRom([Number])
+  UpdateCDCount = \
+    gui.set_cd_count(cd.CDCount()); \
+    gui.select_cd(cd.CDNumber());
+
+DESCRIPTION:
+----------------------------------------
+| Python CD Player Based on Statechart |
+|             Version [Version]              |
+========================================
+|          [Author], [Date]           |
+|       ( [Email] )        |
+----------------------------------------
+ \      To debug mode: press 'd'      /
+   ----------------------------------
+
+INITIALIZER:
+  from Tkinter import *
+  [Import(CDPlayerGUI)]		# GUI module
+  [Import(CDHardware)]		# Module for the CD hardware
+  [DUMP([DESCRIPTION])]
+  debugger.InterruptEvent('GUI Debug')
+  cd=CDHardware(eventhandler, 0)
+  root=Tk()
+  t=root.title('CD Player V[Version]')
+  gui=CDPlayerGUI(root, eventhandler)
+  eventhandler.start()
+  cd.InitiateHardware()
+
+SNAPSHOT:
+  cd
+
+RESTORE:
+  if cd.IsEmpty():
+    [ClearTrack]
+    [SetButtons(DISABLED, DISABLED, DISABLED, DISABLED, DISABLED, DISABLED)]
+  if not cd.IsEmpty():
+    [UpdateTrack()]
+    if cd.IsStopped():
+      [SetButtons(NORMAL, DISABLED, NORMAL, NORMAL, NORMAL, NORMAL)]
+  [UpdateCDCount]
+
+INTERACTOR:
+  root.mainloop()
+
+FINALIZER:
+  root.tk.quit()
+
+# State hierachy is defined in the STATECHART section (followed by a ":")
+
+# Note:
+#   A "[DS]" behind a state denotes the state is the default state of its parent state
+#   A "[CS]" behind a state denotes it is a concurrent state with its siblings
+#   A "[FS]" behind a state denotes it it a final state
+#   State name can not end with: "[DS]", "[CS]" and "[FS]"; it cannot have " " as its
+#       starting or ending character
+#   It is the designer's business to make sure that if a state has one or more sub-
+#       states, and if the substates are not concurrent, exactly one state should be
+#       marked default.
+#   It is the designer's business to make sure that if a state has one or more sub-
+#       states, and if the substates are concurrent, each substate should have
+#       exactly one default state, which is either itself or its substates.
+
+# In this file, three objects can be referred to: gui (and its parent, root),
+# eventhandler and cd. Thay are all defined in the simulator. In addition to them,
+# class Clock can be instantiated as many times as we want.
+
+# The notation "[FS]" for a final state is only to be interpreted by the designer him/
+# herself. The output commands of a transition to this state should explicitly halt
+# the program (by calling the destroy function of the root object.
+
+# Theoretically speaking, at every level there must be exactly one default state.
+# But one can as well omit the default state as long as it is unnecessary. But one
+# may not have two different default states at a single level of encapsulation.
+
+STATECHART:     # The begining of the statechart definition
+  Initial[DS]
+  Started[HS*]
+    NoCDLoaded
+    CDIn
+      Playing
+        Forwarding
+        Backwarding
+        Normal[DS]
+      Stopped[DS]
+        Forwarding
+        Backwarding
+        Normal[DS]
+      Paused
+        Forwarding
+        Backwarding
+        Normal[DS]
+          TimeBlank[CS]		# Time and track fields blank independently
+            TimeShown[DS]	# An alternative is to combine them and make them show and hide at the same time
+            TimeHidden		# We do choose the independent way just to demonstrate the behavior or concurrent states
+          TrackBlank[CS]
+            TrackShown[DS]
+            TrackHidden
+  ShuttingDown				# A state waiting for the finalization of the hardware (it may take time)
+  ShutDown[FS]
+
+# Transitions are defined in the TRANSITION sections (followed by a ":")
+
+# A transition can have the following attributes:
+#   S: old State (the state where the transition can be triggered)
+#   E: Event (the event to trigger the transition)
+#   C: Condition (also known as guard, the condition to be satisfied for the transition)
+#   N: New state (the new state after the transition)
+#   O: Output (single or multiple output commands in which logic such as braching and iteration is not allowed)
+
+TRANSITION:     # When the CDRom is initiated, if there's no CD in it, the model enters the NoCDLoaded state
+  S:Initial
+  E:Hardware Initiated
+  C:cd.IsEmpty()
+  N:Started.NoCDLoaded
+  O:[DUMP('Hardware initiated')]
+    [DUMP('No CD in')]
+    [ClearTrack]
+    [SetButtons(DISABLED, DISABLED, DISABLED, DISABLED, DISABLED, DISABLED)]
+    [UpdateCDCount]
+
+TRANSITION:     # When the CDRom is initiated, if there's a CD in it, the model enters the InitialCDIn state
+  S:Initial
+  E:Hardware Initiated
+  C:not cd.IsEmpty()
+  N:Started.CDIn
+  O:[DUMP('Hardware initiated')]
+    [DUMP('CD in')]
+    [ResetTrack]
+    [SetButtons(NORMAL, DISABLED, NORMAL, NORMAL, NORMAL, NORMAL)]
+    [UpdateCDCount]
+
+TRANSITION:
+  S:Started.CDIn
+  E:Hardware Eject
+  N:Started.NoCDLoaded
+  O:[DUMP('CD is ejected')]
+    [ClearTrack]
+    [SetButtons(DISABLED, DISABLED, DISABLED, DISABLED, DISABLED, DISABLED)]
+
+TRANSITION:
+  S:Started.NoCDLoaded
+  E:Hardware Insert
+  N:Started.CDIn
+  O:[DUMP('CD is inserted')]
+    [ResetTrack]
+    [SetButtons(NORMAL, DISABLED, NORMAL, NORMAL, NORMAL, NORMAL)]
+
+TRANSITION:
+  S:Started.CDIn
+  E:GUI Eject
+  N:Started.CDIn
+  O:[DUMP('Eject button is pressed')]
+    cd.First()
+    cd.Eject()
+
+TRANSITION:
+  S:Started.NoCDLoaded
+  E:GUI Eject
+  N:Started.NoCDLoaded
+  O:[DUMP('Eject button is pressed')]
+    cd.Eject()
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Normal
+  E:GUI Play/Pause
+  N:Started.CDIn.Stopped.Normal
+  O:[DUMP('Play CD')]
+    cd.Play()
+
+TRANSITION:
+  S:Started.CDIn
+  E:Hardware Played
+  N:Started.CDIn.Playing
+  O:[DUMP('Started to play the CD')]
+    [SetButtons(NORMAL, NORMAL, NORMAL, NORMAL, NORMAL, NORMAL)]
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:Update Display
+  N:Started.CDIn.Playing.Normal
+  O:[UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:Update Display
+  N:Started.CDIn.Paused.Normal
+  O:[UpdateTrack()]
+
+TRANSITION:	# There's no function in the hardware to decide whether a track has finished. But as soon as it finishes,
+		# the hardware stops immediately. We can detect this stop if the player is still in the "playing" state.
+  S:Started.CDIn.Playing.Normal
+  E:Hardware Stopped		# This means an unexpected stop directly raised from the hardware (track finished?)
+  C:cd.TrackNumber()<cd.TrackCount()
+  N:Started.CDIn.Playing.Normal
+  O:[DUMP('Automatically jump to the next track')]
+    cd.Next()
+    cd.Play()
+# To be improved: there's a drawback here: if another CD player runs with this one, and the user stops playing
+# in that one, this player may jump to the next track.
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:Hardware Stopped
+  C:cd.TrackNumber()==cd.TrackCount()
+  N:Started.CDIn.Stopped
+  O:[DUMP('CD playing finished')]
+    [ResetTrack]
+    cd.First()
+    cd.Stop()
+    [SetButtons(NORMAL, DISABLED, NORMAL, NORMAL, NORMAL, NORMAL)]
+
+TRANSITION:
+  S:Started.CDIn
+  E:GUI Stop
+  N:Started.CDIn.Stopped
+  O:[DUMP('Stop pressed')]
+    cd.Stop()
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Normal
+  E:Hardware Stopped
+  N:Started.CDIn.Stopped.Normal
+  O:[DUMP('CD hardware stopped')]
+    cd.First()
+    cd.Stop()   # Because the stop may not be caused by the user pressing the stop button, we had better reensure the hardware is at last stopped
+    [ResetTrack]
+    [SetButtons(NORMAL, DISABLED, NORMAL, NORMAL, NORMAL, NORMAL)]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:Hardware Stopped
+  N:Started.CDIn.Stopped
+  O:[DUMP('CD hardware stopped')]
+    cd.First()
+    cd.Stop()   # Because the stop may not be caused by the user pressing the stop button, we had better reensure the hardware is at last stopped
+    [ResetTrack]
+    [SetButtons(NORMAL, DISABLED, NORMAL, NORMAL, NORMAL, NORMAL)]
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:GUI Play/Pause
+  N:Started.CDIn.Playing.Normal
+  O:[DUMP('Pause pressed')]
+    cd.Pause()
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:Hardware Paused
+  N:Started.CDIn.Paused
+  O:[DUMP('Hardware paused')]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal.TimeBlank.TimeHidden
+  T:[BlankDelay][RTT]
+  N:Started.CDIn.Paused.Normal.TimeBlank.TimeShown
+  O:gui.timestr.set(cd.ElapsedTime())
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal.TimeBlank.TimeShown
+  T:[BlankDelay][RTT]
+  N:Started.CDIn.Paused.Normal.TimeBlank.TimeHidden
+  O:gui.timestr.set('')
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal.TrackBlank.TrackHidden
+  T:[BlankDelay][RTT]
+  N:Started.CDIn.Paused.Normal.TrackBlank.TrackShown
+  O:[UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal.TrackBlank.TrackShown
+  T:[BlankDelay][RTT]
+  N:Started.CDIn.Paused.Normal.TrackBlank.TrackHidden
+  O:gui.trackstr.set('')
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:GUI Play/Pause
+  N:Started.CDIn.Paused.Normal
+  O:[DUMP('Resume pressed')]
+    [UpdateTrack()]
+    cd.Resume()
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:Hardware Resumed
+  N:Started.CDIn.Playing
+  O:[DUMP('Hardware resumed')]
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:GUI Track Forward
+  C:cd.TrackNumber()!=cd.TrackCount()
+  N:Started.CDIn.Playing.Normal
+  O:[DUMP('Track Forward pressed (not the last track)')]
+    cd.Next()
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:GUI Track Forward
+  C:cd.TrackNumber()!=cd.TrackCount()
+  N:Started.CDIn.Paused.Normal
+  O:[DUMP('Track Forward pressed (not the last track)')]
+    cd.Next()
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Normal
+  E:GUI Track Forward
+  C:cd.TrackNumber()!=cd.TrackCount()
+  N:Started.CDIn.Stopped.Normal
+  O:[DUMP('Track Forward pressed (not the last track)')]
+    cd.Next()
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn
+  E:GUI Track Forward
+  C:cd.TrackNumber()==cd.TrackCount()
+  N:Started.CDIn.Stopped
+  O:[DUMP('Track Forward pressed (the last track)')]
+    cd.First()
+    [ResetTrack]
+    cd.Stop()
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:GUI Track Backward
+  C:cd.TrackNumber()!=1
+  N:Started.CDIn.Playing.Normal
+  O:[DUMP('Track Backward pressed (not the first track)')]
+    cd.Previous()
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:GUI Track Backward
+  C:cd.TrackNumber()!=1
+  N:Started.CDIn.Paused.Normal
+  O:[DUMP('Track Backward pressed (not the first track)')]
+    cd.Previous()
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Normal
+  E:GUI Track Backward
+  C:cd.TrackNumber()!=1
+  N:Started.CDIn.Stopped.Normal
+  O:[DUMP('Track Backward pressed (not the first track)')]
+    cd.Previous()
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:GUI Track Backward
+  C:cd.TrackNumber()==1
+  N:Started.CDIn.Playing.Normal
+  O:[DUMP('Track Backward pressed (the first track)')]
+    cd.Restart()
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:GUI Track Backward
+  C:cd.TrackNumber()==1
+  N:Started.CDIn.Paused.Normal
+  O:[DUMP('Track Backward pressed (the first track)')]
+    cd.Restart()
+    cd.Pause()
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Normal
+  E:GUI Track Backward
+  C:cd.TrackNumber()==1
+  N:Started.CDIn.Stopped.Normal
+  O:[DUMP('Track Backward pressed (the first track)')]
+    cd.First()
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:GUI Forward Pressed
+  N:Started.CDIn.Playing.Forwarding
+  O:[DUMP('Forward pressed')]
+    cd.Pause()
+
+TRANSITION:
+  S:Started.CDIn.Playing.Forwarding
+  T:[ForwardDelay][RTT]
+  N:Started.CDIn.Playing.Forwarding
+  O:cd.Forward(1)
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Playing.Forwarding
+  E:GUI Forward Released
+  N:Started.CDIn.Playing.Normal
+  O:[DUMP('Forward released')]
+    cd.Resume()
+    
+TRANSITION:
+  S:Started.CDIn.Playing.Normal
+  E:GUI Backward Pressed
+  N:Started.CDIn.Playing.Backwarding
+  O:[DUMP('Backward pressed')]
+    cd.Pause()
+
+TRANSITION:
+  S:Started.CDIn.Playing.Backwarding
+  T:[BackwardDelay][RTT]
+  N:Started.CDIn.Playing.Backwarding
+  O:cd.Forward(-1)
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Playing.Backwarding
+  E:GUI Backward Released
+  N:Started.CDIn.Playing.Normal
+  O:[DUMP('Backward released')]
+    cd.Resume()
+
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:GUI Forward Pressed
+  N:Started.CDIn.Paused.Forwarding
+  O:[DUMP('Forward pressed')]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Forwarding
+  T:[ForwardDelay][RTT]
+  N:Started.CDIn.Paused.Forwarding
+  O:cd.Forward(1)
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Forwarding
+  E:GUI Forward Released
+  N:Started.CDIn.Paused.Normal
+  O:[DUMP('Forward released')]
+    
+TRANSITION:
+  S:Started.CDIn.Paused.Normal
+  E:GUI Backward Pressed
+  N:Started.CDIn.Paused.Backwarding
+  O:[DUMP('Backward pressed')]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Backwarding
+  T:[BackwardDelay][RTT]
+  N:Started.CDIn.Paused.Backwarding
+  O:cd.Forward(-1)
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Paused.Backwarding
+  E:GUI Backward Released
+  N:Started.CDIn.Paused.Normal
+  O:[DUMP('Backward released')]
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Normal
+  E:GUI Forward Pressed
+  N:Started.CDIn.Stopped.Forwarding
+  O:[DUMP('Forward pressed')]
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Forwarding
+  T:[ForwardDelay][RTT]
+  N:Started.CDIn.Stopped.Forwarding
+  O:cd.Forward(1)
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Forwarding
+  E:GUI Forward Released
+  N:Started.CDIn.Stopped.Normal
+  O:[DUMP('Forward released')]
+    
+TRANSITION:
+  S:Started.CDIn.Stopped.Normal
+  E:GUI Backward Pressed
+  N:Started.CDIn.Stopped.Backwarding
+  O:[DUMP('Backward pressed')]
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Backwarding
+  T:[BackwardDelay][RTT]
+  N:Started.CDIn.Stopped.Backwarding
+  O:cd.Forward(-1)
+    [UpdateTrack()]
+
+TRANSITION:
+  S:Started.CDIn.Stopped.Backwarding
+  E:GUI Backward Released
+  N:Started.CDIn.Stopped.Normal
+  O:[DUMP('Backward released')]
+
+TRANSITION:[HS]
+  S:Started
+  E:CD 0
+  N:Started
+  O:[ChangeCD(0)]
+    [DUMP('Changed to CDRom 0')]
+
+TRANSITION:[HS]
+  S:Started
+  E:CD 1
+  N:Started
+  O:[ChangeCD(1)]
+    [DUMP('Changed to CDRom 1')]
+
+TRANSITION:[HS]
+  S:Started
+  E:CD 2
+  N:Started
+  O:[ChangeCD(2)]
+    [DUMP('Changed to CDRom 2')]
+
+TRANSITION:[HS]
+  S:Started
+  E:CD 3
+  N:Started
+  O:[ChangeCD(3)]
+    [DUMP('Changed to CDRom 3')]
+
+TRANSITION:[HS]
+  S:Started
+  E:Take Snapshot
+  N:Started
+  O:name=os.path.splitext(eventhandler.model_name)[0]+'.snp'
+    eventhandler.snap_to_file(name)
+    [DUMP('Execution snapshot saved to file "'+name+'"')]
+
+TRANSITION:
+  S:Started
+  E:GUI Quit
+  C:cd.IsStopped()
+  N:ShutDown
+
+TRANSITION:
+  S:Started
+  E:GUI Quit
+  C:not cd.IsStopped()
+  N:ShuttingDown
+  O:[DUMP('Shutting down ...')]
+    cd.Stop()
+
+TRANSITION:
+  S:ShuttingDown
+  E:Hardware Stopped
+  N:ShutDown

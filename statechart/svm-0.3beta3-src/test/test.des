@@ -1,0 +1,71 @@
+OPTIONS:
+  InnerTransitionFirst = 1
+  TopLevel = 1
+
+INITIALIZER:
+  testvar=0
+
+SNAPSHOT:
+  testvar
+
+STATECHART:
+  A [DS]
+    B [DS] [OTF]
+      C [DS]
+
+TRANSITION:
+  S: A
+  N: A
+  E: p.e
+  O: [DUMP("A from p.e")]
+
+TRANSITION:
+  S: A
+  N: A
+  E: q.e
+  O: [DUMP("A from q.e")]
+
+TRANSITION:
+  S: A.B
+  N: A.B
+  E: e
+  O: #[SNAPSHOTREQ(0)]
+     [EVENT(".q.e")]
+     #[DUMP("B")]
+     #[EVENT("q.e")]
+
+TRANSITION:
+  S: A.B
+  N: A.B
+  E: x
+  O: [SNAPSHOTRET(0)]
+
+TRANSITION:
+  S: A.B.C
+  N: A.B.C
+  E: e
+  O: [DUMP("C")]
+
+TRANSITION:
+  S: A
+  N: A
+  T: 1000
+
+TRANSITION:
+  S: A
+  N: A
+  T: 1000
+
+TRANSITION:
+  S: A
+  N: A
+  T: 1000
+
+PORT:
+  type = in
+  name = p
+
+PORT:
+  type = out
+  name = q
+  buffer = abc

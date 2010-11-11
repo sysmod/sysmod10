@@ -1,0 +1,13 @@
+# recursive importation (no macro redefinition allowed)
+
+IMPORTATION:
+  test1 = test1.des
+
+STATECHART:
+  A [DS]
+  B [test1]
+
+TRANSITION:
+  S: A
+  N: B
+  E: e

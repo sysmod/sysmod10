@@ -1,0 +1,28 @@
+STATECHART:
+  A [DS] [HS]
+    C [CS] [DS] [HS*]
+      F [DS]
+      G
+    D [CS] [DS]
+    E [CS] [DS]
+  B
+
+TRANSITION:
+  S: A.C.F
+  N: A.C.G
+  E: fg
+
+TRANSITION:
+  S: A
+  N: B
+  E: ab
+
+TRANSITION: [HS]
+  S: B
+  N: A.C
+  E: bc
+
+TRANSITION: [HS]
+  S: B
+  N: A
+  E: ba

@@ -1,0 +1,19 @@
+DESCRIPTION:
+  test9 -- description
+
+IMPORTATION:
+  self = test9.des
+
+STATECHART:
+  A [DS]
+  B [self] [HS]
+
+TRANSITION: [HS]
+  S: A
+  N: B
+  E: e
+
+TRANSITION:
+  S: B
+  N: A
+  E: f

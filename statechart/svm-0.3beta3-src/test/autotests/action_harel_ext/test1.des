@@ -1,0 +1,12 @@
+STATECHART:
+  A [DS]
+
+INITIALIZER:
+  [DUMP("initialize")]
+
+FINALIZER:
+  [DUMP("finalize")]
+
+ENTER:
+  N: A
+  O: [DUMP("enter A")]

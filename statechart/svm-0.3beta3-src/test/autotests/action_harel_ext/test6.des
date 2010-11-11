@@ -1,0 +1,40 @@
+# an example in the tutorial
+
+STATECHART:
+  A [DS]
+
+INTERACTOR:
+  import thread
+  import string
+
+  lock=thread.allocate_lock()
+
+  # make sure the model is started before the events are sent to it
+  lock.acquire()
+  eventhandler.start(lock)
+  lock.acquire()
+  lock.release()
+
+  # repeatedly handle events
+  cmd=""
+  while cmd!="quit":
+    sys.__stdout__.write("CMD >  ")
+    cmd=string.strip(sys.__stdin__.readline())
+    if cmd!="quit":
+
+      # split the cmd into [event, param] tuple
+      [event, param]=string.split(cmd, ",")
+
+      lock.acquire()
+      [EVENT(string.strip(event), [eval(string.strip(param))], lock)]
+      lock.acquire()
+      lock.release()
+
+  # shutdown the simulator
+  eventhandler.shutdown()
+
+TRANSITION:
+  S: A
+  N: A
+  E: eval
+  O: [DUMP("result: "+str([PARAMS][0]))]

@@ -1,0 +1,12 @@
+MACRO:
+  NS = B
+
+STATECHART:
+  A [DS]
+  B
+  C
+
+TRANSITION:
+  S: A
+  N: [NS]
+  E: t

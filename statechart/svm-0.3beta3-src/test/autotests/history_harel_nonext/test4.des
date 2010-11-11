@@ -1,0 +1,42 @@
+STATECHART:
+  A [DS]
+  B [HS*]
+    B1 [CS] [DS]
+      B11 [DS]
+      B12
+      B13
+    B2 [CS] [DS]
+      B21 [DS]
+      B22
+    B3 [CS] [DS]
+      B31 [CS] [DS]
+        B311 [DS]
+        B312
+      B32 [CS] [DS]
+        B321 [CS] [DS]
+        B322 [CS] [DS]
+
+TRANSITION: [HS]
+  S: A
+  N: B
+  E: a
+
+TRANSITION:
+  S: B
+  N: B.B1.B13
+  E: b
+
+TRANSITION:
+  S: B
+  N: B.B3.B32.B322
+  E: c
+
+TRANSITION:
+  S: B
+  N: B.B3.B31.B312
+  E: d
+
+TRANSITION:
+  S: B.B3.B31.B312
+  N: A
+  E: e

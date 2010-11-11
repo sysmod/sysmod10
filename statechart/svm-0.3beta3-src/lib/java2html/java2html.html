@@ -1,0 +1,886 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="description"
+content="Java2HTML Converts your entire Java Project into Colourized, Browsable HTML, creating a basic Source Code Explorer. Also useful for colour prints.">
+<meta name="keywords"
+content="Java to 2 HTML colour color printing formatted source code browser Free Freeware download good Java2HTML JavaToHTML jason shattu">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<title>Java2HTML Tool</title>
+</head>
+
+<body bgcolor="#FFFFFF">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td>&nbsp; <a
+        href="download.html"><u>Download</u></a> </td>
+        <td align="right" valign="top">
+        <a href="http://www.jars.com"><img
+        src="R895.GIF" border="0" width="104" height="56"></a></td>
+    </tr>
+</table>
+
+<hr>
+
+<p align="center"><font size="6">The Java2HTML Tool</font> </p>
+
+<h3>Contents</h3>
+
+<ul>
+    <li><a href="#Intro">Introduction</a> </li>
+    <li><a href="#Feature">Feature List</a> </li>
+    <li><a href="#Ant">Ant</a> </li>
+    <li><a href="#API">API</a> </li>
+    <li><a href="#Installing">Installing</a> </li>
+    <li><a href="#Requirements">Requirements</a> </li>
+    <li><a href="#Options">Options</a> </li>
+    <li><a href="#Examples">Example Usage</a>:- <ul>
+            <li><a href="examples/Java2D_demo/index.html"><font
+                size="3">example1</font></a></li>
+            <li><a href="examples/SwingSet_demo/index.html"><font
+                size="3">example2</font></a></li>
+            <li><font size="3">example3 </font><a href="examples/SwingSet_demo/TreeDemo.java.html#80"><i>TreeDemo.java.html#80</i></a></li>
+        </ul>
+    </li>
+    <li><a href="#Known">Known Limitations and Future Extensions</a>
+    </li>
+    <li><a href="#Support">Support</a> </li>
+    <li><a href="#Change">Change History</a> </li>
+    <li><a href="#License">License Agreement</a> </li>
+    <li><a href="#Credits">Credits</a> </li>
+    <li><a href="#Payment">Payment</a> </li>
+</ul>
+
+<h3><a name="Intro"></a>Introduction</h3>
+
+<p>Java2HTML is a simple-to-use tool which converts a bunch of
+Java Source Code into a <font color="#FF00FF">col</font><font
+color="#0000FF">ouri</font><font color="#008000">zed</font> and <font
+color="#0000FF"><u>browsable</u></font>  HTML representation. Go
+to <a href="download.html"><u>download</u></a> (Version 1.3.1) to
+get the tool now and/or see some <a href="#Example Outputs">example</a>
+ outputs. You <strong>must</strong> read the <a href="#License">License
+Agreement </a>before downloading this software.</p>
+
+<p>Java2HTML output has been tested with Microsoft Internet
+Explorer 4, 5, 6 and Netscape Navigator 4, running on NT and
+Solaris.</p>
+
+<p>Java2HTML is used by thousands of organizations to publish their source code
+on the internet, including&nbsp; Sun Microsystems (<a href="http://java.sun.com/blueprints/code/jps131/src">Java Pet Store Demo 1.3.1</a>)
+and Oracle (<a href="http://otn.oracle.com/sample_code/tech/xml/xmldb/saxloader">XML
+Example</a>).</p>
+
+<p>For discussions regarding Java2HTML please subscribe to to our mailing list:-&nbsp;
+</p>
+
+<ul>
+  <li><a href="mailto:java2html.discussion-subscribe@vaegar.force9.co.uk">Subscribe</a></li>
+  <li><a href="mailto:java2html.discussion-unsubscribe@vaegar.force9.co.uk">Unsubscribe</a><br>
+  </li>
+</ul>
+
+<h3><a name="Feature"></a>Feature List</h3>
+
+<p>Main features include:-</p>
+
+<ul>
+    <li>Converts Java Code into Colourized HTML. </li>
+    <li>Specify TAB Spacing. </li>
+    <li>Specify style and colour options of all Java keywords
+        types via standard cascading style sheets. </li>
+    <li>JavaDoc Look'n Feel. </li>
+    <li>Links Class references into source code for Class
+        definitions. </li>
+    <li>Links external Class references into 'JavaDoc' output. </li>
+    <li>Optional Line Number feature.</li>
+    <li>API</li>
+</ul>
+
+<h3><a name="Ant"></a>Ant
+</h3>
+
+<p>Java2HTML can be used from within <a href="http://ant.apache.org">Ant</a>.
+View the <a href="java2html_ant_task.html">Java2HTML Task</a> documentation to
+see&nbsp; how to do this.
+</p>
+
+
+<h3><a name="API"></a>API
+</h3>
+
+<p>Java2HTML can be used from within a Java program by using the Java2HTML <a href="docsapi/index.html">API </a>. This is only available in 1.3Beta onwards.&nbsp;
+</p>
+
+<p>View the
+Java2HTML API <a href="api_examples/TestExample.java.html">example</a> to see
+how to use it.
+</p>
+
+<h3><a name="Installing"></a>Installing</h3>
+
+<p>Installing, assumes a certain level of technical knowledge. </p>
+
+<ul>
+    <li>Unzip <i>Java2HTML.zip</i> into a temporary directory,
+        using either <a href="http://www.winzip.com">WinZIP </a>or
+        the <a href="http://www.javasoft.com">JDK</a> jar tool
+        (using &quot;jar-xf Java2HTML.zip&quot;) <br>
+        <br>
+        </li>
+    <li>Copy <i>j2h.jar</i> and one of the scripts to an
+        appropriate area on your file system (e.g. <i>C:\Tools\Java2HTML</i>)<br>
+        <br>
+        </li>
+    <li>Place the installation directory in your PATH.<br>
+        <br>
+        </li>
+    <li>Edit the script to reflect the installation directory, or
+        create an appropriate script if you are not using a
+        DOS/Unix based operating system.<br>
+        <br>
+        </li>
+    <li>Use of the scripts is optional, alternatively you can
+        place the <i>j2h.jar</i> location in your class path, and
+        type <em>&quot;java j2h</em>&quot; in its place or if you
+        are using Java 2, you can type, <em>&quot;java -jar
+        j2h.jar&quot;</em>.<br>
+        <br>
+        </li>
+    <li>Type, <i>&quot;j2h&quot;</i> to see if your installation
+        has succeeded. You should see a usage description if it
+        is has been successful.<br>
+        </li>
+    <li>Alternatively you can now use Java2HTML from within Ant.<br>
+        </li>
+</ul>
+
+<h3><a name="Requirements"></a>Requirements</h3>
+
+<ul>
+    <li>Java2HTML is written in Java and therefore needs a Java
+        1.1 or above compatible JVM. </li>
+</ul>
+
+<h3><a name="Options"></a>Options</h3>
+
+<p>Type, <em>&quot; </em><i>j2h&quot; </i>(if using the script) with
+no arguments to get a list of options. </p>
+
+<table border="1">
+    <tr>
+        <td bgcolor="#C0C0C0"><b>Option</b></td>
+        <td bgcolor="#C0C0C0"><b>aka</b></td>
+        <td bgcolor="#C0C0C0"><b>Default</b></td>
+        <td bgcolor="#C0C0C0"><b>Description</b></td>
+    </tr>
+    <tr>
+        <td>-d &lt;directory&gt;</td>
+        <td>-destination</td>
+        <td>output</td>
+        <td>Specifies the HTML output directory.</td>
+    </tr>
+    <tr>
+        <td>-js &lt;directory&gt;</td>
+        <td>-javasource</td>
+        <td>current directory</td>
+        <td>Specifies the Java Source directory that will be
+        converted to HTML. Repeat for each Java Source directory.</td>
+    </tr>
+    <tr>
+        <td>-jd &lt;directory&gt; [web_reference]</td>
+        <td>-javadoc</td>
+        <td>N/A</td>
+        <td>Used to specify JavaDoc directories that the
+        generated HTML will link to. Specify the optional extra
+        parameter [web_reference] to indicate the web address if
+        the Java HTML is to be accessed from a web server.</td>
+    </tr>
+    <tr>
+        <td>-m</td>
+        <td>-margin</td>
+        <td>0</td>
+        <td>Margin size, with Line Numbers.</td>
+    </tr>
+    <tr>
+        <td>-t</td>
+        <td>-tab</td>
+        <td>4</td>
+        <td>The number of spaces that Tabs will be converted to.</td>
+    </tr>
+    <tr>
+        <td>-n</td>
+        <td>-name</td>
+        <td>Java Source</td>
+        <td>Name used in the frames.</td>
+    </tr>
+    <tr>
+        <td>-h&nbsp;</td>
+        <td>-help, /? or j2h with no arguments</td>
+        <td>N/A</td>
+        <td>Display Help Options.</td>
+    </tr>
+    <tr>
+        <td>-nh</td>
+        <td>-noheader</td>
+        <td>false</td>
+        <td>prevents the header from being displayed.</td>
+    </tr>
+    <tr>
+        <td>-nf</td>
+        <td>-nofooter</td>
+        <td>false</td>
+        <td>prevents the footer from being displayed.</td>
+    </tr>
+    <tr>
+        <td>-s</td>
+        <td>-simple</td>
+        <td>false</td>
+        <td>Simple output, just include the Java source and stylesheet.css
+          files. Also
+          package links will not be set within the source</td>
+    </tr>
+</table>
+
+<p>In addition, Java2HTML will produce a <i>&quot;stylesheet.css&quot;</i>,
+in the output directory which can be edited to change the colour
+or style scheme. (Warning: this will get overwritten if it
+already exists when you run j2h) </p>
+
+<h3><a name="Examples"></a>Example Usage</h3>
+
+<p>To review the output of running Java2HTML, view the<i>
+index.html </i>produced in the output directory with your
+favorite web browser. </p>
+
+<p>I highly recommend the use of the -jd option. You will nearly
+always want to link into the standard Java libraries, so you will
+typically supply the following parameter, &quot;<i>-jd
+C:\JDK1.2\DOCS\API</i>&quot;. Use the -jd option for each set of
+Java Doc you have access to. </p>
+
+<p>Assuming you are using the Dos or Unix scripts <i>&quot;j2h.bat&quot;</i>
+or <i>&quot;j2h&quot;</i>, type the examples for the specified
+effects. </p>
+
+<ul>
+    <li><i>j2h -js C:\JDK1.2\src<br>
+        </i><br>
+        This will produce HTML representation under <i>output</i>
+        in the current directory, for the JDK1.2 public source
+        code. <br>
+        </li>
+    <li><i>j2h -js \home\billgates\dev\cooljavaproject -jd \usr\jdk1.2\docs\api
+      \www\docs\jdk1.2\docs\api<br>
+        </i><br>
+        This will produce HTML representation under <i>output</i>
+        for the <i>cooljavaproject</i> source code with links
+        into the standard Java Doc output for the JDK1.2
+        libraries. <br>
+        <br>
+        </li>
+    <li><i>j2h -n COOL_PROJECT -t 8<br>
+        </i><br>
+        This will produce HTML representation under <i>output</i>
+        for any Java Source files in the current directory, with
+        tabs set to 8 spaces and a title of <i>COOL_PROJECT.</i> <br>
+        <br>
+        </li>
+    <li><i>j2h -m 4 COOL_PROJECT<br>
+        </i><br>
+        This will produce HTML representation under <i>output</i>
+        for any Java Source files in the current directory, with
+        line numbers and a title of <i>COOL_PROJECT.</i><br>
+        <br>
+        </li>
+    <li><i>j2h -js C :\dev\project1 -js C: \dev\project2 -jd C :\jdk1.2\docs\api
+      -jd C: \JavaXML\docs\api<br>
+        </i><br>
+        This will produce HTML representation under <i>output</i>
+        for any Java Source files under <i>C:\dev\project1 or
+        C:\dev\project2</i> with Java Doc links to the standard
+        JDK1.2 API and the SUN Microsystems XML libraries. <br>
+        <br>
+        </li>
+</ul>
+
+<h4><a name="Example Outputs"></a>Example Outputs</h4>
+
+<p>Examples are from the SUN Microsystems JDK 1.3 Demos. If you
+experience any strange problems whilst browsing these links,
+please email a description of the problem to <a href="mailto:support@java2html.com">support@java2html.com</a>
+</p>
+
+<ul>
+    <li><a href="examples/Java2D_demo/index.html">Example Output
+        1</a><br>
+        <br>
+        Shows Source code for JDK 1.3 Java 2D Demo, created with
+        the following command:- <p><i>j2h -js C:\jdk1.3.1\demo\jfc\Java2D -d examples\Java2D_demo
+      -jd C:\jdk1.3.1\docs\api http://java.sun.com/products/jdk/1.3/docs/api -n JAVA2D_DEMO</i> <br>
+        &nbsp; </p>
+    </li>
+    <li><a href="examples/SwingSet_demo/index.html">Example
+        Output 2</a> (with line numbers)<br>
+        <br>
+        Shows Source code for JDK 1.3 SwingSet2 Demo, created with
+        the following command:-<p><i>j2h -js
+        </i><i>C:\jdk1.3.1\</i><i>demo\jfc\SwingSet2 -d examples\SwingSet_demo -jd
+        </i><i>C:\jdk1.3.1</i><i>\docs\api http://java.sun.com/products/jdk/1.3/docs/api -n SwingSet_DEMO -m 4<br>
+        <br>
+        </i></p>
+    </li>
+    <li><i>Example Output 3 - </i><a href="examples/SwingSet_demo/TreeDemo.java.html#80"><i>TreeDemo.java.html#80</i></a></li>
+</ul>
+
+<p align="left">Note: These examples use the <em>web_reference </em>feature
+of the -jd option, to point the web documentation at the Sun Java website. It would be more typical in general use to point the
+web_reference at your own local copy of the documentation.</p>
+
+<h3><a name="Known"></a>Known Limitations and Future Extensions</h3>
+
+<p>Please send requests for enhancements to <a href="mailto:support@java2html.com">support@java2html.com</a>
+If I use your ideas I will give you a credit in this document.</p>
+
+<ul>
+    <li>Support for Apples Macs and a java properties file to
+        specify options.<br>
+        <br>
+        </li>
+    <li>Method and Object Instance hyper links.<br>
+        <br>
+        </li>
+    <li>Make use of a proper installer package.<br>
+        <br>
+        </li>
+    <li>Hyper links of references within comments and strings<br>
+        <br>
+        </li>
+    <li>Style sheet option, to prevent the overwriting of a customized
+      stylesheet.<br>
+        <br>
+        </li>
+    <li>Better handling of non-conformant java code.<br>
+        <br>
+        </li>
+    <li>Extend Java2HTML to deal with other languages such as JSP, SQLJ, XML, SQL
+        scripts, Perl and C/C++ and/or extend the architecture to
+        allow third parties to implement additional language
+        sources.<br>
+        <br>
+        </li>
+    <li>Possibly publish the source code with an appropriate
+        license.<br>
+        <br>
+        </li>
+    <li>HTML driven Search Facility.<br>
+        <br>
+        </li>
+    <li><a href="mailto:tohagan@dstc.edu.au">Tony O'Hagan</a> suggested
+      providing a -link option so that JavaDoc can be linked directly from a
+      URL.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><a name="Support"></a>Support</h3>
+
+<p>Please report bugs to <a
+href="mailto:java2html.bugs@vaegar.f9.co.uk">support</a><a href="mailto:support@java2html.com">@java2html.com</a>, before emailing make sure that the bug is not listed in <a
+href="#Known">Known Limitations and Possible Extensions</a>.</p>
+
+<h3><a name="Change"></a>Change History</h3>
+
+<table border="1">
+    <tr>
+        <td valign="top" bgcolor="#C0C0C0"><strong>Version</strong></td>
+        <td bgcolor="#C0C0C0"><strong>Date</strong></td>
+        <td bgcolor="#C0C0C0"><strong>Change</strong></td>
+    </tr>
+    <tr>
+        <td valign="top">1.0</td>
+        <td>19th Aug 1999</td>
+        <td>Release</td>
+    </tr>
+    <tr>
+        <td valign="top">1.0.1</td>
+        <td>20th Aug 1999</td>
+        <td>front.html now appears with white background on all
+        mainstream browsers. (See Version Change 1.0.3)</td>
+    </tr>
+    <tr>
+        <td valign="top">&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Fixed JavaDoc URL Reference, now uses &quot;/&quot;,
+        instead of &quot;\&quot; which does not work with all
+        mainstream browsers. </td>
+    </tr>
+    <tr>
+        <td>1.0.2</td>
+        <td>23rd Aug 1999</td>
+        <td>Fixed Java Source URL Reference now uses
+        &quot;/&quot;, instead of &quot;\&quot; which does not
+        work with all mainstream browsers. </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added extra information in the usage description.</td>
+    </tr>
+    <tr>
+        <td>1.0.3</td>
+        <td>5th Sept 1999</td>
+        <td>front.html now appears with white background on all
+        mainstream browsers. (Accidentally not released in Version
+        1.0.1)</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>when using the -jd option with a single parameter it
+        will now automatically convert the parameter into proper
+        URL references in the JavaDoc links. (This can be done
+        anyway using the second parameter). Requested by Anand
+        Santhanam &amp; David Karr, .</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Java2HTML now deals with accented characters
+        properly. Thanks to Gerald Pfarrand &amp; Martin
+        Desruisseaux for spotting that one.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Tidied up HTML generation in many places.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added manifest file to j2h.jar. This allows Java 2
+        users to type, <em>&quot;java -jar j2h.jar&quot;</em>.
+        Thanks to Martin Desruisseaux for that.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><pre><font size="2">interface A {
+&nbsp;&nbsp;&nbsp; class B {};&nbsp; // &lt;-- ';' is problematic
+}</font></pre>
+        <p>The above code would generate a parse error in
+        Java2HTML. Not anymore. Thanks to Kang Pilsung for
+        spotting that. </p>
+        </td>
+    </tr>
+    <tr>
+        <td>1.0.4</td>
+        <td>27th Oct 1999</td>
+        <td>Returns exit code, for better integration with
+        Scripting Languages. Requested by <a
+        href="mailto:delirium@club-internet.fr">Kaze</a></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Improved Line Number rendering. (Looks a lot better
+        now)</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added more information to front.html.</td>
+    </tr>
+    <tr>
+        <td>1.0.5</td>
+        <td>4th Nov 1999</td>
+        <td>Fixed typo on front.html.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Error message inserted into HTML output for Non Legal
+        Java files.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td><pre><font size="2">class Foo {
+&nbsp; SomeObject thing = something;; // &lt;-- Extra semi-colon
+}</font></pre>
+        <p>The extra semi-colon would generate a parse error. Not
+        anymore. Thanks to <a href="mailto:mike@mikera.net">Mike</a>
+        for spotting that. You're right Mike, even though it
+        isn't Kosher Java, most of the compilers accept it.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;1.0.6</td>
+        <td>17th Nov 1999 </td>
+        <td>Output messages have been improved.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Catches Lexical Errors properly. Thanks to Jason King
+        of Sun MicroSystems for pointing that out.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added Meta &quot;GENERATOR&quot; Tag to all generated
+        pages.</td>
+    </tr>
+    <tr>
+        <td>1.0.7</td>
+        <td>31st Oct 2000</td>
+        <td>Added Line Number Tags. So you can no use URL
+        references such as, <a href="examples/SwingSet_demo/TreeDemo.java.html#80"><i>TreeDemo.java.html#80</i></a></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Fixed typos in the j2h usage message. Thanks to <a
+        href="mailto:robertb@socs.uts.edu.au">Robert Biuk-Aghai</a>&nbsp;of
+        University of Technology, Sydney, for so kindly pointing
+        that out. He also noted a few typos on this page which
+        have also been fixed.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Deprecated the -dir option. Java2HTML now uses a
+        superior (if what slower) two-parse mechanism.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Please note that ownership of Java2HTML has now been
+        transferred to RiteLink Computing Limited.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added j2h wrapper class. </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added -nh -nf options to remove Header and Footer.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Import lists in source now link to JavaDoc.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Package declaration in source now links to package
+        frame.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Operating System &quot;new line&quot; is used
+        throughout generated HTML, instead of hard coded DOS/NT
+        new line.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Changed 'Package' to 'Packages' text in top left
+        frame.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Fixed single line comment on last line parse failure
+        bug, also spotted by <a
+        href="mailto:brwells@strong-funds.com">Brad Wells</a>.</td>
+    </tr>
+    <tr>
+        <td>1.0.8</td>
+        <td>11th Nov 2000</td>
+        <td>Fixed &quot;Project&quot; hyper text reference (top
+        Right hand Corner) to refer to front.html instead of FRONT.HTML.</td>
+    </tr>
+    <tr>
+        <td>1.0.9</td>
+        <td>2nd Feb 2002</td>
+        <td>Fixed some HTML output bugs, most importantly line number anchors
+          were not being terminated with &lt;/A&gt;. Spotted by a <a href="mailto:Luschny@wanadoo.fr">Peter Luschny</a>,
+          <a href="mailto:Markus.Schmidt@pass-consulting.com">Markus.Schmidt</a>
+          and <a href="mailto:q4543327@bonsai.fernuni-hagen.de">Andreas Schenk</a>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Changed the instructions on the front page so that 'this' in 'Text
+          displayed like <u>this</u> represents', is in the same style as the
+          actual links within Java Source. Thanks for&nbsp; <a href="mailto:chris.laprun@nist.gov">Christophe Laprun</a>
+          for pointing that out.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Operating System &quot;new line&quot; is now used in the generated
+          stylesheet. Thanks again to <a
+        href="mailto:robertb@socs.uts.edu.au">Robert Biuk-Aghai </a> for that.</td>
+    </tr>
+    <tr>
+        <td>1.1</td>
+        <td>15th Oct 2002</td>
+        <td>Footer/Header not correct for Netscape Browser</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Now recognizes .super() method Calls. Spotted by&nbsp; <a href="mailto:jim.fisher@sequencegroup.com">Jim Fisher</a>.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added Support for Java Version 1.4.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Fixed problem with /**/&nbsp; when it appeared more than once within
+          a file.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Fixed problem with use of \u9999. (This problem was originally fixed
+          in an earlier version but got reintroduced)</td>
+    </tr>
+    <tr>
+        <td>1.2</td>
+        <td>25th Oct 2002</td>
+        <td>Expanded the lexical range of characters allowed for a java
+          identifier, requested by <a href="mailto:dz@tangro.de">Dirk Zoettl</a></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added &quot;.java&quot; to the header and changed the background
+          colour.</td>
+    </tr>
+    <tr>
+        <td>1.3beta</td>
+        <td>2nd Feb 2003</td>
+        <td>default.index.html replaces .index.html, Raised by <a href="mailto:perennou@ensica.fr">Tanguy PERENNOU</a></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Moved Java2HTML to an ANT based build script</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Numerous changes to the internals of Jav2HTML.&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Ownership of Java2HTML Transferred to <a href="http://www.passwordmanager.co.uk/polygon/index.htm"> Polygon
+          Enterprises</a></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Better supports Integration with Ant</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Published Java2HTML API.</td>
+    </tr>
+    <tr>
+        <td>1.3Beta2</td>
+        <td>22nd Feb 2003</td>
+        <td>Fixed 'null' bug when no JavaDoc option was set</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Added -simple option</td>
+    </tr>
+    <tr>
+        <td>1.3Beta3</td>
+        <td>23rd Feb 2002</td>
+        <td>(Internal changes only)</td>
+    </tr>
+    <tr>
+        <td>1.3Beta4</td>
+        <td>23rd April 2003</td>
+        <td>Added Ant Support, recommended by numerous users.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Fixed -jd command line option problem. Spotted by <a href="mailto:Cal.Holman@paymentech.com">Cal
+          Holman</a></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Changed the Java2HTML API to support Ant.</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>Removed references to the deprecated -dir option.</td>
+    </tr>
+    <tr>
+        <td>1.3</td>
+        <td>28th April 2003</td>
+        <td>No Changes</td>
+    </tr>
+    <tr>
+        <td>1.3.1</td>
+        <td>15 May 2003</td>
+        <td>(Internal changes only)</td>
+    </tr>
+</table>
+
+<h3><a name="License"></a>License Agreement</h3>
+
+<p><font size="3">You should carefully read the following terms
+and conditions before using this software package. Your use of
+this software package indicates your acceptance of this license
+agreement. This is a legal agreement (this &quot;Agreement&quot;)
+between you (either an individual or an entity) and the
+proprietor of this software. This Agreement is part of the
+software package.</font></p>
+
+<p><font size="3">1. GRANT OF LICENSE. The proprietor hereby
+grants you a personal, non-exclusive, non-transferable license to
+use one copy of this Software. This grant of license gives the
+right to use the software on your computer. You may not decompile, disassemble, or reverse engineer this software, and
+you may not create derivative works of the this software. You may
+modify, translate or adapt the generated HTML code. You are not
+granted any right, title, or interest in the the software except
+the right to use it in accordance with this Agreement. </font></p>
+
+<p><font size="3">2. REDISTRIBUTION Redistribution of the
+software ZIP file is allowed by shareware and freeware sites or
+CDROM media and similar without the permission of the proprietor.
+Redistribution for commercial purposes or reselling is not
+allowed. </font></p>
+
+<p><font size="3">3. WARRANTY. This software and the accompanying
+files are provided &quot;AS IS,&quot; without a warranty of any
+kind. </font></p>
+
+<p><font size="3">4. COPYRIGHT. Copyright is owned by Polygon Enterprises and is protected by United Kingdom copyright
+law and international treaty provisions. </font></p>
+
+<p><font size="3">5. TERMINATION The license will terminate
+immediately without notice from the proprietor if you fail to
+comply with any provision of this license. Upon termination, you
+must destroy all copies of the software and its components on any
+and all forms of media. </font></p>
+
+<p><font size="3">6. LIMITATION OF LIABILITY IN NO EVENT WILL THE
+PROPRIETOR OR ITS SUPPLIERS BE LIABLE FOR ANY LOST REVENUE,
+PROFIT, OR FOR DIRECT, SPECIAL, INDIRECT, CONSEQUENTIAL,
+INCIDENTAL OR PUNITIVE DAMAGES HOW EVER CAUSED AND REGARDLESS OF
+THEORY OF LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO
+USE THE SOFTWARE, EVEN IF THE PROPRIETOR HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES. </font></p>
+
+<p><font size="3">7. GOVERNING LAW This agreement is made under,
+shall be governed by and construed in accordance with, the laws
+of the United Kingdom.</font></p>
+
+<h3><a name="Credits"></a>Credits</h3>
+
+<ul>
+    <li><a href="http://www.sun.com/">Sun MicroSystems</a>,
+        thanks for making <a href="http://java.sun.com/">Java</a>.<br>
+        <br>
+        </li>
+    <li>Peter Van der Linden, Maintainer of the <a
+        href="http://www.afu.com/intro.html"><i>Java FAQ</i></a>,
+        and author of <i>&quot;Just Java 1.2&quot;</i> as well as
+        many other good books.<br>
+        <br>
+        </li>
+    <li>The people who put together JavaCC, especially Siram Sankar for his help.<br>
+        <br>
+        </li>
+    <li>Guys on the JavaCC newsgroup, including David Williams
+        for his Java 1.2 extensions.<br>
+        <br>
+        </li>
+    <li>Thanks to the people at <a
+        href="http://www.jars.com">JARS</a> for giving this tool
+        (version 1.0.3) a, &quot;rated JARS Top 25%&quot;,
+        although it actually got 895 out of a 1000, losing marks
+        on presentation :-(<br>
+      <br>
+        </li>
+    <li>Jason Shattu, the original creator of Java2HTML.<br>
+      <br>
+        </li>
+    <li> <a href="http://www.passwordmanager.co.uk/polygon/index.htm"> Polygon
+          Enterprises</a>, the owners of this product.<br>
+      <br>
+        </li>
+    <li>Other good products out there:-<br>
+      <ul>
+        <li>Bruce Blackshaw's <a href="http://www.enterprisedt.com/downloads/ftp.html">Java
+          FTP Client</a>&nbsp;</li>
+        <li>David Shattu's <a href="http://www.passwordmanager.co.uk/index.htm">Easy
+          Password Manager</a></li>
+      </ul>
+    </li>
+</ul>
+
+<h3><a name="Payment" href="#Payment"></a>Payment</h3>
+
+<p>Java2HTML is distributed as free software but should a user or company make
+significant use of it, they are encouraged to make a $50 contribution which
+gives them registration status and helps towards future development costs.
+Please click on the following link.</p>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<p>
+<input type="hidden" name="cmd" value="_xclick">
+<input type="hidden" name="business" value="paypal@polygon-enterprises.co.uk">
+<input type="hidden" name="item_name" value="Java2HTML Full Registration Donation">
+<input type="hidden" name="item_number" value="Java2HTMLFullRegistration">
+<input type="hidden" name="amount" value="50.00">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="currency_code" value="USD">
+<input type="hidden" name="tax" value="0">
+<input type="image" src="https://www.paypal.com/images/x-click-butcc-donate.gif" border="0" name="submit" alt="Make payments with PayPal - it's fast, free and secure!" width="73" height="44">
+</p>
+</form>
+ 
+
+<hr>
+
+<table border="0" width="100%">
+    <tr>
+        <td valign="top" width="50%"><font size="1">last updated: May 31 2003</font></td>
+        <td>
+
+<a href="http://www.123-reg.co.uk/affiliate.cgi?id=AF23336"><img src="http://www.123-reg.co.uk/images/banners/butt1.gif" border=0></a>
+        </td>
+        <td align="right" valign="top" width="50%">
+        <a href='http://portal.f9.net.uk/my/mydiscount_info/landing_page.html?zWVl6A8AruuylVaHtkq2oU8abGEJkrTcCnsIf1XhsY8%3D'>
+<img src='http://portal.f9.net.uk/images/banners/banner_1.gif' border='0' width="468" height="60">
+</a>      </td>
+    </tr>
+</table>
+
+<p align="right">&nbsp;</p>
+</body>
+</html>

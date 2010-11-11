@@ -1,0 +1,42 @@
+# event seqence:
+#   a  --  go to B.D.H (pass history B)
+#   b  --  go to B.D.E.G (pass history B.D.E)
+#   c  --  leave B (history B and history B.D.E are recorded)
+#   d  --  return to shallow history B, and go to B.D.H (history B.D.E is not touched)
+#   c  --  leave B (history B and history B.D.E are recorded)
+#   e  --  return to deep history B.D.E, and go to B.D.E.G (history B is not touched)
+
+STATECHART:
+  A [DS]
+  B [HS]
+    C [DS]
+    D
+      E [HS*]
+        F [DS]
+        G
+      H [DS]
+
+TRANSITION:
+  S: A
+  N: B.D
+  E: a
+
+TRANSITION:
+  S: B
+  N: B.D.E.G
+  E: b
+
+TRANSITION:
+  S: B
+  N: A
+  E: c
+
+TRANSITION: [HS]
+  S: A
+  N: B
+  E: d
+
+TRANSITION: [HS]
+  S: A
+  N: B.D.E
+  E: e

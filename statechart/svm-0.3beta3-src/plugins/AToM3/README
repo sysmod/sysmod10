@@ -1,0 +1,73 @@
+INTRODUCTION:
+
+  This directory contains plugins for AToM3 (A Tool for Multi-
+formalism and Meta-Modelling), developed in MSDL, McGill University
+(http://msdl.cs.mcgill.ca/). They makes it possible to load DCharts
+and statecharts formalisms in this meta-modelling environment,
+simulate models on-the-fly, generate SVM .des file, and generate Java
+source code directly.
+
+FEATURES:
+
+  Three buttons are added, which are highly simulation-oriented:
+    simulate in SVM -- simulate the current model on-the-fly
+    to SVM Des. -- generate SVM model description (.des file)
+    to SCC Java -- generate Java source code
+  Another button, pythonDEVS-RT, is credited to Spencer Borland as an
+outcome of his master's research
+
+DIRECTORIES:
+
+  Statecharts -- contains the new statecharts meta-model (with
+plugin).
+  DCharts -- contains the new DCharts meta-model (with plugin).
+  test -- statechart models for test.
+
+INSTALLATION:
+
+  Copy the "svm-update" script to the AToM3 directory and execute it.
+The users may also execute it later to update the SVM that is
+integrated with AToM3.
+
+MAJOR FILES:
+
+  Statechart.py -- new statechart meta-model
+  DCharts.py -- DCharts meta-model
+  SVMAToM3Plugin.py -- SVM (and SCC) plugin for AToM3
+  testmdl.py -- a simple statechart model which tests history,
+orthogonal components, timed transition, actions, etc.
+  TrafficLight.py -- a traffic-light model (credited to Spencer
+Borland as an outcome of his master's research)
+
+FAQ:
+
+1. Why do I get an exception when loading a statechart (meta-)model?
+  Check if the path ("Statecharts") is set in the options dialog in
+the File menu.
+
+2. Why is the simulation blocked for some models including the
+TrafficLight?
+  It's possible if you use RedHat 9 (or a similar kernel). Upgrade
+your kernel if a newer version is available, or set the following
+environment variable before using SVM:
+  setenv LD_ASSUME_KERNEL 2.4.1  # if you use *csh
+  export LD_ASSUME_KERNEL=2.4.1  # if you use *ash
+
+3. How to start simulation over PVM in AToM3?
+  DCharts simulator supports distributed simulation over PVM. To
+compile the support for PVM, run "make pypvm" in the "svm" directory.
+It is assumed that the following environment variables are set:
+PVM_ROOT and PVM_ARCH. PVM_ROOT specifies the path where PVM is
+installed. For RedHat 9, it is /usr/share/pvm3. PVM_ARCH specifies
+the architecture of the machine. For RedHat 9, it is LINUXI386.
+(Look for the sub-directory under $PVM_ROOT/lib to find out this
+value.)
+  Tostart this kind of simulation, the following programs must be run
+prior to the AToM3 environment:
+  PVM -- start the PVM daemon by running "pvm" and then quit with
+command "quit". The PVM daemon will be running in the background
+after this.
+  SVMDNS -- start the SVM Dynamic Naming Service by running "svmdns"
+and then type in command "start".
+  After these, run AToM3 and specify ports and servers in the DCharts
+models.

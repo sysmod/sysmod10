@@ -1,0 +1,18 @@
+IMPORTATION:
+  child = testencap_sub.des
+
+STATECHART:
+  S1 [DS] [child] [S2.S4 <-- OUTPORT] [S2 <-- INOUTPORT]
+  S2
+    S3 [DS]
+    S4
+
+TRANSITION:
+  S: S2
+  N: S1.INPORT
+  E: in
+
+TRANSITION:
+  S: S2
+  N: S1.INOUTPORT
+  E: io

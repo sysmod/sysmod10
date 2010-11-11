@@ -1,0 +1,62 @@
+<html>
+<head>
+<link href="style.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>SCC (StateChart Compiler) by Thomas Huining Feng</title>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0">
+<div id="imgbar"><img src="hbar.gif" width="468" height="22" align="right"></div>
+<p id="mainTitle"><font color="#6F0000">T</font><font color="#780000">h</font><font color="#7F0000">o</font><font color="#880000">m</font><font color="#8F0000">a</font><font color="#980000">s</font> 
+  <font color="#A80000">H</font><font color="#AF0000">u</font><font color="#B80000">i</font><font color="#BF0000">n</font><font color="#C80000">i</font><font color="#CF0000">n</font><font color="#D80000">g</font>
+  <font color="#E80000">F</font><font color="#EF0000">e</font><font color="#F80000">n</font><font color="#FF0000">g</font>  </p>
+<div id="twistcorner" align="right"><img src="twist.gif" width="117" height="119"></div>
+<div id="maindiv">
+<p id="txt1"><font color="blue">This page is under heavy construction. Please check back for more examples and interesting demonstrations.</font></p>
+<p id="sub1">Model Design</p>
+<p id="txt1">A sample model is designed to demonstrate the following features, which are supported by both SVM and SCC: state hierarchy, orthogonal components, submodel importation, history and transition priority that solves conflicts. (The model itself has no meaning at all.)</p>
+<center>
+<img src="./sample.gif" width=500 height=314>
+</center>
+<p id="sub1">Model Specification</p>
+<p id="txt1">The following description is written in the SVM format (.des file). It can be interpreted by SVM. However, now it is used as the input for the SCC compiler. In theory, the execution result of the generated Java code is exactly the same as the simulation result given by SVM. (<a href="sample.des">sample.des</a>)</p>
+<center>
+<iframe width="50%" height="200" frameborder="yes" src="sample.des" align="center"></iframe>
+</center>
+<p id="sub1">Code Generation</p>
+<p id="txt1">SCC takes the above input and generates efficient Java code. As the ultimate goal of a compilation, performance is the most important factor. SCC employs such a scheme that space (memory, disk storage, and so on) is sacrifized for performance. (<a href="sample.java">sample.java</a>)</p>
+<center>
+<iframe width="70%" height="300" frameborder="yes" src="sample.java.html" align="center"></iframe>
+</center>
+<p id="sub1">Java Applet (<a href="http://java.sun.com" target="_blank">JRE</a> 1.3.1 or higher required)</p>
+<p id="txt1">This is the Java applet that executes the above model. It uses the class files that are generated automatically by SCC as the underlying logic. The interface is completely rewritten by the designer.</p>
+<center>
+<applet code=svmapplet.class width=600 height=270>
+<param name="model" value="sample">
+</applet>
+</center>
+<p id="txt1">You can try the following things on this applet (reload the page after trying each time so the the model returns to its initial state):</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> When loaded, the model is in state "S1.S6". This is the default state in the <em>state hierarchy</em>, as defined in the "STATECHART" part of the model specification (.des file).</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> Send event "to S2". The model changes to the <em>orthogonal state</em> "S1.S2" (and then further change to its substates). When the model is in such a state, its state string is a tuple.</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> After it changes to "S1.S2", a submodel is <em>imported</em>, which has the same definition. The loaded submodel is placed in "S1.S2.S5". This means, everything (including states and transitions) are copied to its inside. As a result, more hierarchical levels are found.</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> As event "to S2" is raised for multiple times, the model loops into lower levels accordingly. This is because whenever a model is imported, it is in "S1.S6" (this path is relative to the state where it is imported), the state that accepts event "to S2".</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> Since "InnerTransitionFirst" property is set to 1, transition from the lowest level is fired whenever there is a <em>conflict</em>. Hence, if "to S7" is raised, it is catched by the lowest "S2" state.</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> In state "S7", event "to S1 hs" causes the model returns to the last <em>history</em> of state "S1" (at the lowest level). As a contrast, "to S1" changes the model to the default substate of "S1" (that is, "S6").</p>
+<br>
+<p id="txt1">For those who are interested in the applet interface, the hand-written code is included here. (<a href="svmapplet.java">svmapplet.java</a>)</p>
+<center>
+<iframe width="70%" height="300" frameborder="yes" src="svmapplet.java.html" align="center"></iframe>
+</center>
+<p id="sub1">Download</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> Grab a nightly version of SVM and SCC from CVS:</p>
+<center>
+<pre>cvs -d :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm login           
+(press enter when prompted for password)                                 
+cvs -z3 -d :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm checkout svm</pre></center>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> <a href="svmapplet.tar.gz">A complete package</a> with all the generated Java code, class files and this HTML page.</p>
+<p id="txt1"><img src="dot.gif" width="15" height="15"> <a href="svmnightly.tar.gz">Nightly tarball</a> of the SCC compiler. A nightly version of SVM is distributed along with SCC`in this package. The source of this demonstration is located at "svm/test/applet/".</p>
+<hr noshade color="#000000" id="hrline">
+<p id="maintain">Maintained by 
+<a target="_top" href="http://moncs.cs.mcgill.ca/people/tfeng/">Thomas Feng</a>, Winter 2002</p>
+</div>
+</body>
+</html>

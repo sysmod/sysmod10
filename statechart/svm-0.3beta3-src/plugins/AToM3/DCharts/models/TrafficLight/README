@@ -1,0 +1,76 @@
+
+Modelling, simulating, and synthesizing a Traffic Light application
+
+1. Start ./atom3 in the AToM3-2.2-DCharts directory
+
+2. Design a model of the traffic light behaviour in AToM3.
+
+   Example model: TrafficLightBehaviour_DCharts_mdl.py 
+   found in DCharts/models/TrafficLight/
+
+3. It is possible to simulate the behaviour of the traffic light
+   by means of the SVM plugin (press simulate in SVM button).
+
+   This will open an SVM control window which displays
+   + the currently enabled events
+   + an output trace (this is where [DUMP("...")] will write
+
+   By clicking on one of the currently enabled events, that event
+   will be generated.
+
+3. It is often desirable to explicitly model the environment 
+   in which the system under study (the traffic light in this case) 
+   will operate. Typically, the enviroment will explicitly model
+   possible inputs into the system (as described in the requirements/
+   use cases).
+   In particular, one may model the behaviour of a policeman
+   generating POLICE interrupts.
+   An example model is PoliceBehaviour_DCharts_mdl.py
+  
+4. We can now bring the system model and the environment model together.
+   As they are concurrent, they will appear in orthogonal components.
+   The model TrafficLight_and_EnvironmentBehaviour_DCharts_mdl.py
+   shows both the system and an environment with a policeman and
+   a pedestrian generating events.
+
+   This complete (autonomous) system can be simulated with SVM. 
+
+5. Once we are satisfied with the behaviour exhibited by
+   system+environment, we can focus on the system part and 
+   refine it.
+   In particular, we press the "generate .des" button in AToM3
+   when the TrafficLightBehaviour_DCharts_mdl.py model is loaded.
+   We save the result in TrafficLightBehaviour_noGUI.des.
+
+   It is now possible to simulate this model in SVM (without AToM3)
+   with svm found in the AToM3-2.2-DCharts directory:
+
+    svm TrafficLightBehaviour_noGUI.des
+
+6. We are now ready to build a complete application.
+
+   The application will have three parts:
+
+    TrafficLightApplication.py : the main application which glues
+    together 
+    + an encoding of the (static aspects of) the GUI
+      in TrafficLightGUI.py
+    + an encoding of the behaviour of the system
+      in TrafficLightBehaviour.py
+
+   TrafficLightBehaviour.py is synthesized (the DChart
+   is compiled into a class called TrafficLightBehaviour) from
+   TrafficLightBehaviour.des using the DCharts compiler scc
+   found in the AToM3-2.2-DCharts directory:
+     
+    scc -lpython --ext TrafficLightBehaviour.des
+
+   TrafficLightBehaviour.des is a refined version of 
+   TrafficLightBehaviour_noGUI.des
+   (references to the TrafficLightGUI added in e.g., output actions)
+
+   Note that refinement can be done either in a .des file
+   or in AToM3 directly. If the latter approach is taken however,
+   it may not be possible to simulate with SVM in AToM3
+   (as there are unresolved references to TrafficLightGUI objects).
+

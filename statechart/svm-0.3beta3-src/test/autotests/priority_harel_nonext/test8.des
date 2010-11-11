@@ -1,0 +1,29 @@
+STATECHART:
+  A [DS] [CS]
+    A1 [DS]
+    A2
+    A3
+  B [DS] [CS] [RTO]
+    B1 [DS]
+    B2
+    B3
+
+TRANSITION:
+  S: A
+  N: A.A2
+  E: e
+
+TRANSITION:  # not triggered
+  S: A.A1
+  N: A.A3
+  E: e
+
+TRANSITION:  # not triggered
+  S: B
+  N: B.B2
+  E: e
+
+TRANSITION:
+  S: B.B1
+  N: B.B3
+  E: e

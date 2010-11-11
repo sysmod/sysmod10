@@ -1,0 +1,55 @@
+STATECHART:
+  A [DS]
+  B
+  C
+  D
+  E
+  F
+  G [FS]
+
+INTERACTOR:
+  import thread
+  lock=thread.allocate_lock()
+  lock.acquire()
+  eventhandler.start()
+  lock.acquire()
+  lock.release()
+
+FINALIZER:
+  lock.release()
+
+TRANSITION:
+  S: A
+  N: B
+  T: 0
+  O: [DUMP("T1")]
+
+TRANSITION:
+  S: B
+  N: C
+  T: 0
+  O: [DUMP("T2")]
+
+TRANSITION:
+  S: C
+  N: D
+  T: 0
+  O: [DUMP("T3")]
+
+TRANSITION:
+  S: D
+  N: E
+  T: 0
+  O: [DUMP("T4")]
+
+TRANSITION:
+  S: E
+  N: F
+  T: 0
+  O: [DUMP("T5")]
+
+TRANSITION:
+  S: F
+  N: G
+  T: 0
+  O: [DUMP("T6")]

@@ -1,0 +1,15 @@
+STATECHART:
+  A [DS] [RTO]
+    B [DS]
+  C
+  D
+
+TRANSITION:
+  S: A
+  N: C
+  E: e
+
+TRANSITION:
+  S: A.B
+  N: D
+  E: e

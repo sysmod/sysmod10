@@ -1,0 +1,14 @@
+STATECHART:
+  A [DS]
+  B
+  C
+
+TRANSITION: [0]
+  S: A
+  N: B
+  E: e
+
+TRANSITION: [-1]
+  S: A
+  N: C
+  E: e

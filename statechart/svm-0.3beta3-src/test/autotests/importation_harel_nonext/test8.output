@@ -1,0 +1,64 @@
+  test8 -- this model shows the difference in performance between SVM and SCC
+['A.A1', 'B.B1'] >   test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+['A.A2.A.A1', 'A.A2.B.B1', 'B.B2.A.A1', 'B.B2.B.B1'] >   test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+['A.A2.A.A2.A.A1', 'A.A2.A.A2.B.B1', 'A.A2.B.B2.A.A1', 'A.A2.B.B2.B.B1', 'B.B2.A.A2.A.A1', 'B.B2.A.A2.B.B1', 'B.B2.B.B2.A.A1', 'B.B2.B.B2.B.B1'] >   test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+['A.A2.A.A2.A.A2.A.A1', 'A.A2.A.A2.A.A2.B.B1', 'A.A2.A.A2.B.B2.A.A1', 'A.A2.A.A2.B.B2.B.B1', 'A.A2.B.B2.A.A2.A.A1', 'A.A2.B.B2.A.A2.B.B1', 'A.A2.B.B2.B.B2.A.A1', 'A.A2.B.B2.B.B2.B.B1', 'B.B2.A.A2.A.A2.A.A1', 'B.B2.A.A2.A.A2.B.B1', 'B.B2.A.A2.B.B2.A.A1', 'B.B2.A.A2.B.B2.B.B1', 'B.B2.B.B2.A.A2.A.A1', 'B.B2.B.B2.A.A2.B.B1', 'B.B2.B.B2.B.B2.A.A1', 'B.B2.B.B2.B.B2.B.B1'] >   test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+['A.A2.A.A2.A.A2.A.A2.A.A1', 'A.A2.A.A2.A.A2.A.A2.B.B1', 'A.A2.A.A2.A.A2.B.B2.A.A1', 'A.A2.A.A2.A.A2.B.B2.B.B1', 'A.A2.A.A2.B.B2.A.A2.A.A1', 'A.A2.A.A2.B.B2.A.A2.B.B1', 'A.A2.A.A2.B.B2.B.B2.A.A1', 'A.A2.A.A2.B.B2.B.B2.B.B1', 'A.A2.B.B2.A.A2.A.A2.A.A1', 'A.A2.B.B2.A.A2.A.A2.B.B1', 'A.A2.B.B2.A.A2.B.B2.A.A1', 'A.A2.B.B2.A.A2.B.B2.B.B1', 'A.A2.B.B2.B.B2.A.A2.A.A1', 'A.A2.B.B2.B.B2.A.A2.B.B1', 'A.A2.B.B2.B.B2.B.B2.A.A1', 'A.A2.B.B2.B.B2.B.B2.B.B1', 'B.B2.A.A2.A.A2.A.A2.A.A1', 'B.B2.A.A2.A.A2.A.A2.B.B1', 'B.B2.A.A2.A.A2.B.B2.A.A1', 'B.B2.A.A2.A.A2.B.B2.B.B1', 'B.B2.A.A2.B.B2.A.A2.A.A1', 'B.B2.A.A2.B.B2.A.A2.B.B1', 'B.B2.A.A2.B.B2.B.B2.A.A1', 'B.B2.A.A2.B.B2.B.B2.B.B1', 'B.B2.B.B2.A.A2.A.A2.A.A1', 'B.B2.B.B2.A.A2.A.A2.B.B1', 'B.B2.B.B2.A.A2.B.B2.A.A1', 'B.B2.B.B2.A.A2.B.B2.B.B1', 'B.B2.B.B2.B.B2.A.A2.A.A1', 'B.B2.B.B2.B.B2.A.A2.B.B1', 'B.B2.B.B2.B.B2.B.B2.A.A1', 'B.B2.B.B2.B.B2.B.B2.B.B1'] >   test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+  test8 -- this model shows the difference in performance between SVM and SCC
+['A.A2.A.A2.A.A2.A.A2.A.A2.A.A1', 'A.A2.A.A2.A.A2.A.A2.A.A2.B.B1', 'A.A2.A.A2.A.A2.A.A2.B.B2.A.A1', 'A.A2.A.A2.A.A2.A.A2.B.B2.B.B1', 'A.A2.A.A2.A.A2.B.B2.A.A2.A.A1', 'A.A2.A.A2.A.A2.B.B2.A.A2.B.B1', 'A.A2.A.A2.A.A2.B.B2.B.B2.A.A1', 'A.A2.A.A2.A.A2.B.B2.B.B2.B.B1', 'A.A2.A.A2.B.B2.A.A2.A.A2.A.A1', 'A.A2.A.A2.B.B2.A.A2.A.A2.B.B1', 'A.A2.A.A2.B.B2.A.A2.B.B2.A.A1', 'A.A2.A.A2.B.B2.A.A2.B.B2.B.B1', 'A.A2.A.A2.B.B2.B.B2.A.A2.A.A1', 'A.A2.A.A2.B.B2.B.B2.A.A2.B.B1', 'A.A2.A.A2.B.B2.B.B2.B.B2.A.A1', 'A.A2.A.A2.B.B2.B.B2.B.B2.B.B1', 'A.A2.B.B2.A.A2.A.A2.A.A2.A.A1', 'A.A2.B.B2.A.A2.A.A2.A.A2.B.B1', 'A.A2.B.B2.A.A2.A.A2.B.B2.A.A1', 'A.A2.B.B2.A.A2.A.A2.B.B2.B.B1', 'A.A2.B.B2.A.A2.B.B2.A.A2.A.A1', 'A.A2.B.B2.A.A2.B.B2.A.A2.B.B1', 'A.A2.B.B2.A.A2.B.B2.B.B2.A.A1', 'A.A2.B.B2.A.A2.B.B2.B.B2.B.B1', 'A.A2.B.B2.B.B2.A.A2.A.A2.A.A1', 'A.A2.B.B2.B.B2.A.A2.A.A2.B.B1', 'A.A2.B.B2.B.B2.A.A2.B.B2.A.A1', 'A.A2.B.B2.B.B2.A.A2.B.B2.B.B1', 'A.A2.B.B2.B.B2.B.B2.A.A2.A.A1', 'A.A2.B.B2.B.B2.B.B2.A.A2.B.B1', 'A.A2.B.B2.B.B2.B.B2.B.B2.A.A1', 'A.A2.B.B2.B.B2.B.B2.B.B2.B.B1', 'B.B2.A.A2.A.A2.A.A2.A.A2.A.A1', 'B.B2.A.A2.A.A2.A.A2.A.A2.B.B1', 'B.B2.A.A2.A.A2.A.A2.B.B2.A.A1', 'B.B2.A.A2.A.A2.A.A2.B.B2.B.B1', 'B.B2.A.A2.A.A2.B.B2.A.A2.A.A1', 'B.B2.A.A2.A.A2.B.B2.A.A2.B.B1', 'B.B2.A.A2.A.A2.B.B2.B.B2.A.A1', 'B.B2.A.A2.A.A2.B.B2.B.B2.B.B1', 'B.B2.A.A2.B.B2.A.A2.A.A2.A.A1', 'B.B2.A.A2.B.B2.A.A2.A.A2.B.B1', 'B.B2.A.A2.B.B2.A.A2.B.B2.A.A1', 'B.B2.A.A2.B.B2.A.A2.B.B2.B.B1', 'B.B2.A.A2.B.B2.B.B2.A.A2.A.A1', 'B.B2.A.A2.B.B2.B.B2.A.A2.B.B1', 'B.B2.A.A2.B.B2.B.B2.B.B2.A.A1', 'B.B2.A.A2.B.B2.B.B2.B.B2.B.B1', 'B.B2.B.B2.A.A2.A.A2.A.A2.A.A1', 'B.B2.B.B2.A.A2.A.A2.A.A2.B.B1', 'B.B2.B.B2.A.A2.A.A2.B.B2.A.A1', 'B.B2.B.B2.A.A2.A.A2.B.B2.B.B1', 'B.B2.B.B2.A.A2.B.B2.A.A2.A.A1', 'B.B2.B.B2.A.A2.B.B2.A.A2.B.B1', 'B.B2.B.B2.A.A2.B.B2.B.B2.A.A1', 'B.B2.B.B2.A.A2.B.B2.B.B2.B.B1', 'B.B2.B.B2.B.B2.A.A2.A.A2.A.A1', 'B.B2.B.B2.B.B2.A.A2.A.A2.B.B1', 'B.B2.B.B2.B.B2.A.A2.B.B2.A.A1', 'B.B2.B.B2.B.B2.A.A2.B.B2.B.B1', 'B.B2.B.B2.B.B2.B.B2.A.A2.A.A1', 'B.B2.B.B2.B.B2.B.B2.A.A2.B.B1', 'B.B2.B.B2.B.B2.B.B2.B.B2.A.A1', 'B.B2.B.B2.B.B2.B.B2.B.B2.B.B1'] > 

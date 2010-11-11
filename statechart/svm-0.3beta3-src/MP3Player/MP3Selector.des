@@ -1,0 +1,128 @@
+#---------------------------------------------------------------------
+#    SVM (Statechart Virtual Machine)
+#         -- an interpreter for an extended statechart formalism
+#---------------------------------------------------------------------
+#
+# Copyright (C) 2003 Thomas Huining Feng
+#
+#---------------------------------------------------------------------
+# Address:      MSDL, SOCS, McGill Univ., Montreal, Canada
+# HomePage:     http://msdl.cs.mcgill.ca/people/tfeng/
+# SVM HomePage: http://msdl.cs.mcgill.ca/people/tfeng/?research=svm
+# Download:     http://savannah.nongnu.org/files/?group=svm
+# CVS:          :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm
+#               (projects "svm" and "jsvm")
+# Email:        hfeng2@cs.mcgill.ca
+#---------------------------------------------------------------------
+#
+# This file is part of SVM.
+#
+#---------------------------------------------------------------------
+# SVM is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or (at your
+# option) any later version.
+#
+# SVM is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with SVM; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#---------------------------------------------------------------------
+
+OPTIONS:
+  Harel = 0  # MP3 player works only with Non-Harel semantics
+
+
+IMPORTATION:
+  # Import the MP3 player
+  MP3Submodel = MP3Player.des
+
+
+INITIALIZER:
+  # Import the function to test whether a name is a directory
+  from os.path import isdir
+
+
+INTERACTOR:
+  # This interactor is copied from the MP3 player,
+  # with an extra window (MP3 Selector) added
+  from MP3PlayerGUI import MP3PlayerGUI
+  from MP3SelectorGUI import MP3SelectorGUI
+  root = Tk()
+  root.title("MP3 player")
+  gui = MP3PlayerGUI(root, eventhandler)
+  sel = MP3SelectorGUI(root, eventhandler)
+  eventhandler.start()
+  root.mainloop()
+
+
+FINALIZER:
+  root.tk.quit()
+
+
+STATECHART:
+  Main [DS]
+    MP3Selector [CS] [DS]
+      Waiting [DS]    # MP3 selector is waiting for a selection
+      StopPlaying     # MP3 selector is waiting MP3 player to stop
+      RestartPlaying  # MP3 selector restarts playing in MP3 player
+    # Import the MP3 player and tell it that is is imported
+    # (by redefining IMPORTED to 1)
+    MP3Player [CS] [DS] [MP3Submodel] [IMPORTED=1]
+  End [FS]
+
+
+TRANSITION:
+  S: Main
+  N: End
+  E: MP3 Finalize
+
+# Change directory
+TRANSITION:
+  S: Main.MP3Selector.Waiting
+  N: Main.MP3Selector.Waiting
+  E: Select
+  C: not [PARAMS][0] or isdir([PARAMS][0])
+  O: [DUMP("Update dir: %s"%[PARAMS][0])]
+     sel.update_dir([PARAMS][0])
+
+# An MP3 file is selected and currently playing
+#    -- stop the current playing
+TRANSITION:
+  S: Main.MP3Selector.Waiting
+  N: Main.MP3Selector.StopPlaying
+  E: Select
+  C: [PARAMS][0] and not isdir([PARAMS][0]) and [INSTATE("Main.MP3Player.MP3.Playing", 1)]
+  O: NewFile=[PARAMS][0]
+     [EVENT("GUI Stop")]
+     [DUMP("Stop current MP3")]
+
+# An MP3 file is selected and not currently playing
+#   -- fake an "Playing Stopped" event
+TRANSITION:
+  S: Main.MP3Selector.Waiting
+  N: Main.MP3Selector.StopPlaying
+  E: Select
+  C: [PARAMS][0] and not isdir([PARAMS][0]) and not [INSTATE("Main.MP3Player.MP3.Playing", 1)]
+  O: NewFile=[PARAMS][0]
+     [EVENT("Playing Stopped")]
+
+# Playing is stopped
+#   -- restart playing
+TRANSITION:
+  S: Main.MP3Selector.StopPlaying
+  N: Main.MP3Selector.RestartPlaying
+  E: Playing Stopped
+  O: [EVENT("Restart Playing")]
+
+# Send the MP3 file name to the MP3 player (as a parameter)
+TRANSITION:
+  S: Main.MP3Selector.RestartPlaying
+  N: Main.MP3Selector.Waiting
+  E: Restart Playing
+  O: [EVENT("Select MP3", [NewFile])]
+     [DUMP("Play MP3: %s"%NewFile)]

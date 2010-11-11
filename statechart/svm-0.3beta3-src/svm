@@ -1,0 +1,8 @@
+#!/bin/sh
+
+kernel=`uname -r`
+if [ ${kernel#2.4.20-} != $kernel ]; then
+  export LD_ASSUME_KERNEL=2.4.1
+fi
+
+python `dirname $0`/svm.py ${1+"$@"}

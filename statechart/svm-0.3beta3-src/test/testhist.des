@@ -1,0 +1,40 @@
+IMPORTATION:
+  test3=test3.des
+
+STATECHART:
+  A [DS] [HS*]
+    B [DS] [CS]
+      E [DS]
+      F
+        J [DS] [test3] [HS*]
+        K
+      G
+    C [DS] [CS]
+      H [DS]
+    D [DS] [CS]
+  I
+
+TRANSITION:
+  S: A.B.E
+  N: A.B.F.J.A
+  E: ef
+
+TRANSITION:
+  S: A
+  N: I
+  E: ai
+
+TRANSITION: [HS]
+  S: I
+  N: A
+  E: ia
+
+TRANSITION:
+  S: A.B
+  N: A.C
+  E: bc
+
+TRANSITION: [HS]
+  S: I
+  N: A.B.F.J
+  E: ib

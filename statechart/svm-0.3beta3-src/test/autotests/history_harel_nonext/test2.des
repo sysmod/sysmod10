@@ -1,0 +1,25 @@
+STATECHART:
+  A [DS]
+  B [HS*]
+    C [DS]
+    D
+
+TRANSITION: [HS]
+  S: A
+  N: B
+  E: a
+
+TRANSITION: [HS]  # HS is ignored because B.D has no history
+  S: B.C
+  N: B.D
+  E: b
+
+TRANSITION: [HS]  # HS is ignored because B.C has no history
+  S: B.D
+  N: B.C
+  E: b
+
+TRANSITION: [HS]  # HS is ignored because A has no history
+  S: B
+  N: A
+  E: c

@@ -1,0 +1,22 @@
+STATECHART:
+    top [DS]
+        backlightOff [DS]
+        backlightOn
+
+ENTER:
+   N: top.backlightOff
+   O: gui.unsetIndiglo()
+
+ENTER:
+   N: top.backlightOn
+   O: gui.setIndiglo()
+
+TRANSITION:
+    S: top.backlightOff
+    N: top.backlightOn
+    E: topLeftPressed
+
+TRANSITION:
+    S: top.backlightOn
+    N: top.backlightOff
+    E: topLeftReleased

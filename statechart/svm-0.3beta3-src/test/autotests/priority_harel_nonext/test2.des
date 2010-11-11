@@ -1,0 +1,25 @@
+OPTIONS:
+  InnerTransitionFirst = 1
+
+STATECHART:
+  A [DS]
+    B [DS] [RTO]
+      C [DS] [ITF]
+  D
+  E
+  F
+
+TRANSITION:
+  S: A
+  N: D
+  E: e
+
+TRANSITION:
+  S: A.B
+  N: E
+  E: e
+
+TRANSITION:
+  S: A.B.C
+  N: F
+  E: e

@@ -1,0 +1,18 @@
+IMPORTATION:
+  sub = test6_sub.des
+
+STATECHART:
+  A [DS]
+    B [DS] [HS] [sub]
+    C
+  D
+
+TRANSITION:
+  S: A
+  N: D
+  E: ad
+
+TRANSITION: [HS]
+  S: D
+  N: A.B
+  E: db

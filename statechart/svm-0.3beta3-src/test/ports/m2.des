@@ -1,0 +1,32 @@
+INITIALIZER:
+  import random
+  RandomMessages=["Hello, everyone!", "Have a nice day!",\
+                  "How are you today?", "I feel very well today!",\
+                  "The same to you!"]
+  def gen_message():
+    return RandomMessages[random.randint(0, len(RandomMessages)-1)]
+
+OPTIONS:
+  ModelName = Model2
+
+COMPONENT:
+  id   = m1
+  name = Model1
+
+CONNECTIONS:
+  m1.i -- o
+
+PORT:
+  type = out
+  name = o
+
+STATECHART:
+  A [DS]
+
+TRANSITION:
+  S: A
+  N: A
+  T: 1 [RTT]
+  O: msg = gen_message()
+     [EVENT("o.RegMsg", msg)]
+     [DUMP("says: "+msg)]

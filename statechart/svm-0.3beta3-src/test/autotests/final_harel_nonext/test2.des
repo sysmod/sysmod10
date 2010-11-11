@@ -1,0 +1,16 @@
+STATECHART:
+  A [DS]
+  B [HS] [FS]
+    C [DS]
+    D
+  E
+
+TRANSITION:
+  S: A
+  N: B
+  E: e
+
+TRANSITION:
+  S: B
+  N: E
+  E: f  # disabled because B is a final state

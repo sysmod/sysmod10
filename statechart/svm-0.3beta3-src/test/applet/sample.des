@@ -1,0 +1,36 @@
+IMPORTATION:
+  sample = sample.des
+
+OPTIONS:
+  InnerTransitionFirst = 1
+
+STATECHART:
+  S1 [DS] [HS*]
+    S2
+      S3 [DS] [CS]
+      S4 [DS] [CS]
+      S5 [DS] [CS] [sample]
+    S6 [DS]
+  S7
+    S8 [DS]
+    S9
+
+TRANSITION:
+  S: S1.S6
+  N: S1.S2
+  E: to S2
+
+TRANSITION:
+  S: S1.S2
+  N: S7
+  E: to S7
+
+TRANSITION: [HS]
+  S: S7.S8
+  N: S1
+  E: to S1 hs
+
+TRANSITION:
+  S: S7.S8
+  N: S1
+  E: to S1

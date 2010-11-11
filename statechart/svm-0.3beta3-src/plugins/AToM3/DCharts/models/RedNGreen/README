@@ -1,0 +1,46 @@
+1. Design a model in AToM3 with the SVM plugin
+   (behavior_DCharts_mdl.py)
+
+2. Generate model description
+   (behaviour_generated_no_link_with_gui.des)
+
+   Options:
+
+     a. Simulate in SVM
+        (svm behaviour_generated_no_link_with_gui.des) 
+
+     b. Generate code
+        (scc -lpython --ext behaviour_generated_no_link_with_gui.des)
+        and execute the code
+        (python behaviour_generated_no_link_with_gui.des.py)
+
+3. Design a GUI
+   (gui.py)
+
+4. Manually add action code and guards to behavior.des
+
+     a. Add three enter actions:
+
+        ENTER:
+          N: Enabled.Red
+          O: gui.label.config(bg="red")
+
+        ENTER:
+          N: Enabled.Green
+          O: gui.label.config(bg="green")
+
+        ENTER:
+          N: Disabled
+          O: gui.button.config(state="disabled")
+             gui.label.config(bg="grey")
+
+     b. Add output for the two "press" transitions:
+          O: [DUMP("to Green")]
+        and
+          O: [DUMP("to Red")]
+
+   Then compile it
+   (behavior.py)
+
+5. Design the main program, which imports both the GUI and the behavior
+   (main.py)
