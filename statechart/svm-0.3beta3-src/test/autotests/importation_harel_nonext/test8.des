@@ -1,0 +1,23 @@
+DESCRIPTION:
+  test8 -- this model shows the difference in performance between SVM and SCC
+
+IMPORTATION:
+  self = test8.des
+
+STATECHART:
+  A [CS] [DS]
+    A1 [DS]
+    A2 [self]
+  B [CS] [DS]
+    B1 [DS]
+    B2 [self]
+
+TRANSITION:
+  S: A.A1
+  N: A.A2
+  E: e
+
+TRANSITION:
+  S: B.B1
+  N: B.B2
+  E: e

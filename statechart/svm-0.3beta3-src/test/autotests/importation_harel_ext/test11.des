@@ -1,0 +1,37 @@
+OPTIONS:
+  InnerTransitionFirst = 0
+
+IMPORTATION:
+  self = test11.des
+
+STATECHART:
+  A [DS]
+  B [self]
+
+TRANSITION:
+  S: A
+  N: B
+  E: e
+  O: [DUMP("transition to B")]
+
+TRANSITION:
+  S: B
+  N: A
+  E: f
+  O: [DUMP("transition to A")]
+
+ENTER:
+  N: A
+  O: [DUMP("enter A")]
+
+EXIT:
+  S: A
+  O: [DUMP("exit A")]
+
+ENTER:
+  N: B
+  O: [DUMP("enter B")]
+
+EXIT:
+  S: B
+  O: [DUMP("exit B")]

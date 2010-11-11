@@ -1,0 +1,35 @@
+STATECHART:
+  A [DS]
+  B [FS]
+
+MACRO:
+  MAXI = 10
+
+INITIALIZER:
+  i=0
+
+INTERACTOR:
+  import thread
+  lock=thread.allocate_lock()
+  lock.acquire()
+  eventhandler.start()
+  lock.acquire()
+  lock.release()
+
+FINALIZER:
+  lock.release()
+
+TRANSITION:
+  S: A
+  N: A
+  T: 0
+  C: i<[MAXI]
+  O: [DUMP(str(i))]
+     i=i+1
+
+TRANSITION:
+  S: A
+  N: B
+  T: 0
+  C: i==[MAXI]
+  O: [DUMP(str(i))]

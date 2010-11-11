@@ -1,0 +1,15 @@
+OPTIONS:
+  ModelName = Model1
+
+PORT:
+  type = in
+  name = i
+
+STATECHART:
+  A [DS]
+
+TRANSITION:
+  S: A
+  N: A
+  E: i.RegMsg
+  O: [DUMP("receives: "+[PARAMS])]

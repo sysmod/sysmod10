@@ -1,0 +1,20 @@
+DESCRIPTION:
+  test10 -- description
+
+IMPORTATION:
+  test10 = test10.des
+
+INITIALIZER:
+  [DUMP("initialize")]
+
+FINALIZER:
+  [DUMP("finalize")]
+
+STATECHART:
+  A [DS]
+  B [test10]
+
+TRANSITION:
+  S: A
+  N: B
+  E: e

@@ -1,0 +1,152 @@
+#!/bin/sh
+
+echo '---------------------------------------------------------------'
+echo '| SVM-Update, the help script to install/update SVM for AToM3 |'
+echo '|            Created by Thomas Feng, Mar. 22, 2004            |'
+echo '---------------------------------------------------------------'
+echo
+
+if [ `uname` = "FreeBSD" ]
+then
+  MAKE=gmake;
+else
+  MAKE=make;
+fi
+
+ATOM3DIR=`dirname $0`
+cd $ATOM3DIR
+
+if test -d DCharts/svm
+then
+    echo Updating the existing SVM source tree ...;
+    cd DCharts/svm;
+    if test -f Makefile
+    then
+        printf "Do you want to clean up the SVM directory? [n/Y] ";
+        read CLEAN;
+        if [ "$CLEAN" = "Y" ] || [ "$CLEAN" = "y" ] || [ "$CLEAN" = "" ]
+        then
+            $MAKE clean;
+        fi;
+    fi;
+    export CVS_RSH="ssh";
+    cvs -q update;
+    cd ../..;
+else
+    echo Checking out the SVM source tree for the first time ...;
+    mkdir -p DCharts;
+    cd DCharts;
+    export CVS_RSH="ssh";
+    cvs -q -z3 -d:ext:anoncvs@savannah.nongnu.org:/cvsroot/svm co svm;
+    cd ..;
+fi
+echo
+
+echo Updating the svm-update script ...
+cp DCharts/svm/plugins/AToM3/svm-update .
+echo
+
+echo Updating the DCharts meta-model for AToM3 ...
+for dcfile in `ls DCharts/svm/plugins/AToM3/DCharts`
+do
+    cp -r "DCharts/svm/plugins/AToM3/DCharts/$dcfile" DCharts;
+done
+for dcfile in `ls DCharts | grep -v '^svm$'`
+do
+    rm -rf `find DCharts/$dcfile | grep CVS`;
+done
+echo
+
+echo Writing ATOM3 startup script ...
+echo '#!/bin/sh
+
+kernel=`uname -r`
+if [ ${kernel#2.4.20-} != $kernel ]
+then
+  export LD_ASSUME_KERNEL=2.4.1;
+fi
+
+ATOM3DIR=`dirname $0`
+cd $ATOM3DIR
+export PYTHONPATH=DCharts:DCharts/svm:$PYTHONPATH
+python ATOM3.py ${1+"$@"}' > atom3;
+chmod +x atom3;
+echo
+
+echo Writing py2des script ...
+echo '#!/bin/sh
+
+ATOM3DIR=`dirname $0`
+export PYTHONPATH=$ATOM3DIR:$ATOM3DIR/ATOM3Types:$ATOM3DIR/DCharts:$ATOM3DIR/DCharts/svm:$ATOM3DIR/GraphGrammar:$ATOM3DIR/UserInterface:$ATOM3DIR/TypeModels:$ATOM3DIR/ButtonsModels:$ATOM3DIR/ERModels:$PYTHONPATH
+python $ATOM3DIR/py2des.py ${1+"$@"}' > py2des;
+chmod +x py2des;
+cp DCharts/svm/plugins/AToM3/py2des.py .
+echo
+
+echo Writing other help scripts in the AToM3 directory ...
+for script in svm scc svmdns
+do
+    echo "  $script";
+    echo "#!/bin/sh
+
+ATOM3DIR=\`dirname \$0\`
+\$ATOM3DIR/DCharts/svm/$script \${1+\"\$@\"}" > $script;
+    chmod +x $script;
+done
+echo
+
+echo Distributed simulation ...
+printf "Do you want build PYPVM for SVM? [n/Y] "
+read CLEAN
+if [ "$CLEAN" = "Y" ] || [ "$CLEAN" = "y" ] || [ "$CLEAN" = "" ]
+then
+    ARCH=`uname`;
+    if [ "$PVM_ROOT" = "" ]
+    then
+        if [ "$ARCH" = "Linux" ] && test -d /usr/share/pvm3
+        then
+            PVMGUESS=/usr/share/pvm3;
+        elif [ "$ARCH" = "FreeBSD" ] && test -d /usr/local/lib/pvm
+        then
+            PVMGUESS=/usr/local/lib/pvm;
+        else
+            PVMGUESS=;
+        fi;
+        PVMGUESS2=" [$PVMGUESS]";
+        echo Environment variable PVM_ROOT is not set.
+        printf "Please specify where PVM is installed${PVMGUESS2}: "; 
+        read PVM_ROOT;
+        if [ "${PVM_ROOT}" = "" ]
+        then
+            PVM_ROOT=$PVMGUESS;
+        fi;
+        export PVM_ROOT;
+    fi;
+    if [ "$PVM_ROOT" != "" ] && [ "$PVM_ARCH" = "" ]
+    then
+        if test -d $PVM_ROOT/lib
+        then
+            ARCHGUESS=`ls -F $PVM_ROOT/lib | grep '/' | awk 'sub(/\//, "", $0)'`;
+            ARCHGUESS2=" [$ARCHGUESS]";
+        else
+            ARCHGUESS=;
+            ARCHGUESS2=;
+        fi;
+        printf "Please specify the system architecture${ARCHGUESS2}: ";
+        read PVM_ARCH;
+        if [ "${PVM_ARCH}" = "" ]
+        then
+            PVM_ARCH=$ARCHGUESS;
+        fi;
+        export PVM_ARCH;
+    fi;
+    if [ "$PVM_ARCH" = "" ] || ! test -d $PVM_ROOT/lib/$PVM_ARCH
+    then
+        echo;
+        echo ERROR:
+        echo "  PVM_ROOT is not correctly set.";
+        echo "  Please find out the directory of your PVM installation, and run this script again.";
+        exit 1;
+    fi;
+    $MAKE -C DCharts/svm pypvm;
+fi

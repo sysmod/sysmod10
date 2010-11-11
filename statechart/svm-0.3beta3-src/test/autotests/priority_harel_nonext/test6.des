@@ -1,0 +1,21 @@
+OPTIONS:
+  InnerTransitionFirst = 1
+
+IMPORTATION:
+  self = test6.des
+
+STATECHART:
+  A [DS]
+    A1 [DS]
+    A2 [OTF] [self]  # OTF cannot affect submodel self
+  B
+
+TRANSITION:  # never triggered
+  S: A
+  N: B
+  E: e
+
+TRANSITION:
+  S: A.A1
+  N: A.A2
+  E: e

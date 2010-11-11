@@ -1,0 +1,42 @@
+# 2 transitions will be fired.
+# They have source states in different orthogonal components.
+# There's no conflict here, but the sequence of those transitions are still important.
+# The current scheme is "implementation-dependent".
+# test9 and test10 in this directory shows the SVM approach.
+# SCC, since it calls SVM to sort these transitions, also conforms to this approach.
+
+STATECHART:
+  A [DS] [CS]
+    A1 [DS]
+    A2
+    A3
+  B [DS] [CS] [RTO]
+    B1 [DS]
+    B2
+    B3
+
+TRANSITION:
+  # triggered first only because source "A" has a smaller integer ID
+  # (implementation-dependent)
+  S: A
+  N: A.A2
+  E: e
+  O: [DUMP("A to A.A2")]
+
+TRANSITION:  # not triggered
+  S: A.A1
+  N: A.A3
+  E: e
+  O: [DUMP("A.A1 to A.A3")]
+
+TRANSITION:  # not triggered
+  S: B
+  N: B.B2
+  E: e
+  O: [DUMP("B to B.B2")]
+
+TRANSITION:
+  S: B.B1
+  N: B.B3
+  E: e
+  O: [DUMP("B.B1 to B.B3")]

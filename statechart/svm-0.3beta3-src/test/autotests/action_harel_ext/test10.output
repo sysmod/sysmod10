@@ -1,0 +1,54 @@
+  test10 -- description
+initialize
+['A'] >   test10 -- description
+initialize
+['B.A'] >   test10 -- description
+initialize
+['B.B.A'] >   test10 -- description
+initialize
+['B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.B.B.B.B.B.B.A'] >   test10 -- description
+initialize
+['B.B.B.B.B.B.B.B.B.B.B.B.B.B.B.B.B.A'] > finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize
+finalize

@@ -1,0 +1,23 @@
+To use the Make utility, you must install cygwin
+(http://www.cygwin.com/setup.exe). Normally, a minimal installation
+will do.
+
+To enable PVM support for distributed simulation, you must install
+PVM (Parallel Virtual Machine, http://www.netlib.org/pvm3/).
+Download a win32 package with install shield and install it.
+
+To install PyPVM support:
+  make -f Makefile.win32 pypvm
+Alternatively, you may specify which python to be used:
+  make -f Makefile.win32 pypvm python=~/tools/bin/python
+You will see PVM error messages if PVM is not correctly started. This
+does not hinder you from using SVM to simulate stand-alone models.
+
+To build distribution binary in ./distsvm/ (this requires PyGame to
+be installed on the python that is executed):
+  make -f Makefile.win32 binary
+Alternatively, you may specify which python to be used:
+  make -f Makefile.win32 binary python=~/tools/bin/python
+
+To build the applet example with SCC:
+  make -f Makefile.win32 applet

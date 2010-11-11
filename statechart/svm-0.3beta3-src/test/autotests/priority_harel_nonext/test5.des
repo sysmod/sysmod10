@@ -1,0 +1,18 @@
+IMPORTATION:
+  self = test5.des
+
+STATECHART:
+  A [DS]  # inherits OTF
+    A1 [DS]
+    A2
+  B [ITF] [self]  # ITF cannot affect submodel self
+
+TRANSITION:
+  S: A
+  N: B
+  E: e
+
+TRANSITION:  # never triggered
+  S: A.A1
+  N: A.A2
+  E: e

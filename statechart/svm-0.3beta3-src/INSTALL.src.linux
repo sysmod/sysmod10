@@ -1,0 +1,15 @@
+To install PyPVM support:
+  make pypvm
+Alternatively, you may specify which python to be used:
+  make pypvm python=~/tools/bin/python
+You will see PVM error messages if PVM is not correctly started. This
+does not hinder you from using SVM to simulate stand-alone models.
+
+To build distribution binary in ./distsvm/ (this requires PyGame to
+be installed on the python that is executed):
+  make binary
+Alternatively, you may specify which python to be used:
+  make binary python=~/tools/bin/python
+
+To build the applet example with SCC:
+  make applet

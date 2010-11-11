@@ -1,0 +1,6 @@
+To enable PVM support for distributed simulation, you must install
+PVM (Parallel Virtual Machine, http://www.netlib.org/pvm3/).
+Download a win32 package with install shield and install it.
+
+You will see PVM error messages if PVM is not correctly started. This
+does not hinder you from using SVM to simulate stand-alone models.

@@ -1,0 +1,27 @@
+STATECHART:
+  A [DS] [HS]
+    A1 [DS]
+    A2
+  B [HS]
+    B1 [DS]
+    B2
+
+TRANSITION:
+  S: A.A1
+  N: A.A2
+  E: a
+
+TRANSITION: [HS]
+  S: A
+  N: B
+  E: b
+
+TRANSITION:
+  S: B.B1
+  N: B.B2
+  E: c
+
+TRANSITION: [HS]
+  S: B
+  N: A
+  E: d

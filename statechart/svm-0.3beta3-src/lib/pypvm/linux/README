@@ -1,0 +1,222 @@
+=============================== OVERVIEW =======================================
+
+Pypvm is a Python module which allows interaction with the
+Parallel Virtual Machine (PVM) package.  PVM allows a collection
+of computers connected by a network to serve as a single parallel
+computer.  More information about the PVM package can be found at
+http://www.epm.ornl.gov/pvm/.
+
+Pypvm is intended to be an educational and prototyping tool.  To use
+Pypvm, import the pypvm module.
+
+Pypvm includes the sample files master_test.py and slave_test.py.
+Put slave_test.py in your PVM search path and execute master_test.py to
+test your configuration and demonstrate the use of pypvm.
+
+The primary authors of Pypvm are W. Michael Petullo, who can be contacted at
+pypvm@flyn.org,  and Greg Baker,  who can be contacted at
+greg.baker@ifost.org.au.   It is available from:
+ -  http://www.flyn.org/
+ -  http://www.ifost.org.au/Software
+ -  http://pypvm.sourceforge.net/
+
+
+============================== HISTORY =========================================
+
+The first Python-PVM interworking package was written by Stefane Fermigier.
+
+Greg Baker patched pvmmodule.c to work with PVM3.3.11 & Python1.5 in 1997
+and 1998.  No attempt was made to be backwardly compatible.  PyPVM version
+0.12 was released in June 1998.  It was based on the output of swig
+and heavily cleaned up.  It then suffered considerable bit-rot as Greg
+stopped working on it actively.
+
+W. Michael Petullo independantly developed a complete set of bindings
+for PVM3.4 (with which PyPVM did not work well).  He called this pypvm.
+Version 0.8.7 was released in November 1999.
+
+In May 2000, the two projects merged into one,  still called pypvm.
+This was version 0.90.
+
+=============================== BUILDING =======================================
+
+To build Pypvm, cross your fingers and try:
+
+make -f Makefile.pre.in boot
+make
+
+Because of this, you may see some files related to GNU automake and
+autoconf.  Please ignore them for the time being.
+
+
+
+============================== NASTY DETAILS ===================================
+
+
+pvm_setopts(PvmAutoErr,0) gets run in the module initialisation.  You
+already get a complete traceback, and thrown exceptions anyway, so I
+don't know why you'd want to have pvm splurge messages out to stderr.
+If you want to have them, you'll need to explicitly do a pvm_setopts
+back again.
+
+
+Most functions raise on exception upon detecting an error.  This is
+different than the C PVM library, in which functions usually denote an
+error by returning a negative number.
+
+--------------------------------------------------------------------------------
+C PVM Library:
+	if (pvm_send (tid, msgtag) < 0) {
+		handle_error ();
+	}
+--------------------------------------------------------------------------------
+Pypvm:
+	try:
+		pypvm.send (tid, msgtag)
+	except:
+		handle_error ();
+
+----------------------------------------------------------------------
+
+Constants get stored in a couple of dictionaries,  with names somehow 
+related to their C equivalents
+  pvm.data       holds parameters for pvm.initsend() and pvm.mkbuf()
+  pvm.spawnOpts  holds parameters for pvm.spawn()
+  pvm.exceptions holds the complete set of PVM exceptions
+  pvm.notifyDict holds constants for pvm.notify()
+
+A function called pvm_yyy() is called yyy() in Python.  The wrapper
+function is called pypvm_yyy(). Since I'm sure that you'll do an
+import pvm (as opposed to an from pvm import * ), this leads to the
+nice syntax pvm.yyy()
+
+If the C function returns an integer less than zero to indicate an error,
+that has been turned into an raised exception.  The exception name
+is  XXXException where the C #define was PvmXXX .   These exceptions
+can be named through the pvm.exceptions  dictionary.  If that's all
+the function would have returned,  then it returns None. 
+
+Some functions return negative numbers on error,  and a positive number
+on success.  pvm_mytid is an example.  In Python,  this becomes 
+mytid(),  which can raise a variety of exceptions.  If it returns anything,
+it _is_ a tid,  and is guaranteed to be positive.
+
+Some C functions take an argument of a pointer to some storage space in 
+which data will be returned.  These all return negative numbers on failure.
+pvm_spawn is an example (it returns the task ids of the tasks it spawns).
+In these cases,  we will raise exceptions if we had a negative return value;
+otherwise we will return a python list of the passed in data.  Pypvm is smart,
+it allocates the storage space that it's going to need to do it.
+
+Some functions take or return structures;  these become python tuples with 
+components in the same order as the structure.
+
+Where a function has some logical default (e.g. pvm_initsend should default
+to PvmDataDefault),  the python bindings will use that.  I should really
+put together a complete list of them somewhere.
+
+All functions can take keyword arguments,  of just position-based.  Positions
+and names are in general the same as the C language bindings.
+
+
+This is divided up into:
+  C :  implement is a direct mapping from C, using the above rules
+  F :  functionality exists,  but done differently somehow
+  U :  unimplemented, sorry
+  D :  duplicates functionality elsewhere
+  
+
+C language name   Python language name       Nature
+---------------------------------------------------
+pvm_archcode      archcode                   C
+pvm_barrier	  barrier                    C
+pvm_bcast	  bcast                      C
+pvm_bufinfo       bufinfo                    C
+pvm_config        configuration              C
+                  number_of_architectures    D
+                  hostinfo                   D
+pvm_delete        delete                     C
+pvm_delhosts	  delhosts                   C
+pvm_exit	  exit                       C
+pvm_export        export                     C
+pvm_freebuf       freebuf                    C
+pvm_freecontext   freecontext                C
+pvm_gather	                             U
+pvm_getcontext    getcontext                 C
+pvm_getfds                                   U
+pvm_getinst       getinst                    C
+(pvm_getmwid	  getmwid                    C)  -- obsolete
+pvm_getopt        getopt                     C
+pvm_getrbuf       getrbuf                    C
+pvm_getsbuf       getsbuf                    C
+pvm_gettid        gettid                     C
+pvm_gsize         gsize                      C
+pvm_halt          halt                       C
+pvm_hostsync                                 U
+pvm_initsend      initsend                   C
+pvm_insert	  insert                     C
+pvm_joingroup     joingroup                  C
+pvm_kill          kill                       C
+pvm_lookup        lookup                     C
+pvm_lvgroup       lvgroup                    C
+pvm_mcast	  mcast                      C
+pvm_mkbuf         mkbuf                      C
+pvm_mstat         mstat                      C
+pvm_mytid         mytid                      C
+pvm_notify        notify                     C
+pvm_nrecv         nrecv                      C
+pvm_newcontext    newcontext                 C
+pvm_parent	  parent                     C
+pvm_perror        perror                     C
+pvm_pkbyte        pkbyte                     C
+pvm_pkcplx                                   U
+pvm_pkdcplx                                  U
+pvm_pkdouble                                 U
+pvm_pkfloat       pkfloat                    C
+pvm_pkint         pkfloat                    C
+pvm_pklong        pklong                     C
+pvm_pkshort       pkshort                    C
+pvm_pkstr	  pkstr                      C
+pvm_pkuint                                   U 
+pvm_pkulong	                             U
+pvm_pkushort	                             U
+pvm_precv                                    U
+pvm_probe         probe                      C
+pvm_psend                                    U
+pvm_pstat         pstat                      C
+pvm_recv          recv                       C
+pvm_recvf                                    U
+pvm_reduce                                   U
+pvm_reg_hoster                               U
+pvm_reg_rm                                   U
+pvm_reg_tasker    register_tasker            C
+pvm_scatter	                             U
+pvm_send          send                       C
+pvm_sendsig       sendsig                    C
+pvm_setcontext    setcontext                 C
+(pvm_setmwid       setmwid                    C)
+pvm_setopt        setopt                     C
+pvm_setrbuf       setrbuf                    C
+pvm_setsbuf       setsbuf                    C
+pvm_spawn         spawn                      C
+pvm_start_pvmd                               U
+pvm_tasks         tasks                      F
+pvm_tickle                                   ?
+pvm_tidtohost     tidtohost                  C
+pvm_trecv         trecv                      C
+pvm_unexport      unexport                   C
+pvm_upkbyte       upkbyte                    C
+pvm_upkcplx                                  U
+pvm_upkdcplx                                 U
+pvm_upkdouble     upkdouble                  C
+pvm_upkfloat      upkfloat                   C
+pvm_upkint	  upkint                     C
+pvm_upklong	  upklong                    C
+pvm_upkshort	  upkshort                   C
+pvm_upkstr	  upkstr                     C
+pvm_upkuint	                             C
+pvm_upkulong	                             C
+pvm_upkushort	                             C
+pvm_version       version                    C
+
+

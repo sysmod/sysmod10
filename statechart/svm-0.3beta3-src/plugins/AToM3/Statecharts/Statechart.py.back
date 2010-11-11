@@ -1,0 +1,241 @@
+from graph_ASG_ERmetaMetaModel import *
+from stickylink import *
+from widthXfillXdecoration import *
+from ASG_Buttons import *
+from ASG_Buttons import *
+from ButtonConfig import *
+from ATOM3Enum import *
+from ATOM3String import *
+from ATOM3BottomType import *
+from ATOM3Constraint import *
+from ATOM3Attribute import *
+from ATOM3Float import *
+from ATOM3List import *
+from ATOM3Link import *
+from ATOM3Connection import *
+from ATOM3Boolean import *
+from ATOM3Appearance import *
+from ATOM3Text import *
+from ATOM3Integer import *
+from ATOM3Port import *
+from ATOM3MSEnum import *
+
+def Statechart(self, rootNode):
+    rootNode.RowSize.setValue(1)
+    rootNode.Formalism_File.setValue('Statecharts/Statechart_MM.py')
+    rootNode.Formalism_Name.setValue('Statechart')
+
+    self.globalPrecondition( rootNode )
+
+    self.obj31=ButtonConfig(self)
+
+    self.obj31.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewComposite (self, wherex, wherey)\n'))
+    self.obj31.Drawing_Mode.setValue((' ', 1))
+    self.obj31.Drawing_Mode.config = 0
+    self.obj31.Contents.Text.setValue('New Composite')
+    self.obj31.Contents.Image.setValue('')
+    self.obj31.Contents.lastSelected= "Text"
+    self.obj31.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(10,10,self.obj31)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj31.graphObject_ = new_obj
+    rootNode.addNode(self.obj31)
+    self.globalAndLocalPostcondition(self.obj31, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj32=ButtonConfig(self)
+
+    self.obj32.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewBasic (self, wherex, wherey)\n'))
+    self.obj32.Drawing_Mode.setValue((' ', 1))
+    self.obj32.Drawing_Mode.config = 0
+    self.obj32.Contents.Text.setValue('New Basic')
+    self.obj32.Contents.Image.setValue('')
+    self.obj32.Contents.lastSelected= "Text"
+    self.obj32.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(135,10,self.obj32)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj32.graphObject_ = new_obj
+    rootNode.addNode(self.obj32)
+    self.globalAndLocalPostcondition(self.obj32, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj33=ButtonConfig(self)
+
+    self.obj33.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewHistory (self, wherex, wherey)\n'))
+    self.obj33.Drawing_Mode.setValue((' ', 1))
+    self.obj33.Drawing_Mode.config = 0
+    self.obj33.Contents.Text.setValue('New History')
+    self.obj33.Contents.Image.setValue('')
+    self.obj33.Contents.lastSelected= "Text"
+    self.obj33.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(260,10,self.obj33)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj33.graphObject_ = new_obj
+    rootNode.addNode(self.obj33)
+    self.globalAndLocalPostcondition(self.obj33, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj34=ButtonConfig(self)
+
+    self.obj34.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewOrthogonal (self, wherex, wherey)\n'))
+    self.obj34.Drawing_Mode.setValue((' ', 1))
+    self.obj34.Drawing_Mode.config = 0
+    self.obj34.Contents.Text.setValue('New Orthogonal')
+    self.obj34.Contents.Image.setValue('')
+    self.obj34.Contents.lastSelected= "Text"
+    self.obj34.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(10,80,self.obj34)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj34.graphObject_ = new_obj
+    rootNode.addNode(self.obj34)
+    self.globalAndLocalPostcondition(self.obj34, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj35=ButtonConfig(self)
+
+    self.obj35.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewvisual_settings (self, wherex, wherey)\n'))
+    self.obj35.Drawing_Mode.setValue((' ', 1))
+    self.obj35.Drawing_Mode.config = 0
+    self.obj35.Contents.Text.setValue('New visual_settings')
+    self.obj35.Contents.Image.setValue('')
+    self.obj35.Contents.lastSelected= "Text"
+    self.obj35.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(135,80,self.obj35)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj35.graphObject_ = new_obj
+    rootNode.addNode(self.obj35)
+    self.globalAndLocalPostcondition(self.obj35, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj36=ButtonConfig(self)
+
+    self.obj36.Action.setValue(('ActionButton1', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# This method has as parameters:\n#   - wherex : X Position in window coordinates where the user clicked.\n#   - wherey : Y Position in window coordinates where the user clicked.\nnewPlace = self.createNewHyperedge (self, wherex, wherey)\n'))
+    self.obj36.Drawing_Mode.setValue((' ', 1))
+    self.obj36.Drawing_Mode.config = 0
+    self.obj36.Contents.Text.setValue('New Hyperedge')
+    self.obj36.Contents.Image.setValue('')
+    self.obj36.Contents.lastSelected= "Text"
+    self.obj36.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(10,150,self.obj36)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj36.graphObject_ = new_obj
+    rootNode.addNode(self.obj36)
+    self.globalAndLocalPostcondition(self.obj36, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj37=ButtonConfig(self)
+
+    self.obj37.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\nimport statechart_utils\nstatechart_utils.gen_pythonDEVSRT(self)\n'))
+    self.obj37.Drawing_Mode.setValue((' ', 0))
+    self.obj37.Drawing_Mode.config = 0
+    self.obj37.Contents.Text.setValue('pythonDEVS-RT')
+    self.obj37.Contents.Image.setValue('')
+    self.obj37.Contents.lastSelected= "Text"
+    self.obj37.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(137.0,151.0,self.obj37)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj37.graphObject_ = new_obj
+    rootNode.addNode(self.obj37)
+    self.globalAndLocalPostcondition(self.obj37, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj38=ButtonConfig(self)
+
+    self.obj38.Action.setValue(('Action', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\n\nimport SVMAToM3Plugin\nSVMAToM3Plugin.generate_description(self)\n\n\n'))
+    self.obj38.Drawing_Mode.setValue((' ', 0))
+    self.obj38.Drawing_Mode.config = 0
+    self.obj38.Contents.Text.setValue('to SVM Des.')
+    self.obj38.Contents.Image.setValue('')
+    self.obj38.Contents.lastSelected= "Text"
+    self.obj38.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(260.0,152.0,self.obj38)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj38.graphObject_ = new_obj
+    rootNode.addNode(self.obj38)
+    self.globalAndLocalPostcondition(self.obj38, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj39=ButtonConfig(self)
+
+    self.obj39.Action.setValue(('Action', (['Python', 'OCL'], 0), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\n\nimport SVMAToM3Plugin\nSVMAToM3Plugin.simulate(self)\n\n'))
+    self.obj39.Drawing_Mode.setValue((' ', 0))
+    self.obj39.Drawing_Mode.config = 0
+    self.obj39.Contents.Text.setValue('simulate in SVM')
+    self.obj39.Contents.Image.setValue('')
+    self.obj39.Contents.lastSelected= "Text"
+    self.obj39.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(387.0,154.0,self.obj39)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj39.graphObject_ = new_obj
+    rootNode.addNode(self.obj39)
+    self.globalAndLocalPostcondition(self.obj39, rootNode)
+
+    self.globalPrecondition( rootNode )
+
+    self.obj40=ButtonConfig(self)
+
+    self.obj40.Action.setValue(('Action', (['Python', 'OCL'], 1), (['PREcondition', 'POSTcondition'], 1), (['EDIT', 'SAVE', 'CREATE', 'CONNECT', 'DELETE', 'DISCONNECT', 'TRANSFORM', 'SELECT', 'DRAG', 'DROP', 'MOVE'], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]), '# The parameters of this method are:\n#   - wherex\n#   - wherey\n\nimport SVMAToM3Plugin\nSVMAToM3Plugin.generate_java(self)\n'))
+    self.obj40.Drawing_Mode.setValue((' ', 0))
+    self.obj40.Drawing_Mode.config = 0
+    self.obj40.Contents.Text.setValue('to SCC Java')
+    self.obj40.Contents.Image.setValue('')
+    self.obj40.Contents.lastSelected= "Text"
+    self.obj40.graphClass_= graph_ButtonConfig
+    if self.genGraphics:
+       from graph_ButtonConfig import *
+       new_obj = graph_ButtonConfig(524.0,155.0,self.obj40)
+       new_obj.DrawObject(self.UMLmodel)
+       self.UMLmodel.addtag_withtag("ButtonConfig", new_obj.tag)
+    else: new_obj = None
+    self.obj40.graphObject_ = new_obj
+    rootNode.addNode(self.obj40)
+    self.globalAndLocalPostcondition(self.obj40, rootNode)
+    self.drawConnections( )
+
+newfunction = Statechart
+
+loadedMMName = 'Buttons'

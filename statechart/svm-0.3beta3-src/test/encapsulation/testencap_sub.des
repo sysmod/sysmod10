@@ -1,0 +1,39 @@
+OPTIONS:
+  Encapsulated = 1
+
+STATECHART:
+  A [DS]
+    C [DS]
+    D
+  B
+
+PORT:
+  name = INPORT
+  type = in
+
+PORT:
+  name = OUTPORT
+  type = out
+
+PORT:
+  name = INOUTPORT
+  type = inout
+
+TRANSITION:
+  S: B
+  N: OUTPORT
+  E: out
+  O: [DUMP("go out")]
+
+TRANSITION:
+  S: INPORT
+  N: A.D
+
+TRANSITION:
+  S: INOUTPORT
+  N: B
+
+TRANSITION:
+  S: A
+  N: INOUTPORT
+  E: io

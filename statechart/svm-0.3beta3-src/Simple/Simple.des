@@ -1,0 +1,175 @@
+#---------------------------------------------------------------------
+#    SVM (Statechart Virtual Machine)
+#         -- an interpreter for an extended statechart formalism
+#---------------------------------------------------------------------
+#
+# Copyright (C) 2003 Thomas Huining Feng
+#
+#---------------------------------------------------------------------
+# Address:      MSDL, SOCS, McGill Univ., Montreal, Canada
+# HomePage:     http://msdl.cs.mcgill.ca/people/tfeng/
+# SVM HomePage: http://msdl.cs.mcgill.ca/people/tfeng/?research=svm
+# Download:     http://savannah.nongnu.org/files/?group=svm
+# CVS:          :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm
+#               (projects "svm" and "jsvm")
+# Email:        hfeng2@cs.mcgill.ca
+#---------------------------------------------------------------------
+#
+# This file is part of SVM.
+#
+#---------------------------------------------------------------------
+# SVM is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or (at your
+# option) any later version.
+#
+# SVM is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with SVM; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#---------------------------------------------------------------------
+
+
+# Simple example for SVM (Statechart Virtual Machine)
+# Set tab size to 4 to view it nicely
+# To run:
+#   > python svm.py Simple/Simple.des
+
+DESCRIPTION:
+----------------------------------------
+|   Python Statechart Implementation   |
+|             Version 0.3              |
+========================================
+|          Thomas, Nov. 2003           |
+|       ( hfeng2@cs.mcgill.ca )        |
+----------------------------------------
+ \    To debug mode: input 'debug'    /
+   ----------------------------------
+
+INITIALIZER:
+  from string import *
+
+# A statechart is allowed to import another statechare
+# When a statechart imports itself, it is recursive
+
+# Priority of transitions:
+#   1. Depend on the "inner transition first" variable of their scope
+#   2. If not decided 1, depend on their priorities
+#   3. If not decided by 1 or 2, depend on their order of appearance in the description
+
+# Ordering scheme for transitions at different level can be set by a global option
+# Properties [RTO], [ITF] and [OTF], when associated with a state, changes the transition
+# ordering for the state and its substates
+#   [RTO]. Reverse transition order (depending on the current transition order)
+#   [ITF]. Inner transition first
+#   [OTF]. Outer transition first
+
+# State properties [HS] and [HS*] is used to specify (deep) history states
+# Property [HS] may also be used for transitions, which specifies the transition transfers
+# to the "history" of a state instead of the state itself (provided the state has either
+# [HS] or [HS*] property)
+# [HS*] property always override [HS] for a state
+
+# Use [EVAL(...)] anywhere to evaluate an expression (especially useful for parameters)
+# The expression is a Python expression
+
+# Use [eval(...)] for dynamic evaluation
+
+OPTIONS:		# There's only one option supported currently
+  InnerTransitionFirst = 0
+
+IMPORTATION:	# The symbols defines here can be used later in [...]
+  myself = Simple.des
+
+MACRO:			# Macro and parameters are defined here (importer may change them)
+  START = 1
+  LEVEL = L[START]:
+
+STATECHART:		# Statechart hierachy
+    A [DS]
+    B [HS*] [RTO]
+      C [DS]
+      D
+        F [CS] [myself] [START=[EVAL([START]+1)]]
+        G [CS]
+      E [HS] [myself] [START=[EVAL([START]+1)]]
+
+TRANSITION:
+  E:a
+  S:B
+  N:A
+  O:[DUMP('[LEVEL] Transit from B to A')]
+
+TRANSITION:[0]
+  E:ab
+  S:A
+  N:B
+  O:[DUMP('[LEVEL] Transit to B')]
+
+TRANSITION:[HS][-1]
+  E:ab
+  S:A
+  N:B
+  O:[DUMP('[LEVEL] Transit to B (history)')]
+
+TRANSITION:
+  E:ac
+  S:A
+  N:B.C
+  O:[DUMP('[LEVEL] Transit to B.C')]
+
+TRANSITION:
+  E:ad
+  S:A
+  N:B.D
+  O:[DUMP('[LEVEL] Transit to B.D')]
+
+TRANSITION:[HS]
+  E:ae
+  S:A
+  N:B.E
+  O:[DUMP('[LEVEL] Transit to B.E')]
+
+TRANSITION:[HS]
+  E:af
+  S:A
+  N:B.D.F
+  O:[DUMP('[LEVEL] Transit to B.E.F')]
+
+TRANSITION:[HS]
+  E:ag
+  S:A
+  N:B.D.G
+  O:[DUMP('[LEVEL] Transit to B.E.G')]
+
+ENTER:
+  N:B
+  O:[DUMP('Enter B')]
+
+ENTER:
+  N:B.D.F
+  O:[DUMP('Enter F')]
+
+ENTER:
+  N:B.D.G
+  O:[DUMP('Enter G')]
+
+EXIT:
+  S:B.D.F
+  O:[DUMP('Exit F')]
+
+EXIT:
+  S:B.D.G
+  O:[DUMP('Exit G')]
+
+EXIT:
+  S:B
+  O:[DUMP('Exit B')]
+
+EXIT:
+  S:A
+  O:[DUMP('Exit A')]

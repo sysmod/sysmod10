@@ -1,0 +1,51 @@
+STATECHART:
+    top [DS]
+        Watch [DS]
+            Ticking [CS] [DS]
+                AddSecond [DS]
+            Buttons [CS] [DS]
+                BacklightOff [DS]
+                BacklightOn
+                WaitingPeriod
+
+ENTER:
+   N: top.Watch.Buttons.BacklightOn
+   O: gui.setIndiglo()
+
+ENTER:
+   N: top.Watch.Ticking.AddSecond
+   O: gui.increaseTimeByOne()
+      gui.refreshTimeDisplay()
+
+ENTER:
+   N: top.Watch.Buttons.BacklightOff
+   O: gui.unsetIndiglo()
+
+TRANSITION:
+    S: top.Watch.Ticking.AddSecond
+    N: top.Watch.Ticking
+
+TRANSITION:
+    S: top.Watch.Ticking.AddSecond
+    N: top.Watch.Ticking.AddSecond
+    T: 1
+
+TRANSITION:
+    S: top.Watch.Buttons.BacklightOff
+    N: top.Watch.Buttons.BacklightOn
+    E: topRightPressed
+
+TRANSITION:
+    S: top.Watch.Buttons.BacklightOn
+    N: top.Watch.Buttons.WaitingPeriod
+    E: topRightReleased
+
+TRANSITION:
+    S: top.Watch.Buttons.WaitingPeriod
+    N: top.Watch.Buttons.BacklightOff
+    T: 2
+
+TRANSITION:
+    S: top.Watch.Buttons.WaitingPeriod
+    N: top.Watch.Buttons.BacklightOn
+    E: topRightPressed

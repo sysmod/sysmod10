@@ -1,0 +1,16 @@
+STATECHART:
+  A [DS]
+  B [HS]
+    C [DS] [FS]
+    D
+  E
+
+TRANSITION:
+  S: A
+  N: B
+  E: e
+
+TRANSITION:
+  S: B
+  N: E
+  E: f  # disabled because B has a final state as its default substate

@@ -1,0 +1,47 @@
+# This model is different with Harel=0 and Harel=1 (default)
+
+STATECHART:
+  A [DS]
+  B [FS]
+
+MACRO:
+  MAXI = 10
+
+INITIALIZER:
+  i=0
+
+INTERACTOR:
+  import thread
+  lock=thread.allocate_lock()
+  lock.acquire()
+  eventhandler.start()
+  lock.acquire()
+  lock.release()
+
+FINALIZER:
+  lock.release()
+
+ENTER:
+  N: A
+  O: [DUMP("enter A")]
+
+TRANSITION:
+  S: A
+  N: A
+  T: 1
+  C: i<[MAXI]
+  O: [DUMP("T")]
+     i=i+1
+
+TRANSITION:
+  S: A
+  N: B
+  T: 1
+  C: i==[MAXI]
+  O: [DUMP("exit")]
+
+TRANSITION:
+  S: A
+  N: B
+  T: 3.5
+  O: [DUMP("T (non-harel only)")]

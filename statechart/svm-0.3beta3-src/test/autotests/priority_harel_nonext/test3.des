@@ -1,0 +1,27 @@
+# priority numbers are not used when conflicts can be solved with ITF/OTF
+
+OPTIONS:
+  InnerTransitionFirst = 1
+
+STATECHART:
+  A [DS]
+    B [DS] [RTO]
+      C [DS] [ITF]
+  D
+  E
+  F
+
+TRANSITION: [-1]
+  S: A
+  N: D
+  E: e
+
+TRANSITION: [0]
+  S: A.B
+  N: E
+  E: e
+
+TRANSITION: [0]
+  S: A.B.C
+  N: F
+  E: e

@@ -1,0 +1,7 @@
+eval, 123
+eval, "abc"
+eval, 1+2+3
+eval, "a"+"b"+chr(ord("c"))
+eval, "abc"[:2]
+eval, eventhandler.get_current_state()
+quit

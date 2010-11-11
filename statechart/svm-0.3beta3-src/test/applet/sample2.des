@@ -1,0 +1,8 @@
+STATECHART:
+  A [DS]
+
+TRANSITION:
+  S: A
+  N: A
+  E: e
+  O: [DUMP("abc")]

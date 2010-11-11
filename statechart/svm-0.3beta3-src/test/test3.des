@@ -1,0 +1,21 @@
+OPTIONS:
+  InnerTransitionFirst=1
+
+IMPORTATION:
+  self=test3.des
+
+STATECHART:
+  A [DS]
+    D [DS]
+  B
+    C [DS] [self]
+
+TRANSITION:
+  S: A
+  N: B
+  E: a2b
+
+TRANSITION:
+  S: B
+  N: A
+  E: a2b

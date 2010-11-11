@@ -1,0 +1,36 @@
+STATECHART:
+  A [DS]
+    A1 [CS] [DS]
+      B [DS]
+      C
+      D
+    A2 [CS] [DS]
+      E [DS]
+      F
+    A3 [CS] [DS]
+      G1 [CS] [DS]
+        H [DS]
+        I
+      G2 [CS] [DS]
+        J [DS]
+        K
+
+TRANSITION:
+  S: A.A1.B
+  N: A.A1.C
+  E: e1
+
+TRANSITION:  # a very dangerous one
+  S: A.A1.C
+  N: A.A2.F
+  E: e2
+
+TRANSITION:
+  S: A.A3.G2.J
+  N: A.A3.G2.K
+  E: e3
+
+TRANSITION:
+  S: A.A3.G2.K
+  N: A
+  E: e4

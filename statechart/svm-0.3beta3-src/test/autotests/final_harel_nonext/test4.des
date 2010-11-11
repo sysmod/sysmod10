@@ -1,0 +1,19 @@
+IMPORTATION:
+  test3 = test3.des
+
+STATECHART:
+  A [DS] [test3]
+  B [HS]
+    C [DS]
+    D
+  E
+
+TRANSITION:
+  S: A
+  N: B
+  E: e  # enabled because the default final state in test3 is ignored
+
+TRANSITION:
+  S: B
+  N: E
+  E: f  # enabled because the default final state in test3 is ignored

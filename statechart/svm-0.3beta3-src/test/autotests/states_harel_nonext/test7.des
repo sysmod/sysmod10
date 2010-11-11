@@ -1,0 +1,20 @@
+STATECHART:
+  A [DS] [CS]
+  B [HS*] [DS] [CS]
+    C [DS]
+    D
+
+TRANSITION:  # no effect
+  S: A
+  N: B
+  E: a
+
+TRANSITION:
+  S: B.C
+  N: B.D
+  E: b
+
+TRANSITION: [HS]
+  S: B
+  N: B
+  E: c

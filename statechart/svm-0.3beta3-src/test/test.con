@@ -1,0 +1,11 @@
+COMPONENT:
+  id   = 1
+  # following are criteria (and relation)
+  name = t.*st
+  name = .est
+  type = 1in 1out
+  keys = kk
+
+CONNECTIONS:
+  1.p -- q
+  1.q -- p

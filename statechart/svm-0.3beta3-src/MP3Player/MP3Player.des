@@ -1,0 +1,323 @@
+#---------------------------------------------------------------------
+#    SVM (Statechart Virtual Machine)
+#         -- an interpreter for an extended statechart formalism
+#---------------------------------------------------------------------
+#
+# Copyright (C) 2003 Thomas Huining Feng
+#
+#---------------------------------------------------------------------
+# Address:      MSDL, SOCS, McGill Univ., Montreal, Canada
+# HomePage:     http://msdl.cs.mcgill.ca/people/tfeng/
+# SVM HomePage: http://msdl.cs.mcgill.ca/people/tfeng/?research=svm
+# Download:     http://savannah.nongnu.org/files/?group=svm
+# CVS:          :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm
+#               (projects "svm" and "jsvm")
+# Email:        hfeng2@cs.mcgill.ca
+#---------------------------------------------------------------------
+#
+# This file is part of SVM.
+#
+#---------------------------------------------------------------------
+# SVM is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or (at your
+# option) any later version.
+#
+# SVM is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with SVM; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#---------------------------------------------------------------------
+
+OPTIONS:
+  Harel = 0  # MP3 player works only with Non-Harel semantics
+
+MACRO:
+  # Parameter that must be taken from command line
+  FILE       =
+
+  # Whether this model is being imported into MP3PlayerWithSelector
+  IMPORTED   = 0
+  
+  # Display updater
+  SETTIME(t) = gui.timestr.set("%02d:%02d" % (int([t])/60, int([t])%60))
+
+  # Enable/Disable all the buttons conveniently
+  SETBTN(FF, FB, ST=NORMAL, PP=NORMAL) = gui.b_playpause.config(state=[PP]); \
+                               gui.b_stop.config(state=[ST]);      \
+                               gui.b_ffwd.config(state=[FF]);      \
+                               gui.b_fback.config(state=[FB]);
+
+
+INITIALIZER:
+  from MP3Library import MP3Handler
+  from sys import exit
+  if "[FILE]"=="" and not [IMPORTED]:
+    print 'usage: svm MP3Player.des "FILE=[.mp3]"'
+    exit(1)
+  mp3 = MP3Handler(eventhandler)
+  mp3.start_bgthread()
+
+
+INTERACTOR:
+  from MP3PlayerGUI import MP3PlayerGUI
+  root = Tk()
+  root.title("MP3 player")
+  gui = MP3PlayerGUI(root, eventhandler)
+  eventhandler.start()
+  root.mainloop()
+
+
+FINALIZER:
+  root.tk.quit()
+
+
+# -- State Hierarchy --
+STATECHART:
+  MP3 [DS]
+    Initialized [DS]
+    Playing [HS*]
+      Normal [DS]
+      Seeking
+        Control [CS] [DS]
+          Forward [DS]
+          Backward
+        Display [CS] [DS]
+          Show
+          Hide [DS]
+      Paused
+        Show [DS]
+        Hide
+    Stopped
+  Closing
+  End [FS]
+# -- State Hierarchy --
+
+
+# -- Transition to Playing after startup, if not imported; otherwise, to Stopped
+TRANSITION:
+  S: MP3.Initialized
+  N: MP3.Playing
+  T: 0
+  C: not [IMPORTED]
+  O: mp3.load("[FILE]")
+
+TRANSITION:
+  S: MP3.Initialized
+  N: MP3.Stopped
+  T: 0
+  C: [IMPORTED]
+# -- Transition to Playing after startup, if not imported; otherwise, to Stopped
+
+
+# -- Interaction with the MP3 selector
+TRANSITION:
+  S: MP3
+  N: MP3.Playing
+  E: Select MP3
+  O: mp3.load([PARAMS][0])
+# -- Interaction with the MP3 selector
+
+
+# -- Enable/Disable buttons in enter actions --
+ENTER:
+  N: MP3.Playing.Normal
+  O: [SETBTN(NORMAL, NORMAL)]
+
+ENTER:
+  N: MP3.Stopped
+  C: not [IMPORTED]
+  O: [SETBTN(DISABLED, DISABLED, DISABLED)]
+
+ENTER:
+  N: MP3.Stopped
+  C: [IMPORTED]
+  O: [SETBTN(DISABLED, DISABLED, DISABLED, DISABLED)]
+
+ENTER:
+  N: MP3.Playing.Paused
+  O: [SETBTN(DISABLED, DISABLED)]
+
+ENTER:
+  N: MP3.Playing.Seeking.Control.Forward
+  O: [SETBTN(NORMAL, DISABLED, DISABLED, DISABLED)]
+
+ENTER:
+  N: MP3.Playing.Seeking.Control.Backward
+  O: [SETBTN(DISABLED, NORMAL, DISABLED, DISABLED)]
+# -- Enable/Disable buttons in enter actions --
+
+
+# -- Show time/hide time at forward/backward --
+ENTER:
+  N: MP3.Playing.Seeking.Display.Show
+  O: gui.show_time()
+
+ENTER:
+  N: MP3.Playing.Seeking.Display.Hide
+  O: gui.hide_time()
+
+TRANSITION:
+  S: MP3.Playing.Seeking.Display.Show
+  N: MP3.Playing.Seeking.Display.Hide
+  T: 0.3
+
+TRANSITION:
+  S: MP3.Playing.Seeking.Display.Hide
+  N: MP3.Playing.Seeking.Display.Show
+  T: 0.3
+
+EXIT:
+  S: MP3.Playing.Seeking.Display
+  O: gui.show_time()
+# -- Show time/hide time at forward/backward --
+
+
+# -- Show time/hide time at pause --
+ENTER:
+  N: MP3.Playing.Paused.Show
+  O: gui.show_time()
+
+ENTER:
+  N: MP3.Playing.Paused.Hide
+  O: gui.hide_time()
+
+TRANSITION:
+  S: MP3.Playing.Paused.Show
+  N: MP3.Playing.Paused.Hide
+  T: 0.5
+
+TRANSITION:
+  S: MP3.Playing.Paused.Hide
+  N: MP3.Playing.Paused.Show
+  T: 0.5
+
+EXIT:
+  S: MP3.Playing.Paused
+  O: gui.show_time()
+# -- Show time/hide time at pause --
+
+
+# Play at startup
+ENTER:
+  N: MP3.Playing
+  O: mp3.play()
+
+
+# -- Control logic --
+TRANSITION:
+  S: MP3
+  N: Closing
+  E: GUI Quit
+  O: mp3.stop_bgthread()
+
+TRANSITION:
+  S: Closing
+  N: End
+  E: Hardware Quit
+  O: [DUMP("MP3 Thread Stopped")]
+     # Send an event to inform the MP3 selector
+     # ignored if IMPORTED=0
+     [EVENT("MP3 Finalize")]
+
+TRANSITION:
+  S: MP3.Playing
+  N: MP3.Stopped
+  E: GUI Stop
+  O: mp3.stop()
+
+TRANSITION:
+  S: MP3.Playing.Normal
+  N: MP3.Playing.Seeking.Control.Forward
+  E: GUI Forward Pressed
+  O: mp3.pause()
+     [DUMP("Forward Pressed")]
+
+TRANSITION:
+  S: MP3.Playing.Seeking.Control.Forward
+  N: MP3.Playing.Normal
+  E: GUI Forward Released
+  O: mp3.resume()
+     [DUMP("Forward Released")]
+
+TRANSITION:
+  S: MP3.Playing.Seeking.Control.Forward
+  N: MP3.Playing.Seeking.Control.Forward
+  T: 0.2 [RTT]
+  O: mp3.forward(2)
+     [SETTIME(mp3.get_time())]
+
+TRANSITION:
+  S: MP3.Playing.Normal
+  N: MP3.Playing.Seeking.Control.Backward
+  E: GUI Backward Pressed
+  O: mp3.pause()
+     [DUMP("Backward Pressed")]
+
+TRANSITION:
+  S: MP3.Playing.Seeking.Control.Backward
+  N: MP3.Playing.Normal
+  E: GUI Backward Released
+  O: mp3.resume()
+     [DUMP("Backward Released")]
+
+TRANSITION:
+  S: MP3.Playing.Seeking.Control.Backward
+  N: MP3.Playing.Seeking.Control.Backward
+  T: 0.2 [RTT]
+  O: mp3.backward(2)
+     [SETTIME(mp3.get_time())]
+
+TRANSITION:
+  S: MP3.Stopped
+  N: MP3.Playing
+  E: GUI Play/Pause
+  O: mp3.rewind()
+     # in the old version (0.23)
+     # the enter action of Playing is executed BEFORE this output action
+     # so it is necessary to restart the playing now
+     # the latest nightly version fixes this problem
+     mp3.play()
+
+TRANSITION:
+  S: MP3.Playing.Normal
+  N: MP3.Playing.Paused
+  E: GUI Play/Pause
+  O: mp3.pause()
+     [DUMP("Paused")]
+
+TRANSITION:
+  S: MP3.Playing.Paused
+  N: MP3.Playing.Normal
+  E: GUI Play/Pause
+  O: mp3.resume()
+     [DUMP("Resumed")]
+# -- Control logic --
+
+
+# Update time
+TRANSITION: [HS]
+  S: MP3.Playing
+  N: MP3.Playing
+  E: Time Advance
+  O: [SETTIME(mp3.get_time())]
+
+
+# -- Hardware events --
+TRANSITION:
+  S: MP3.Playing
+  N: MP3.Playing
+  E: Playing Started
+  O: [DUMP("Playing Started")]
+
+TRANSITION:
+  S: MP3
+  N: MP3.Stopped
+  E: Playing Stopped
+  O: [DUMP("Playing Stopped")]
+     [SETTIME(mp3.get_time())]
+# -- Hardware events --

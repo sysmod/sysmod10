@@ -1,0 +1,102 @@
+#---------------------------------------------------------------------
+#    SVM (Statechart Virtual Machine)
+#         -- an interpreter for an extended statechart formalism
+#---------------------------------------------------------------------
+#
+# Copyright (C) 2003 Thomas Huining Feng
+#
+#---------------------------------------------------------------------
+# Address:      MSDL, SOCS, McGill Univ., Montreal, Canada
+# HomePage:     http://msdl.cs.mcgill.ca/people/tfeng/
+# SVM HomePage: http://msdl.cs.mcgill.ca/people/tfeng/?research=svm
+# Download:     http://savannah.nongnu.org/files/?group=svm
+# CVS:          :pserver:anoncvs@subversions.gnu.org:/cvsroot/svm
+#               (projects "svm" and "jsvm")
+# Email:        hfeng2@cs.mcgill.ca
+#---------------------------------------------------------------------
+#
+# This file is part of SVM.
+#
+#---------------------------------------------------------------------
+# SVM is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free
+# Software Foundation; either version 2 of the License, or (at your
+# option) any later version.
+#
+# SVM is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+# License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with SVM; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+#---------------------------------------------------------------------
+
+
+.PHONY: all clean cleanpyc pypvm applet release releaseapplet binary
+
+find = /usr/bin/find
+grep = /usr/bin/grep
+java = $(shell which java)
+javac = $(shell which javac)
+j2h = ../../lib/java2html/j2h.jar
+python = $(shell which python)
+zip = /usr/bin/zip
+mv = /usr/bin/mv
+
+pycfiles = `$(find)|$(grep) "\.pyc$$"`
+otherfiles = DNS pypvm.py pypvm_core.dll lib/installer/win32/config.dat
+examples = CDPlayer DataTypes MP3Player Simple test
+
+version = $(shell python -c "import __version__; print __version__.version")
+
+all: pypvm applet pypvm_coremodule.so
+	$(RM) $(pycfiles)
+
+pypvm: pypvm_core.dll
+
+applet:
+	$(MAKE) -C test/applet all python=$(python) find=$(find) grep=$(grep) java=$(java) javac=$(javac) j2h=$(j2h)
+
+pypvm_core.dll:
+	cp lib/pypvm/win32/Release/pypvm_core.dll .
+	cp lib/pypvm/pypvm.py .
+
+cleanpyc:
+	$(RM) $(pycfiles)
+
+clean:
+	$(MAKE) -C test/applet clean find=$(find) grep=$(grep)
+	$(RM) $(otherfiles)
+	$(RM) -r lib/installer/win32/bincache*
+	$(RM) -r svm-$(version)-win32 svm-$(version)-win32.zip
+	$(RM) warnscc.txt warnsvm.txt warnsvmdns.txt svm.spec scc.spec svmdns.spec
+	$(RM) $(pycfiles)
+
+release: releaseapplet clean
+	cp -r ../svm $(HOME)/svmnightly
+	cd $(HOME)/svmnightly && rm -rf `find|grep CVS`
+	cd $(HOME) && tar -zcvf svmnightly.tar.gz svmnightly && rm -rf svmnightly
+
+releaseapplet:
+	$(MAKE) -C test/applet release python=$(python) find=$(find) grep=$(grep) javac=$(javac) j2h=$(j2h)
+
+binary: pypvm applet
+	cd lib/installer/win32 && dos2unix `$(find)|$(grep) "\.py$"`
+	PATH="$(PATH):`pwd`/lib/installer/win32/upx" && $(python) lib/installer/win32/Configure.py
+	dos2unix lib/installer/win32/config.dat
+	$(python) lib/installer/win32/Makespec.py --tk --upx svm.py
+	$(python) lib/installer/win32/Makespec.py --upx scc.py
+	$(python) lib/installer/win32/Makespec.py --upx svmdns.py
+	PATH="$(PATH):`pwd`/lib/installer/win32/upx" && $(python) lib/installer/win32/Build.py svm.spec
+	PATH="$(PATH):`pwd`/lib/installer/win32/upx" && $(python) lib/installer/win32/Build.py scc.spec
+	PATH="$(PATH):`pwd`/lib/installer/win32/upx" && $(python) lib/installer/win32/Build.py svmdns.spec
+	$(mv) distscc/scc.exe distsvm/
+	$(mv) distsvmdns/svmdns.exe distsvm/
+	$(RM) -r buildsvm buildscc distscc buildsvmdns distsvmdns svm-$(version)-win32
+	cp -r $(examples) distsvm/
+	cd distsvm && $(RM) -r `$(find)|$(grep) CVS`
+	cp INSTALL.bin.win32 README distsvm
+	$(mv) distsvm svm-$(version)-win32
+	$(zip) -r svm-$(version)-win32.zip svm-$(version)-win32

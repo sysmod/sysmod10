@@ -1,0 +1,31 @@
+STATECHART:
+  A [CS] [DS]
+    A1 [DS]
+    A2 [FS]
+  B [CS] [DS]
+    B1 [DS]
+    B2
+
+INTERACTOR:
+  import thread
+  lock=thread.allocate_lock()
+  lock.acquire()
+  eventhandler.start()
+  lock.acquire()
+  lock.release()
+
+FINALIZER:
+  lock.release()
+
+TRANSITION:  # repeatedly test until the model changes to B.B2
+  S: A.A1
+  N: A.A2
+  T: 0
+  C: [INSTATE("B.B2")]
+  O: [DUMP("transition to A.A2")]
+
+TRANSITION:
+  S: B.B1
+  N: B.B2
+  T: 1
+  O: [DUMP("transition to B.B2")]

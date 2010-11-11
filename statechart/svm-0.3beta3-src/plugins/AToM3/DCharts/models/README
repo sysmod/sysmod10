@@ -1,0 +1,51 @@
+
+DCharts examples in this directory:
+
+RedNGreen/
+ small example model which is first simulated an from which 
+ subsequently a Python class is synthesized using SCC
+
+SimpleChatRoom/
+ an example of communication (via ports) between multiple
+ DCharts models (one ChatRoom and multiple Clients in this case).
+ This runs in a distributed fashion on top of PVM.
+
+m0_DCharts_mdl.py
+m1_DCharts_mdl.py
+ Basic states: default state, enter actions, exit actions 
+ Events: trigger, guard, actions, display string
+
+m2_DCharts_mdl.py
+ Hierarchical states: default, contains relationship
+
+m3_DCharts_mdl.py
+ Event priority: outer-first (by default, may be changed in .des)
+ 
+m4_DCharts_mdl.py
+ Orthogonal components: contains relationship
+ time delay: AFTER(n)
+
+m5_DCharts_mdl.py
+ History state: deep, default
+
+m6_DCharts_mdl.py
+ Nesting of orthogonal components inside a state
+
+m7_DCharts_mdl.py
+ Orthogonal components with time delays
+
+m8_DCharts_mdl.py
+ Broadcasting of events: with parameters
+
+m9_DCharts_mdl.py
+ state reference ([OC in State] guard)
+
+plant_DCharts_mdl.py
+ a model of a physical plant in an orthogonal component
+ a model of a software controller in an orthogonal component
+ first, simulate the overall system
+ then, use the software controller model to synthesize code
+
+TrafficLight_DCharts_mdl.py
+ a model of a traffic light
+

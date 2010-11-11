@@ -1,0 +1,151 @@
+------------------------------------------------------------
+This is the README file for SVM (Statechart Virtual Machine)
+                      Version 0.3 Beta
+                             by
+                     Thomas Huining Feng
+                     hfeng2@cs.mcgill.ca
+            http://msdl.cs.mcgill.ca/people/tfeng/
+------------------------------------------------------------
+
+1. REQUIREMENTS
+
+If you use the source package in linux:
+  a. Python 2.0 or higher (downloadable from http://www.python.org/)
+  b. (in case you want to run the CDPlayer model) Pygame
+     (downloadable from http://www.pygame.org/)
+     Models other than the CDPlayer only require Python.
+
+If you use the source package in linux:
+  a. Python 2.0 or higher (downloadable from http://www.python.org/)
+  b. (in case you want to run the CDPlayer model) Pygame
+     (downloadable from http://www.pygame.org/)
+     Models other than the CDPlayer only require Python.
+  c. cygwin (downloadable from http://www.cygwin.com/)
+  d. PVM (downloadable from http://www.netlib.org/pvm3/)
+
+If you use the linux binary package:
+  a. RedHat 9 or a compatible kernel
+
+If you use the win32 binary package:
+  a. Windows 98 or higher
+  b. PVM (downloadable from http://www.netlib.org/pvm3/)
+
+
+
+2. INSTALLATION
+
+Simply unpack the package to a directory.
+
+If you want to enable PVM support for distributed simulation, "make
+pypvm" after unpacking the package if you're in linux, or "make -f
+Makefile.win32 pypvm" if you're in windows.
+
+
+
+3. GETTING STARTED
+
+If you use the source package:
+  Run svm.bat or ./svm, depending on your operating system (either
+Windows or Unix).
+  To run a model:
+      svm.bat [model_name] [parameters] or
+      svm [model_name] [parameters]
+
+If you use the Win32 binary package, run:
+  svm.exe
+To run a model:
+  svm.exe [model_name] [parameters]
+
+
+
+4. TESTING THE MODELS
+
+Conventionally, a model is written in a .des file. You can find such
+files in the subdirectories Simple, CDPlayer and DataTypes.
+
+Simple/Simple.des
+  A very simple model to demonstrate the basic parts of a statechart
+and also submodel importation. It imports itself, so it is a recursive
+structure.
+  To run:
+      svm Simple/Simple.des
+
+DataTypes/Boolean.des
+  Another very simple model demonstrating a single cell to store a
+boolean value.
+  To run:
+      svm DataTypes/Boolean.des
+
+DataTypes/Counter.des
+  A little more complex model that makes use of the self-importation
+structure. It models a cell to store an integer value, which can be
+increased or decreased by 1 at a time. The cell is unbounded.
+  To run:
+      svm DataTypes/Counter.des
+
+DataTypes/Integer.des
+  A much more complicated model that shows how an integer cell can be
+implemented in statechart. You can set any arbitary value to the cell,
+and you can also retrieve the value any any time.
+  To run:
+      svm DataTypes/Integer.des
+  You can also specify command line parameters to the model. Parameter
+MIN and MAX give the lower and upper bounds. By default, they are 0
+and 9 respectively. INIT gives the initial value of the cell. For
+example:
+      svm DataTypes/Integer.des "MIN=0" "MAX=20" "INIT=10"
+
+DataTypes/Char.des
+  A Char model similar to the Integer. You can specify parameters
+START, END and INIT. The default value of the cell is null (when you
+get its value, the result is empty because the "get" event is not
+enabled).
+  To run:
+      svm DataTypes/Char.des
+      svm DataTypes/Char.des "START=x" "END=z" "INIT=x"
+
+CDPlayer/CDPlayer.des
+  A CDPlayer model which implements the complete function of a CD
+player.
+  To run:
+      svm CDPlayer/CDPlayer.des
+
+
+
+5. DISTRIBUTED SIMULATION
+  To enable distributed simulation, you must have a recent version
+of PVM (Parallel Virtual Machine) installed. On Linux, it is
+installed by default. However, you have to install it manually if you
+use windows.
+  First start PVM by running "pvm" from the installed directory. Then
+you need a name server to support dynamic component look-up. Run
+"svmdns" and type in "start" in the command prompt to start it.
+
+
+
+6. DEBUGGING
+
+  When you run a model in the default graphical interface, press
+CTRL-d or send an event "debug" at any time to invoke the debugger.
+You can execute any Python command in the debugger.
+
+  If you want to debug the CDPlayer, which runs in a model specific
+interface, press d at any time and switch to the console window.
+
+
+
+7. SNAPSHOT
+
+  When you run a model in the default graphical interface, you can
+make a snapshot of the current execution by pressing the Snapshot
+button. The snapshot is saved to a .snp file in the same directory
+where the current model (.des file) is in. You can resume the
+execution at exactly the same place later, by running:
+      svm [.snp_file]
+
+  If you want to take a snapshot of the CDPlayer, run the model and
+then press the snapshot button at any time you like. To resume the
+playing, instead of
+      svm CDPlayer/CDPlayer.des
+you should run
+      svm CDPlayer/CDPlayer.snp
