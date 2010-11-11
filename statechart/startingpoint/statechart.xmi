@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Nov 11 21:26:05 EET 2010'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Thu Nov 11 22:11:16 EET 2010'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.30.2(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -28,8 +28,8 @@
                     <UML:CompositeState xmi.id = '127-0-0-1-78806738:12c3c46d431:-8000:000000000000086A'
                       name = 'Ticking' isSpecification = 'false' isConcurrent = 'false'>
                       <UML:StateVertex.incoming>
-                        <UML:Transition xmi.idref = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D05'/>
                         <UML:Transition xmi.idref = '127-0-0-1-78806738:12c3c46d431:-8000:000000000000086C'/>
+                        <UML:Transition xmi.idref = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D05'/>
                       </UML:StateVertex.incoming>
                       <UML:CompositeState.subvertex>
                         <UML:Pseudostate xmi.id = '127-0-0-1-78806738:12c3c46d431:-8000:000000000000086D'
@@ -49,35 +49,26 @@
                             <UML:Transition xmi.idref = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D09'/>
                           </UML:StateVertex.incoming>
                           <UML:State.entry>
-                            <UML:ActionSequence xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000CBC'
+                            <UML:ActionSequence xmi.id = '127-0-0-1-193a9584:12c3c8df9ff:-8000:0000000000000A8D'
                               isSpecification = 'false' isAsynchronous = 'false'>
                               <UML:ActionSequence.action>
-                                <UML:CreateAction xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000CBD'
+                                <UML:UninterpretedAction xmi.id = '127-0-0-1-193a9584:12c3c8df9ff:-8000:0000000000000A8E'
                                   isSpecification = 'false' isAsynchronous = 'false'>
                                   <UML:Action.script>
-                                    <UML:ActionExpression xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000CD6'
+                                    <UML:ActionExpression xmi.id = '127-0-0-1-193a9584:12c3c8df9ff:-8000:0000000000000AA9'
                                       language = '' body = 'gui.increaseTimeByOne()'/>
                                   </UML:Action.script>
-                                </UML:CreateAction>
-                                <UML:CreateAction xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000CD7'
+                                </UML:UninterpretedAction>
+                                <UML:UninterpretedAction xmi.id = '127-0-0-1-193a9584:12c3c8df9ff:-8000:0000000000000AAA'
                                   isSpecification = 'false' isAsynchronous = 'false'>
                                   <UML:Action.script>
-                                    <UML:ActionExpression xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000CFD'
+                                    <UML:ActionExpression xmi.id = '127-0-0-1-193a9584:12c3c8df9ff:-8000:0000000000000AC2'
                                       language = '' body = 'gui.refreshTimeDisplay()'/>
                                   </UML:Action.script>
-                                </UML:CreateAction>
+                                </UML:UninterpretedAction>
                               </UML:ActionSequence.action>
                             </UML:ActionSequence>
                           </UML:State.entry>
-                          <UML:State.exit>
-                            <UML:UninterpretedAction xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D0C'
-                              isSpecification = 'false' isAsynchronous = 'false'>
-                              <UML:Action.script>
-                                <UML:ActionExpression xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D17'
-                                  language = '' body = 'print &quot;wtf&quot;'/>
-                              </UML:Action.script>
-                            </UML:UninterpretedAction>
-                          </UML:State.exit>
                         </UML:SimpleState>
                       </UML:CompositeState.subvertex>
                     </UML:CompositeState>

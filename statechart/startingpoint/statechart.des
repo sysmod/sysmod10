@@ -13,6 +13,11 @@ ENTER:
    O: gui.setIndiglo()
 
 ENTER:
+   N: top.Watch.Ticking.AddSecond
+   O: gui.increaseTimeByOne()
+      gui.refreshTimeDisplay()
+
+ENTER:
    N: top.Watch.Buttons.BacklightOff
    O: gui.unsetIndiglo()
 
