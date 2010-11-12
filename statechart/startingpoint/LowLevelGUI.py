@@ -22,7 +22,7 @@ class LowLevelGUI:
 
   def __init__(self, parent, controller):
     self.frame = Frame(parent)
-    
+    self.parent = parent
     self.controller = controller
     
     tmpDate = list(time.localtime()[0:3]) 
