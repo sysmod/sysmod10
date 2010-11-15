@@ -6,12 +6,16 @@ STATECHART:
                 WaitingPeriod
                 BacklightOn
             TimeTicking [CS] [DS]
-                AddSecond [DS]
+                TimeRunning [DS]
+                TimeStopped
             Modes [CS] [DS]
                 TimeDisplay [DS]
-                ChronoMode [HS*]
+                ChronoMode [HS]
                     ChronoDisplay [DS]
                     ChronoRefresh
+                EditingModeWait
+                TimeEditingMode
+                    SelectHours [DS]
             ChronoTicking [CS] [DS]
                 ChronoStopped [DS]
                 ChronoRunning
@@ -21,7 +25,7 @@ ENTER:
    O: gui.setIndiglo()
 
 ENTER:
-   N: top.Watch.TimeTicking.AddSecond
+   N: top.Watch.TimeTicking.TimeRunning
    O: gui.increaseTimeByOne()
 
 ENTER:
@@ -39,6 +43,14 @@ ENTER:
 ENTER:
    N: top.Watch.Modes.ChronoMode.ChronoRefresh
    O: gui.refreshChronoDisplay()
+
+ENTER:
+   N: top.Watch.Modes.TimeEditingMode
+   O: [EVENT("stopTime")]
+
+ENTER:
+   N: top.Watch.Modes.TimeEditingMode.SelectHours
+   O: gui.startSelection()
 
 ENTER:
    N: top.Watch.Modes.TimeDisplay
@@ -70,18 +82,13 @@ TRANSITION:
     T: 1
 
 TRANSITION:
-    S: top.Watch.Modes.TimeDisplay
-    N: top.Watch.Modes.ChronoMode
-    E: topLeftPressed
-
-TRANSITION:
     S: top.Watch.Modes.ChronoMode
     N: top.Watch.Modes.TimeDisplay
     E: topLeftPressed
 
 TRANSITION:
-    S: top.Watch.TimeTicking.AddSecond
-    N: top.Watch.TimeTicking.AddSecond
+    S: top.Watch.TimeTicking.TimeRunning
+    N: top.Watch.TimeTicking.TimeRunning
     T: 1
 
 TRANSITION:
@@ -129,5 +136,31 @@ TRANSITION:
     O: [EVENT("stopChrono")];gui.resetChrono()
 
 TRANSITION: [HS]
-    S: top.Watch.Modes.ChronoMode
+    S: top.Watch.Modes.TimeDisplay
     N: top.Watch.Modes.ChronoMode
+    E: topLeftPressed
+
+TRANSITION:
+    S: top.Watch.Modes.TimeDisplay
+    N: top.Watch.Modes.EditingModeWait
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.Watch.Modes.EditingModeWait
+    N: top.Watch.Modes.TimeDisplay
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Modes.EditingModeWait
+    N: top.Watch.Modes.TimeEditingMode
+    T: 1.5
+
+TRANSITION:
+    S: top.Watch.TimeTicking.TimeRunning
+    N: top.Watch.TimeTicking.TimeStopped
+    E: stopTime
+
+TRANSITION:
+    S: top.Watch.TimeTicking.TimeStopped
+    N: top.Watch.TimeTicking.TimeRunning
+    E: startTime
