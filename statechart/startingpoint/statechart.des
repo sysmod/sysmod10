@@ -1,53 +1,48 @@
 STATECHART:
     top [DS]
         Watch [DS]
-            Ticking [CS] [DS]
-                AddSecond [DS]
             Backlight [CS] [DS]
                 BacklightOff [DS]
-                BacklightOn
                 WaitingPeriod
+                BacklightOn
+            TimeTicking [CS] [DS]
+                AddSecond [DS]
             Modes [CS] [DS]
                 TimeDisplay [DS]
-                ChronoMode
-                    TickChrono [CS] [DS]
-                        ChronoStopped [DS]
-                        ChronoRunning
-                    ShowChrono [CS] [DS]
-                        DisplayChrono [DS]
-
-ENTER:
-   N: top.Watch.Modes.ChronoMode.ShowChrono.DisplayChrono
-   O: gui.refreshChronoDisplay()
+                ChronoMode [HS*]
+                    ChronoDisplay [DS]
+                    ChronoRefresh
+            ChronoTicking [CS] [DS]
+                ChronoStopped [DS]
+                ChronoRunning
 
 ENTER:
    N: top.Watch.Backlight.BacklightOn
    O: gui.setIndiglo()
 
 ENTER:
-   N: top.Watch.Ticking.AddSecond
+   N: top.Watch.TimeTicking.AddSecond
    O: gui.increaseTimeByOne()
+
+ENTER:
+   N: top.Watch.ChronoTicking.ChronoRunning
+   O: gui.increaseChronoByOne()
 
 ENTER:
    N: top.Watch.Backlight.BacklightOff
    O: gui.unsetIndiglo()
 
 ENTER:
-   N: top.Watch.Modes.ChronoMode.TickChrono.ChronoRunning
-   O: gui.increaseChronoByOne()
+   N: top.Watch.Modes.ChronoMode.ChronoDisplay
+   O: gui.refreshChronoDisplay()
+
+ENTER:
+   N: top.Watch.Modes.ChronoMode.ChronoRefresh
+   O: gui.refreshChronoDisplay()
 
 ENTER:
    N: top.Watch.Modes.TimeDisplay
    O: gui.refreshTimeDisplay()
-
-TRANSITION:
-    S: top.Watch.Ticking.AddSecond
-    N: top.Watch.Ticking
-
-TRANSITION:
-    S: top.Watch.Ticking.AddSecond
-    N: top.Watch.Ticking.AddSecond
-    T: 1
 
 TRANSITION:
     S: top.Watch.Backlight.BacklightOff
@@ -85,21 +80,54 @@ TRANSITION:
     E: topLeftPressed
 
 TRANSITION:
-    S: top.Watch.Modes.ChronoMode.TickChrono.ChronoStopped
-    N: top.Watch.Modes.ChronoMode.TickChrono.ChronoRunning
-    E: bottomRightPressed
+    S: top.Watch.TimeTicking.AddSecond
+    N: top.Watch.TimeTicking.AddSecond
+    T: 1
 
 TRANSITION:
-    S: top.Watch.Modes.ChronoMode.TickChrono.ChronoRunning
-    N: top.Watch.Modes.ChronoMode.TickChrono.ChronoStopped
-    E: bottomRightPressed
+    S: top.Watch.ChronoTicking.ChronoStopped
+    N: top.Watch.ChronoTicking.ChronoRunning
+    E: startChrono
 
 TRANSITION:
-    S: top.Watch.Modes.ChronoMode.TickChrono.ChronoRunning
-    N: top.Watch.Modes.ChronoMode.TickChrono.ChronoRunning
+    S: top.Watch.ChronoTicking.ChronoRunning
+    N: top.Watch.ChronoTicking.ChronoRunning
     T: 0.01
 
 TRANSITION:
-    S: top.Watch.Modes.ChronoMode.ShowChrono.DisplayChrono
-    N: top.Watch.Modes.ChronoMode.ShowChrono.DisplayChrono
+    S: top.Watch.ChronoTicking.ChronoRunning
+    N: top.Watch.ChronoTicking.ChronoStopped
+    E: stopChrono
+
+TRANSITION:
+    S: top.Watch.Modes.ChronoMode.ChronoDisplay
+    N: top.Watch.Modes.ChronoMode.ChronoRefresh
+    E: bottomRightPressed
+    O: [EVENT("startChrono")]
+
+TRANSITION:
+    S: top.Watch.Modes.ChronoMode.ChronoRefresh
+    N: top.Watch.Modes.ChronoMode.ChronoRefresh
     T: 0.01
+
+TRANSITION:
+    S: top.Watch.Modes.ChronoMode.ChronoRefresh
+    N: top.Watch.Modes.ChronoMode.ChronoDisplay
+    E: bottomRightPressed
+    O: [EVENT("stopChrono")]
+
+TRANSITION:
+    S: top.Watch.Modes.ChronoMode.ChronoDisplay
+    N: top.Watch.Modes.ChronoMode.ChronoDisplay
+    E: bottomLeftPressed
+    O: gui.resetChrono()
+
+TRANSITION:
+    S: top.Watch.Modes.ChronoMode.ChronoRefresh
+    N: top.Watch.Modes.ChronoMode.ChronoDisplay
+    E: bottomLeftPressed
+    O: [EVENT("stopChrono")];gui.resetChrono()
+
+TRANSITION: [HS]
+    S: top.Watch.Modes.ChronoMode
+    N: top.Watch.Modes.ChronoMode

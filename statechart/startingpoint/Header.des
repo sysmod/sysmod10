@@ -8,4 +8,8 @@ INITIALIZER:
 
     eventhandler.start()
 
+INTERACTOR:
     root.mainloop()
+
+FINALIZER:
+    root.tk.quit()

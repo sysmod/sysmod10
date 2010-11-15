@@ -106,7 +106,11 @@ class LowLevelGUI:
                                                                 fill='')
                                                                                                                                   
     self.displayCanvas.bind("<ButtonPress-1>", self.mouse1Click)
-    self.displayCanvas.bind("<ButtonRelease-1>", self.mouse1Release)                                                              
+    self.displayCanvas.bind("<ButtonRelease-1>", self.mouse1Release) 
+    self.displayCanvas.bind("p", self.rechargeBattery)
+
+  def rechargeBattery(self, event):
+    self.controller.rechargeBatteryRequested()
 
   def mouse1Click(self, event):
     X = self.displayCanvas.canvasx(event.x)

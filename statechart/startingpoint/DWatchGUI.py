@@ -6,6 +6,10 @@ class DWatchGUI:
     self.GUI = LowLevelGUI(parent, self)
     self.eventhandler = eventhandler
 
+  def rechargeBatteryRequested(self):
+    self.eventhandler.event("rechargeBatteryRequested")
+    print "rechargeBatteryRequested"
+
   # -----------------------------------
   # Events to be sent to the Statechart
   # -----------------------------------
@@ -115,7 +119,7 @@ class DWatchGUI:
   #Check if time = alarm set time
   def checkTime(self):
     if self.GUI.getTime()[0] == self.GUI.getAlarm()[0] and self.GUI.getTime()[1] == self.GUI.getAlarm()[1] and self.GUI.getTime()[2] == self.GUI.getAlarm()[2]:
-      self.alarm()
+      self.setAlarm()
       return True
     else:
       return False
