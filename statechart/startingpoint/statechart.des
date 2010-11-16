@@ -20,6 +20,7 @@ STATECHART:
                     StartEditing [DS]
                 TimeEditingModeWait
                 ReturnFromEditMode
+                DisplayAlarm
             ChronoTicking [CS] [DS]
                 ChronoStopped [DS]
                 ChronoRunning
@@ -67,6 +68,10 @@ ENTER:
 ENTER:
    N: top.Watch.Modes.ChronoMode.ChronoRefresh
    O: gui.refreshChronoDisplay()
+
+ENTER:
+   N: top.Watch.Modes.DisplayAlarm
+   O: gui.refreshAlarmDisplay()
 
 ENTER:
    N: top.Watch.Modes.TimeDisplayMode
@@ -273,3 +278,24 @@ TRANSITION:
     S: top.Watch.EditingModeExitTimer.Reset
     N: top.Watch.EditingModeExitTimer.TimerRunning
     E: resetTimer
+
+TRANSITION:
+    S: top.Watch.Modes.TimeDisplayMode
+    N: top.Watch.Modes.DisplayAlarm
+    E: bottomLeftPressed
+
+TRANSITION:
+    S: top.Watch.Modes.DisplayAlarm
+    N: top.Watch.Modes.TimeEditingMode
+    T: 1.5
+
+TRANSITION:
+    S: top.Watch.Modes.DisplayAlarm
+    N: top.Watch.Modes.TimeDisplayMode
+    E: bottomLeftReleased
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.StartEditing
+    N: top.Watch.Modes.TimeEditingMode.LoopSelection
+    E: bottomLeftReleased
+    O: [EVENT("startTimer")]
