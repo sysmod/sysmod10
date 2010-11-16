@@ -9,32 +9,55 @@ STATECHART:
                 TimeRunning [DS]
                 TimeStopped
             Modes [CS] [DS]
-                TimeDisplay [DS]
+                TimeDisplayMode [DS]
                 ChronoMode [HS]
                     ChronoDisplay [DS]
                     ChronoRefresh
-                EditingModeWait
                 TimeEditingMode
-                    SelectHours [DS]
+                    LoopSelection
+                    ExitWait
+                    IncreaseSelection
+                    StartEditing [DS]
+                TimeEditingModeWait
+                ReturnFromEditingMode
             ChronoTicking [CS] [DS]
                 ChronoStopped [DS]
                 ChronoRunning
+            TimeDisplayRefresh [CS] [DS]
+                RefreshDisplay [DS]
+                NoTimeDisplay
 
 ENTER:
    N: top.Watch.Backlight.BacklightOn
    O: gui.setIndiglo()
 
 ENTER:
-   N: top.Watch.TimeTicking.TimeRunning
-   O: gui.increaseTimeByOne()
+   N: top.Watch.Backlight.BacklightOff
+   O: gui.unsetIndiglo()
 
 ENTER:
    N: top.Watch.ChronoTicking.ChronoRunning
    O: gui.increaseChronoByOne()
 
 ENTER:
-   N: top.Watch.Backlight.BacklightOff
-   O: gui.unsetIndiglo()
+   N: top.Watch.Modes.ReturnFromEditingMode
+   O: [EVENT("startTime")];[EVENT("DisplayTime")]
+
+ENTER:
+   N: top.Watch.Modes.TimeEditingMode
+   O: [EVENT("StopDisplayTime")];[EVENT("stopTime")]
+
+ENTER:
+   N: top.Watch.Modes.TimeEditingMode.StartEditing
+   O: gui.startSelection()
+
+ENTER:
+   N: top.Watch.TimeDisplayRefresh.RefreshDisplay
+   O: gui.refreshTimeDisplay()
+
+ENTER:
+   N: top.Watch.TimeTicking.TimeRunning
+   O: gui.increaseTimeByOne()
 
 ENTER:
    N: top.Watch.Modes.ChronoMode.ChronoDisplay
@@ -45,16 +68,16 @@ ENTER:
    O: gui.refreshChronoDisplay()
 
 ENTER:
-   N: top.Watch.Modes.TimeEditingMode
-   O: [EVENT("stopTime")]
+   N: top.Watch.Modes.ChronoMode
+   O: [EVENT("StopDisplayTime")]
 
 ENTER:
-   N: top.Watch.Modes.TimeEditingMode.SelectHours
-   O: gui.startSelection()
+   N: top.Watch.Modes.TimeDisplayMode
+   O: [EVENT("DisplayTime")]
 
 ENTER:
-   N: top.Watch.Modes.TimeDisplay
-   O: gui.refreshTimeDisplay()
+   N: top.Watch.Modes.TimeEditingMode.IncreaseSelection
+   O: gui.increaseSelection()
 
 TRANSITION:
     S: top.Watch.Backlight.BacklightOff
@@ -77,13 +100,8 @@ TRANSITION:
     E: topRightPressed
 
 TRANSITION:
-    S: top.Watch.Modes.TimeDisplay
-    N: top.Watch.Modes.TimeDisplay
-    T: 1
-
-TRANSITION:
     S: top.Watch.Modes.ChronoMode
-    N: top.Watch.Modes.TimeDisplay
+    N: top.Watch.Modes.TimeDisplayMode
     E: topLeftPressed
 
 TRANSITION:
@@ -136,24 +154,9 @@ TRANSITION:
     O: [EVENT("stopChrono")];gui.resetChrono()
 
 TRANSITION: [HS]
-    S: top.Watch.Modes.TimeDisplay
+    S: top.Watch.Modes.TimeDisplayMode
     N: top.Watch.Modes.ChronoMode
     E: topLeftPressed
-
-TRANSITION:
-    S: top.Watch.Modes.TimeDisplay
-    N: top.Watch.Modes.EditingModeWait
-    E: bottomRightPressed
-
-TRANSITION:
-    S: top.Watch.Modes.EditingModeWait
-    N: top.Watch.Modes.TimeDisplay
-    E: bottomRightReleased
-
-TRANSITION:
-    S: top.Watch.Modes.EditingModeWait
-    N: top.Watch.Modes.TimeEditingMode
-    T: 1.5
 
 TRANSITION:
     S: top.Watch.TimeTicking.TimeRunning
@@ -164,3 +167,75 @@ TRANSITION:
     S: top.Watch.TimeTicking.TimeStopped
     N: top.Watch.TimeTicking.TimeRunning
     E: startTime
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.LoopSelection
+    N: top.Watch.Modes.TimeEditingMode.ExitWait
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.ExitWait
+    N: top.Watch.Modes.TimeEditingMode.LoopSelection
+    E: bottomRightReleased
+    O: gui.selectNext()
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.LoopSelection
+    N: top.Watch.Modes.TimeEditingMode.IncreaseSelection
+    E: bottomLeftPressed
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.IncreaseSelection
+    N: top.Watch.Modes.TimeEditingMode.LoopSelection
+    E: bottomLeftReleased
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.IncreaseSelection
+    N: top.Watch.Modes.TimeEditingMode.IncreaseSelection
+    T: 0.3
+
+TRANSITION:
+    S: top.Watch.TimeDisplayRefresh.RefreshDisplay
+    N: top.Watch.TimeDisplayRefresh.RefreshDisplay
+    T: 1
+
+TRANSITION:
+    S: top.Watch.TimeDisplayRefresh.NoTimeDisplay
+    N: top.Watch.TimeDisplayRefresh.RefreshDisplay
+    E: DisplayTime
+
+TRANSITION:
+    S: top.Watch.TimeDisplayRefresh.RefreshDisplay
+    N: top.Watch.TimeDisplayRefresh.NoTimeDisplay
+    E: StopDisplayTime
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.StartEditing
+    N: top.Watch.Modes.TimeEditingMode.LoopSelection
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Modes.TimeDisplayMode
+    N: top.Watch.Modes.TimeEditingModeWait
+    E: bottomRightPressed
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingModeWait
+    N: top.Watch.Modes.TimeDisplayMode
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingModeWait
+    N: top.Watch.Modes.TimeEditingMode
+    T: 1.5
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.ExitWait
+    N: top.Watch.Modes.ReturnFromEditingMode
+    T: 2
+    O: gui.stopSelection()
+
+TRANSITION:
+    S: top.Watch.Modes.ReturnFromEditingMode
+    N: top.Watch.Modes.TimeDisplayMode
+    E: bottomRightReleased
