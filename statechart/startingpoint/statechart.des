@@ -19,13 +19,14 @@ STATECHART:
                     IncreaseSelection
                     StartEditing [DS]
                 TimeEditingModeWait
-                ReturnFromEditingMode
+                ReturnFromEditMode
             ChronoTicking [CS] [DS]
                 ChronoStopped [DS]
                 ChronoRunning
-            TimeDisplayRefresh [CS] [DS]
-                RefreshDisplay [DS]
-                NoTimeDisplay
+            EditingModeExitTimer [CS] [DS]
+                TimerStop [DS]
+                TimerRunning
+                Reset
 
 ENTER:
    N: top.Watch.Backlight.BacklightOn
@@ -36,24 +37,24 @@ ENTER:
    O: gui.unsetIndiglo()
 
 ENTER:
+   N: top.Watch.Modes.TimeEditingModeWait
+   O: gui.refreshTimeDisplay()
+
+ENTER:
    N: top.Watch.ChronoTicking.ChronoRunning
    O: gui.increaseChronoByOne()
 
-ENTER:
-   N: top.Watch.Modes.ReturnFromEditingMode
-   O: [EVENT("startTime")];[EVENT("DisplayTime")]
-
-ENTER:
-   N: top.Watch.Modes.TimeEditingMode
-   O: [EVENT("StopDisplayTime")];[EVENT("stopTime")]
+EXIT:
+   S: top.Watch.Modes.TimeEditingMode
+   O: gui.stopSelection()
 
 ENTER:
    N: top.Watch.Modes.TimeEditingMode.StartEditing
    O: gui.startSelection()
 
 ENTER:
-   N: top.Watch.TimeDisplayRefresh.RefreshDisplay
-   O: gui.refreshTimeDisplay()
+   N: top.Watch.Modes.TimeEditingMode.ExitWait
+   O: [EVENT("resetEvent")]
 
 ENTER:
    N: top.Watch.TimeTicking.TimeRunning
@@ -68,16 +69,20 @@ ENTER:
    O: gui.refreshChronoDisplay()
 
 ENTER:
-   N: top.Watch.Modes.ChronoMode
-   O: [EVENT("StopDisplayTime")]
-
-ENTER:
    N: top.Watch.Modes.TimeDisplayMode
-   O: [EVENT("DisplayTime")]
+   O: gui.refreshTimeDisplay()
 
 ENTER:
    N: top.Watch.Modes.TimeEditingMode.IncreaseSelection
-   O: gui.increaseSelection()
+   O: [EVENT("resetEvent")];gui.increaseSelection()
+
+ENTER:
+   N: top.Watch.Modes.ReturnFromEditMode
+   O: gui.refreshTimeDisplay()
+
+ENTER:
+   N: top.Watch.EditingModeExitTimer.Reset
+   O: [EVENT("resetTimer")]
 
 TRANSITION:
     S: top.Watch.Backlight.BacklightOff
@@ -195,24 +200,10 @@ TRANSITION:
     T: 0.3
 
 TRANSITION:
-    S: top.Watch.TimeDisplayRefresh.RefreshDisplay
-    N: top.Watch.TimeDisplayRefresh.RefreshDisplay
-    T: 1
-
-TRANSITION:
-    S: top.Watch.TimeDisplayRefresh.NoTimeDisplay
-    N: top.Watch.TimeDisplayRefresh.RefreshDisplay
-    E: DisplayTime
-
-TRANSITION:
-    S: top.Watch.TimeDisplayRefresh.RefreshDisplay
-    N: top.Watch.TimeDisplayRefresh.NoTimeDisplay
-    E: StopDisplayTime
-
-TRANSITION:
     S: top.Watch.Modes.TimeEditingMode.StartEditing
     N: top.Watch.Modes.TimeEditingMode.LoopSelection
     E: bottomRightReleased
+    O: [EVENT("startTimer")]
 
 TRANSITION:
     S: top.Watch.Modes.TimeDisplayMode
@@ -228,14 +219,57 @@ TRANSITION:
     S: top.Watch.Modes.TimeEditingModeWait
     N: top.Watch.Modes.TimeEditingMode
     T: 1.5
+    O: [EVENT("stopTime")]
+
+TRANSITION:
+    S: top.Watch.Modes.TimeDisplayMode
+    N: top.Watch.Modes.TimeDisplayMode
+    T: 1
+
+TRANSITION:
+    S: top.Watch.Modes.ReturnFromEditMode
+    N: top.Watch.Modes.TimeDisplayMode
+    E: bottomRightReleased
+
+TRANSITION:
+    S: top.Watch.Modes.ReturnFromEditMode
+    N: top.Watch.Modes.ReturnFromEditMode
+    T: 1
 
 TRANSITION:
     S: top.Watch.Modes.TimeEditingMode.ExitWait
-    N: top.Watch.Modes.ReturnFromEditingMode
+    N: top.Watch.Modes.ReturnFromEditMode
     T: 2
-    O: gui.stopSelection()
+    O: [EVENT("startTime")]
 
 TRANSITION:
-    S: top.Watch.Modes.ReturnFromEditingMode
+    S: top.Watch.EditingModeExitTimer.TimerStop
+    N: top.Watch.EditingModeExitTimer.TimerRunning
+    E: startTimer
+
+TRANSITION:
+    S: top.Watch.EditingModeExitTimer.TimerRunning
+    N: top.Watch.EditingModeExitTimer.TimerStop
+    E: stopTimer
+
+TRANSITION:
+    S: top.Watch.EditingModeExitTimer.TimerRunning
+    N: top.Watch.EditingModeExitTimer.TimerStop
+    T: 5
+    O: [EVENT("exitEditingMode")]
+
+TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode
     N: top.Watch.Modes.TimeDisplayMode
-    E: bottomRightReleased
+    E: exitEditingMode
+    O: [EVENT("startTime")]
+
+TRANSITION:
+    S: top.Watch.EditingModeExitTimer.TimerRunning
+    N: top.Watch.EditingModeExitTimer.Reset
+    E: resetEvent
+
+TRANSITION:
+    S: top.Watch.EditingModeExitTimer.Reset
+    N: top.Watch.EditingModeExitTimer.TimerRunning
+    E: resetTimer
