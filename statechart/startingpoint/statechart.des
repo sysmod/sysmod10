@@ -21,6 +21,7 @@ STATECHART:
                 TimeEditingModeWait
                 ReturnFromEditMode
                 DisplayAlarm
+                ToggleAlarm
             ChronoTicking [CS] [DS]
                 ChronoStopped [DS]
                 ChronoRunning
@@ -28,10 +29,20 @@ STATECHART:
                 TimerStop [DS]
                 TimerRunning
                 Reset
+            AlarmMode [CS] [DS]
+                AlarmNotSet [DS]
+                CheckAlarm
+                RiseAlarm
+                    BacklightOn [DS]
+                    BacklightOff
 
 ENTER:
    N: top.Watch.Backlight.BacklightOn
    O: gui.setIndiglo()
+
+ENTER:
+   N: top.Watch.ChronoTicking.ChronoRunning
+   O: gui.increaseChronoByOne()
 
 ENTER:
    N: top.Watch.Backlight.BacklightOff
@@ -42,12 +53,16 @@ ENTER:
    O: gui.refreshTimeDisplay()
 
 ENTER:
-   N: top.Watch.ChronoTicking.ChronoRunning
-   O: gui.increaseChronoByOne()
+   N: top.Watch.AlarmMode.RiseAlarm.BacklightOn
+   O: gui.setIndiglo()
 
 EXIT:
    S: top.Watch.Modes.TimeEditingMode
    O: gui.stopSelection()
+
+ENTER:
+   N: top.Watch.Modes.ToggleAlarm
+   O: gui.setAlarm();[EVENT("toggleAlarm")]
 
 ENTER:
    N: top.Watch.Modes.TimeEditingMode.StartEditing
@@ -62,8 +77,16 @@ ENTER:
    O: gui.increaseTimeByOne()
 
 ENTER:
+   N: top.Watch.AlarmMode.CheckAlarm
+   O: gui.checkTime()
+
+ENTER:
    N: top.Watch.Modes.ChronoMode.ChronoDisplay
    O: gui.refreshChronoDisplay()
+
+ENTER:
+   N: top.Watch.AlarmMode.RiseAlarm.BacklightOff
+   O: gui.unsetIndiglo()
 
 ENTER:
    N: top.Watch.Modes.ChronoMode.ChronoRefresh
@@ -285,17 +308,57 @@ TRANSITION:
     E: bottomLeftPressed
 
 TRANSITION:
+    S: top.Watch.Modes.TimeEditingMode.StartEditing
+    N: top.Watch.Modes.TimeEditingMode.LoopSelection
+    E: bottomLeftReleased
+    O: [EVENT("startTimer")]
+
+TRANSITION:
     S: top.Watch.Modes.DisplayAlarm
     N: top.Watch.Modes.TimeEditingMode
     T: 1.5
 
 TRANSITION:
     S: top.Watch.Modes.DisplayAlarm
-    N: top.Watch.Modes.TimeDisplayMode
+    N: top.Watch.Modes.ToggleAlarm
     E: bottomLeftReleased
 
 TRANSITION:
-    S: top.Watch.Modes.TimeEditingMode.StartEditing
-    N: top.Watch.Modes.TimeEditingMode.LoopSelection
-    E: bottomLeftReleased
-    O: [EVENT("startTimer")]
+    S: top.Watch.Modes.ToggleAlarm
+    N: top.Watch.Modes.TimeDisplayMode
+    E: bottomLeftPressed
+
+TRANSITION:
+    S: top.Watch.AlarmMode.AlarmNotSet
+    N: top.Watch.AlarmMode.CheckAlarm
+    E: toggleAlarm
+
+TRANSITION:
+    S: top.Watch.AlarmMode.CheckAlarm
+    N: top.Watch.AlarmMode.AlarmNotSet
+    E: toggleAlarm
+
+TRANSITION:
+    S: top.Watch.AlarmMode.CheckAlarm
+    N: top.Watch.AlarmMode.CheckAlarm
+    T: 1
+
+TRANSITION:
+    S: top.Watch.AlarmMode.CheckAlarm
+    N: top.Watch.AlarmMode.RiseAlarm
+    E: alarmStart
+
+TRANSITION:
+    S: top.Watch.AlarmMode.RiseAlarm.BacklightOn
+    N: top.Watch.AlarmMode.RiseAlarm.BacklightOff
+    T: 0.5
+
+TRANSITION:
+    S: top.Watch.AlarmMode.RiseAlarm.BacklightOff
+    N: top.Watch.AlarmMode.RiseAlarm.BacklightOn
+    T: 0.5
+
+TRANSITION:
+    S: top.Watch.AlarmMode.RiseAlarm
+    N: top.Watch.AlarmMode.CheckAlarm
+    T: 4

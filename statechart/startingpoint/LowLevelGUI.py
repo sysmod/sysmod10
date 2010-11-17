@@ -371,7 +371,19 @@ class LowLevelGUI:
       self.displayCanvas.delete(self.dateTag)
       self.dateTag = None
   
-    
+  def drawLowBattery(self):
+    self.clearDisplay()      
+    self.timeTag =self.displayCanvas.create_text((RECT_X0+RECT_X1)/2,
+                                                 (RECT_Y0+RECT_Y1)/2+5,
+                                                  font = FONT_TIME,
+                                                  justify = "center",
+                                                  text    = "88:88:88")
+    self.dateTag=self.displayCanvas.create_text(RECT_X1-33,
+                                                RECT_Y0+7,
+                                                font = FONT_DATE,
+                                                justify = "center",
+                                                text    = "88/88/88")
+
                       
   def drawTime(self, toDraw=["hours","minutes","seconds"]):    
     timeToDraw = self.__getTimeAsString()

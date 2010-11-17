@@ -119,7 +119,8 @@ class DWatchGUI:
   #Check if time = alarm set time
   def checkTime(self):
     if self.GUI.getTime()[0] == self.GUI.getAlarm()[0] and self.GUI.getTime()[1] == self.GUI.getAlarm()[1] and self.GUI.getTime()[2] == self.GUI.getAlarm()[2]:
-      self.setAlarm()
+      #self.setAlarm()
+      self.alarmStart()
       return True
     else:
       return False
