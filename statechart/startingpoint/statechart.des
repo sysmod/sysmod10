@@ -1,7 +1,7 @@
 STATECHART:
     top [DS]
         Watch [DS]
-            Backlight [CS] [DS]
+            Backlight [CS] [DS] [HS]
                 BacklightOff [DS]
                 WaitingPeriod
                 BacklightOn
@@ -35,6 +35,12 @@ STATECHART:
                 RiseAlarm
                     BacklightOn [DS]
                     BacklightOff
+        DisplayEights
+        ClearDisplay
+
+ENTER:
+   N: top.DisplayEights
+   O: gui.drawLowBattery()
 
 ENTER:
    N: top.Watch.Backlight.BacklightOn
@@ -91,6 +97,10 @@ ENTER:
 ENTER:
    N: top.Watch.Modes.ChronoMode.ChronoRefresh
    O: gui.refreshChronoDisplay()
+
+ENTER:
+   N: top.ClearDisplay
+   O: gui.clearDisplay()
 
 ENTER:
    N: top.Watch.Modes.DisplayAlarm
@@ -363,3 +373,19 @@ TRANSITION:
     S: top.Watch.AlarmMode.RiseAlarm
     N: top.Watch.AlarmMode.CheckAlarm
     T: 4
+
+TRANSITION: [HS]
+    S: top.DisplayEights
+    N: top.Watch.Backlight
+    E: rechargeBatteryRequested
+    O: gui.refreshDateDisplay()
+
+TRANSITION:
+    S: top.Watch
+    N: top.DisplayEights
+    T: 75
+
+TRANSITION:
+    S: top.DisplayEights
+    N: top.ClearDisplay
+    T: 5
