@@ -6,6 +6,9 @@ class DWatchGUI:
     self.GUI = LowLevelGUI(parent, self)
     self.eventhandler = eventhandler
 
+  def drawLowBattery(self):
+    self.GUI.drawLowBattery()
+
   def rechargeBatteryRequested(self):
     self.eventhandler.event("rechargeBatteryRequested")
     print "rechargeBatteryRequested"

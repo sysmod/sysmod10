@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 17 15:50:56 EET 2010'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Wed Nov 17 20:26:15 EET 2010'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.30.2(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -1228,6 +1228,15 @@
             </UML:Transition>
             <UML:Transition xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B6D'
               isSpecification = 'false'>
+              <UML:Transition.effect>
+                <UML:CallAction xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000B80'
+                  isSpecification = 'false' isAsynchronous = 'false'>
+                  <UML:Action.script>
+                    <UML:ActionExpression xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000B93'
+                      language = '' body = '[EVENT(&quot;stopTime&quot;)]'/>
+                  </UML:Action.script>
+                </UML:CallAction>
+              </UML:Transition.effect>
               <UML:Transition.trigger>
                 <UML:TimeEvent xmi.idref = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B6E'/>
               </UML:Transition.trigger>

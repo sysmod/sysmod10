@@ -317,6 +317,7 @@ TRANSITION:
     S: top.Watch.Modes.DisplayAlarm
     N: top.Watch.Modes.TimeEditingMode
     T: 1.5
+    O: [EVENT("stopTime")]
 
 TRANSITION:
     S: top.Watch.Modes.DisplayAlarm
