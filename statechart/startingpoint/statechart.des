@@ -385,6 +385,6 @@ TRANSITION:
     T: 5
 
 TRANSITION:
-    S: top.Watch.Modes.ToggleAlarm
+    S: top.Watch.Modes.DisplayAlarm
     N: top.Watch.Modes.TimeEditingMode
     T: 1.5

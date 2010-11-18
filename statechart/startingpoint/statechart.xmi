@@ -1,5 +1,5 @@
 <?xml version = '1.0' encoding = 'UTF-8' ?>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 19 00:06:40 EET 2010'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri Nov 19 00:46:08 EET 2010'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.30.1(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -243,7 +243,7 @@
                           </UML:StateVertex.outgoing>
                           <UML:StateVertex.incoming>
                             <UML:Transition xmi.idref = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000B94'/>
-                            <UML:Transition xmi.idref = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BAD'/>
+                            <UML:Transition xmi.idref = '127-0-1-1--69b92a4:12c61284d25:-8000:0000000000000B5D'/>
                           </UML:StateVertex.incoming>
                           <UML:State.exit>
                             <UML:UninterpretedAction xmi.id = '-63-40-5-98--216dd406:12c54446d82:-8000:0000000000000BD8'
@@ -377,6 +377,7 @@
                           name = 'DisplayAlarm' isSpecification = 'false'>
                           <UML:StateVertex.outgoing>
                             <UML:Transition xmi.idref = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B73'/>
+                            <UML:Transition xmi.idref = '127-0-1-1--69b92a4:12c61284d25:-8000:0000000000000B5D'/>
                           </UML:StateVertex.outgoing>
                           <UML:StateVertex.incoming>
                             <UML:Transition xmi.idref = '127-0-0-1--7763399b:12c55f137aa:-8000:0000000000000B40'/>
@@ -395,7 +396,6 @@
                           name = 'ToggleAlarm' isSpecification = 'false'>
                           <UML:StateVertex.outgoing>
                             <UML:Transition xmi.idref = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B84'/>
-                            <UML:Transition xmi.idref = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BAD'/>
                           </UML:StateVertex.outgoing>
                           <UML:StateVertex.incoming>
                             <UML:Transition xmi.idref = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B73'/>
@@ -1440,13 +1440,13 @@
                 <UML:SimpleState xmi.idref = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000C0E'/>
               </UML:Transition.target>
             </UML:Transition>
-            <UML:Transition xmi.id = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BAD'
+            <UML:Transition xmi.id = '127-0-1-1--69b92a4:12c61284d25:-8000:0000000000000B5D'
               isSpecification = 'false'>
               <UML:Transition.trigger>
-                <UML:TimeEvent xmi.idref = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BAE'/>
+                <UML:TimeEvent xmi.idref = '127-0-1-1--69b92a4:12c61284d25:-8000:0000000000000B5E'/>
               </UML:Transition.trigger>
               <UML:Transition.source>
-                <UML:SimpleState xmi.idref = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B72'/>
+                <UML:SimpleState xmi.idref = '127-0-0-1--7763399b:12c55f137aa:-8000:0000000000000B3F'/>
               </UML:Transition.source>
               <UML:Transition.target>
                 <UML:CompositeState xmi.idref = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000AE2'/>
@@ -1454,28 +1454,8 @@
             </UML:Transition>
           </UML:StateMachine.transitions>
         </UML:StateMachine>
-        <UML:TimeEvent xmi.id = '127-0-0-1-78806738:12c3c46d431:-8000:00000000000008A3'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1-78806738:12c3c46d431:-8000:00000000000008A4'
-              language = '' body = '1'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D0A'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D0B'
-              language = '' body = '1'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D2E'
-          name = '' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D2F'
-          name = 'topRightPressed' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D4A'
           name = 'topRightPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D4C'
-          name = 'topRightReleased' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D4F'
           name = 'topRightReleased' isSpecification = 'false'/>
         <UML:TimeEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D51'
@@ -1487,53 +1467,8 @@
         </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '127-0-0-1-28f5020a:12c3c52a796:-8000:0000000000000D57'
           name = 'topRightPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000AA7'
-          name = '' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000AA8'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000AA9'
-              language = '' body = '1'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000AD6'
-          name = 'topLeftPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000AD8'
-          name = 'topLeftPressed' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000ADA'
           name = 'topLeftPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B18'
-          name = 'bottomRightPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B1A'
-          name = 'bottomRightPressed' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B1C'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B20'
-              language = '' body = '0.01'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B22'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B26'
-              language = '' body = '0.01'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B2C'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B30'
-              language = '' body = '0.01'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B33'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--5c1bc027:12c3f486f5e:-8000:0000000000000B37'
-              language = '' body = '0.01'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
         <UML:TimeEvent xmi.id = '-63-40-5-98--3643836d:12c3fdcb15b:-8000:0000000000000AB4'
           name = '' isSpecification = 'false'>
           <UML:TimeEvent.when>
@@ -1541,15 +1476,6 @@
               language = '' body = '1'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--3643836d:12c3fdcb15b:-8000:0000000000000AD4'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--3643836d:12c3fdcb15b:-8000:0000000000000AD8'
-              language = '' body = '0.01'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--493b9aff:12c3fe4e9da:-8000:0000000000000AAE'
-          name = 'bottomRightPressed' isSpecification = 'false'/>
         <UML:TimeEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000AD3'
           name = '' isSpecification = 'false'>
           <UML:TimeEvent.when>
@@ -1559,8 +1485,6 @@
         </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000AD8'
           name = 'startChrono' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000ADA'
-          name = '' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000ADC'
           name = 'stopChrono' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000AFE'
@@ -1574,29 +1498,12 @@
         </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000B99'
           name = 'bottomRightPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000BB5'
-          name = 'bottomLeftPressed' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000BCA'
           name = 'bottomLeftPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000C34'
-          name = '' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--1df4c24e:12c4ec39706:-8000:0000000000000C36'
           name = 'bottomLeftPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000ADB'
-          name = '' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000ADC'
           name = 'topLeftPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000ADF'
-          name = 'bottomRightPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000AE1'
-          name = 'bottomRightReleased' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000AE4'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000AE7'
-              language = '' body = '1.5'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000AED'
           name = 'stopTime' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '127-0-0-1--4d4896c9:12c517c0a07:-8000:0000000000000AEE'
@@ -1616,17 +1523,6 @@
               language = '' body = '0.3'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000B16'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000B17'
-              language = '' body = '1'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000B1C'
-          name = 'DisplayTime' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000B1E'
-          name = 'StopDisplayTime' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000B77'
           name = 'bottomRightReleased' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000B91'
@@ -1640,34 +1536,11 @@
               language = '' body = '1.5'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000BDF'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000BE0'
-              language = '' body = '2'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000C28'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000C29'
-              language = '' body = '2'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--60c99f74:12c53cb3d2e:-8000:0000000000000C2B'
-          name = 'bottomRightReleased' isSpecification = 'false'/>
         <UML:TimeEvent xmi.id = '-63-40-5-98--216dd406:12c54446d82:-8000:0000000000000B38'
           name = '' isSpecification = 'false'>
           <UML:TimeEvent.when>
             <UML:TimeExpression xmi.id = '-63-40-5-98--216dd406:12c54446d82:-8000:0000000000000B39'
               language = '' body = '1'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--216dd406:12c54446d82:-8000:0000000000000B3C'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--216dd406:12c54446d82:-8000:0000000000000B3D'
-              language = '' body = '2'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '-63-40-5-98--216dd406:12c54446d82:-8000:0000000000000B8C'
@@ -1699,38 +1572,14 @@
         </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '-63-40-5-98-5cf5da9c:12c54554029:-8000:0000000000000B5A'
           name = 'exitEditingMode' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98-5cf5da9c:12c54554029:-8000:0000000000000B89'
-          name = 'resetEvent' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98-5cf5da9c:12c54554029:-8000:0000000000000BA3'
           name = 'resetEvent' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98-5cf5da9c:12c54554029:-8000:0000000000000BBB'
           name = 'resetTimer' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '127-0-0-1--7763399b:12c55f137aa:-8000:0000000000000B5C'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1--7763399b:12c55f137aa:-8000:0000000000000B6A'
-              language = '' body = '1.5'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '127-0-0-1--7763399b:12c55f137aa:-8000:0000000000000B6B'
           name = 'bottomLeftPressed' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1--7763399b:12c55f137aa:-8000:0000000000000B6D'
-          name = 'bottomLeftReleased' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '127-0-0-1--7763399b:12c55f137aa:-8000:0000000000000B6F'
           name = 'bottomLeftReleased' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B4E'
-          name = 'bottomLeftReleased' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B62'
-          name = 'bottomLeftPressed' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B6C'
-          name = '' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B6E'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B71'
-              language = '' body = '1.5'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B74'
           name = 'bottomLeftReleased' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B85'
@@ -1739,15 +1588,6 @@
           name = 'toggleAlarm' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000B8E'
           name = 'toggleAlarm' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000BA1'
-          name = 'alarmStart' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000BE4'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000BE7'
-              language = '' body = '0.5'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
         <UML:TimeEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000C11'
           name = '' isSpecification = 'false'>
           <UML:TimeEvent.when>
@@ -1755,8 +1595,6 @@
               language = '' body = '1'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '-63-40-5-98--400b8450:12c592e267a:-8000:0000000000000C27'
-          name = 'alarmStart' isSpecification = 'false'/>
         <UML:SignalEvent xmi.id = '-63-40-5-98-67f92978:12c5a13d79a:-8000:0000000000000B75'
           name = 'alarmStart' isSpecification = 'false'/>
         <UML:TimeEvent xmi.id = '-63-40-5-98-67f92978:12c5a13d79a:-8000:0000000000000B9F'
@@ -1780,42 +1618,6 @@
               language = '' body = '4'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BB1'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BB3'
-              language = '' body = '15'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BB5'
-          name = 'topLeftPressed' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BC4'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BC6'
-              language = '' body = '15'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:TimeEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BCA'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BCC'
-              language = '' body = '15'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:SignalEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BE6'
-          name = 'rechargeBatteryRequested' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BEA'
-          name = 'rechargeBatteryRequested' isSpecification = 'false'/>
-        <UML:SignalEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BED'
-          name = 'rechargeBatteryRequested' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BF1'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BF3'
-              language = '' body = '15'/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
         <UML:SignalEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000BF4'
           name = 'rechargeBatteryRequested' isSpecification = 'false'/>
         <UML:TimeEvent xmi.id = '127-0-0-1-26528212:12c5b1406db:-8000:0000000000000C23'
@@ -1832,28 +1634,16 @@
               language = '' body = '75'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
-        <UML:ChangeEvent xmi.id = '127-0-1-1--3e87c0b1:12c60fc0ded:-8000:0000000000000B9F'
-          name = '' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '127-0-1-1--3e87c0b1:12c60fc0ded:-8000:0000000000000BA0'
-          name = '' isSpecification = 'false'/>
-        <UML:TimeEvent xmi.id = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BA2'
+        <UML:Collaboration xmi.id = '127-0-1-1-68740bbf:12c610e1748:-8000:0000000000000BA5'
+          name = 'unattachedCollaboration' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'/>
+        <UML:Collaboration xmi.id = '127-0-1-1-68740bbf:12c610e1748:-8000:0000000000000BA6'
+          name = 'unattachedCollaboration' isSpecification = 'false' isRoot = 'false'
+          isLeaf = 'false' isAbstract = 'false'/>
+        <UML:TimeEvent xmi.id = '127-0-1-1--69b92a4:12c61284d25:-8000:0000000000000B5E'
           name = '' isSpecification = 'false'>
           <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BA5'
-              language = '1.5' body = ''/>
-          </UML:TimeEvent.when>
-        </UML:TimeEvent>
-        <UML:ChangeEvent xmi.id = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BA6'
-          name = '' isSpecification = 'false'>
-          <UML:ChangeEvent.changeExpression>
-            <UML:BooleanExpression xmi.id = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BAC'
-              language = '' body = '1.5'/>
-          </UML:ChangeEvent.changeExpression>
-        </UML:ChangeEvent>
-        <UML:TimeEvent xmi.id = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BAE'
-          name = '' isSpecification = 'false'>
-          <UML:TimeEvent.when>
-            <UML:TimeExpression xmi.id = '127-0-1-1--771621db:12c61020f30:-8000:0000000000000BB1'
+            <UML:TimeExpression xmi.id = '127-0-1-1--69b92a4:12c61284d25:-8000:0000000000000B61'
               language = '' body = '1.5'/>
           </UML:TimeEvent.when>
         </UML:TimeEvent>
