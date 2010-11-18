@@ -108,6 +108,10 @@ class LowLevelGUI:
     self.displayCanvas.bind("<ButtonPress-1>", self.mouse1Click)
     self.displayCanvas.bind("<ButtonRelease-1>", self.mouse1Release) 
     self.displayCanvas.bind("p", self.rechargeBattery)
+    self.displayCanvas.bind("r", self.resetWatch)
+
+  def resetWatch(self, event):
+    self.controller.resetWatchRequested()
 
   def rechargeBattery(self, event):
     self.controller.rechargeBatteryRequested()
