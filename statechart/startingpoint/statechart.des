@@ -388,3 +388,27 @@ TRANSITION:
     S: top.Watch.Modes.DisplayAlarm
     N: top.Watch.Modes.TimeEditingMode
     T: 1.5
+
+TRANSITION:
+    S: top.Watch.AlarmMode.RiseAlarm
+    N: top.Watch.AlarmMode.CheckAlarm
+    E: topLeftPressed
+    O: gui.unsetIndiglo()
+
+TRANSITION:
+    S: top.Watch.AlarmMode.RiseAlarm
+    N: top.Watch.AlarmMode.CheckAlarm
+    E: topRightPressed
+    O: gui.unsetIndiglo()
+
+TRANSITION:
+    S: top.Watch.AlarmMode.RiseAlarm
+    N: top.Watch.AlarmMode.CheckAlarm
+    E: bottomLeftPressed
+    O: gui.unsetIndiglo()
+
+TRANSITION:
+    S: top.Watch.AlarmMode.RiseAlarm
+    N: top.Watch.AlarmMode.CheckAlarm
+    E: bottomRightPressed
+    O: gui.unsetIndiglo()
