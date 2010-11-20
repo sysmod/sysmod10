@@ -38,7 +38,7 @@ public class Player
 
    /**
     * <pre>
-    *           0..1     operates     0..n
+    *           0..1     owns     0..n
     * Player ------------------------- Pit
     *           player               pit
     * </pre>
