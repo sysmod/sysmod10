@@ -39,18 +39,18 @@ public class Player
    /**
     * <pre>
     *           0..1     owns     0..n
-    * Player ------------------------- Pit
+    * Player ------------------------- AbstractPit
     *           player               pit
     * </pre>
     */
    public static final String PROPERTY_PIT = "pit";
 
-   @Property( name = PROPERTY_PIT, partner = Pit.PROPERTY_PLAYER, kind = ReferenceHandler.ReferenceKind.TO_MANY,
+   @Property( name = PROPERTY_PIT, partner = AbstractPit.PROPERTY_PLAYER, kind = ReferenceHandler.ReferenceKind.TO_MANY,
          adornment = ReferenceHandler.Adornment.NONE)
-   private FHashSet<Pit> pit;
+   private FHashSet<AbstractPit> pit;
 
    @Property( name = PROPERTY_PIT )
-   public Set<? extends Pit> getPit()
+   public Set<? extends AbstractPit> getPit()
    {
       return ((this.pit == null)
               ? Collections.EMPTY_SET
@@ -58,7 +58,7 @@ public class Player
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean addToPit (Pit value)
+   public boolean addToPit (AbstractPit value)
    {
       boolean changed = false;
 
@@ -66,7 +66,7 @@ public class Player
       {
          if (this.pit == null)
          {
-            this.pit = new FHashSet<Pit> ();
+            this.pit = new FHashSet<AbstractPit> ();
 
          }
       
@@ -81,20 +81,20 @@ public class Player
    }
 
    @Property( name = PROPERTY_PIT )
-   public Player withPit (Pit value)
+   public Player withPit (AbstractPit value)
    {
       addToPit (value);
       return this;
    }
 
-   public Player withoutPit (Pit value)
+   public Player withoutPit (AbstractPit value)
    {
       removeFromPit (value);
       return this;
    }
 
 
-   public boolean removeFromPit (Pit value)
+   public boolean removeFromPit (AbstractPit value)
    {
       boolean changed = false;
 
@@ -114,18 +114,18 @@ public class Player
    @Property( name = PROPERTY_PIT )
    public void removeAllFromPit (){
    
-      Pit tmpValue;
-      Iterator<? extends Pit> iter = this.iteratorOfPit ();
+      AbstractPit tmpValue;
+      Iterator<? extends AbstractPit> iter = this.iteratorOfPit ();
       while (iter.hasNext ())
       {
-         tmpValue = (Pit) iter.next ();
+         tmpValue = (AbstractPit) iter.next ();
          this.removeFromPit (tmpValue);
       }
    
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean hasInPit (Pit value)
+   public boolean hasInPit (AbstractPit value)
    {
       return ((this.pit != null) &&
               (value != null) &&
@@ -133,10 +133,10 @@ public class Player
    }
 
    @Property( name = PROPERTY_PIT )
-   public Iterator<? extends Pit> iteratorOfPit ()
+   public Iterator<? extends AbstractPit> iteratorOfPit ()
    {
       return ((this.pit == null)
-              ? FEmptyIterator.<Pit>get ()
+              ? FEmptyIterator.<AbstractPit>get ()
               : this.pit.iterator ());
    }
 
@@ -150,7 +150,7 @@ public class Player
 
    /**
     * <pre>
-    *           0..1     has     0..1
+    *           0..1     is     0..1
     * Player ------------------------- Turn
     *           player               turn
     * </pre>

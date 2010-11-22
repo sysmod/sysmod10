@@ -4,7 +4,7 @@
 package sysmod.mancala;
 
 
-public class Store extends Pit
+public class Store extends AbstractPit
 {
 
 

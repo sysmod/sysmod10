@@ -15,19 +15,19 @@ public class GameBoard
 
    /**
     * <pre>
-    *           0..1     contains     0..n
-    * GameBoard ------------------------- Pit
+    *                contains     0..n
+    * GameBoard ------------------------- AbstractPit
     *           gameBoard               pit
     * </pre>
     */
    public static final String PROPERTY_PIT = "pit";
 
-   @Property( name = PROPERTY_PIT, partner = Pit.PROPERTY_GAME_BOARD, kind = ReferenceHandler.ReferenceKind.TO_MANY,
+   @Property( name = PROPERTY_PIT, partner = AbstractPit.PROPERTY_GAME_BOARD, kind = ReferenceHandler.ReferenceKind.TO_MANY,
          adornment = ReferenceHandler.Adornment.NONE)
-   private FLinkedList<Pit> pit;
+   private FLinkedList<AbstractPit> pit;
 
    @Property( name = PROPERTY_PIT )
-   public List<? extends Pit> getPit()
+   public List<? extends AbstractPit> getPit()
    {
       return ((this.pit == null)
               ? Collections.EMPTY_LIST
@@ -35,7 +35,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean addToPit (Pit value)
+   public boolean addToPit (AbstractPit value)
    {
       boolean changed = false;
 
@@ -43,7 +43,7 @@ public class GameBoard
       {
          if (this.pit == null)
          {
-            this.pit = new FLinkedList<Pit> ();
+            this.pit = new FLinkedList<AbstractPit> ();
 
          }
       
@@ -58,20 +58,20 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public GameBoard withPit (Pit value)
+   public GameBoard withPit (AbstractPit value)
    {
       addToPit (value);
       return this;
    }
 
-   public GameBoard withoutPit (Pit value)
+   public GameBoard withoutPit (AbstractPit value)
    {
       removeFromPit (value);
       return this;
    }
 
 
-   public boolean removeFromPit (Pit value)
+   public boolean removeFromPit (AbstractPit value)
    {
       boolean changed = false;
 
@@ -91,18 +91,18 @@ public class GameBoard
    @Property( name = PROPERTY_PIT )
    public void removeAllFromPit (){
    
-      Pit tmpValue;
-      Iterator<? extends Pit> iter = this.iteratorOfPit ();
+      AbstractPit tmpValue;
+      Iterator<? extends AbstractPit> iter = this.iteratorOfPit ();
       while (iter.hasNext ())
       {
-         tmpValue = (Pit) iter.next ();
+         tmpValue = (AbstractPit) iter.next ();
          this.removeFromPit (tmpValue);
       }
    
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean hasInPit (Pit value)
+   public boolean hasInPit (AbstractPit value)
    {
       return ((this.pit != null) &&
               (value != null) &&
@@ -110,10 +110,10 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public ListIterator<? extends Pit> iteratorOfPit ()
+   public ListIterator<? extends AbstractPit> iteratorOfPit ()
    {
       return ((this.pit == null)
-              ? FEmptyListIterator.<Pit>get ()
+              ? FEmptyListIterator.<AbstractPit>get ()
               : this.pit.listIterator());
    }
 
@@ -125,7 +125,7 @@ public class GameBoard
               : this.pit.size ());
    }
    @Property( name = PROPERTY_PIT )
-   public Pit getFirstOfPit ()
+   public AbstractPit getFirstOfPit ()
    {
       if (pit == null)
       {
@@ -137,12 +137,12 @@ public class GameBoard
          { 	 
             return null; 	 
          }
-         return (Pit) pit.getFirst ();
+         return (AbstractPit) pit.getFirst ();
       }
    }
 
    @Property( name = PROPERTY_PIT )
-   public Pit getLastOfPit ()
+   public AbstractPit getLastOfPit ()
    {
       if (pit == null)
       {
@@ -154,15 +154,15 @@ public class GameBoard
          { 	 
             return null; 	 
          }
-         return (Pit) pit.getLast ();
+         return (AbstractPit) pit.getLast ();
       }
    }
    @Property( name = PROPERTY_PIT )
-   public Pit getFromPit ( int index )
+   public AbstractPit getFromPit ( int index )
    {
       if (index >= 0 && index < sizeOfPit ())
       {
-         return (Pit) this.pit.get (index);
+         return (AbstractPit) this.pit.get (index);
       }
       else
       {
@@ -171,7 +171,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public int indexOfPit ( Pit value )
+   public int indexOfPit ( AbstractPit value )
    {
       return ((this.pit == null)
               ? -1
@@ -179,7 +179,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public int indexOfPit ( Pit value, int index )
+   public int indexOfPit ( AbstractPit value, int index )
    {
       return ((this.pit == null)
    	       ? -1
@@ -187,7 +187,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public int lastIndexOfPit ( Pit value )
+   public int lastIndexOfPit ( AbstractPit value )
    {
       return ((this.pit == null)
                ? -1
@@ -195,7 +195,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public int lastIndexOfPit ( Pit value, int index )
+   public int lastIndexOfPit ( AbstractPit value, int index )
    {
       return ((this.pit == null)
                ? -1
@@ -203,7 +203,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean isBeforeOfPit ( Pit leftObject, Pit rightObject)
+   public boolean isBeforeOfPit ( AbstractPit leftObject, AbstractPit rightObject)
    {
       if (pit == null)
       {
@@ -216,7 +216,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean isAfterOfPit ( Pit leftObject, Pit rightObject)
+   public boolean isAfterOfPit ( AbstractPit leftObject, AbstractPit rightObject)
    {
       if (pit == null)
       {
@@ -229,7 +229,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public Pit getNextOfPit ( Pit object )
+   public AbstractPit getNextOfPit ( AbstractPit object )
    {
       if (pit == null)
       {
@@ -237,12 +237,12 @@ public class GameBoard
       }
       else
       {
-         return (Pit) pit.getNextOf (object);
+         return (AbstractPit) pit.getNextOf (object);
       }
    }
 
    @Property( name = PROPERTY_PIT )
-   public Pit getNextOfPit ( Pit object, int index)
+   public AbstractPit getNextOfPit ( AbstractPit object, int index)
    {
       if (pit == null)
       {
@@ -250,12 +250,12 @@ public class GameBoard
       }
       else
       {
-         return (Pit) pit.getNextOf (object, index);
+         return (AbstractPit) pit.getNextOf (object, index);
       }
    }
 
    @Property( name = PROPERTY_PIT )
-   public Pit getPreviousOfPit ( Pit object)
+   public AbstractPit getPreviousOfPit ( AbstractPit object)
    {
       if (pit == null)
       {
@@ -263,12 +263,12 @@ public class GameBoard
       }
       else
       {
-         return (Pit) pit.getPreviousOf (object);
+         return (AbstractPit) pit.getPreviousOf (object);
       }
    }
 
    @Property( name = PROPERTY_PIT )
-   public Pit getPreviousOfPit ( Pit object, int index )
+   public AbstractPit getPreviousOfPit ( AbstractPit object, int index )
    {
       if (pit == null)
       {
@@ -276,12 +276,12 @@ public class GameBoard
       }
       else
       {
-         return (Pit) pit.getPreviousOf (object, index);
+         return (AbstractPit) pit.getPreviousOf (object, index);
       }
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean addAfterOfPit ( Pit refObject, Pit value)
+   public boolean addAfterOfPit ( AbstractPit refObject, AbstractPit value)
    {
       boolean changed = false;
       if (pit != null)
@@ -293,7 +293,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean addBeforeOfPit ( Pit refObject, Pit value)
+   public boolean addBeforeOfPit ( AbstractPit refObject, AbstractPit value)
    {
       boolean changed = false;
       if (pit != null)
@@ -305,7 +305,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean addToPit (int index, Pit value)
+   public boolean addToPit (int index, AbstractPit value)
    {
       boolean changed = false;
 
@@ -313,7 +313,7 @@ public class GameBoard
       {
          if (this.pit == null)
          {
-            this.pit = new FLinkedList<Pit> (); // or FTreeSet () or FLinkedList ()
+            this.pit = new FLinkedList<AbstractPit> (); // or FTreeSet () or FLinkedList ()
          }
          int oldIndex = this.indexOfPit (value);
          if (oldIndex != index)
@@ -343,7 +343,7 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean setInPit (int index, Pit value)
+   public boolean setInPit (int index, AbstractPit value)
    {
       boolean changed = false;
 
@@ -351,7 +351,7 @@ public class GameBoard
       {
          if (this.pit == null)
          {
-            this.pit = new FLinkedList<Pit> (); // or FTreeSet () or FLinkedList ()
+            this.pit = new FLinkedList<AbstractPit> (); // or FTreeSet () or FLinkedList ()
          }
          int oldIndex = this.indexOfPit (value);
          if (oldIndex != index)
@@ -359,7 +359,7 @@ public class GameBoard
             try
             {
             
-               Pit oldValue = (Pit)this.pit.set (index, value);
+               AbstractPit oldValue = (AbstractPit)this.pit.set (index, value);
                if (oldIndex > -1)
                {
                   this.pit.remove (oldIndex);
@@ -395,7 +395,7 @@ public class GameBoard
       if (this.pit != null && (index >= 0 && index < this.pit.size ()))
       {
       
-         Pit tmpValue = (Pit) this.pit.remove (index);
+         AbstractPit tmpValue = (AbstractPit) this.pit.remove (index);
          if (tmpValue != null)
          {
             tmpValue.setGameBoard (null);
@@ -407,14 +407,14 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public boolean removeFromPit (int index, Pit value)
+   public boolean removeFromPit (int index, AbstractPit value)
    {
       boolean changed = false;
 
       if ((this.pit != null) && (value != null) && 
           (index >= 0 && index < this.pit.size ()))
       {
-         Pit oldValue = (Pit) this.pit.get (index);
+         AbstractPit oldValue = (AbstractPit) this.pit.get (index);
          if (oldValue == value)
          {
          
@@ -426,9 +426,9 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public ListIterator<? extends Pit> iteratorOfPit ( Pit  lowerBound )
+   public ListIterator<? extends AbstractPit> iteratorOfPit ( AbstractPit  lowerBound )
    {
-      ListIterator<Pit> result = FEmptyListIterator.<Pit>get ();
+      ListIterator<AbstractPit> result = FEmptyListIterator.<AbstractPit>get ();
 
       if (pit != null && lowerBound != null)
       {
@@ -444,10 +444,10 @@ public class GameBoard
    }
 
    @Property( name = PROPERTY_PIT )
-   public ListIterator<? extends Pit> iteratorOfPit (int index)
+   public ListIterator<? extends AbstractPit> iteratorOfPit (int index)
    {
       return ((this.pit == null)
-              ? FEmptyListIterator.<Pit>get ()
+              ? FEmptyListIterator.<AbstractPit>get ()
               : this.pit.listIterator (Math.max(0,Math.min(index,this.pit.size ()))));
    }
 

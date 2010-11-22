@@ -23,7 +23,7 @@ public class Turn
 
    /**
     * <pre>
-    *           0..1     has     0..1
+    *           0..1     is     0..1
     * Turn ------------------------- Player
     *           turn               player
     * </pre>

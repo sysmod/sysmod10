@@ -5,7 +5,6 @@ import sysmod.mancala.Store;
 import de.uni_kassel.features.annotation.util.Property; // requires Fujaba5/libs/features.jar in classpath
 import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/features.jar in classpath
 import sysmod.mancala.Player;
-import sysmod.mancala.GameBoard;
 import sysmod.mancala.Pit;
 import sysmod.mancala.Turn;
 import de.upb.tools.sdm.*; // requires Fujaba5/libs/RuntimeTools.jar in classpath
@@ -116,8 +115,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          JavaSDM.ensure ( artjom != null, "check object artjom is really bound" );
          // check object artjomStore is really bound
          JavaSDM.ensure ( artjomStore != null, "check object artjomStore is really bound" );
-         // check object board is really bound
-         JavaSDM.ensure ( board != null, "check object board is really bound" );
          // check object pit10 is really bound
          JavaSDM.ensure ( pit10 != null, "check object pit10 is really bound" );
          // check object pit11 is really bound
@@ -150,42 +147,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          JavaSDM.ensure ( ulnoStore != null, "check object ulnoStore is really bound" );
          // check isomorphic binding between objects ulno and artjom
          JavaSDM.ensure ( !ulno.equals (artjom), "check isomorphic binding between objects ulno and artjom" );
-
-         // check isomorphic binding between objects pit10 and artjomStore
-         JavaSDM.ensure ( !pit10.equals (artjomStore), "check isomorphic binding between objects pit10 and artjomStore" );
-
-         // check isomorphic binding between objects pit11 and artjomStore
-         JavaSDM.ensure ( !pit11.equals (artjomStore), "check isomorphic binding between objects pit11 and artjomStore" );
-
-         // check isomorphic binding between objects pit12 and artjomStore
-         JavaSDM.ensure ( !pit12.equals (artjomStore), "check isomorphic binding between objects pit12 and artjomStore" );
-
-         // check isomorphic binding between objects pit1 and artjomStore
-         JavaSDM.ensure ( !pit1.equals (artjomStore), "check isomorphic binding between objects pit1 and artjomStore" );
-
-         // check isomorphic binding between objects pit2 and artjomStore
-         JavaSDM.ensure ( !pit2.equals (artjomStore), "check isomorphic binding between objects pit2 and artjomStore" );
-
-         // check isomorphic binding between objects pit3 and artjomStore
-         JavaSDM.ensure ( !pit3.equals (artjomStore), "check isomorphic binding between objects pit3 and artjomStore" );
-
-         // check isomorphic binding between objects pit4 and artjomStore
-         JavaSDM.ensure ( !pit4.equals (artjomStore), "check isomorphic binding between objects pit4 and artjomStore" );
-
-         // check isomorphic binding between objects pit5 and artjomStore
-         JavaSDM.ensure ( !pit5.equals (artjomStore), "check isomorphic binding between objects pit5 and artjomStore" );
-
-         // check isomorphic binding between objects pit6 and artjomStore
-         JavaSDM.ensure ( !pit6.equals (artjomStore), "check isomorphic binding between objects pit6 and artjomStore" );
-
-         // check isomorphic binding between objects pit7 and artjomStore
-         JavaSDM.ensure ( !pit7.equals (artjomStore), "check isomorphic binding between objects pit7 and artjomStore" );
-
-         // check isomorphic binding between objects pit8 and artjomStore
-         JavaSDM.ensure ( !pit8.equals (artjomStore), "check isomorphic binding between objects pit8 and artjomStore" );
-
-         // check isomorphic binding between objects pit9 and artjomStore
-         JavaSDM.ensure ( !pit9.equals (artjomStore), "check isomorphic binding between objects pit9 and artjomStore" );
 
          // check isomorphic binding between objects ulnoStore and artjomStore
          JavaSDM.ensure ( !ulnoStore.equals (artjomStore), "check isomorphic binding between objects ulnoStore and artjomStore" );
@@ -223,9 +184,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit10
          JavaSDM.ensure ( !pit9.equals (pit10), "check isomorphic binding between objects pit9 and pit10" );
 
-         // check isomorphic binding between objects ulnoStore and pit10
-         JavaSDM.ensure ( !ulnoStore.equals (pit10), "check isomorphic binding between objects ulnoStore and pit10" );
-
          // check isomorphic binding between objects pit12 and pit11
          JavaSDM.ensure ( !pit12.equals (pit11), "check isomorphic binding between objects pit12 and pit11" );
 
@@ -256,9 +214,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit11
          JavaSDM.ensure ( !pit9.equals (pit11), "check isomorphic binding between objects pit9 and pit11" );
 
-         // check isomorphic binding between objects ulnoStore and pit11
-         JavaSDM.ensure ( !ulnoStore.equals (pit11), "check isomorphic binding between objects ulnoStore and pit11" );
-
          // check isomorphic binding between objects pit12 and pit1
          JavaSDM.ensure ( !pit12.equals (pit1), "check isomorphic binding between objects pit12 and pit1" );
 
@@ -286,9 +241,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit12
          JavaSDM.ensure ( !pit9.equals (pit12), "check isomorphic binding between objects pit9 and pit12" );
 
-         // check isomorphic binding between objects ulnoStore and pit12
-         JavaSDM.ensure ( !ulnoStore.equals (pit12), "check isomorphic binding between objects ulnoStore and pit12" );
-
          // check isomorphic binding between objects pit2 and pit1
          JavaSDM.ensure ( !pit2.equals (pit1), "check isomorphic binding between objects pit2 and pit1" );
 
@@ -313,9 +265,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit1
          JavaSDM.ensure ( !pit9.equals (pit1), "check isomorphic binding between objects pit9 and pit1" );
 
-         // check isomorphic binding between objects ulnoStore and pit1
-         JavaSDM.ensure ( !ulnoStore.equals (pit1), "check isomorphic binding between objects ulnoStore and pit1" );
-
          // check isomorphic binding between objects pit3 and pit2
          JavaSDM.ensure ( !pit3.equals (pit2), "check isomorphic binding between objects pit3 and pit2" );
 
@@ -337,9 +286,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit2
          JavaSDM.ensure ( !pit9.equals (pit2), "check isomorphic binding between objects pit9 and pit2" );
 
-         // check isomorphic binding between objects ulnoStore and pit2
-         JavaSDM.ensure ( !ulnoStore.equals (pit2), "check isomorphic binding between objects ulnoStore and pit2" );
-
          // check isomorphic binding between objects pit4 and pit3
          JavaSDM.ensure ( !pit4.equals (pit3), "check isomorphic binding between objects pit4 and pit3" );
 
@@ -358,9 +304,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit3
          JavaSDM.ensure ( !pit9.equals (pit3), "check isomorphic binding between objects pit9 and pit3" );
 
-         // check isomorphic binding between objects ulnoStore and pit3
-         JavaSDM.ensure ( !ulnoStore.equals (pit3), "check isomorphic binding between objects ulnoStore and pit3" );
-
          // check isomorphic binding between objects pit5 and pit4
          JavaSDM.ensure ( !pit5.equals (pit4), "check isomorphic binding between objects pit5 and pit4" );
 
@@ -376,9 +319,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit4
          JavaSDM.ensure ( !pit9.equals (pit4), "check isomorphic binding between objects pit9 and pit4" );
 
-         // check isomorphic binding between objects ulnoStore and pit4
-         JavaSDM.ensure ( !ulnoStore.equals (pit4), "check isomorphic binding between objects ulnoStore and pit4" );
-
          // check isomorphic binding between objects pit6 and pit5
          JavaSDM.ensure ( !pit6.equals (pit5), "check isomorphic binding between objects pit6 and pit5" );
 
@@ -391,9 +331,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit5
          JavaSDM.ensure ( !pit9.equals (pit5), "check isomorphic binding between objects pit9 and pit5" );
 
-         // check isomorphic binding between objects ulnoStore and pit5
-         JavaSDM.ensure ( !ulnoStore.equals (pit5), "check isomorphic binding between objects ulnoStore and pit5" );
-
          // check isomorphic binding between objects pit7 and pit6
          JavaSDM.ensure ( !pit7.equals (pit6), "check isomorphic binding between objects pit7 and pit6" );
 
@@ -403,74 +340,77 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // check isomorphic binding between objects pit9 and pit6
          JavaSDM.ensure ( !pit9.equals (pit6), "check isomorphic binding between objects pit9 and pit6" );
 
-         // check isomorphic binding between objects ulnoStore and pit6
-         JavaSDM.ensure ( !ulnoStore.equals (pit6), "check isomorphic binding between objects ulnoStore and pit6" );
-
          // check isomorphic binding between objects pit8 and pit7
          JavaSDM.ensure ( !pit8.equals (pit7), "check isomorphic binding between objects pit8 and pit7" );
 
          // check isomorphic binding between objects pit9 and pit7
          JavaSDM.ensure ( !pit9.equals (pit7), "check isomorphic binding between objects pit9 and pit7" );
 
-         // check isomorphic binding between objects ulnoStore and pit7
-         JavaSDM.ensure ( !ulnoStore.equals (pit7), "check isomorphic binding between objects ulnoStore and pit7" );
-
          // check isomorphic binding between objects pit9 and pit8
          JavaSDM.ensure ( !pit9.equals (pit8), "check isomorphic binding between objects pit9 and pit8" );
 
-         // check isomorphic binding between objects ulnoStore and pit8
-         JavaSDM.ensure ( !ulnoStore.equals (pit8), "check isomorphic binding between objects ulnoStore and pit8" );
+         // check link is from ulno to turn
+         JavaSDM.ensure (turn.equals (ulno.getTurn ()), "check link is from ulno to turn");
 
-         // check isomorphic binding between objects ulnoStore and pit9
-         JavaSDM.ensure ( !ulnoStore.equals (pit9), "check isomorphic binding between objects ulnoStore and pit9" );
+         // check link next of from artjomStore to pit1
+         JavaSDM.ensure (pit1.equals (artjomStore.getNextPit ()), "check link next of from artjomStore to pit1");
 
-         // check link contains from artjomStore to board
-         JavaSDM.ensure (board.equals (artjomStore.getGameBoard ()), "check link contains from artjomStore to board");
+         // check link next of from pit10 to pit11
+         JavaSDM.ensure (pit11.equals (pit10.getNextPit ()), "check link next of from pit10 to pit11");
 
-         // check link contains from pit10 to board
-         JavaSDM.ensure (board.equals (pit10.getGameBoard ()), "check link contains from pit10 to board");
+         // check link next of from pit11 to pit12
+         JavaSDM.ensure (pit12.equals (pit11.getNextPit ()), "check link next of from pit11 to pit12");
 
-         // check link contains from pit11 to board
-         JavaSDM.ensure (board.equals (pit11.getGameBoard ()), "check link contains from pit11 to board");
+         // check link next of from pit12 to artjomStore
+         JavaSDM.ensure (artjomStore.equals (pit12.getNextPit ()), "check link next of from pit12 to artjomStore");
 
-         // check link contains from pit12 to board
-         JavaSDM.ensure (board.equals (pit12.getGameBoard ()), "check link contains from pit12 to board");
+         // check link next of from pit1 to pit2
+         JavaSDM.ensure (pit2.equals (pit1.getNextPit ()), "check link next of from pit1 to pit2");
 
-         // check link contains from pit1 to board
-         JavaSDM.ensure (board.equals (pit1.getGameBoard ()), "check link contains from pit1 to board");
+         // check link next of from pit2 to pit3
+         JavaSDM.ensure (pit3.equals (pit2.getNextPit ()), "check link next of from pit2 to pit3");
 
-         // check link contains from pit2 to board
-         JavaSDM.ensure (board.equals (pit2.getGameBoard ()), "check link contains from pit2 to board");
+         // check link next of from pit3 to pit4
+         JavaSDM.ensure (pit4.equals (pit3.getNextPit ()), "check link next of from pit3 to pit4");
 
-         // check link contains from pit3 to board
-         JavaSDM.ensure (board.equals (pit3.getGameBoard ()), "check link contains from pit3 to board");
+         // check link next of from pit4 to pit5
+         JavaSDM.ensure (pit5.equals (pit4.getNextPit ()), "check link next of from pit4 to pit5");
 
-         // check link contains from pit4 to board
-         JavaSDM.ensure (board.equals (pit4.getGameBoard ()), "check link contains from pit4 to board");
+         // check link next of from pit5 to pit6
+         JavaSDM.ensure (pit6.equals (pit5.getNextPit ()), "check link next of from pit5 to pit6");
 
-         // check link contains from pit5 to board
-         JavaSDM.ensure (board.equals (pit5.getGameBoard ()), "check link contains from pit5 to board");
+         // check link next of from pit6 to ulnoStore
+         JavaSDM.ensure (ulnoStore.equals (pit6.getNextPit ()), "check link next of from pit6 to ulnoStore");
 
-         // check link contains from pit6 to board
-         JavaSDM.ensure (board.equals (pit6.getGameBoard ()), "check link contains from pit6 to board");
+         // check link next of from pit7 to pit8
+         JavaSDM.ensure (pit8.equals (pit7.getNextPit ()), "check link next of from pit7 to pit8");
 
-         // check link contains from pit7 to board
-         JavaSDM.ensure (board.equals (pit7.getGameBoard ()), "check link contains from pit7 to board");
+         // check link next of from pit8 to pit9
+         JavaSDM.ensure (pit9.equals (pit8.getNextPit ()), "check link next of from pit8 to pit9");
 
-         // check link contains from pit8 to board
-         JavaSDM.ensure (board.equals (pit8.getGameBoard ()), "check link contains from pit8 to board");
+         // check link next of from pit9 to pit10
+         JavaSDM.ensure (pit10.equals (pit9.getNextPit ()), "check link next of from pit9 to pit10");
 
-         // check link contains from pit9 to board
-         JavaSDM.ensure (board.equals (pit9.getGameBoard ()), "check link contains from pit9 to board");
+         // check link next of from ulnoStore to pit7
+         JavaSDM.ensure (pit7.equals (ulnoStore.getNextPit ()), "check link next of from ulnoStore to pit7");
 
-         // check link contains from ulnoStore to board
-         JavaSDM.ensure (board.equals (ulnoStore.getGameBoard ()), "check link contains from ulnoStore to board");
+         // check link opposite of from pit12 to pit1
+         JavaSDM.ensure (pit1.equals (pit12.getOppositePit ()), "check link opposite of from pit12 to pit1");
 
-         // check link has from turn to artjom
-         JavaSDM.ensure (artjom.equals (turn.getPlayer ()), "check link has from turn to artjom");
+         // check link opposite of from pit11 to pit2
+         JavaSDM.ensure (pit2.equals (pit11.getOppositePit ()), "check link opposite of from pit11 to pit2");
 
-         // check link has from turn to ulno
-         JavaSDM.ensure (!(ulno.equals (turn.getPlayer ())), "check link has from turn to ulno");
+         // check link opposite of from pit10 to pit3
+         JavaSDM.ensure (pit3.equals (pit10.getOppositePit ()), "check link opposite of from pit10 to pit3");
+
+         // check link opposite of from pit9 to pit4
+         JavaSDM.ensure (pit4.equals (pit9.getOppositePit ()), "check link opposite of from pit9 to pit4");
+
+         // check link opposite of from pit8 to pit5
+         JavaSDM.ensure (pit5.equals (pit8.getOppositePit ()), "check link opposite of from pit8 to pit5");
+
+         // check link opposite of from pit7 to pit6
+         JavaSDM.ensure (pit6.equals (pit7.getOppositePit ()), "check link opposite of from pit7 to pit6");
 
          // check link owns from artjomStore to artjom
          JavaSDM.ensure (artjom.equals (artjomStore.getPlayer ()), "check link owns from artjomStore to artjom");
@@ -515,6 +455,9 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          JavaSDM.ensure (ulno.equals (ulnoStore.getPlayer ()), "check link owns from ulnoStore to ulno");
 
          // attribute condition seeds == 0
+         JavaSDM.ensure ( pit6.getSeeds () == 0, "attribute condition seeds == 0" );
+
+         // attribute condition seeds == 0
          JavaSDM.ensure ( pit1.getSeeds () == 0, "attribute condition seeds == 0" );
 
          // attribute condition seeds == 0
@@ -522,9 +465,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
 
          // attribute condition seeds == 0
          JavaSDM.ensure ( pit5.getSeeds () == 0, "attribute condition seeds == 0" );
-
-         // attribute condition seeds == 0
-         JavaSDM.ensure ( pit6.getSeeds () == 0, "attribute condition seeds == 0" );
 
          // attribute condition seeds == 0
          JavaSDM.ensure ( pit12.getSeeds () == 0, "attribute condition seeds == 0" );
@@ -536,19 +476,19 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          JavaSDM.ensure ( pit10.getSeeds () == 1, "attribute condition seeds == 1" );
 
          // attribute condition seeds == 2
-         JavaSDM.ensure ( pit2.getSeeds () == 2, "attribute condition seeds == 2" );
+         JavaSDM.ensure ( pit8.getSeeds () == 2, "attribute condition seeds == 2" );
 
          // attribute condition seeds == 2
-         JavaSDM.ensure ( pit8.getSeeds () == 2, "attribute condition seeds == 2" );
+         JavaSDM.ensure ( pit2.getSeeds () == 2, "attribute condition seeds == 2" );
 
          // attribute condition seeds == 3
          JavaSDM.ensure ( pit9.getSeeds () == 3, "attribute condition seeds == 3" );
 
          // attribute condition seeds == 5
-         JavaSDM.ensure ( artjomStore.getSeeds () == 5, "attribute condition seeds == 5" );
+         JavaSDM.ensure ( ulnoStore.getSeeds () == 5, "attribute condition seeds == 5" );
 
          // attribute condition seeds == 5
-         JavaSDM.ensure ( ulnoStore.getSeeds () == 5, "attribute condition seeds == 5" );
+         JavaSDM.ensure ( artjomStore.getSeeds () == 5, "attribute condition seeds == 5" );
 
          // attribute condition seeds == 8
          JavaSDM.ensure ( pit3.getSeeds () == 8, "attribute condition seeds == 8" );
@@ -570,47 +510,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          throw fujaba_AssertionFailedError;
       }
 
-   }
-
-   /**
-    * <pre>
-    *           0..1     object_board     0..1
-    * Ulno_makes_a_move_from_house_6Test ------------------------> GameBoard
-    *           test               board
-    * </pre>
-    */
-   public static final String PROPERTY_BOARD = "board";
-
-   @Property( name = PROPERTY_BOARD, kind = ReferenceHandler.ReferenceKind.TO_ONE,
-         adornment = ReferenceHandler.Adornment.NONE)
-   private GameBoard board;
-
-   @Property( name = PROPERTY_BOARD )
-   public boolean setBoard (GameBoard value)
-   {
-      boolean changed = false;
-
-      if (this.board != value)
-      {
-      
-         GameBoard oldValue = this.board;
-         this.board = value;
-         changed = true;
-      
-      }
-      return changed;
-   }
-
-   @Property( name = PROPERTY_BOARD )
-   public Ulno_makes_a_move_from_house_6Test withBoard (GameBoard value)
-   {
-      setBoard (value);
-      return this;
-   }
-
-   public GameBoard getBoard ()
-   {
-      return this.board;
    }
 
    /**
@@ -1109,23 +1008,22 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
    {
       boolean fujaba__Success = false;
       Store artjomStore = null;
-      GameBoard board = null;
+      Pit pit1 = null;
       Player artjom = null;
-      Store ulnoStore = null;
-      Player ulno = null;
       Pit pit12 = null;
+      Store ulnoStore = null;
+      Pit pit7 = null;
+      Player ulno = null;
+      Pit pit6 = null;
+      Turn turn = null;
+      Pit pit2 = null;
+      Pit pit3 = null;
       Pit pit11 = null;
+      Pit pit4 = null;
       Pit pit10 = null;
+      Pit pit5 = null;
       Pit pit9 = null;
       Pit pit8 = null;
-      Pit pit7 = null;
-      Pit pit6 = null;
-      Pit pit5 = null;
-      Pit pit4 = null;
-      Pit pit3 = null;
-      Pit pit2 = null;
-      Pit pit1 = null;
-      Turn turn = null;
 
       // // start situation: 
       // story pattern 
@@ -1136,56 +1034,53 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // create object artjomStore
          artjomStore = new Store ( );
 
-         // create object board
-         board = new GameBoard ( );
+         // create object pit1
+         pit1 = new Pit ( );
 
          // create object artjom
          artjom = new Player ( );
 
+         // create object pit12
+         pit12 = new Pit ( );
+
          // create object ulnoStore
          ulnoStore = new Store ( );
+
+         // create object pit7
+         pit7 = new Pit ( );
 
          // create object ulno
          ulno = new Player ( );
 
-         // create object pit12
-         pit12 = new Pit ( );
+         // create object pit6
+         pit6 = new Pit ( );
+
+         // create object turn
+         turn = Turn.getInstance();
+
+         // create object pit2
+         pit2 = new Pit ( );
+
+         // create object pit3
+         pit3 = new Pit ( );
 
          // create object pit11
          pit11 = new Pit ( );
 
+         // create object pit4
+         pit4 = new Pit ( );
+
          // create object pit10
          pit10 = new Pit ( );
+
+         // create object pit5
+         pit5 = new Pit ( );
 
          // create object pit9
          pit9 = new Pit ( );
 
          // create object pit8
          pit8 = new Pit ( );
-
-         // create object pit7
-         pit7 = new Pit ( );
-
-         // create object pit6
-         pit6 = new Pit ( );
-
-         // create object pit5
-         pit5 = new Pit ( );
-
-         // create object pit4
-         pit4 = new Pit ( );
-
-         // create object pit3
-         pit3 = new Pit ( );
-
-         // create object pit2
-         pit2 = new Pit ( );
-
-         // create object pit1
-         pit1 = new Pit ( );
-
-         // create object turn
-         turn = Turn.getInstance();
 
          // assign attribute artjomStore
          artjomStore.setSeeds (5);
@@ -1215,11 +1110,17 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          pit11.setSeeds (9);
          // assign attribute pit12
          pit12.setSeeds (0);
-         // create link object_board from this to board
-         this.setBoard (board);
+         // create link object_ulno from this to ulno
+         this.setUlno (ulno);
+
+         // create link object_artjom from this to artjom
+         this.setArtjom (artjom);
 
          // create link owns from artjom to artjomStore
          artjom.addToPit (artjomStore);
+
+         // create link next of from pit12 to artjomStore
+         pit12.setNextPit (artjomStore);
 
          // create link object_artjomStore from this to artjomStore
          this.setArtjomStore (artjomStore);
@@ -1227,135 +1128,146 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          // create link owns from ulno to ulnoStore
          ulno.addToPit (ulnoStore);
 
+         // create link next of from pit6 to ulnoStore
+         pit6.setNextPit (ulnoStore);
+
          // create link object_ulnoStore from this to ulnoStore
          this.setUlnoStore (ulnoStore);
 
-         // create link owns from pit12 to artjom
-         pit12.setPlayer (artjom);
-
-         // create link owns from pit11 to artjom
-         pit11.setPlayer (artjom);
-
-         // create link owns from pit10 to artjom
-         pit10.setPlayer (artjom);
-
-         // create link owns from pit9 to artjom
-         pit9.setPlayer (artjom);
-
-         // create link owns from pit8 to artjom
-         pit8.setPlayer (artjom);
-
-         // create link owns from pit7 to artjom
-         pit7.setPlayer (artjom);
-
-         // create link object_artjom from this to artjom
-         this.setArtjom (artjom);
-
-         // create link owns from pit6 to ulno
-         pit6.setPlayer (ulno);
-
-         // create link owns from pit5 to ulno
-         pit5.setPlayer (ulno);
-
-         // create link owns from pit4 to ulno
-         pit4.setPlayer (ulno);
-
-         // create link owns from pit3 to ulno
-         pit3.setPlayer (ulno);
-
-         // create link owns from pit2 to ulno
-         pit2.setPlayer (ulno);
-
-         // create link owns from pit1 to ulno
-         pit1.setPlayer (ulno);
-
-         // create link has from turn to ulno
-         turn.setPlayer (ulno);
-
-         // create link object_ulno from this to ulno
-         this.setUlno (ulno);
+         // create link is from ulno to turn
+         ulno.setTurn (turn);
 
          // create link object_turn from this to turn
          this.setTurn (turn);
 
-         // create link contains from board to pit1
-         board.addToPit (pit1);
+         // create link opposite of from pit12 to pit1
+         pit12.setOppositePit (pit1);
+
+         // create link owns from ulno to pit1
+         ulno.addToPit (pit1);
+
+         // create link next of from artjomStore to pit1
+         artjomStore.setNextPit (pit1);
 
          // create link object_pit1 from this to pit1
          this.setPit1 (pit1);
 
-         // create link contains from board to pit2
-         board.addAfterOfPit (pit1, pit2);
+         // create link opposite of from pit11 to pit2
+         pit11.setOppositePit (pit2);
+
+         // create link owns from ulno to pit2
+         ulno.addToPit (pit2);
+
+         // create link next of from pit1 to pit2
+         pit1.setNextPit (pit2);
 
          // create link object_pit2 from this to pit2
          this.setPit2 (pit2);
 
-         // create link contains from board to pit3
-         board.addAfterOfPit (pit2, pit3);
+         // create link opposite of from pit10 to pit3
+         pit10.setOppositePit (pit3);
+
+         // create link owns from ulno to pit3
+         ulno.addToPit (pit3);
+
+         // create link next of from pit2 to pit3
+         pit2.setNextPit (pit3);
 
          // create link object_pit3 from this to pit3
          this.setPit3 (pit3);
 
-         // create link contains from board to pit4
-         board.addAfterOfPit (pit3, pit4);
+         // create link opposite of from pit9 to pit4
+         pit9.setOppositePit (pit4);
+
+         // create link owns from ulno to pit4
+         ulno.addToPit (pit4);
+
+         // create link next of from pit3 to pit4
+         pit3.setNextPit (pit4);
 
          // create link object_pit4 from this to pit4
          this.setPit4 (pit4);
 
-         // create link contains from board to pit5
-         board.addAfterOfPit (pit4, pit5);
+         // create link opposite of from pit8 to pit5
+         pit8.setOppositePit (pit5);
+
+         // create link owns from ulno to pit5
+         ulno.addToPit (pit5);
+
+         // create link next of from pit4 to pit5
+         pit4.setNextPit (pit5);
 
          // create link object_pit5 from this to pit5
          this.setPit5 (pit5);
 
-         // create link contains from board to pit6
-         board.addAfterOfPit (pit5, pit6);
+         // create link opposite of from pit7 to pit6
+         pit7.setOppositePit (pit6);
+
+         // create link owns from ulno to pit6
+         ulno.addToPit (pit6);
+
+         // create link next of from pit5 to pit6
+         pit5.setNextPit (pit6);
 
          // create link object_pit6 from this to pit6
          this.setPit6 (pit6);
 
+         // create link owns from artjom to pit7
+         artjom.addToPit (pit7);
+
+         // create link next of from ulnoStore to pit7
+         ulnoStore.setNextPit (pit7);
+
          // create link object_pit7 from this to pit7
          this.setPit7 (pit7);
+
+         // create link owns from artjom to pit8
+         artjom.addToPit (pit8);
+
+         // create link next of from pit7 to pit8
+         pit7.setNextPit (pit8);
 
          // create link object_pit8 from this to pit8
          this.setPit8 (pit8);
 
+         // create link owns from artjom to pit9
+         artjom.addToPit (pit9);
+
+         // create link next of from pit8 to pit9
+         pit8.setNextPit (pit9);
+
          // create link object_pit9 from this to pit9
          this.setPit9 (pit9);
+
+         // create link owns from artjom to pit10
+         artjom.addToPit (pit10);
+
+         // create link next of from pit9 to pit10
+         pit9.setNextPit (pit10);
 
          // create link object_pit10 from this to pit10
          this.setPit10 (pit10);
 
+         // create link owns from artjom to pit11
+         artjom.addToPit (pit11);
+
+         // create link next of from pit10 to pit11
+         pit10.setNextPit (pit11);
+
          // create link object_pit11 from this to pit11
          this.setPit11 (pit11);
+
+         // create link owns from artjom to pit12
+         artjom.addToPit (pit12);
+
+         // create link next of from pit11 to pit12
+         pit11.setNextPit (pit12);
 
          // create link object_pit12 from this to pit12
          this.setPit12 (pit12);
 
-         // create link contains from board to ulnoStore
-         board.addAfterOfPit (pit6, ulnoStore);
-
-         // create link contains from board to pit7
-         board.addAfterOfPit (ulnoStore, pit7);
-
-         // create link contains from board to pit8
-         board.addAfterOfPit (pit7, pit8);
-
-         // create link contains from board to pit9
-         board.addAfterOfPit (pit8, pit9);
-
-         // create link contains from board to pit10
-         board.addAfterOfPit (pit9, pit10);
-
-         // create link contains from board to pit11
-         board.addAfterOfPit (pit10, pit11);
-
-         // create link contains from board to pit12
-         board.addAfterOfPit (pit11, pit12);
-
-         // create link contains from board to artjomStore
-         board.addAfterOfPit (pit12, artjomStore);
-
+         // collabStat call
+         pit6.move();
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
@@ -1513,7 +1425,6 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
    {
       this.setArtjomStore (null);
       this.setArtjom (null);
-      this.setBoard (null);
       this.setPit10 (null);
       this.setPit11 (null);
       this.setPit12 (null);
