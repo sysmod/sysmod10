@@ -5,8 +5,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Fujaba"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/fujaba"/>
-	<classpathentry kind="lib" path="E:/Programs/eclipse/plugins/de.uni_kassel.features_0.24.0.201005281321.jar"/>
-	<classpathentry kind="lib" path="E:/Programs/eclipse/plugins/de.uni_paderborn.runtimetools_1.0.4.201005281321.jar"/>
-	<classpathentry kind="lib" path="E:/Programs/eclipse/plugins/org.junit_3.8.2.v3_8_2_v20100427-1100/junit.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

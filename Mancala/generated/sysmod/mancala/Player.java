@@ -13,6 +13,10 @@ public class Player
 
 
 
+   public void makeMove (Pit pit )
+   {
+   }
+
    public static final String PROPERTY_NAME = "name";
 
    @Property( name = PROPERTY_NAME, kind = ReferenceHandler.ReferenceKind.ATTRIBUTE )
@@ -150,7 +154,7 @@ public class Player
 
    /**
     * <pre>
-    *           0..1     is     0..1
+    *           0..1     has     0..1
     * Player ------------------------- Turn
     *           player               turn
     * </pre>

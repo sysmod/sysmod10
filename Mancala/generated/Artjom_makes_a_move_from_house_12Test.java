@@ -1131,7 +1131,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link object_ulnoStore from this to ulnoStore
          this.setUlnoStore (ulnoStore);
 
-         // create link is from artjom to turn
+         // create link has from artjom to turn
          artjom.setTurn (turn);
 
          // create link object_turn from this to turn

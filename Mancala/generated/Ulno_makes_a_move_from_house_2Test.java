@@ -349,9 +349,6 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
          // check isomorphic binding between objects pit9 and pit8
          JavaSDM.ensure ( !pit9.equals (pit8), "check isomorphic binding between objects pit9 and pit8" );
 
-         // check link is from ulno to turn
-         JavaSDM.ensure (turn.equals (ulno.getTurn ()), "check link is from ulno to turn");
-
          // check link next of from artjomStore to pit1
          JavaSDM.ensure (pit1.equals (artjomStore.getNextPit ()), "check link next of from artjomStore to pit1");
 
@@ -1234,7 +1231,7 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
          // create link object_pit12 from this to pit12
          this.setPit12 (pit12);
 
-         // create link is from ulno to turn
+         // create link has from ulno to turn
          ulno.setTurn (turn);
 
          // create link object_turn from this to turn
