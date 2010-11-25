@@ -146,7 +146,7 @@ public class MancalaGUI {
 			aboutText = new JTextArea();
 			aboutText.setSize(100, 70);
 			aboutText.setName("About");
-			aboutText.setBackground(Color.white);
+			aboutText.setBackground(SystemColor.activeCaptionBorder);
 			aboutText.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
 		}
 		return aboutText;
@@ -231,6 +231,7 @@ public class MancalaGUI {
 			Gameboard = new JPanel();
 			Gameboard.setLayout(new GridBagLayout());
 			Gameboard.setEnabled(false);
+			Gameboard.setBackground(SystemColor.activeCaptionBorder);
 			Gameboard.add(getPit12(), gridBagConstraints);
 			Gameboard.add(getPit11(), gridBagConstraints1);
 			Gameboard.add(getPit1(), gridBagConstraints2);
@@ -309,86 +310,6 @@ public class MancalaGUI {
 			});
 		}
 		return pit1;
-	}
-
-	/**
-	 * This method initializes pit10	
-	 * 	
-	 * @return javax.swing.JButton	
-	 */
-	private JButton getPit10() {
-		if (pit10 == null) {
-			pit10 = new JButton();
-			pit10.setText("3");
-			pit10.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit10.setPreferredSize(new Dimension(60, 26));
-			pit10.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
-				}
-			});
-		}
-		return pit10;
-	}
-
-	/**
-	 * This method initializes pit9	
-	 * 	
-	 * @return javax.swing.JButton	
-	 */
-	private JButton getPit9() {
-		if (pit9 == null) {
-			pit9 = new JButton();
-			pit9.setText("3");
-			pit9.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit9.setPreferredSize(new Dimension(60, 26));
-			pit9.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
-				}
-			});
-		}
-		return pit9;
-	}
-
-	/**
-	 * This method initializes pit8	
-	 * 	
-	 * @return javax.swing.JButton	
-	 */
-	private JButton getPit8() {
-		if (pit8 == null) {
-			pit8 = new JButton();
-			pit8.setText("3");
-			pit8.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit8.setPreferredSize(new Dimension(60, 26));
-			pit8.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
-				}
-			});
-		}
-		return pit8;
-	}
-
-	/**
-	 * This method initializes pit7	
-	 * 	
-	 * @return javax.swing.JButton	
-	 */
-	private JButton getPit7() {
-		if (pit7 == null) {
-			pit7 = new JButton();
-			pit7.setText("3");
-			pit7.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit7.setPreferredSize(new Dimension(60, 26));
-			pit7.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
-				}
-			});
-		}
-		return pit7;
 	}
 
 	/**
@@ -492,6 +413,86 @@ public class MancalaGUI {
 	}
 
 	/**
+	 * This method initializes pit7	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getPit7() {
+		if (pit7 == null) {
+			pit7 = new JButton();
+			pit7.setText("3");
+			pit7.setFont(new Font("Dialog", Font.BOLD, 14));
+			pit7.setPreferredSize(new Dimension(60, 26));
+			pit7.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
+		}
+		return pit7;
+	}
+	
+	/**
+	 * This method initializes pit8	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getPit8() {
+		if (pit8 == null) {
+			pit8 = new JButton();
+			pit8.setText("3");
+			pit8.setFont(new Font("Dialog", Font.BOLD, 14));
+			pit8.setPreferredSize(new Dimension(60, 26));
+			pit8.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
+		}
+		return pit8;
+	}
+
+	/**
+	 * This method initializes pit9	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getPit9() {
+		if (pit9 == null) {
+			pit9 = new JButton();
+			pit9.setText("3");
+			pit9.setFont(new Font("Dialog", Font.BOLD, 14));
+			pit9.setPreferredSize(new Dimension(60, 26));
+			pit9.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
+		}
+		return pit9;
+	}
+	
+	/**
+	 * This method initializes pit10	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getPit10() {
+		if (pit10 == null) {
+			pit10 = new JButton();
+			pit10.setText("3");
+			pit10.setFont(new Font("Dialog", Font.BOLD, 14));
+			pit10.setPreferredSize(new Dimension(60, 26));
+			pit10.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					System.out.println("mouseClicked()"); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
+		}
+		return pit10;
+	}
+
+	/**
 	 * This method initializes rightPanel	
 	 * 	
 	 * @return javax.swing.JPanel	
@@ -580,7 +581,7 @@ public class MancalaGUI {
 			helpDialog = new JDialog(getJFrame());
 			helpDialog.setTitle("Mancala Help");
 			helpDialog.setBounds(new Rectangle(0, 0, 300, 200));
-			helpDialog.setMinimumSize(new Dimension(300, 200));
+			helpDialog.setSize(300, 200);
 			helpDialog.setContentPane(getHelp());
 		}
 		return helpDialog;
@@ -612,7 +613,8 @@ public class MancalaGUI {
 	private JTextPane getHelpText() {
 		if (helpText == null) {
 			helpText = new JTextPane();
-			helpText.setText("...");
+			helpText.setText("... uf khjg jkhg kjhg kjhg bjhg kujhg bjhg \nkjgh kjhg jkh kjh kjhg kjhv kjhv kjhv kjhv ");
+			helpText.setBackground(SystemColor.activeCaptionBorder);
 		}
 		return helpText;
 	}
