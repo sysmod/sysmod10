@@ -4,13 +4,44 @@
 package sysmod.mancala;
 import de.uni_kassel.features.annotation.util.Property; // requires Fujaba5/libs/features.jar in classpath
 import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/features.jar in classpath
+import de.upb.tools.sdm.*; // requires Fujaba5/libs/RuntimeTools.jar in classpath
 import java.util.*;
 import de.upb.tools.fca.*; // requires Fujaba5/libs/RuntimeTools.jar in classpath
+import de.upb.tools.pcs.PropertyChangeClient; // requires Fujaba5/libs/RuntimeTools.jar in classpath
+import java.beans.PropertyChangeSupport;
+import java.beans.PropertyChangeListener;
 
 
-public class Player
+public class Player	implements PropertyChangeClient
 {
 
+
+	protected final PropertyChangeSupport listeners = new PropertyChangeSupport(this);
+
+	public void addPropertyChangeListener(PropertyChangeListener listener)
+	{
+		getPropertyChangeSupport().addPropertyChangeListener(listener);
+	}
+
+	public void removePropertyChangeListener(PropertyChangeListener listener)
+	{
+		getPropertyChangeSupport().removePropertyChangeListener(listener);
+	}
+
+	public void addPropertyChangeListener(String property, PropertyChangeListener listener)
+	{
+		getPropertyChangeSupport().addPropertyChangeListener(property, listener);
+	}
+
+	public void removePropertyChangeListener(String property, PropertyChangeListener listener)
+	{
+		getPropertyChangeSupport().removePropertyChangeListener(property, listener);
+	}
+
+	public PropertyChangeSupport getPropertyChangeSupport()
+	{
+		return listeners;
+	}
 
 
    public void makeMove (Pit pit )
@@ -25,7 +56,12 @@ public class Player
    @Property( name = PROPERTY_NAME )
    public void setName (String value)
    {
-      this.name = value;
+      if ( ! JavaSDM.stringEquals (this.name, value))
+      {
+         String oldValue = this.name;
+         this.name = value;
+         getPropertyChangeSupport().firePropertyChange(PROPERTY_NAME, oldValue, value);
+      }
    }
 
    public Player withName (String value)
@@ -51,7 +87,7 @@ public class Player
 
    @Property( name = PROPERTY_PIT, partner = AbstractPit.PROPERTY_PLAYER, kind = ReferenceHandler.ReferenceKind.TO_MANY,
          adornment = ReferenceHandler.Adornment.NONE)
-   private FHashSet<AbstractPit> pit;
+   private FPropHashSet<AbstractPit> pit;
 
    @Property( name = PROPERTY_PIT )
    public Set<? extends AbstractPit> getPit()
@@ -70,7 +106,7 @@ public class Player
       {
          if (this.pit == null)
          {
-            this.pit = new FHashSet<AbstractPit> ();
+            this.pit = new FPropHashSet<AbstractPit> (this, PROPERTY_PIT);
 
          }
       
@@ -186,6 +222,7 @@ public class Player
          {
             value.setPlayer (this);
          }
+            getPropertyChangeSupport().firePropertyChange(PROPERTY_TURN, oldValue, value);
          changed = true;
       
       }

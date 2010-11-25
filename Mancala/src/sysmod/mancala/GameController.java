@@ -1,5 +1,7 @@
 package sysmod.mancala;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +10,32 @@ public class GameController {
 	private Player playerOne;
 	private Player playerTwo;
 	
+	private PropertyChangeListener seedsChangeListener = new PropertyChangeListener() {
+
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			
+			
+		}
+		
+	};
+	
+	private PropertyChangeListener turnChangeListener = new PropertyChangeListener() {
+
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			
+			
+		}
+		
+	};
+	
 	private void initializePits(){
 		AbstractPit pit = new Pit();
 		pit.setPlayer(playerOne);
 		pits.add(pit);
+		
+		pit.addPropertyChangeListener(AbstractPit.PROPERTY_SEEDS, seedsChangeListener);
 		
 		AbstractPit newPit;
 		
@@ -31,6 +55,9 @@ public class GameController {
 			pit = newPit;
 			if(i==14)
 				newPit.setNextPit(pits.get(0));
+			
+			//add property change listeners
+			pit.addPropertyChangeListener(AbstractPit.PROPERTY_SEEDS, seedsChangeListener);
 		}
 		
 		Pit  opit;
