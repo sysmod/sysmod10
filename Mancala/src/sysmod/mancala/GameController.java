@@ -5,6 +5,8 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 public class GameController {
 	
 	//model objects
@@ -70,12 +72,23 @@ public class GameController {
 	}
 	
 	public static void main(String[] args){
+		
+		// sets up the gameboard
 		GameController controller = new GameController();
 		controller.initializePits();
-		controller.pits.get(10).setSeeds(221);
+		//TODO bind gameboard status with gui text
+		// launches the gui
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				MancalaGUI gui = new MancalaGUI();
+				gui.getJFrame().setVisible(true);
+			}
+		});
+		
+		/*controller.pits.get(10).setSeeds(221);
 		controller.pits.get(2).setSeeds(666);
 		System.out.println(controller.pits.size());
 		System.out.println(controller.pits.get(13).getClass());
-		System.out.println(((Pit)controller.pits.get(10)).getOppositePit().getSeeds());
+		System.out.println(((Pit)controller.pits.get(10)).getOppositePit().getSeeds());*/
 	}
 }

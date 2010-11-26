@@ -67,7 +67,7 @@ public class MancalaGUI {
 	 * 
 	 * @return javax.swing.JFrame
 	 */
-	private JFrame getJFrame() {
+	JFrame getJFrame() {
 		if (jFrame == null) {
 			jFrame = new JFrame();
 			jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -147,7 +147,7 @@ public class MancalaGUI {
 			aboutText.setSize(100, 70);
 			aboutText.setName("About");
 			aboutText.setBackground(SystemColor.activeCaptionBorder);
-			aboutText.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
+			aboutText.setText(" - Martin Loginov \n - Hans Mï¿½esalu \n - Peeter Jï¿½rviste \n - Mari Rï¿½ï¿½tli \n - Sven Aller");
 		}
 		return aboutText;
 	}
