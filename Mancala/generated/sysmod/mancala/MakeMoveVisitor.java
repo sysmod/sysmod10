@@ -84,6 +84,10 @@ public class MakeMoveVisitor implements PitVisitor
    public void visit (Pit pit )
    {
       boolean fujaba__Success = false;
+      Turn turn = null;
+      Player player = null;
+      Pit oppositePit = null;
+      Store store = null;
 
       if ( firstPit == null )
       {
@@ -144,8 +148,111 @@ public class MakeMoveVisitor implements PitVisitor
       {
          fujaba__Success = false; 
 
+         // create object turn
+         turn = Turn.getInstance();
+
+         // create object player
+         player = Turn.getInstance().getPlayer();
+
          // assign attribute this
          this.setLastPit (pit);
+         fujaba__Success = true;
+      }
+      catch ( JavaSDMException fujaba__InternalException )
+      {
+         fujaba__Success = false;
+      }
+
+      // If seeds equals 1 (this was previously empty pit) and player owns this pit then take all seeds from opposite pit and place them in store
+      // story pattern successor
+      try 
+      {
+         fujaba__Success = false; 
+
+         // check object pit is really bound
+         JavaSDM.ensure ( pit != null );
+         // check object player is really bound
+         JavaSDM.ensure ( player != null );
+         // check link owns from pit to player
+         JavaSDM.ensure (player.equals (pit.getPlayer ()));
+
+         // attribute condition seeds == 1
+         JavaSDM.ensure ( pit.getSeeds () == 1 );
+
+         fujaba__Success = true;
+      }
+      catch ( JavaSDMException fujaba__InternalException )
+      {
+         fujaba__Success = false;
+      }
+
+      if ( !( fujaba__Success ) )
+      {
+         return ;
+
+      }
+      // Get opposite pit and store
+      // story pattern successor
+      try 
+      {
+         fujaba__Success = false; 
+
+         // check object pit is really bound
+         JavaSDM.ensure ( pit != null );
+         // search to-one link opposite of from pit to oppositePit
+         oppositePit = pit.getOppositePit ();
+
+         // check object oppositePit is really bound
+         JavaSDM.ensure ( oppositePit != null );
+
+         // check isomorphic binding between objects pit and oppositePit
+         JavaSDM.ensure ( !pit.equals (oppositePit) );
+
+
+         // create object store
+         store = player.getStore();
+
+         fujaba__Success = true;
+      }
+      catch ( JavaSDMException fujaba__InternalException )
+      {
+         fujaba__Success = false;
+      }
+
+      // Add seeds to store
+      // story pattern successor
+      try 
+      {
+         fujaba__Success = false; 
+
+         // check object store is really bound
+         JavaSDM.ensure ( store != null );
+         // assign attribute store
+         store.setSeeds (store.getSeeds() + pit.getSeeds() +oppositePit.getSeeds());
+         fujaba__Success = true;
+      }
+      catch ( JavaSDMException fujaba__InternalException )
+      {
+         fujaba__Success = false;
+      }
+
+      // Remove seeds from pits
+      // story pattern successor
+      try 
+      {
+         fujaba__Success = false; 
+
+         // check object oppositePit is really bound
+         JavaSDM.ensure ( oppositePit != null );
+         // check object pit is really bound
+         JavaSDM.ensure ( pit != null );
+         // check isomorphic binding between objects pit and oppositePit
+         JavaSDM.ensure ( !pit.equals (oppositePit) );
+
+         // assign attribute pit
+         pit.setSeeds (0);
+         // assign attribute oppositePit
+         oppositePit.setSeeds (0);
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
