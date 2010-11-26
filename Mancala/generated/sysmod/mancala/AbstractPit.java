@@ -41,7 +41,7 @@ public abstract class AbstractPit	implements PropertyChangeClient
 	}
 
 
-   public abstract void accept (MakeMoveVisitor visitor );
+   public abstract void accept (PitVisitor visitor );
 
    /**
     * <pre>

@@ -12,7 +12,7 @@ public class Pit extends AbstractPit
 
 
 
-   public void accept (MakeMoveVisitor visitor )
+   public void accept (PitVisitor visitor )
    {
       boolean fujaba__Success = false;
 

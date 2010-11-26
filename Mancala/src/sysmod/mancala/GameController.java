@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
+	
+	//model objects
 	private List<AbstractPit> pits = new ArrayList<AbstractPit>();
 	private Player playerOne;
 	private Player playerTwo;
