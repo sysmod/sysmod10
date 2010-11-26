@@ -1253,7 +1253,7 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
          this.setPit11 (pit11);
 
          // collabStat call
-         pit2.move();
+         ulno.makeMove(pit2);
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )

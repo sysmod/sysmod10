@@ -1264,7 +1264,7 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
          this.setPit12 (pit12);
 
          // collabStat call
-         pit7.move();
+         artjom.makeMove(pit7);
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
