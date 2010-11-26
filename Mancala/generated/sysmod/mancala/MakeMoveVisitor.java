@@ -86,6 +86,7 @@ public class MakeMoveVisitor implements PitVisitor
       boolean fujaba__Success = false;
       Turn turn = null;
       Player player = null;
+      Player oppositePlayer = null;
       Pit oppositePit = null;
       Store store = null;
 
@@ -156,6 +157,41 @@ public class MakeMoveVisitor implements PitVisitor
 
          // assign attribute this
          this.setLastPit (pit);
+         fujaba__Success = true;
+      }
+      catch ( JavaSDMException fujaba__InternalException )
+      {
+         fujaba__Success = false;
+      }
+
+      // Give turn to opposite player
+      // story pattern successor
+      try 
+      {
+         fujaba__Success = false; 
+
+         // check object player is really bound
+         JavaSDM.ensure ( player != null );
+         // check object turn is really bound
+         JavaSDM.ensure ( turn != null );
+         // check link has from turn to player
+         JavaSDM.ensure (player.equals (turn.getPlayer ()));
+
+         // search to-one link opposite from player to oppositePlayer
+         oppositePlayer = player.getOpposite ();
+
+         // check object oppositePlayer is really bound
+         JavaSDM.ensure ( oppositePlayer != null );
+
+         // check isomorphic binding between objects player and oppositePlayer
+         JavaSDM.ensure ( !player.equals (oppositePlayer) );
+
+
+         // destroy link has from turn to player
+         turn.setPlayer (null);
+         // create link has from turn to oppositePlayer
+         turn.setPlayer (oppositePlayer);
+
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )

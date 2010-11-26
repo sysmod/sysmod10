@@ -168,6 +168,59 @@ public class Player	implements PropertyChangeClient
 
    /**
     * <pre>
+    *           0..1     opposite     0..1
+    * Player ------------------------- Player
+    *           opposite               opposite
+    * </pre>
+    */
+   public static final String PROPERTY_OPPOSITE = "opposite";
+
+   @Property( name = PROPERTY_OPPOSITE, partner = Player.PROPERTY_OPPOSITE, kind = ReferenceHandler.ReferenceKind.TO_ONE,
+         adornment = ReferenceHandler.Adornment.NONE)
+   private Player opposite;
+
+   @Property( name = PROPERTY_OPPOSITE )
+   public boolean setOpposite (Player value)
+   {
+      boolean changed = false;
+
+      if (this.opposite != value)
+      {
+      
+         Player oldValue = this.opposite;
+         Player source = this;
+         if (this.opposite != null)
+         {
+            this.opposite = null;
+            oldValue.setOpposite (null);
+         }
+         this.opposite = value;
+
+         if (value != null)
+         {
+            value.setOpposite (this);
+         }
+            getPropertyChangeSupport().firePropertyChange(PROPERTY_OPPOSITE, oldValue, value);
+         changed = true;
+      
+      }
+      return changed;
+   }
+
+   @Property( name = PROPERTY_OPPOSITE )
+   public Player withOpposite (Player value)
+   {
+      setOpposite (value);
+      return this;
+   }
+
+   public Player getOpposite ()
+   {
+      return this.opposite;
+   }
+
+   /**
+    * <pre>
     *           0..1     owns     0..n
     * Player ------------------------- AbstractPit
     *           player               pit
@@ -333,6 +386,7 @@ public class Player	implements PropertyChangeClient
 
    public void removeYou()
    {
+      this.setOpposite (null);
       this.removeAllFromPit ();
       this.setTurn (null);
    }
