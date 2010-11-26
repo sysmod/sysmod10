@@ -179,6 +179,19 @@ public class MakeMoveVisitor implements PitVisitor
          // attribute condition seeds == 1
          JavaSDM.ensure ( pit.getSeeds () == 1 );
 
+         // search to-one link opposite of from pit to oppositePit
+         oppositePit = pit.getOppositePit ();
+
+         // check object oppositePit is really bound
+         JavaSDM.ensure ( oppositePit != null );
+
+         // check isomorphic binding between objects pit and oppositePit
+         JavaSDM.ensure ( !pit.equals (oppositePit) );
+
+         // attribute condition seeds > 0
+         JavaSDM.ensure ( oppositePit.getSeeds () > 0 );
+
+
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
@@ -191,42 +204,15 @@ public class MakeMoveVisitor implements PitVisitor
          return ;
 
       }
-      // Get opposite pit and store
-      // story pattern successor
-      try 
-      {
-         fujaba__Success = false; 
-
-         // check object pit is really bound
-         JavaSDM.ensure ( pit != null );
-         // search to-one link opposite of from pit to oppositePit
-         oppositePit = pit.getOppositePit ();
-
-         // check object oppositePit is really bound
-         JavaSDM.ensure ( oppositePit != null );
-
-         // check isomorphic binding between objects pit and oppositePit
-         JavaSDM.ensure ( !pit.equals (oppositePit) );
-
-
-         // create object store
-         store = player.getStore();
-
-         fujaba__Success = true;
-      }
-      catch ( JavaSDMException fujaba__InternalException )
-      {
-         fujaba__Success = false;
-      }
-
       // Add seeds to store
       // story pattern successor
       try 
       {
          fujaba__Success = false; 
 
-         // check object store is really bound
-         JavaSDM.ensure ( store != null );
+         // create object store
+         store = player.getStore();
+
          // assign attribute store
          store.setSeeds (store.getSeeds() + pit.getSeeds() +oppositePit.getSeeds());
          fujaba__Success = true;
