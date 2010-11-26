@@ -159,7 +159,48 @@ public class MakeMoveVisitor implements PitVisitor
    public void visit (Store store )
    {
       boolean fujaba__Success = false;
+      Player player = null;
 
+      // story pattern successor
+      try 
+      {
+         fujaba__Success = false; 
+
+         // create object player
+         player = Turn.getInstance().getPlayer();
+
+         fujaba__Success = true;
+      }
+      catch ( JavaSDMException fujaba__InternalException )
+      {
+         fujaba__Success = false;
+      }
+
+      // Skip other player's store
+      // story pattern Successor of successor
+      try 
+      {
+         fujaba__Success = false; 
+
+         // check object player is really bound
+         JavaSDM.ensure ( player != null );
+         // check object store is really bound
+         JavaSDM.ensure ( store != null );
+         // check link owns from store to player
+         JavaSDM.ensure (player.equals (store.getPlayer ()));
+
+         fujaba__Success = true;
+      }
+      catch ( JavaSDMException fujaba__InternalException )
+      {
+         fujaba__Success = false;
+      }
+
+      if ( !( fujaba__Success ) )
+      {
+         return ;
+
+      }
       // Remove seed from visitor and place into store
       // story pattern storypatternwiththis
       try 
