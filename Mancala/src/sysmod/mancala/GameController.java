@@ -130,6 +130,9 @@ public class GameController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ResetBoardVisitor v = new ResetBoardVisitor();
+				v.visit((Pit)pits.get(0));
+				/*
 				System.out.println("new button yeah!");
 				for(int i = 0; i< 14; i++){
 					if(i==6||i==13)
@@ -137,6 +140,7 @@ public class GameController {
 					else
 						pits.get(i).setSeeds(4);
 				}
+				*/
 				
 			}
 			
@@ -211,7 +215,6 @@ public class GameController {
 		controller.updateGUI(gui);
 		*/
 		final GameController cntrl = new GameController();
-		cntrl.gui.getJFrame().setVisible(true);
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				cntrl.gui.getJFrame().setVisible(true);
