@@ -7,6 +7,7 @@ import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/feature
 import sysmod.mancala.Player;
 import sysmod.mancala.Pit;
 import sysmod.mancala.Turn;
+import sysmod.mancala.CheckWinVisitor;
 import de.upb.tools.sdm.*; // requires Fujaba5/libs/RuntimeTools.jar in classpath
 import junit.framework.AssertionFailedError;
 import java.io.PrintWriter;
@@ -145,6 +146,8 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
          JavaSDM.ensure ( ulno != null, "check object ulno is really bound" );
          // check object ulnoStore is really bound
          JavaSDM.ensure ( ulnoStore != null, "check object ulnoStore is really bound" );
+         // check object visitor is really bound
+         JavaSDM.ensure ( visitor != null, "check object visitor is really bound" );
          // check isomorphic binding between objects ulno and artjom
          JavaSDM.ensure ( !ulno.equals (artjom), "check isomorphic binding between objects ulno and artjom" );
 
@@ -456,6 +459,9 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
 
          // check link owns from ulnoStore to ulno
          JavaSDM.ensure (ulno.equals (ulnoStore.getPlayer ()), "check link owns from ulnoStore to ulno");
+
+         // attribute condition gameOver == false
+         JavaSDM.ensure ( visitor.isGameOver () == false, "attribute condition gameOver == false" );
 
          // attribute condition seeds == 0
          JavaSDM.ensure ( pit7.getSeeds () == 0, "attribute condition seeds == 0" );
@@ -1027,6 +1033,7 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
       Pit pit9 = null;
       Pit pit8 = null;
       Turn turn = null;
+      CheckWinVisitor visitor = null;
 
       // // start situation: 
       // story pattern 
@@ -1085,6 +1092,9 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
          // create object turn
          turn = Turn.getInstance();
 
+         // create object visitor
+         visitor = new CheckWinVisitor ( );
+
          // assign attribute artjomStore
          artjomStore.setSeeds (6);
          // assign attribute ulnoStore
@@ -1127,6 +1137,9 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
 
          // create link object_ulno from this to ulno
          this.setUlno (ulno);
+
+         // create link object_visitor from this to visitor
+         this.setVisitor (visitor);
 
          // create link owns from artjom to artjomStore
          artjom.addToPit (artjomStore);
@@ -1274,6 +1287,8 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
 
          // collabStat call
          artjom.makeMove(pit7);
+         // collabStat call
+         pit1.accept(visitor);
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
@@ -1427,6 +1442,47 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
       return this.ulno;
    }
 
+   /**
+    * <pre>
+    *           0..1     object_visitor     0..1
+    * Artjom_makes_a_move_from_house_7Test ------------------------> CheckWinVisitor
+    *           test               visitor
+    * </pre>
+    */
+   public static final String PROPERTY_VISITOR = "visitor";
+
+   @Property( name = PROPERTY_VISITOR, kind = ReferenceHandler.ReferenceKind.TO_ONE,
+         adornment = ReferenceHandler.Adornment.NONE)
+   private CheckWinVisitor visitor;
+
+   @Property( name = PROPERTY_VISITOR )
+   public boolean setVisitor (CheckWinVisitor value)
+   {
+      boolean changed = false;
+
+      if (this.visitor != value)
+      {
+      
+         CheckWinVisitor oldValue = this.visitor;
+         this.visitor = value;
+         changed = true;
+      
+      }
+      return changed;
+   }
+
+   @Property( name = PROPERTY_VISITOR )
+   public Artjom_makes_a_move_from_house_7Test withVisitor (CheckWinVisitor value)
+   {
+      setVisitor (value);
+      return this;
+   }
+
+   public CheckWinVisitor getVisitor ()
+   {
+      return this.visitor;
+   }
+
    public void removeYou()
    {
       this.setArtjomStore (null);
@@ -1446,6 +1502,7 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
       this.setTurn (null);
       this.setUlnoStore (null);
       this.setUlno (null);
+      this.setVisitor (null);
    }
 }
 

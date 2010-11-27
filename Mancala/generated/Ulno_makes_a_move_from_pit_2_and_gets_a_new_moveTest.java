@@ -7,6 +7,7 @@ import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/feature
 import sysmod.mancala.Player;
 import sysmod.mancala.Pit;
 import sysmod.mancala.Turn;
+import sysmod.mancala.CheckWinVisitor;
 import de.upb.tools.sdm.*; // requires Fujaba5/libs/RuntimeTools.jar in classpath
 import junit.framework.AssertionFailedError;
 import java.io.PrintWriter;
@@ -145,6 +146,8 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
          JavaSDM.ensure ( ulno != null, "check object ulno is really bound" );
          // check object ulnoStore is really bound
          JavaSDM.ensure ( ulnoStore != null, "check object ulnoStore is really bound" );
+         // check object visitor is really bound
+         JavaSDM.ensure ( visitor != null, "check object visitor is really bound" );
          // check isomorphic binding between objects ulno and artjom
          JavaSDM.ensure ( !ulno.equals (artjom), "check isomorphic binding between objects ulno and artjom" );
 
@@ -456,6 +459,9 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
 
          // check link owns from ulnoStore to ulno
          JavaSDM.ensure (ulno.equals (ulnoStore.getPlayer ()), "check link owns from ulnoStore to ulno");
+
+         // attribute condition gameOver == false
+         JavaSDM.ensure ( visitor.isGameOver () == false, "attribute condition gameOver == false" );
 
          // attribute condition name == "Artjom"
          JavaSDM.ensure ( JavaSDM.stringCompare ((String) artjom.getName (), "Artjom") == 0, "attribute condition name == \"Artjom\"" );
@@ -1033,6 +1039,7 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
       Pit pit3 = null;
       Pit pit2 = null;
       Turn turn = null;
+      CheckWinVisitor visitor = null;
 
       // // start situation: 
       // story pattern 
@@ -1091,6 +1098,9 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
          // create object turn
          turn = Turn.getInstance();
 
+         // create object visitor
+         visitor = new CheckWinVisitor ( );
+
          // assign attribute artjomStore
          artjomStore.setSeeds (2);
          // assign attribute artjom
@@ -1125,6 +1135,9 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
          pit12.setSeeds (6);
          // create link object_turn from this to turn
          this.setTurn (turn);
+
+         // create link object_visitor from this to visitor
+         this.setVisitor (visitor);
 
          // create link owns from artjom to artjomStore
          artjom.addToPit (artjomStore);
@@ -1284,6 +1297,8 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
 
          // collabStat call
          ulno.makeMove(pit2);
+         // collabStat call
+         pit1.accept(visitor);
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
@@ -1437,6 +1452,47 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
       return this.ulno;
    }
 
+   /**
+    * <pre>
+    *           0..1     object_visitor     0..1
+    * Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest ------------------------> CheckWinVisitor
+    *           test               visitor
+    * </pre>
+    */
+   public static final String PROPERTY_VISITOR = "visitor";
+
+   @Property( name = PROPERTY_VISITOR, kind = ReferenceHandler.ReferenceKind.TO_ONE,
+         adornment = ReferenceHandler.Adornment.NONE)
+   private CheckWinVisitor visitor;
+
+   @Property( name = PROPERTY_VISITOR )
+   public boolean setVisitor (CheckWinVisitor value)
+   {
+      boolean changed = false;
+
+      if (this.visitor != value)
+      {
+      
+         CheckWinVisitor oldValue = this.visitor;
+         this.visitor = value;
+         changed = true;
+      
+      }
+      return changed;
+   }
+
+   @Property( name = PROPERTY_VISITOR )
+   public Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest withVisitor (CheckWinVisitor value)
+   {
+      setVisitor (value);
+      return this;
+   }
+
+   public CheckWinVisitor getVisitor ()
+   {
+      return this.visitor;
+   }
+
    public void removeYou()
    {
       this.setArtjomStore (null);
@@ -1456,6 +1512,7 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
       this.setTurn (null);
       this.setUlnoStore (null);
       this.setUlno (null);
+      this.setVisitor (null);
    }
 }
 
