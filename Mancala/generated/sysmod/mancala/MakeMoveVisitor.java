@@ -81,7 +81,7 @@ public class MakeMoveVisitor implements PitVisitor
       return this.seeds;
    }
 
-   public void visit (Pit pit )
+   public boolean visit (Pit pit )
    {
       boolean fujaba__Success = false;
       Turn turn = null;
@@ -140,7 +140,7 @@ public class MakeMoveVisitor implements PitVisitor
       }
       if ( !( seeds==0 ) )
       {
-         return ;
+         return false;
 
       }
       // All seeds given out, this is last pit
@@ -237,7 +237,7 @@ public class MakeMoveVisitor implements PitVisitor
 
       if ( !( fujaba__Success ) )
       {
-         return ;
+         return true;
 
       }
       // Add seeds to store
@@ -282,10 +282,10 @@ public class MakeMoveVisitor implements PitVisitor
          fujaba__Success = false;
       }
 
-      return ;
+      return true;
    }
 
-   public void visit (Store store )
+   public boolean visit (Store store )
    {
       boolean fujaba__Success = false;
       Player player = null;
@@ -327,7 +327,7 @@ public class MakeMoveVisitor implements PitVisitor
 
       if ( !( fujaba__Success ) )
       {
-         return ;
+         return false;
 
       }
       // Remove seed from visitor and place into store
@@ -351,7 +351,7 @@ public class MakeMoveVisitor implements PitVisitor
 
       if ( !( seeds == 0 ) )
       {
-         return ;
+         return false;
 
       }
       // No more seeds, this is last pit
@@ -369,7 +369,7 @@ public class MakeMoveVisitor implements PitVisitor
          fujaba__Success = false;
       }
 
-      return ;
+      return true;
    }
 
    public void removeYou()
