@@ -19,6 +19,9 @@ import java.awt.Rectangle;
 import java.awt.SystemColor;
 import javax.swing.BorderFactory;
 import javax.swing.JTextPane;
+import java.awt.Insets;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 public class MancalaGUI {
 
@@ -54,7 +57,15 @@ public class MancalaGUI {
 	private JLabel helpTitle = null;
 	private JTextPane helpText = null;
 	private JButton newgameButton = null;
-
+	private JDialog newgameDialog = null;  //  @jve:decl-index=0:visual-constraint="645,327"
+	private JPanel newgameContent = null;
+	private JLabel newgameLabel1 = null;
+	private JRadioButton newgameHuman = null;
+	private JRadioButton newgameComputer = null;
+	private JLabel newgameLabel = null;
+	private JTextField newgamePlayer1 = null;
+	private JLabel newgameOpponent = null;
+	private JTextField newgamePlayer2 = null;
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -141,7 +152,7 @@ public class MancalaGUI {
 			aboutText.setName("About");
 			aboutText.setBackground(SystemColor.activeCaptionBorder);
 			aboutText
-					.setText(" - Martin Loginov \n - Hans MÃ¤esalu \n - Peeter JÃ¼rviste \n - Mari RÃ¼Ã¼tli \n - Sven Aller");
+					.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
 			aboutText.setEditable(false);
 		}
 		return aboutText;
@@ -249,7 +260,6 @@ public class MancalaGUI {
 			player1store.setHorizontalAlignment(SwingConstants.CENTER);
 			player1store.setFont(new Font("Dialog", Font.BOLD, 14));
 			player1store.setEnabled(false);
-			player1store.setBackground(Color.BLACK);
 		}
 		return player1store;
 	}
@@ -266,7 +276,6 @@ public class MancalaGUI {
 			player2store.setHorizontalAlignment(SwingConstants.CENTER);
 			player2store.setFont(new Font("Dialog", Font.BOLD, 14));
 			player2store.setEnabled(false);
-			player2store.setBackground(Color.BLACK);
 		}
 		return player2store;
 	}
@@ -528,7 +537,8 @@ public class MancalaGUI {
 			helpDialog = new JDialog(getJFrame());
 			helpDialog.setTitle("Mancala Help");
 			helpDialog.setBounds(new Rectangle(0, 0, 300, 200));
-			helpDialog.setSize(300, 200);
+			helpDialog.setMinimumSize(new Dimension(300, 200));
+			helpDialog.setMaximumSize(new Dimension(300, 200));
 			helpDialog.setContentPane(getHelp());
 		}
 		return helpDialog;
@@ -560,8 +570,7 @@ public class MancalaGUI {
 	private JTextPane getHelpText() {
 		if (helpText == null) {
 			helpText = new JTextPane();
-			helpText
-					.setText("... uf khjg jkhg kjhg kjhg bjhg kujhg bjhg \nkjgh kjhg jkh kjh kjhg kjhv kjhv kjhv kjhv ");
+			helpText.setText("... uf khjg jkhg kjhg kjhg bjhg kujhg bjhg \nkjgh kjhg jkh kjh kjhg kjhv kjhv kjhv kjhv ");
 			helpText.setBackground(SystemColor.activeCaptionBorder);
 		}
 		return helpText;
@@ -578,10 +587,143 @@ public class MancalaGUI {
 			newgameButton.setText("New game");
 			newgameButton.setFont(new Font("Dialog", Font.BOLD, 14));
 			newgameButton.setPreferredSize(new Dimension(120, 26));
-			//newgameButton.addMouseListener(new java.awt.event.MouseAdapter() {
-			//});
+			newgameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					JDialog newnameDialog = getNewgameDialog();
+					newnameDialog.pack();
+					Point loc = getJFrame().getLocation();
+					loc.translate(20, 50);
+					newnameDialog.setLocation(loc);
+					newnameDialog.setVisible(true);
+				}
+			});
 		}
 		return newgameButton;
+	}
+
+	/**
+	 * This method initializes newgameDialog	
+	 * 	
+	 * @return javax.swing.JDialog	
+	 */
+	private JDialog getNewgameDialog() {
+		if (newgameDialog == null) {
+			newgameDialog = new JDialog(getJFrame());
+			newgameDialog.setTitle("New Game");
+			newgameDialog.setBounds(new Rectangle(0, 0, 300, 200));
+			newgameDialog.setMinimumSize(new Dimension(300, 200));
+			newgameDialog.setMaximumSize(new Dimension(300, 200));
+			newgameDialog.setContentPane(getNewgameContent());
+		}
+		return newgameDialog;
+	}
+
+	/**
+	 * This method initializes newgameContent	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getNewgameContent() {
+		if (newgameContent == null) {
+			GridBagConstraints gridBagConstraints25 = new GridBagConstraints();
+			gridBagConstraints25.fill = GridBagConstraints.VERTICAL;
+			gridBagConstraints25.gridy = 1;
+			gridBagConstraints25.weightx = 1.0;
+			gridBagConstraints25.gridx = 2;
+			GridBagConstraints gridBagConstraints24 = new GridBagConstraints();
+			gridBagConstraints24.gridx = 3;
+			gridBagConstraints24.gridy = 1;
+			newgameOpponent = new JLabel();
+			newgameOpponent.setText("");
+			GridBagConstraints gridBagConstraints23 = new GridBagConstraints();
+			gridBagConstraints23.fill = GridBagConstraints.VERTICAL;
+			gridBagConstraints23.gridy = 0;
+			gridBagConstraints23.weightx = 1.0;
+			gridBagConstraints23.gridx = 1;
+			GridBagConstraints gridBagConstraints20 = new GridBagConstraints();
+			gridBagConstraints20.gridx = 0;
+			gridBagConstraints20.gridy = 0;
+			newgameLabel = new JLabel();
+			newgameLabel.setText("Your name:");
+			newgameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+			GridBagConstraints gridBagConstraints19 = new GridBagConstraints();
+			gridBagConstraints19.gridx = 1;
+			gridBagConstraints19.gridy = 3;
+			GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
+			gridBagConstraints18.gridx = 1;
+			gridBagConstraints18.gridy = 1;
+			GridBagConstraints gridBagConstraints17 = new GridBagConstraints();
+			gridBagConstraints17.gridx = 0;
+			gridBagConstraints17.gridy = 1;
+			newgameLabel1 = new JLabel();
+			newgameLabel1.setText("Select opponent");
+			newgameLabel1.setHorizontalAlignment(SwingConstants.RIGHT);
+			newgameContent = new JPanel();
+			newgameContent.setLayout(new GridBagLayout());
+			newgameContent.add(newgameLabel1, gridBagConstraints17);
+			newgameContent.add(getNewgameHuman(), gridBagConstraints18);
+			newgameContent.add(getNewgameComputer(), gridBagConstraints19);
+			newgameContent.add(newgameLabel, gridBagConstraints20);
+			newgameContent.add(getNewgamePlayer1(), gridBagConstraints23);
+			newgameContent.add(newgameOpponent, gridBagConstraints24);
+			newgameContent.add(getNewgamePlayer2(), gridBagConstraints25);
+		}
+		return newgameContent;
+	}
+
+	/**
+	 * This method initializes newgameHuman	
+	 * 	
+	 * @return javax.swing.JRadioButton	
+	 */
+	private JRadioButton getNewgameHuman() {
+		if (newgameHuman == null) {
+			newgameHuman = new JRadioButton();
+			newgameHuman.setText("Human with name ");
+			newgameHuman.setActionCommand("Human");
+		}
+		return newgameHuman;
+	}
+
+	/**
+	 * This method initializes newgameComputer	
+	 * 	
+	 * @return javax.swing.JRadioButton	
+	 */
+	private JRadioButton getNewgameComputer() {
+		if (newgameComputer == null) {
+			newgameComputer = new JRadioButton();
+			newgameComputer.setText("Computer");
+		}
+		return newgameComputer;
+	}
+
+	/**
+	 * This method initializes newgamePlayer1	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getNewgamePlayer1() {
+		if (newgamePlayer1 == null) {
+			newgamePlayer1 = new JTextField();
+			newgamePlayer1.setSize(40, 12);
+			newgamePlayer1.setText("Anonymous");
+			
+		}
+		return newgamePlayer1;
+	}
+
+	/**
+	 * This method initializes newgamePlayer2	
+	 * 	
+	 * @return javax.swing.JTextField	
+	 */
+	private JTextField getNewgamePlayer2() {
+		if (newgamePlayer2 == null) {
+			newgamePlayer2 = new JTextField();
+			newgamePlayer2.setText("Anonymous1");
+		}
+		return newgamePlayer2;
 	}
 
 }
