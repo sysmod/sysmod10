@@ -22,9 +22,7 @@ public class Pit extends AbstractPit
          fujaba__Success = false; 
 
          // collabStat call
-         visitor.visit(this);
-         // collabStat call
-         if ( visitor.getSeeds() > 0 )
+         if ( !visitor.visit(this) )
          {
          this.getNextPit().accept(visitor);
          }
