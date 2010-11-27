@@ -8,7 +8,12 @@ import java.util.List;
 import javax.sound.midi.ControllerEventListener;
 import javax.swing.SwingUtilities;
 
+import de.upb.tools.fca.SetTools;
+
 public class GameController {
+	
+	static GameController controller = new GameController();
+	static MancalaGUI gui = new MancalaGUI();
 
 	// model objects
 	private List<AbstractPit> pits = new ArrayList<AbstractPit>();
@@ -90,29 +95,23 @@ public class GameController {
 		gui.getPit11().setText(Integer.toString(this.pits.get(11).getSeeds()));
 		gui.getPit12().setText(Integer.toString(this.pits.get(12).getSeeds()));
 
+		gui.getPlayer1Store().setText(
+				Integer.toString(this.pits.get(6).getSeeds()));
+		gui.getPlayer2Store().setText(
+				Integer.toString(this.pits.get(13).getSeeds()));
+
 	}
 
 	public static void main(String[] args) {
 
-		// sets up the gameboard
-		final GameController controller = new GameController();
 		controller.initializePits();
-		// launches the gui
-		final MancalaGUI gui = new MancalaGUI();
+		gui = new MancalaGUI();
 		controller.updateGUI(gui);
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				gui.getJFrame().setVisible(true);
 			}
 		});
-
-		/*
-		 * controller.pits.get(10).setSeeds(221);
-		 * controller.pits.get(2).setSeeds(666);
-		 * System.out.println(controller.pits.size());
-		 * System.out.println(controller.pits.get(13).getClass());
-		 * System.out.println
-		 * (((Pit)controller.pits.get(10)).getOppositePit().getSeeds());
-		 */
+		
 	}
 }

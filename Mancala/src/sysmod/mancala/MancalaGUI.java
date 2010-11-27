@@ -10,6 +10,8 @@ import javax.swing.JDialog;
 import java.awt.Dimension;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
@@ -39,8 +41,8 @@ public class MancalaGUI {
 	private JButton pit4 = null;
 	private JButton pit5 = null;
 	private JButton pit6 = null;
-	private JLabel player1store = null;
-	private JLabel player2store = null;
+	private JButton player1store = null;
+	private JButton player2store = null;
 	private JLabel title = null;
 	private JLabel player2label = null;
 	private JLabel player1label = null;
@@ -139,7 +141,8 @@ public class MancalaGUI {
 			aboutText.setName("About");
 			aboutText.setBackground(SystemColor.activeCaptionBorder);
 			aboutText
-					.setText(" - Martin Loginov \n - Hans M�esalu \n - Peeter J�rviste \n - Mari R��tli \n - Sven Aller");
+					.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
+			aboutText.setEditable(false);
 		}
 		return aboutText;
 	}
@@ -170,20 +173,10 @@ public class MancalaGUI {
 			GridBagConstraints gridBagConstraints12 = new GridBagConstraints();
 			gridBagConstraints12.gridx = 0;
 			gridBagConstraints12.gridy = 2;
-			player2store = new JLabel();
-			player2store.setText("0");
-			player2store.setSize(40, 26);
-			player2store.setHorizontalAlignment(SwingConstants.CENTER);
-			player2store.setFont(new Font("Dialog", Font.BOLD, 14));
 			GridBagConstraints gridBagConstraints10 = new GridBagConstraints();
 			gridBagConstraints10.gridx = 8;
 			gridBagConstraints10.anchor = GridBagConstraints.NORTH;
 			gridBagConstraints10.gridy = 2;
-			player1store = new JLabel();
-			player1store.setText("0");
-			player1store.setSize(40, 26);
-			player1store.setHorizontalAlignment(SwingConstants.CENTER);
-			player1store.setFont(new Font("Dialog", Font.BOLD, 14));
 			GridBagConstraints gridBagConstraints9 = new GridBagConstraints();
 			gridBagConstraints9.gridx = 7;
 			gridBagConstraints9.gridy = 3;
@@ -236,12 +229,46 @@ public class MancalaGUI {
 			Gameboard.add(getPit4(), gridBagConstraints7);
 			Gameboard.add(getPit5(), gridBagConstraints8);
 			Gameboard.add(getPit6(), gridBagConstraints9);
-			Gameboard.add(player1store, gridBagConstraints10);
-			Gameboard.add(player2store, gridBagConstraints12);
+			Gameboard.add(getPlayer1Store(), gridBagConstraints10);
+			Gameboard.add(getPlayer2Store(), gridBagConstraints12);
 			Gameboard.add(player2label, gridBagConstraints13);
 			Gameboard.add(player1label, gridBagConstraints22);
 		}
 		return Gameboard;
+	}
+
+	/**
+	 * This method initializes player1store
+	 * 
+	 * @return javax.swing.JButton
+	 */
+	JButton getPlayer1Store() {
+		if (player1store == null) {
+			player1store = new JButton();
+			player1store.setPreferredSize(new Dimension(60, 26));
+			player1store.setHorizontalAlignment(SwingConstants.CENTER);
+			player1store.setFont(new Font("Dialog", Font.BOLD, 14));
+			player1store.setEnabled(false);
+			player1store.setBackground(Color.BLACK);
+		}
+		return player1store;
+	}
+
+	/**
+	 * This method initializes player2store
+	 * 
+	 * @return javax.swing.JButton
+	 */
+	JButton getPlayer2Store() {
+		if (player2store == null) {
+			player2store = new JButton();
+			player2store.setPreferredSize(new Dimension(60, 26));
+			player2store.setHorizontalAlignment(SwingConstants.CENTER);
+			player2store.setFont(new Font("Dialog", Font.BOLD, 14));
+			player2store.setEnabled(false);
+			player2store.setBackground(Color.BLACK);
+		}
+		return player2store;
 	}
 
 	/**
