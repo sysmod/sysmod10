@@ -11,8 +11,8 @@ import javax.swing.SwingUtilities;
 import de.upb.tools.fca.SetTools;
 
 public class GameController {
-	
-	static GameController controller = new GameController();
+
+	public static GameController controller = new GameController();
 	static MancalaGUI gui = new MancalaGUI();
 
 	// model objects
@@ -25,6 +25,9 @@ public class GameController {
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 
+			System.out.println("Seedchange triggered: " + evt.toString());
+			//TODO logic still missing
+
 		}
 
 	};
@@ -33,6 +36,9 @@ public class GameController {
 
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
+
+			System.out.println("Turnchange triggered: " + evt.toString());
+			//TODO logic still missing
 
 		}
 
@@ -102,6 +108,24 @@ public class GameController {
 
 	}
 
+	public void registerMove(int guiPitId) {
+
+		int arrayListId;
+		Player player;
+
+		if (guiPitId <= 6) {
+			arrayListId = guiPitId - 1;
+			player = controller.playerOne;
+		} else {
+			arrayListId = guiPitId;
+			player = controller.playerTwo;
+		}
+		
+		System.out.println(arrayListId);
+		player.makeMove((Pit) controller.pits.get(arrayListId));
+
+	}
+
 	public static void main(String[] args) {
 
 		controller.initializePits();
@@ -112,6 +136,6 @@ public class GameController {
 				gui.getJFrame().setVisible(true);
 			}
 		});
-		
+
 	}
 }

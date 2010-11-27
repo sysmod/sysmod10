@@ -283,9 +283,7 @@ public class MancalaGUI {
 			pit12.setPreferredSize(new Dimension(60, 26));
 			pit12.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(12);
 				}
 			});
 		}
@@ -304,9 +302,7 @@ public class MancalaGUI {
 			pit11.setPreferredSize(new Dimension(60, 26));
 			pit11.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(11);
 				}
 			});
 		}
@@ -325,9 +321,7 @@ public class MancalaGUI {
 			pit1.setPreferredSize(new Dimension(60, 26));
 			pit1.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(1);
 				}
 			});
 		}
@@ -346,9 +340,7 @@ public class MancalaGUI {
 			pit2.setPreferredSize(new Dimension(60, 26));
 			pit2.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(2);
 				}
 			});
 		}
@@ -367,9 +359,7 @@ public class MancalaGUI {
 			pit3.setPreferredSize(new Dimension(60, 26));
 			pit3.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(3);
 				}
 			});
 		}
@@ -388,9 +378,7 @@ public class MancalaGUI {
 			pit4.setPreferredSize(new Dimension(60, 26));
 			pit4.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(4);
 				}
 			});
 		}
@@ -409,9 +397,7 @@ public class MancalaGUI {
 			pit5.setPreferredSize(new Dimension(60, 26));
 			pit5.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(5);
 				}
 			});
 		}
@@ -430,9 +416,7 @@ public class MancalaGUI {
 			pit6.setPreferredSize(new Dimension(60, 26));
 			pit6.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(6);
 				}
 			});
 		}
@@ -451,9 +435,7 @@ public class MancalaGUI {
 			pit7.setPreferredSize(new Dimension(60, 26));
 			pit7.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(7);
 				}
 			});
 		}
@@ -472,9 +454,7 @@ public class MancalaGUI {
 			pit8.setPreferredSize(new Dimension(60, 26));
 			pit8.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(8);
 				}
 			});
 		}
@@ -493,9 +473,7 @@ public class MancalaGUI {
 			pit9.setPreferredSize(new Dimension(60, 26));
 			pit9.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(9);
 				}
 			});
 		}
@@ -514,9 +492,7 @@ public class MancalaGUI {
 			pit10.setPreferredSize(new Dimension(60, 26));
 			pit10.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("mouseClicked()"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
+					GameController.controller.registerMove(10);
 				}
 			});
 		}
