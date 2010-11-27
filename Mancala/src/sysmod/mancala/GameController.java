@@ -1,5 +1,7 @@
 package sysmod.mancala;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -12,13 +14,13 @@ import de.upb.tools.fca.SetTools;
 
 public class GameController {
 
-	public static GameController controller = new GameController();
-	static MancalaGUI gui = new MancalaGUI();
-
+	public MancalaGUI gui = new MancalaGUI();
+	
 	// model objects
 	private List<AbstractPit> pits = new ArrayList<AbstractPit>();
 	private Player playerOne;
 	private Player playerTwo;
+	private Turn turn;
 
 	private PropertyChangeListener seedsChangeListener = new PropertyChangeListener() {
 
@@ -27,6 +29,7 @@ public class GameController {
 
 			System.out.println("Seedchange triggered: " + evt.toString());
 			//TODO logic still missing
+			updateGUI();
 
 		}
 
@@ -43,10 +46,14 @@ public class GameController {
 		}
 
 	};
+	
+	public GameController(){
+		initializePits();
+		initializeGUIlisteners();
+	}
 
 	private void initializePits() {
 		AbstractPit pit = new Pit();
-		pit.setSeeds(4);
 		pit.setPlayer(playerOne);
 		pits.add(pit);
 
@@ -58,10 +65,9 @@ public class GameController {
 		for (int i = 2; i <= 14; i++) {
 			if (i == 7 || i == 14)
 				newPit = new Store();
-			else {
+			else 
 				newPit = new Pit();
-				newPit.setSeeds(4);
-			}
+
 
 			if (i <= 7)
 				newPit.setPlayer(playerOne);
@@ -85,8 +91,26 @@ public class GameController {
 			opit.setOppositePit((Pit) pits.get(12 - i));
 		}
 	}
+	
+	private void initializeGUIlisteners(){
+		gui.getNewgameButton().addActionListener(new ActionListener(){
 
-	private void updateGUI(MancalaGUI gui) {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("new button yeah!");
+				for(int i = 0; i< 14; i++){
+					if(i==6||i==13)
+						pits.get(i).setSeeds(0);
+					else
+						pits.get(i).setSeeds(4);
+				}
+				
+			}
+			
+		});
+	}
+
+	private void updateGUI() {
 
 		gui.getPit1().setText(Integer.toString(this.pits.get(0).getSeeds()));
 		gui.getPit2().setText(Integer.toString(this.pits.get(1).getSeeds()));
@@ -107,7 +131,11 @@ public class GameController {
 				Integer.toString(this.pits.get(13).getSeeds()));
 
 	}
-
+	
+	private void makeMove(){
+		
+	}
+	/*
 	public void registerMove(int guiPitId) {
 
 		int arrayListId;
@@ -125,17 +153,20 @@ public class GameController {
 		player.makeMove((Pit) controller.pits.get(arrayListId));
 
 	}
+	*/
 
 	public static void main(String[] args) {
-
+		/*
 		controller.initializePits();
 		gui = new MancalaGUI();
 		controller.updateGUI(gui);
+		*/
+		final GameController cntrl = new GameController();
+		cntrl.gui.getJFrame().setVisible(true);
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				gui.getJFrame().setVisible(true);
+				cntrl.gui.getJFrame().setVisible(true);
 			}
 		});
-
 	}
 }

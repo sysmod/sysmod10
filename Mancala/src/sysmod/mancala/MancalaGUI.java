@@ -281,11 +281,6 @@ public class MancalaGUI {
 			pit12 = new JButton();
 			pit12.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit12.setPreferredSize(new Dimension(60, 26));
-			pit12.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(12);
-				}
-			});
 		}
 		return pit12;
 	}
@@ -300,11 +295,6 @@ public class MancalaGUI {
 			pit11 = new JButton();
 			pit11.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit11.setPreferredSize(new Dimension(60, 26));
-			pit11.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(11);
-				}
-			});
 		}
 		return pit11;
 	}
@@ -319,11 +309,6 @@ public class MancalaGUI {
 			pit1 = new JButton();
 			pit1.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit1.setPreferredSize(new Dimension(60, 26));
-			pit1.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(1);
-				}
-			});
 		}
 		return pit1;
 	}
@@ -338,11 +323,6 @@ public class MancalaGUI {
 			pit2 = new JButton();
 			pit2.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit2.setPreferredSize(new Dimension(60, 26));
-			pit2.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(2);
-				}
-			});
 		}
 		return pit2;
 	}
@@ -357,11 +337,6 @@ public class MancalaGUI {
 			pit3 = new JButton();
 			pit3.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit3.setPreferredSize(new Dimension(60, 26));
-			pit3.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(3);
-				}
-			});
 		}
 		return pit3;
 	}
@@ -376,11 +351,6 @@ public class MancalaGUI {
 			pit4 = new JButton();
 			pit4.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit4.setPreferredSize(new Dimension(60, 26));
-			pit4.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(4);
-				}
-			});
 		}
 		return pit4;
 	}
@@ -395,11 +365,6 @@ public class MancalaGUI {
 			pit5 = new JButton();
 			pit5.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit5.setPreferredSize(new Dimension(60, 26));
-			pit5.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(5);
-				}
-			});
 		}
 		return pit5;
 	}
@@ -414,11 +379,6 @@ public class MancalaGUI {
 			pit6 = new JButton();
 			pit6.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit6.setPreferredSize(new Dimension(60, 26));
-			pit6.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(6);
-				}
-			});
 		}
 		return pit6;
 	}
@@ -433,11 +393,6 @@ public class MancalaGUI {
 			pit7 = new JButton();
 			pit7.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit7.setPreferredSize(new Dimension(60, 26));
-			pit7.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(7);
-				}
-			});
 		}
 		return pit7;
 	}
@@ -452,11 +407,6 @@ public class MancalaGUI {
 			pit8 = new JButton();
 			pit8.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit8.setPreferredSize(new Dimension(60, 26));
-			pit8.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(8);
-				}
-			});
 		}
 		return pit8;
 	}
@@ -471,11 +421,6 @@ public class MancalaGUI {
 			pit9 = new JButton();
 			pit9.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit9.setPreferredSize(new Dimension(60, 26));
-			pit9.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(9);
-				}
-			});
 		}
 		return pit9;
 	}
@@ -490,12 +435,7 @@ public class MancalaGUI {
 			pit10 = new JButton();
 			pit10.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit10.setPreferredSize(new Dimension(60, 26));
-			pit10.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					GameController.controller.registerMove(10);
-				}
-			});
-		}
+			}
 		return pit10;
 	}
 
@@ -632,19 +572,14 @@ public class MancalaGUI {
 	 * 
 	 * @return javax.swing.JButton
 	 */
-	private JButton getNewgameButton() {
+	public JButton getNewgameButton() {
 		if (newgameButton == null) {
 			newgameButton = new JButton();
 			newgameButton.setText("New game");
 			newgameButton.setFont(new Font("Dialog", Font.BOLD, 14));
 			newgameButton.setPreferredSize(new Dimension(120, 26));
-			newgameButton.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("New game!"); // TODO Auto-generated
-					// Event stub
-					// mouseClicked()
-				}
-			});
+			//newgameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+			//});
 		}
 		return newgameButton;
 	}
