@@ -681,6 +681,11 @@ public class MancalaGUI {
 			newgameHuman = new JRadioButton();
 			newgameHuman.setText("Human with name ");
 			newgameHuman.setActionCommand("Human");
+			newgameHuman.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					System.out.println("Opponent is human"); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
 		}
 		return newgameHuman;
 	}
@@ -694,6 +699,11 @@ public class MancalaGUI {
 		if (newgameComputer == null) {
 			newgameComputer = new JRadioButton();
 			newgameComputer.setText("Computer");
+			newgameComputer.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					System.out.println("Opponent is computer"); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
 		}
 		return newgameComputer;
 	}
@@ -708,6 +718,11 @@ public class MancalaGUI {
 			newgamePlayer1 = new JTextField();
 			newgamePlayer1.setSize(40, 12);
 			newgamePlayer1.setText("Anonymous");
+			newgamePlayer1.addKeyListener(new java.awt.event.KeyAdapter() {
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					System.out.println("Player1's name is " + newgamePlayer1.getText()); // TODO Auto-generated Event stub keyTyped()
+				}
+			});
 			
 		}
 		return newgamePlayer1;
@@ -722,6 +737,11 @@ public class MancalaGUI {
 		if (newgamePlayer2 == null) {
 			newgamePlayer2 = new JTextField();
 			newgamePlayer2.setText("Anonymous1");
+			newgamePlayer2.addKeyListener(new java.awt.event.KeyAdapter() {
+				public void keyTyped(java.awt.event.KeyEvent e) {
+					System.out.println("Player2's name is " + newgamePlayer2.getText()); // TODO Auto-generated Event stub keyTyped()
+				}
+			});
 		}
 		return newgamePlayer2;
 	}
