@@ -131,7 +131,7 @@ public class GameController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ResetBoardVisitor v = new ResetBoardVisitor();
-				v.visit((Pit)pits.get(0));
+				pits.get(0).accept(v);
 				/*
 				System.out.println("new button yeah!");
 				for(int i = 0; i< 14; i++){
@@ -184,9 +184,9 @@ public class GameController {
 	private void makeMove(int pit){
 		PitVisitor v = new MakeMoveVisitor();
 		if(pit < 7)
-			v.visit((Pit)pits.get(pit-1));
+			pits.get(pit-1).accept(v);
 		else
-			v.visit((Pit)pits.get(pit));
+			pits.get(pit).accept(v);
 	}
 	/*
 	public void registerMove(int guiPitId) {
