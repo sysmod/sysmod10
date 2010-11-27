@@ -47,6 +47,39 @@ public class GameController {
 
 	};
 	
+	private ActionListener pitClickListener = new ActionListener(){
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource()==gui.getPit1()){
+				makeMove(1);
+			}else if (e.getSource()==gui.getPit2()){
+				makeMove(2);
+			}else if (e.getSource()==gui.getPit3()){
+				makeMove(3);
+			}else if (e.getSource()==gui.getPit4()){
+				makeMove(4);
+			}else if (e.getSource()==gui.getPit5()){
+				makeMove(5);
+			}else if (e.getSource()==gui.getPit6()){
+				makeMove(6);
+			}else if (e.getSource()==gui.getPit7()){
+				makeMove(7);
+			}else if (e.getSource()==gui.getPit8()){
+				makeMove(8);
+			}else if (e.getSource()==gui.getPit9()){
+				makeMove(9);
+			}else if (e.getSource()==gui.getPit10()){
+				makeMove(10);
+			}else if (e.getSource()==gui.getPit11()){
+				makeMove(11);
+			}else if (e.getSource()==gui.getPit12()){
+				makeMove(12);
+			}	
+		}
+		
+	};
+	
 	public GameController(){
 		initializePits();
 		initializeGUIlisteners();
@@ -108,6 +141,18 @@ public class GameController {
 			}
 			
 		});
+		gui.getPit1().addActionListener(pitClickListener);
+		gui.getPit2().addActionListener(pitClickListener);
+		gui.getPit3().addActionListener(pitClickListener);
+		gui.getPit4().addActionListener(pitClickListener);
+		gui.getPit5().addActionListener(pitClickListener);
+		gui.getPit6().addActionListener(pitClickListener);
+		gui.getPit7().addActionListener(pitClickListener);
+		gui.getPit8().addActionListener(pitClickListener);
+		gui.getPit9().addActionListener(pitClickListener);
+		gui.getPit10().addActionListener(pitClickListener);
+		gui.getPit11().addActionListener(pitClickListener);
+		gui.getPit12().addActionListener(pitClickListener);
 	}
 
 	private void updateGUI() {
@@ -132,8 +177,12 @@ public class GameController {
 
 	}
 	
-	private void makeMove(){
-		
+	private void makeMove(int pit){
+		PitVisitor v = new MakeMoveVisitor();
+		if(pit < 7)
+			v.visit((Pit)pits.get(pit-1));
+		else
+			v.visit((Pit)pits.get(pit));
 	}
 	/*
 	public void registerMove(int guiPitId) {
