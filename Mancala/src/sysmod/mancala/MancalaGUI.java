@@ -1,9 +1,11 @@
 package sysmod.mancala;
 
 import java.awt.BorderLayout;
+
 import javax.swing.SwingConstants;
 import java.awt.Point;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JDialog;
@@ -27,15 +29,12 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.border.BevelBorder;
 import javax.swing.JScrollBar;
+import java.awt.Dialog;
 
 public class MancalaGUI {
 
 	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="33,27"
 	private JPanel jContentPane = null;
-	private JDialog teamDialog = null;  //  @jve:decl-index=0:visual-constraint="27,452"
-	private JPanel aboutContentPane = null;
-	private JTextArea aboutText = null;
-	private JLabel aboutTitle = null;
 	private JPanel Gameboard = null;
 	private JButton pit12 = null;
 	private JButton pit11 = null;
@@ -57,7 +56,7 @@ public class MancalaGUI {
 	private JPanel rightPanel = null;
 	private JButton helpButton = null;
 	private JButton teamButton = null;
-	private JDialog helpDialog = null;  //  @jve:decl-index=0:visual-constraint="333,456"
+	private JDialog helpDialog = null;  //  @jve:decl-index=0:visual-constraint="333,451"
 	private JPanel help = null;
 	private JLabel helpTitle = null;
 	private JButton newgameButton = null;
@@ -106,68 +105,17 @@ public class MancalaGUI {
 			title = new JLabel();
 			title.setText("Mancala");
 			title.setHorizontalAlignment(SwingConstants.CENTER);
+			title.setForeground(new Color(0, 0, 102));
 			title.setFont(new Font("Dialog", Font.BOLD, 24));
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new BorderLayout());
+			jContentPane.setBackground(new Color(204, 204, 255));
 			jContentPane.add(title, BorderLayout.NORTH);
 			jContentPane.add(getRightPanel(), BorderLayout.EAST);
 			jContentPane.add(getLeftPanel(), BorderLayout.WEST);
 			jContentPane.add(getGameboard(), BorderLayout.CENTER);
 		}
 		return jContentPane;
-	}
-
-	/**
-	 * This method initializes teamDialog
-	 * 
-	 * @return javax.swing.JDialog
-	 */
-	private JDialog getTeamDialog() {
-		if (teamDialog == null) {
-			teamDialog = new JDialog(getJFrame(), true);
-			teamDialog.setTitle("Mancala Team");
-			teamDialog.setFont(new Font("Dialog", Font.PLAIN, 14));
-			teamDialog.setMinimumSize(new Dimension(300, 200));
-			teamDialog.setMaximumSize(new Dimension(300, 200));
-			teamDialog.setBounds(new Rectangle(0, 0, 300, 200));
-			teamDialog.setContentPane(getAboutContentPane());
-		}
-		return teamDialog;
-	}
-
-	/**
-	 * This method initializes aboutContentPane
-	 * 
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getAboutContentPane() {
-		if (aboutContentPane == null) {
-			aboutTitle = new JLabel();
-			aboutTitle.setText("Mancala Team");
-			aboutTitle.setFont(new Font("Dialog", Font.BOLD, 14));
-			aboutContentPane = new JPanel();
-			aboutContentPane.setLayout(new BorderLayout());
-			aboutContentPane.add(getAboutText(), BorderLayout.CENTER);
-			aboutContentPane.add(aboutTitle, BorderLayout.NORTH);
-		}
-		return aboutContentPane;
-	}
-
-	/**
-	 * This method initializes aboutText
-	 * 
-	 * @return javax.swing.JTextArea
-	 */
-	private JTextArea getAboutText() {
-		if (aboutText == null) {
-			aboutText = new JTextArea();
-			aboutText.setSize(100, 70);
-			aboutText.setName("About");
-			aboutText.setBackground(new Color(238, 238, 238));
-			aboutText.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
-			aboutText.setEditable(false);
-		}
-		return aboutText;
 	}
 
 	/**
@@ -239,7 +187,7 @@ public class MancalaGUI {
 			Gameboard = new JPanel();
 			Gameboard.setLayout(new GridBagLayout());
 			Gameboard.setEnabled(false);
-			Gameboard.setBackground(SystemColor.activeCaptionBorder);
+			Gameboard.setBackground(Color.white);
 			Gameboard.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 			Gameboard.add(getPit12(), gridBagConstraints);
 			Gameboard.add(getPit11(), gridBagConstraints1);
@@ -269,9 +217,10 @@ public class MancalaGUI {
 	JButton getPlayer1Store() {
 		if (player1store == null) {
 			player1store = new JButton();
-			player1store.setPreferredSize(new Dimension(60, 26));
+			player1store.setPreferredSize(new Dimension(60, 35));
 			player1store.setHorizontalAlignment(SwingConstants.CENTER);
 			player1store.setFont(new Font("Dialog", Font.BOLD, 14));
+			player1store.setForeground(new Color(0, 0, 102));
 			player1store.setEnabled(false);
 		}
 		return player1store;
@@ -285,9 +234,10 @@ public class MancalaGUI {
 	JButton getPlayer2Store() {
 		if (player2store == null) {
 			player2store = new JButton();
-			player2store.setPreferredSize(new Dimension(60, 26));
+			player2store.setPreferredSize(new Dimension(60, 35));
 			player2store.setHorizontalAlignment(SwingConstants.CENTER);
 			player2store.setFont(new Font("Dialog", Font.BOLD, 14));
+			player2store.setForeground(new Color(0, 0, 102));
 			player2store.setEnabled(false);
 		}
 		return player2store;
@@ -302,7 +252,8 @@ public class MancalaGUI {
 		if (pit12 == null) {
 			pit12 = new JButton();
 			pit12.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit12.setPreferredSize(new Dimension(60, 26));
+			pit12.setForeground(new Color(0, 0, 102));
+			pit12.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit12;
 	}
@@ -316,7 +267,8 @@ public class MancalaGUI {
 		if (pit11 == null) {
 			pit11 = new JButton();
 			pit11.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit11.setPreferredSize(new Dimension(60, 26));
+			pit11.setForeground(new Color(0, 0, 102));
+			pit11.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit11;
 	}
@@ -330,7 +282,8 @@ public class MancalaGUI {
 		if (pit1 == null) {
 			pit1 = new JButton();
 			pit1.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit1.setPreferredSize(new Dimension(60, 26));
+			pit1.setForeground(new Color(0, 0, 102));
+			pit1.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit1;
 	}
@@ -344,7 +297,8 @@ public class MancalaGUI {
 		if (pit2 == null) {
 			pit2 = new JButton();
 			pit2.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit2.setPreferredSize(new Dimension(60, 26));
+			pit2.setForeground(new Color(0, 0, 102));
+			pit2.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit2;
 	}
@@ -358,7 +312,8 @@ public class MancalaGUI {
 		if (pit3 == null) {
 			pit3 = new JButton();
 			pit3.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit3.setPreferredSize(new Dimension(60, 26));
+			pit3.setForeground(new Color(0, 0, 102));
+			pit3.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit3;
 	}
@@ -372,7 +327,8 @@ public class MancalaGUI {
 		if (pit4 == null) {
 			pit4 = new JButton();
 			pit4.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit4.setPreferredSize(new Dimension(60, 26));
+			pit4.setForeground(new Color(0, 0, 102));
+			pit4.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit4;
 	}
@@ -386,7 +342,8 @@ public class MancalaGUI {
 		if (pit5 == null) {
 			pit5 = new JButton();
 			pit5.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit5.setPreferredSize(new Dimension(60, 26));
+			pit5.setForeground(new Color(0, 0, 102));
+			pit5.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit5;
 	}
@@ -400,7 +357,8 @@ public class MancalaGUI {
 		if (pit6 == null) {
 			pit6 = new JButton();
 			pit6.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit6.setPreferredSize(new Dimension(60, 26));
+			pit6.setForeground(new Color(0, 0, 102));
+			pit6.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit6;
 	}
@@ -414,7 +372,8 @@ public class MancalaGUI {
 		if (pit7 == null) {
 			pit7 = new JButton();
 			pit7.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit7.setPreferredSize(new Dimension(60, 26));
+			pit7.setForeground(new Color(0, 0, 102));
+			pit7.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit7;
 	}
@@ -428,7 +387,8 @@ public class MancalaGUI {
 		if (pit8 == null) {
 			pit8 = new JButton();
 			pit8.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit8.setPreferredSize(new Dimension(60, 26));
+			pit8.setForeground(new Color(0, 0, 102));
+			pit8.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit8;
 	}
@@ -442,7 +402,8 @@ public class MancalaGUI {
 		if (pit9 == null) {
 			pit9 = new JButton();
 			pit9.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit9.setPreferredSize(new Dimension(60, 26));
+			pit9.setForeground(new Color(0, 0, 102));
+			pit9.setPreferredSize(new Dimension(60, 35));
 		}
 		return pit9;
 	}
@@ -456,7 +417,8 @@ public class MancalaGUI {
 		if (pit10 == null) {
 			pit10 = new JButton();
 			pit10.setFont(new Font("Dialog", Font.BOLD, 14));
-			pit10.setPreferredSize(new Dimension(60, 26));
+			pit10.setForeground(new Color(0, 0, 102));
+			pit10.setPreferredSize(new Dimension(60, 35));
 			}
 		return pit10;
 	}
@@ -482,6 +444,7 @@ public class MancalaGUI {
 			rightPanel.setSize(130, 300);
 			rightPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 			rightPanel.setPreferredSize(new Dimension(140, 78));
+			rightPanel.setBackground(new Color(204, 204, 255));
 			rightPanel.add(getHelpButton(), gridBagConstraints14);
 			rightPanel.add(getTeamButton(), gridBagConstraints15);
 			rightPanel.add(getRightPanelScore(), gridBagConstraints37);
@@ -528,12 +491,7 @@ public class MancalaGUI {
 			teamButton.setFont(new Font("Dialog", Font.BOLD, 14));
 			teamButton.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					JDialog aboutDialog = getTeamDialog();
-					aboutDialog.pack();
-					Point loc = getJFrame().getLocation();
-					loc.translate(20, 50);
-					aboutDialog.setLocation(loc);
-					aboutDialog.setVisible(true);
+					JOptionPane.showMessageDialog(null, "Mancala Team 2010:\n - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller", "Mancala Team 2010", JOptionPane.INFORMATION_MESSAGE);   
 				}
 			});
 		}
@@ -664,6 +622,7 @@ public class MancalaGUI {
 			leftPanel = new JPanel();
 			leftPanel.setLayout(new GridBagLayout());
 			leftPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			leftPanel.setBackground(new Color(204, 204, 255));
 			leftPanel.add(newPlayer1Label, gridBagConstraints33);
 			leftPanel.add(getNewPlayer1(), gridBagConstraints27);
 			leftPanel.add(newPlayer2Label, gridBagConstraints34);
@@ -682,8 +641,13 @@ public class MancalaGUI {
 	private JTextField getNewPlayer1() {
 		if (newPlayer1 == null) {
 			newPlayer1 = new JTextField();
-			newPlayer1.setText("anonymous");
+			newPlayer1.setText("player1");
 			newPlayer1.setFont(new Font("Dialog", Font.PLAIN, 14));
+			newPlayer1.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					newPlayer1.selectAll(); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
 		}
 		return newPlayer1;
 	}
@@ -721,9 +685,14 @@ public class MancalaGUI {
 	private JTextField getNewPlayer2() {
 		if (newPlayer2 == null) {
 			newPlayer2 = new JTextField();
-			newPlayer2.setText("anonymous1");
+			newPlayer2.setText("player2");
 			newPlayer2.setFont(new Font("Dialog", Font.PLAIN, 14));
 			newPlayer2.setVisible(true);
+			newPlayer2.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					newPlayer2.selectAll(); // TODO Auto-generated Event stub mouseClicked()
+				}
+			});
 		}
 		return newPlayer2;
 	}
