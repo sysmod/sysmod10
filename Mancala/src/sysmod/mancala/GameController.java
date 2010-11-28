@@ -41,15 +41,7 @@ public class GameController {
 
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
-			if(playerOne.getTurn()==null){
-				gui.getStatus().setText("It is "+playerTwo.getName()+"\'s turn.");
-				gui.disablePits(1);
-				currentPlayer=playerTwo;
-			}else {
-				gui.getStatus().setText("It is "+playerOne.getName()+"\'s turn.");
-				gui.disablePits(2);
-				currentPlayer=playerOne;
-			}
+			
 		}
 
 	};
@@ -121,6 +113,8 @@ public class GameController {
 				playerOne.setTurn(Turn.getInstance());
 			else
 				playerTwo.setTurn(Turn.getInstance());
+			
+			roundSetupCleanup();
 		}
 		
 	};
@@ -214,6 +208,10 @@ public class GameController {
 		else
 			currentPlayer.makeMove((Pit) pits.get(pit));
 		
+		roundSetupCleanup();
+	}
+	
+	private void roundSetupCleanup() {
 		CheckWinVisitor c = new CheckWinVisitor();
 		pits.get(0).accept(c);
 		
@@ -225,52 +223,44 @@ public class GameController {
 			} else {
 				gui.getStatus().setText("It's a draw!");
 			}
-		}
-		
-		if(pits.get(0).getSeeds()==0)
-			gui.getPit1().setEnabled(false);
-		if(pits.get(1).getSeeds()==0)
-			gui.getPit2().setEnabled(false);
-		if(pits.get(2).getSeeds()==0)
-			gui.getPit3().setEnabled(false);
-		if(pits.get(3).getSeeds()==0)
-			gui.getPit4().setEnabled(false);
-		if(pits.get(4).getSeeds()==0)
-			gui.getPit5().setEnabled(false);
-		if(pits.get(5).getSeeds()==0)
-			gui.getPit6().setEnabled(false);
-		if(pits.get(7).getSeeds()==0)
-			gui.getPit7().setEnabled(false);
-		if(pits.get(8).getSeeds()==0)
-			gui.getPit8().setEnabled(false);
-		if(pits.get(9).getSeeds()==0)
-			gui.getPit9().setEnabled(false);
-		if(pits.get(10).getSeeds()==0)
-			gui.getPit10().setEnabled(false);
-		if(pits.get(11).getSeeds()==0)
-			gui.getPit11().setEnabled(false);
-		if(pits.get(12).getSeeds()==0)
-			gui.getPit12().setEnabled(false);
-	}
-	/*
-	public void registerMove(int guiPitId) {
-
-		int arrayListId;
-		Player player;
-
-		if (guiPitId <= 6) {
-			arrayListId = guiPitId - 1;
-			player = controller.playerOne;
 		} else {
-			arrayListId = guiPitId;
-			player = controller.playerTwo;
+			if(playerOne.getTurn()==null){
+				gui.getStatus().setText("It is "+playerTwo.getName()+"\'s turn.");
+				gui.disablePits(1);
+				currentPlayer=playerTwo;
+				
+				if(pits.get(7).getSeeds()==0)
+					gui.getPit7().setEnabled(false);
+				if(pits.get(8).getSeeds()==0)
+					gui.getPit8().setEnabled(false);
+				if(pits.get(9).getSeeds()==0)
+					gui.getPit9().setEnabled(false);
+				if(pits.get(10).getSeeds()==0)
+					gui.getPit10().setEnabled(false);
+				if(pits.get(11).getSeeds()==0)
+					gui.getPit11().setEnabled(false);
+				if(pits.get(12).getSeeds()==0)
+					gui.getPit12().setEnabled(false);
+			}else {
+				gui.getStatus().setText("It is "+playerOne.getName()+"\'s turn.");
+				gui.disablePits(2);
+				currentPlayer=playerOne;
+				
+				if(pits.get(0).getSeeds()==0)
+					gui.getPit1().setEnabled(false);
+				if(pits.get(1).getSeeds()==0)
+					gui.getPit2().setEnabled(false);
+				if(pits.get(2).getSeeds()==0)
+					gui.getPit3().setEnabled(false);
+				if(pits.get(3).getSeeds()==0)
+					gui.getPit4().setEnabled(false);
+				if(pits.get(4).getSeeds()==0)
+					gui.getPit5().setEnabled(false);
+				if(pits.get(5).getSeeds()==0)
+					gui.getPit6().setEnabled(false);
+			}
 		}
-		
-		System.out.println(arrayListId);
-		player.makeMove((Pit) controller.pits.get(arrayListId));
-
 	}
-	*/
 
 	public static void main(String[] args) {
 		/*

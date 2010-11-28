@@ -35,24 +35,42 @@ public class CheckWinVisitor implements PitVisitor
       return this.gameOver;
    }
 
+   /**
+    * <pre>
+    *           0..1     is loser     0..1
+    * CheckWinVisitor ------------------------> Player
+    *           checkWinVisitor2               loser
+    * </pre>
+    */
    public static final String PROPERTY_LOSER = "loser";
 
-   @Property( name = PROPERTY_LOSER, kind = ReferenceHandler.ReferenceKind.ATTRIBUTE )
+   @Property( name = PROPERTY_LOSER, kind = ReferenceHandler.ReferenceKind.TO_ONE,
+         adornment = ReferenceHandler.Adornment.NONE)
    private Player loser;
 
    @Property( name = PROPERTY_LOSER )
-   public void setLoser (Player value)
+   public boolean setLoser (Player value)
    {
-      this.loser = value;
+      boolean changed = false;
+
+      if (this.loser != value)
+      {
+      
+         Player oldValue = this.loser;
+         this.loser = value;
+         changed = true;
+      
+      }
+      return changed;
    }
 
+   @Property( name = PROPERTY_LOSER )
    public CheckWinVisitor withLoser (Player value)
    {
       setLoser (value);
       return this;
    }
 
-   @Property( name = PROPERTY_LOSER )
    public Player getLoser ()
    {
       return this.loser;
@@ -240,24 +258,42 @@ public class CheckWinVisitor implements PitVisitor
       return storesPassed >= 2;
    }
 
+   /**
+    * <pre>
+    *           0..1     is winner     0..1
+    * CheckWinVisitor ------------------------> Player
+    *           checkWinVisitor               winner
+    * </pre>
+    */
    public static final String PROPERTY_WINNER = "winner";
 
-   @Property( name = PROPERTY_WINNER, kind = ReferenceHandler.ReferenceKind.ATTRIBUTE )
+   @Property( name = PROPERTY_WINNER, kind = ReferenceHandler.ReferenceKind.TO_ONE,
+         adornment = ReferenceHandler.Adornment.NONE)
    private Player winner;
 
    @Property( name = PROPERTY_WINNER )
-   public void setWinner (Player value)
+   public boolean setWinner (Player value)
    {
-      this.winner = value;
+      boolean changed = false;
+
+      if (this.winner != value)
+      {
+      
+         Player oldValue = this.winner;
+         this.winner = value;
+         changed = true;
+      
+      }
+      return changed;
    }
 
+   @Property( name = PROPERTY_WINNER )
    public CheckWinVisitor withWinner (Player value)
    {
       setWinner (value);
       return this;
    }
 
-   @Property( name = PROPERTY_WINNER )
    public Player getWinner ()
    {
       return this.winner;
@@ -265,6 +301,8 @@ public class CheckWinVisitor implements PitVisitor
 
    public void removeYou()
    {
+      this.setLoser (null);
+      this.setWinner (null);
    }
 }
 
