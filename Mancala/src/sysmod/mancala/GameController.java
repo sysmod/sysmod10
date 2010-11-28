@@ -117,14 +117,14 @@ public class GameController {
 			playerTwo.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
 			playerOne.setOpposite(playerTwo);
 			
+			initializePits();
+			ResetBoardVisitor v = new ResetBoardVisitor();
+			pits.get(0).accept(v);
+			
 			if(Math.random() <0.5)
 				playerOne.setTurn(Turn.getInstance());
 			else
 				playerTwo.setTurn(Turn.getInstance());
-			
-			initializePits();
-			ResetBoardVisitor v = new ResetBoardVisitor();
-			pits.get(0).accept(v);
 		}
 		
 	};
@@ -230,6 +230,31 @@ public class GameController {
 				gui.getStatus().setText("It's a draw!");
 			}
 		}
+		
+		if(pits.get(0).getSeeds()==0)
+			gui.getPit1().setEnabled(false);
+		if(pits.get(1).getSeeds()==0)
+			gui.getPit2().setEnabled(false);
+		if(pits.get(2).getSeeds()==0)
+			gui.getPit3().setEnabled(false);
+		if(pits.get(3).getSeeds()==0)
+			gui.getPit4().setEnabled(false);
+		if(pits.get(4).getSeeds()==0)
+			gui.getPit5().setEnabled(false);
+		if(pits.get(5).getSeeds()==0)
+			gui.getPit6().setEnabled(false);
+		if(pits.get(7).getSeeds()==0)
+			gui.getPit7().setEnabled(false);
+		if(pits.get(8).getSeeds()==0)
+			gui.getPit8().setEnabled(false);
+		if(pits.get(9).getSeeds()==0)
+			gui.getPit9().setEnabled(false);
+		if(pits.get(10).getSeeds()==0)
+			gui.getPit10().setEnabled(false);
+		if(pits.get(11).getSeeds()==0)
+			gui.getPit11().setEnabled(false);
+		if(pits.get(12).getSeeds()==0)
+			gui.getPit12().setEnabled(false);
 	}
 	/*
 	public void registerMove(int guiPitId) {
