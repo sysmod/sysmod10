@@ -504,7 +504,7 @@ public class MancalaGUI {
 			teamButton.setFont(new Font("Dialog", Font.BOLD, 14));
 			teamButton.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					JOptionPane.showMessageDialog(null, "Mancala Team 2010:\n - Martin Loginov \n - Hans Mï¿½esalu \n - Peeter Jï¿½rviste \n - Mari Rï¿½ï¿½tli \n - Sven Aller", "Mancala Team 2010", JOptionPane.INFORMATION_MESSAGE);   
+					JOptionPane.showMessageDialog(null, "Mancala Team 2010:\n - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller", "Mancala Team 2010", JOptionPane.INFORMATION_MESSAGE);   
 				}
 			});
 		}
@@ -803,6 +803,7 @@ public class MancalaGUI {
 			scoresText = new JTextArea();
 			scoresText.setLineWrap(true);
 			scoresText.setBackground(new Color(238, 238, 238));
+			scoresText.setEditable(false);
 			scoresText.setWrapStyleWord(true);
 		}
 		return scoresText;
