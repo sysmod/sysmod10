@@ -66,14 +66,13 @@ public class MancalaGUI {
 	private JLabel player2Space = null;
 	private JLabel player2Score = null;
 	private JTextArea helpText = null;
-	private JScrollBar scrollbar = null;
 	private JLabel player1Label = null;
 	private JPanel leftPanelScore = null;
 	private JLabel player2Label = null;
 	private JLabel status = null;
 	private JPanel downPanel = null;
 	private JButton scoresButton = null;
-	private JDialog scoresDialog = null;  //  @jve:decl-index=0:visual-constraint="410,440"
+	private JDialog scoresDialog = null;  //  @jve:decl-index=0:visual-constraint="556,433"
 	private JPanel scoresPanel = null;
 	private JLabel scoresTitle = null;
 	private JTextArea scoresText = null;
@@ -518,13 +517,11 @@ public class MancalaGUI {
 		if (helpDialog == null) {
 			helpDialog = new JDialog(getJFrame());
 			helpDialog.setTitle("Mancala Help");
-			helpDialog.setBounds(new Rectangle(0, 0, 300, 200));
-			helpDialog.setMinimumSize(new Dimension(300, 200));
-			helpDialog.setMaximumSize(new Dimension(300, 200));
+			helpDialog.setBounds(new Rectangle(0, 0, 500, 400));
+			helpDialog.setMinimumSize(new Dimension(500, 400));
+			helpDialog.setMaximumSize(new Dimension(500, 400));
+			helpDialog.setPreferredSize(new Dimension(500, 400));
 			helpDialog.setContentPane(getHelp());
-			JScrollPane scrollingArea = new JScrollPane(helpText);
-
-			helpDialog.add(scrollingArea, BorderLayout.CENTER);
 		}
 		return helpDialog;
 	}
