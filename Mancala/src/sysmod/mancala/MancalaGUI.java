@@ -90,6 +90,7 @@ public class MancalaGUI {
 			jFrame.setPreferredSize(new Dimension(800, 400));
 			jFrame.setContentPane(getJContentPane());
 			jFrame.setTitle("Mancala");
+			this.disablePits(0);
 		}
 		return jFrame;
 	}
@@ -718,8 +719,36 @@ public class MancalaGUI {
 			getPit11().setEnabled(false);
 			getPit12().setEnabled(false);
 		} else if (player == 1){
-			
+			getPit1().setEnabled(false);
+			getPit2().setEnabled(false);
+			getPit3().setEnabled(false);
+			getPit4().setEnabled(false);
+			getPit5().setEnabled(false);
+			getPit6().setEnabled(false);
+			getPit7().setEnabled(true);
+			getPit8().setEnabled(true);
+			getPit9().setEnabled(true);
+			getPit10().setEnabled(true);
+			getPit11().setEnabled(true);
+			getPit12().setEnabled(true);
+		} else if (player == 2){
+			getPit1().setEnabled(true);
+			getPit2().setEnabled(true);
+			getPit3().setEnabled(true);
+			getPit4().setEnabled(true);
+			getPit5().setEnabled(true);
+			getPit6().setEnabled(true);
+			getPit7().setEnabled(false);
+			getPit8().setEnabled(false);
+			getPit9().setEnabled(false);
+			getPit10().setEnabled(false);
+			getPit11().setEnabled(false);
+			getPit12().setEnabled(false);
 		}
+	}
+
+	public JLabel getStatus() {
+		return status;
 	}
 
 }

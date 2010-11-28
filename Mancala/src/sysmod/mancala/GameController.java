@@ -42,34 +42,12 @@ public class GameController {
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 			if(playerOne.getTurn()==null){
-				gui.getTitle().setText("It is "+playerTwo.getName()+"\'s turn.");
-				gui.getPit1().setEnabled(false);
-				gui.getPit2().setEnabled(false);
-				gui.getPit3().setEnabled(false);
-				gui.getPit4().setEnabled(false);
-				gui.getPit5().setEnabled(false);
-				gui.getPit6().setEnabled(false);
-				gui.getPit7().setEnabled(true);
-				gui.getPit8().setEnabled(true);
-				gui.getPit9().setEnabled(true);
-				gui.getPit10().setEnabled(true);
-				gui.getPit11().setEnabled(true);
-				gui.getPit12().setEnabled(true);
+				gui.getStatus().setText("It is "+playerTwo.getName()+"\'s turn.");
+				gui.disablePits(1);
 				currentPlayer=playerTwo;
 			}else {
-				gui.getTitle().setText("It is "+playerOne.getName()+"\'s turn.");
-				gui.getPit1().setEnabled(true);
-				gui.getPit2().setEnabled(true);
-				gui.getPit3().setEnabled(true);
-				gui.getPit4().setEnabled(true);
-				gui.getPit5().setEnabled(true);
-				gui.getPit6().setEnabled(true);
-				gui.getPit7().setEnabled(false);
-				gui.getPit8().setEnabled(false);
-				gui.getPit9().setEnabled(false);
-				gui.getPit10().setEnabled(false);
-				gui.getPit11().setEnabled(false);
-				gui.getPit12().setEnabled(false);
+				gui.getStatus().setText("It is "+playerOne.getName()+"\'s turn.");
+				gui.disablePits(2);
 				currentPlayer=playerOne;
 			}
 		}
@@ -243,11 +221,11 @@ public class GameController {
 		
 		if(c.isGameOver()){
 			if(playerOne.getStore().getSeeds()>playerTwo.getStore().getSeeds()){
-				gui.getTitle().setText(playerOne.getName() + "is the WINNER!");
+				gui.getStatus().setText(playerOne.getName() + "is the WINNER!");
 			} else if (playerTwo.getStore().getSeeds() > playerOne.getStore().getSeeds()){
-				gui.getTitle().setText(playerTwo.getName() + "is the WINNER!");
+				gui.getStatus().setText(playerTwo.getName() + "is the WINNER!");
 			} else {
-				gui.getTitle().setText("It's a draw!");
+				gui.getStatus().setText("It's a draw!");
 			}
 		}
 	}
