@@ -76,6 +76,7 @@ public class MancalaGUI {
 	private JPanel scoresPanel = null;
 	private JLabel scoresTitle = null;
 	private JTextArea scoresText = null;
+	private JPanel upperPanel = null;
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -111,10 +112,10 @@ public class MancalaGUI {
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new BorderLayout());
 			jContentPane.setBackground(new Color(204, 204, 255));
-			jContentPane.add(title, BorderLayout.NORTH);
 			jContentPane.add(getRightPanel(), BorderLayout.EAST);
 			jContentPane.add(getLeftPanel(), BorderLayout.WEST);
 			jContentPane.add(getDownPanel(), BorderLayout.SOUTH);
+			jContentPane.add(getUpperPanel(), BorderLayout.NORTH);
 			jContentPane.add(getGameboard(), BorderLayout.CENTER);
 		}
 		return jContentPane;
@@ -438,16 +439,16 @@ public class MancalaGUI {
 		if (rightPanel == null) {
 			GridBagConstraints gridBagConstraints26 = new GridBagConstraints();
 			gridBagConstraints26.gridx = 0;
-			gridBagConstraints26.gridy = 0;
+			gridBagConstraints26.gridy = 1;
 			GridBagConstraints gridBagConstraints37 = new GridBagConstraints();
 			gridBagConstraints37.gridx = 0;
 			gridBagConstraints37.gridy = 0;
 			GridBagConstraints gridBagConstraints15 = new GridBagConstraints();
 			gridBagConstraints15.gridx = 0;
-			gridBagConstraints15.gridy = 3;
+			gridBagConstraints15.gridy = 4;
 			GridBagConstraints gridBagConstraints14 = new GridBagConstraints();
 			gridBagConstraints14.gridx = 0;
-			gridBagConstraints14.gridy = 2;
+			gridBagConstraints14.gridy = 3;
 			rightPanel = new JPanel();
 			rightPanel.setLayout(new GridBagLayout());
 			rightPanel.setSize(130, 300);
@@ -752,7 +753,7 @@ public class MancalaGUI {
 		if (scoresDialog == null) {
 			scoresDialog = new JDialog(getJFrame());
 			scoresDialog.setTitle("Mancala Scores");
-			scoresDialog.setMinimumSize(new Dimension(500, 400));
+			scoresDialog.setMinimumSize(new Dimension(300, 200));
 			scoresDialog.setMaximumSize(new Dimension(500, 400));
 			scoresDialog.setPreferredSize(new Dimension(500, 400));
 			scoresDialog.setLocation(new Point(0, 0));
@@ -793,6 +794,26 @@ public class MancalaGUI {
 			scoresText.setWrapStyleWord(true);
 		}
 		return scoresText;
+	}
+
+	/**
+	 * This method initializes upperPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getUpperPanel() {
+		if (upperPanel == null) {
+			GridBagConstraints gridBagConstraints17 = new GridBagConstraints();
+			gridBagConstraints17.gridx = 0;
+			gridBagConstraints17.gridy = 0;
+			upperPanel = new JPanel();
+			upperPanel.setLayout(new GridBagLayout());
+			upperPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			upperPanel.setPreferredSize(new Dimension(105, 70));
+			upperPanel.setBackground(new Color(204, 204, 255));
+			upperPanel.add(getTitle(), gridBagConstraints17);
+		}
+		return upperPanel;
 	}
 
 }
