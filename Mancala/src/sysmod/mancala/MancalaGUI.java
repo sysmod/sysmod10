@@ -752,9 +752,11 @@ public class MancalaGUI {
 		if (scoresDialog == null) {
 			scoresDialog = new JDialog(getJFrame());
 			scoresDialog.setTitle("Mancala Scores");
-			scoresDialog.setBounds(new Rectangle(0, 0, 300, 200));
-			scoresDialog.setMinimumSize(new Dimension(300, 200));
-			scoresDialog.setMaximumSize(new Dimension(300, 200));
+			scoresDialog.setMinimumSize(new Dimension(500, 400));
+			scoresDialog.setMaximumSize(new Dimension(500, 400));
+			scoresDialog.setPreferredSize(new Dimension(500, 400));
+			scoresDialog.setLocation(new Point(0, 0));
+			scoresDialog.setSize(new Dimension(500, 400));
 			scoresDialog.setContentPane(getScoresPanel());
 		}
 		return scoresDialog;
