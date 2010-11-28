@@ -26,7 +26,7 @@ public class ResetBoardVisitor implements PitVisitor
          // assign attribute this
          this.setVisitedPits (visitedPits + 1);
          // assign attribute pit
-         pit.setSeeds (4);
+         pit.setSeeds (3);
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
