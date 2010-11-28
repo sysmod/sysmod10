@@ -22,6 +22,7 @@ import javax.swing.JTextPane;
 import java.awt.Insets;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 public class MancalaGUI {
 
@@ -58,14 +59,14 @@ public class MancalaGUI {
 	private JTextPane helpText = null;
 	private JButton newgameButton = null;
 	private JDialog newgameDialog = null;  //  @jve:decl-index=0:visual-constraint="645,327"
+	private JDialog newgamegui = null;  //  Added!!!
 	private JPanel newgameContent = null;
 	private JLabel newgameLabel1 = null;
-	private JRadioButton newgameHuman = null;
-	private JRadioButton newgameComputer = null;
 	private JLabel newgameLabel = null;
 	private JTextField newgamePlayer1 = null;
 	private JLabel newgameOpponent = null;
 	private JTextField newgamePlayer2 = null;
+	private JComboBox newgameOpponentType = null;
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -151,8 +152,7 @@ public class MancalaGUI {
 			aboutText.setSize(100, 70);
 			aboutText.setName("About");
 			aboutText.setBackground(SystemColor.activeCaptionBorder);
-			aboutText
-					.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
+			aboutText.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
 			aboutText.setEditable(false);
 		}
 		return aboutText;
@@ -607,6 +607,7 @@ public class MancalaGUI {
 	 * @return javax.swing.JDialog	
 	 */
 	private JDialog getNewgameDialog() {
+		
 		if (newgameDialog == null) {
 			newgameDialog = new JDialog(getJFrame());
 			newgameDialog.setTitle("New Game");
@@ -615,6 +616,8 @@ public class MancalaGUI {
 			newgameDialog.setMaximumSize(new Dimension(300, 200));
 			newgameDialog.setContentPane(getNewgameContent());
 		}
+		
+		
 		return newgameDialog;
 	}
 
@@ -625,6 +628,11 @@ public class MancalaGUI {
 	 */
 	private JPanel getNewgameContent() {
 		if (newgameContent == null) {
+			GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
+			gridBagConstraints18.fill = GridBagConstraints.VERTICAL;
+			gridBagConstraints18.gridy = 1;
+			gridBagConstraints18.weightx = 1.0;
+			gridBagConstraints18.gridx = 1;
 			GridBagConstraints gridBagConstraints25 = new GridBagConstraints();
 			gridBagConstraints25.fill = GridBagConstraints.VERTICAL;
 			gridBagConstraints25.gridy = 1;
@@ -646,12 +654,6 @@ public class MancalaGUI {
 			newgameLabel = new JLabel();
 			newgameLabel.setText("Your name:");
 			newgameLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-			GridBagConstraints gridBagConstraints19 = new GridBagConstraints();
-			gridBagConstraints19.gridx = 1;
-			gridBagConstraints19.gridy = 3;
-			GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
-			gridBagConstraints18.gridx = 1;
-			gridBagConstraints18.gridy = 1;
 			GridBagConstraints gridBagConstraints17 = new GridBagConstraints();
 			gridBagConstraints17.gridx = 0;
 			gridBagConstraints17.gridy = 1;
@@ -661,51 +663,13 @@ public class MancalaGUI {
 			newgameContent = new JPanel();
 			newgameContent.setLayout(new GridBagLayout());
 			newgameContent.add(newgameLabel1, gridBagConstraints17);
-			newgameContent.add(getNewgameHuman(), gridBagConstraints18);
-			newgameContent.add(getNewgameComputer(), gridBagConstraints19);
 			newgameContent.add(newgameLabel, gridBagConstraints20);
 			newgameContent.add(getNewgamePlayer1(), gridBagConstraints23);
 			newgameContent.add(newgameOpponent, gridBagConstraints24);
 			newgameContent.add(getNewgamePlayer2(), gridBagConstraints25);
+			newgameContent.add(getNewgameOpponentType(), gridBagConstraints18);
 		}
 		return newgameContent;
-	}
-
-	/**
-	 * This method initializes newgameHuman	
-	 * 	
-	 * @return javax.swing.JRadioButton	
-	 */
-	private JRadioButton getNewgameHuman() {
-		if (newgameHuman == null) {
-			newgameHuman = new JRadioButton();
-			newgameHuman.setText("Human with name ");
-			newgameHuman.setActionCommand("Human");
-			newgameHuman.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("Opponent is human"); // TODO Auto-generated Event stub mouseClicked()
-				}
-			});
-		}
-		return newgameHuman;
-	}
-
-	/**
-	 * This method initializes newgameComputer	
-	 * 	
-	 * @return javax.swing.JRadioButton	
-	 */
-	private JRadioButton getNewgameComputer() {
-		if (newgameComputer == null) {
-			newgameComputer = new JRadioButton();
-			newgameComputer.setText("Computer");
-			newgameComputer.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("Opponent is computer"); // TODO Auto-generated Event stub mouseClicked()
-				}
-			});
-		}
-		return newgameComputer;
 	}
 
 	/**
@@ -716,11 +680,11 @@ public class MancalaGUI {
 	private JTextField getNewgamePlayer1() {
 		if (newgamePlayer1 == null) {
 			newgamePlayer1 = new JTextField();
-			newgamePlayer1.setSize(40, 12);
-			newgamePlayer1.setText("Anonymous");
-			newgamePlayer1.addKeyListener(new java.awt.event.KeyAdapter() {
-				public void keyTyped(java.awt.event.KeyEvent e) {
-					System.out.println("Player1's name is " + newgamePlayer1.getText()); // TODO Auto-generated Event stub keyTyped()
+			newgamePlayer1.setSize(60, 12);
+			newgamePlayer1.setText("Anonymous1");
+			newgamePlayer2.addFocusListener(new java.awt.event.FocusAdapter() {
+				public void focusLost(java.awt.event.FocusEvent e) {
+					System.out.println("Player1's name is " + newgamePlayer1.getText()); // TODO Auto-generated Event stub focusLost()
 				}
 			});
 			
@@ -736,14 +700,28 @@ public class MancalaGUI {
 	private JTextField getNewgamePlayer2() {
 		if (newgamePlayer2 == null) {
 			newgamePlayer2 = new JTextField();
-			newgamePlayer2.setText("Anonymous1");
-			newgamePlayer2.addKeyListener(new java.awt.event.KeyAdapter() {
-				public void keyTyped(java.awt.event.KeyEvent e) {
-					System.out.println("Player2's name is " + newgamePlayer2.getText()); // TODO Auto-generated Event stub keyTyped()
+			newgamePlayer2.setSize(60, 12);
+			newgamePlayer2.setText("Anonymous2");
+			newgamePlayer2.addFocusListener(new java.awt.event.FocusAdapter() {
+				public void focusLost(java.awt.event.FocusEvent e) {
+					System.out.println("Player2's name is " + newgamePlayer2.getText()); // TODO Auto-generated Event stub focusLost()
 				}
 			});
 		}
 		return newgamePlayer2;
+	}
+
+	/**
+	 * This method initializes newgameOpponentType	
+	 * 	
+	 * @return javax.swing.JComboBox	
+	 */
+	private JComboBox getNewgameOpponentType() {
+		if (newgameOpponentType == null) {
+			String combolabels[] = {"Human", "Computer"};
+			newgameOpponentType = new JComboBox(combolabels);
+		}
+		return newgameOpponentType;
 	}
 
 }
