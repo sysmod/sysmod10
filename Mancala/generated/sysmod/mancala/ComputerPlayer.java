@@ -16,7 +16,6 @@ public class ComputerPlayer extends Player
       boolean fujaba__Success = false;
       Iterator fujaba__IterThisToPit = null;
       Object _TmpObject = null;
-      Pit Pit = null;
       MakeMoveVisitor visitor = null;
 
       // Get some pit and create MakeMoveVisitor
@@ -25,7 +24,7 @@ public class ComputerPlayer extends Player
       {
          fujaba__Success = false; 
 
-         // iterate to-many link owns from this to Pit
+         // iterate to-many link owns from this to pit
          fujaba__Success = false;
          fujaba__IterThisToPit = this.iteratorOfPit ();
 
@@ -35,12 +34,12 @@ public class ComputerPlayer extends Player
             {
                _TmpObject =  fujaba__IterThisToPit.next ();
 
-               // ensure correct type and really bound of object Pit
+               // ensure correct type and really bound of object pit
                JavaSDM.ensure ( _TmpObject instanceof Pit );
-               Pit = (Pit) _TmpObject;
+               pit = (Pit) _TmpObject;
 
                // attribute condition seeds > 0
-               JavaSDM.ensure ( Pit.getSeeds () > 0 );
+               JavaSDM.ensure ( pit.getSeeds () > 0 );
 
 
                fujaba__Success = true;
