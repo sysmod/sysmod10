@@ -463,6 +463,9 @@ public class Artjom_wins_the_gameTest extends TestCase
          // check link owns from ulnoStore to ulno
          JavaSDM.ensure (ulno.equals (ulnoStore.getPlayer ()), "check link owns from ulnoStore to ulno");
 
+         // attribute condition gameOver == true
+         JavaSDM.ensure ( visitor.isGameOver () == true, "attribute condition gameOver == true" );
+
          // attribute condition name == "Artjom"
          JavaSDM.ensure ( JavaSDM.stringCompare ((String) artjom.getName (), "Artjom") == 0, "attribute condition name == \"Artjom\"" );
 
@@ -511,8 +514,6 @@ public class Artjom_wins_the_gameTest extends TestCase
          // attribute condition seeds == 19
          JavaSDM.ensure ( artjomStore.getSeeds () == 19, "attribute condition seeds == 19" );
 
-         // assign attribute visitor
-         visitor.setGameOver (true);
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
