@@ -92,7 +92,9 @@ public class GameController {
 				return;
 			else if(newgame.getComputerPlayerSelected()==false){
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
+				gui.getPlayer1Label().setText(newgame.getPlayerOneName().getText());
 				gui.getPlayer2label().setText(newgame.getPlayerTwoName().getText());
+				gui.getPlayer2Label().setText(newgame.getPlayerTwoName().getText());
 				playerOne = new HumanPlayer();
 				playerOne.setName(newgame.getPlayerOneName().getText());
 				
@@ -100,7 +102,9 @@ public class GameController {
 				playerTwo.setName(newgame.getPlayerTwoName().getText());
 			}else{
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
+				gui.getPlayer1Label().setText(newgame.getPlayerOneName().getText());
 				gui.getPlayer2label().setText("Computer");
+				gui.getPlayer2Label().setText("Computer");
 			}
 			playerOne.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
 			playerTwo.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
