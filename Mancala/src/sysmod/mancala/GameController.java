@@ -109,7 +109,8 @@ public class GameController {
 				playerOne.setTurn(Turn.getInstance());
 			else
 				playerTwo.setTurn(Turn.getInstance());
-
+			
+			initializePits();
 			ResetBoardVisitor v = new ResetBoardVisitor();
 			pits.get(0).accept(v);
 		}
@@ -117,11 +118,11 @@ public class GameController {
 	};
 	
 	public GameController(){
-		initializePits();
 		initializeGUIlisteners();
 	}
 
 	private void initializePits() {
+		pits.clear();
 		AbstractPit pit = new Pit();
 		pit.setPlayer(playerOne);
 		pits.add(pit);
