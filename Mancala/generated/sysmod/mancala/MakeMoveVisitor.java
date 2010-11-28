@@ -12,47 +12,83 @@ public class MakeMoveVisitor implements PitVisitor
 
 
 
+   /**
+    * <pre>
+    *           0..1     is first     0..1
+    * MakeMoveVisitor ------------------------> AbstractPit
+    *           makeMoveVisitor2               firstPit
+    * </pre>
+    */
    public static final String PROPERTY_FIRST_PIT = "firstPit";
 
-   @Property( name = PROPERTY_FIRST_PIT, kind = ReferenceHandler.ReferenceKind.ATTRIBUTE )
+   @Property( name = PROPERTY_FIRST_PIT, kind = ReferenceHandler.ReferenceKind.TO_ONE,
+         adornment = ReferenceHandler.Adornment.NONE)
    private AbstractPit firstPit;
 
    @Property( name = PROPERTY_FIRST_PIT )
-   public void setFirstPit (AbstractPit value)
+   public boolean setFirstPit (AbstractPit value)
    {
-      this.firstPit = value;
+      boolean changed = false;
+
+      if (this.firstPit != value)
+      {
+      
+         AbstractPit oldValue = this.firstPit;
+         this.firstPit = value;
+         changed = true;
+      
+      }
+      return changed;
    }
 
+   @Property( name = PROPERTY_FIRST_PIT )
    public MakeMoveVisitor withFirstPit (AbstractPit value)
    {
       setFirstPit (value);
       return this;
    }
 
-   @Property( name = PROPERTY_FIRST_PIT )
    public AbstractPit getFirstPit ()
    {
       return this.firstPit;
    }
 
+   /**
+    * <pre>
+    *           0..1     is last     0..1
+    * MakeMoveVisitor ------------------------> AbstractPit
+    *           makeMoveVisitor               lastPit
+    * </pre>
+    */
    public static final String PROPERTY_LAST_PIT = "lastPit";
 
-   @Property( name = PROPERTY_LAST_PIT, kind = ReferenceHandler.ReferenceKind.ATTRIBUTE )
+   @Property( name = PROPERTY_LAST_PIT, kind = ReferenceHandler.ReferenceKind.TO_ONE,
+         adornment = ReferenceHandler.Adornment.NONE)
    private AbstractPit lastPit;
 
    @Property( name = PROPERTY_LAST_PIT )
-   public void setLastPit (AbstractPit value)
+   public boolean setLastPit (AbstractPit value)
    {
-      this.lastPit = value;
+      boolean changed = false;
+
+      if (this.lastPit != value)
+      {
+      
+         AbstractPit oldValue = this.lastPit;
+         this.lastPit = value;
+         changed = true;
+      
+      }
+      return changed;
    }
 
+   @Property( name = PROPERTY_LAST_PIT )
    public MakeMoveVisitor withLastPit (AbstractPit value)
    {
       setLastPit (value);
       return this;
    }
 
-   @Property( name = PROPERTY_LAST_PIT )
    public AbstractPit getLastPit ()
    {
       return this.lastPit;
@@ -101,11 +137,12 @@ public class MakeMoveVisitor implements PitVisitor
             // check object pit is really bound
             JavaSDM.ensure ( pit != null );
             // assign attribute this
-            this.setFirstPit (pit);
-            // assign attribute this
             this.setSeeds (pit.getSeeds());
             // assign attribute pit
             pit.setSeeds (0);
+            // create link is first from this to pit
+            this.setFirstPit (pit);
+
             fujaba__Success = true;
          }
          catch ( JavaSDMException fujaba__InternalException )
@@ -149,14 +186,17 @@ public class MakeMoveVisitor implements PitVisitor
       {
          fujaba__Success = false; 
 
+         // check object pit is really bound
+         JavaSDM.ensure ( pit != null );
          // create object turn
          turn = Turn.getInstance();
 
          // create object player
          player = Turn.getInstance().getPlayer();
 
-         // assign attribute this
+         // create link is last from this to pit
          this.setLastPit (pit);
+
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
@@ -360,8 +400,11 @@ public class MakeMoveVisitor implements PitVisitor
       {
          fujaba__Success = false; 
 
-         // assign attribute this
+         // check object store is really bound
+         JavaSDM.ensure ( store != null );
+         // create link is last from this to store
          this.setLastPit (store);
+
          fujaba__Success = true;
       }
       catch ( JavaSDMException fujaba__InternalException )
@@ -374,6 +417,8 @@ public class MakeMoveVisitor implements PitVisitor
 
    public void removeYou()
    {
+      this.setFirstPit (null);
+      this.setLastPit (null);
    }
 }
 
