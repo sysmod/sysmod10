@@ -77,6 +77,8 @@ public class MancalaGUI {
 	private JLabel scoresTitle = null;
 	private JTextArea scoresText = null;
 	private JPanel upperPanel = null;
+	private JPanel helpLeftPanel = null;
+	private JPanel helpRightPanel = null;
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -518,10 +520,11 @@ public class MancalaGUI {
 		if (helpDialog == null) {
 			helpDialog = new JDialog(getJFrame());
 			helpDialog.setTitle("Mancala Help");
-			helpDialog.setBounds(new Rectangle(0, 0, 500, 400));
-			helpDialog.setMinimumSize(new Dimension(500, 400));
-			helpDialog.setMaximumSize(new Dimension(500, 400));
-			helpDialog.setPreferredSize(new Dimension(500, 400));
+			helpDialog.setMinimumSize(new Dimension(600, 400));
+			helpDialog.setMaximumSize(new Dimension(600, 400));
+			helpDialog.setPreferredSize(new Dimension(600, 400));
+			helpDialog.setLocation(new Point(0, 0));
+			helpDialog.setSize(new Dimension(600, 400));
 			helpDialog.setContentPane(getHelp());
 		}
 		return helpDialog;
@@ -535,9 +538,16 @@ public class MancalaGUI {
 	private JTextArea getHelpText() {
 		if (helpText == null) {
 			helpText = new JTextArea();
-			helpText.setText("oiu asdoiu io iah oh i u ou ouyouysgdiufygasduifoyasdf ouytasd fiasuyd iouysdt fioausdytf asudfsduh jksdfhgsdfg ipusdyfg uisdh ludy glduifyg sdliugysd liugdyh lgidjkh glsdiukfjgh sdliukgsdh ifljkgsh figlusdkyf hglidjkfy ghsdilukjgy sdhfghg liuiuh olui guklyjhg uklgkjhgfkujhfgdkjhfgdkfjv ljhv lxjhxcljvhxljvhxliuvjxchvl lijkhxc vljxhvlxikj lijkxchv lizxjkh vlzxiukjvh zxljkvhzx lvjkxh lvizxjkh vzxlijkvh zxlcjvzxh lvjzxkh cvcxjkyhg kjhm lijkg hmng jhmg kjhg kujh gkjh gb,jh g,jhg j,mg ,jmg bj,h g kuhg ukyg kujhg kuyjtg kuyjhg kjhg kjh gkujhg kjhg kujhg kjhmg kjh gkhgykh fgvhkgvkyhg gykhggkh gkjhgjhglujhgluyjgkujhgkjhgkuyjhgkjh");
+			helpText.setText("The game board of Mancala consists of 14 pits - 12 regular pits and 2 stores. Each player controls the six pits and their seeds on his side of the board. Player뭩 score is the number of seeds in his store (the one on the right of his pits). \n");
+			helpText.setText(helpText.getText()+"1. At the beginning of the game, three seeds are placed in each pit. \n");
+			helpText.setText(helpText.getText()+"2. Players take turns sowing their seeds. On a turn, the player removes all seeds from one of the pits under his control. Moving counter-clockwise, the player drops one seed in each pit in turn, including the player큦 own store (but not his opponent큦). \n");
+			helpText.setText(helpText.getText()+"3. If the last sown seed lands in the player큦 store, the player gets an additional move. There is no limit on the number of moves a player can make in his turn. \n");
+			helpText.setText(helpText.getText()+"4. If the last sown seed lands in an empty pit owned by the player, and the opposite pit contains seeds, both the last seed and the opposite seeds are captured and placed into the player큦 store. \n");
+			helpText.setText(helpText.getText()+"5. When one player no longer has any seeds in any of his pits, the game ends. The other player moves all remaining seeds to his store, and the player with the most seeds in his store wins. \n");
+			helpText.setText(helpText.getText()+"It is possible for the game to end in a draw - each player has 18 seeds. ");
 			helpText.setBackground(new Color(238, 238, 238));
 			helpText.setLineWrap(true);
+			helpText.setPreferredSize(new Dimension(400, 64));
 			helpText.setWrapStyleWord(true);
 		}
 		return helpText;
@@ -557,6 +567,8 @@ public class MancalaGUI {
 			help.setLayout(new BorderLayout());
 			help.add(helpTitle, BorderLayout.NORTH);
 			help.add(getHelpText(), BorderLayout.CENTER);
+			help.add(getHelpLeftPanel(), BorderLayout.WEST);
+			help.add(getHelpRightPanel(), BorderLayout.EAST);
 		}
 		return help;
 	}
@@ -814,6 +826,34 @@ public class MancalaGUI {
 			upperPanel.add(getTitle(), gridBagConstraints17);
 		}
 		return upperPanel;
+	}
+
+	/**
+	 * This method initializes helpLeftPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getHelpLeftPanel() {
+		if (helpLeftPanel == null) {
+			helpLeftPanel = new JPanel();
+			helpLeftPanel.setLayout(new GridBagLayout());
+			helpLeftPanel.setPreferredSize(new Dimension(30, 400));
+		}
+		return helpLeftPanel;
+	}
+
+	/**
+	 * This method initializes helpRightPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getHelpRightPanel() {
+		if (helpRightPanel == null) {
+			helpRightPanel = new JPanel();
+			helpRightPanel.setLayout(new GridBagLayout());
+			helpRightPanel.setPreferredSize(new Dimension(30, 400));
+		}
+		return helpRightPanel;
 	}
 
 }
