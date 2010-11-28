@@ -803,6 +803,7 @@ public class MancalaGUI {
 			scoresText = new JTextArea();
 			scoresText.setLineWrap(true);
 			scoresText.setBackground(new Color(238, 238, 238));
+			scoresText.setEditable(false);
 			scoresText.setWrapStyleWord(true);
 		}
 		return scoresText;
