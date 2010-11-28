@@ -96,16 +96,18 @@ public class GameController {
 			if(newgame.getComputerPlayerSelected()==null)
 				return;
 			else if(newgame.getComputerPlayerSelected()==false){
+				if (newgame.getPlayerOneName().getText().isEmpty()) newgame.getPlayerOneName().setText("Player1");
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
 				gui.getPlayer1Label().setText(newgame.getPlayerOneName().getText());
+				if (newgame.getPlayerTwoName().getText().isEmpty()) newgame.getPlayerTwoName().setText("Player2");
 				gui.getPlayer2label().setText(newgame.getPlayerTwoName().getText());
 				gui.getPlayer2Label().setText(newgame.getPlayerTwoName().getText());
 				playerOne = new HumanPlayer();
 				playerOne.setName(newgame.getPlayerOneName().getText());
-				
 				playerTwo = new HumanPlayer();
 				playerTwo.setName(newgame.getPlayerTwoName().getText());
 			}else{
+				if (newgame.getPlayerOneName().getText().isEmpty()) newgame.getPlayerOneName().setText("Player1");
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
 				gui.getPlayer1Label().setText(newgame.getPlayerOneName().getText());
 				gui.getPlayer2label().setText("Computer");
