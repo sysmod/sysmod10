@@ -544,7 +544,7 @@ public class MancalaGUI {
 			helpText.setText(helpText.getText()+"3. If the last sown seed lands in the player´s store, the player gets an additional move. There is no limit on the number of moves a player can make in his turn. \n");
 			helpText.setText(helpText.getText()+"4. If the last sown seed lands in an empty pit owned by the player, and the opposite pit contains seeds, both the last seed and the opposite seeds are captured and placed into the player´s store. \n");
 			helpText.setText(helpText.getText()+"5. When one player no longer has any seeds in any of his pits, the game ends. The other player moves all remaining seeds to his store, and the player with the most seeds in his store wins. \n");
-			helpText.setText(helpText.getText()+"It is possible for the game to end in a draw - each player has 18 seeds.");
+			helpText.setText(helpText.getText()+"It is possible for the game to end in a draw - each player has 18 seeds. ");
 			helpText.setBackground(new Color(238, 238, 238));
 			helpText.setLineWrap(true);
 			helpText.setPreferredSize(new Dimension(400, 64));
