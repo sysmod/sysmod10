@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JDialog;
+import javax.swing.JScrollPane;
+
 import java.awt.Dimension;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
@@ -24,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.border.BevelBorder;
+import javax.swing.JScrollBar;
 
 public class MancalaGUI {
 
@@ -57,7 +60,6 @@ public class MancalaGUI {
 	private JDialog helpDialog = null;  //  @jve:decl-index=0:visual-constraint="333,456"
 	private JPanel help = null;
 	private JLabel helpTitle = null;
-	private JTextPane helpText = null;
 	private JButton newgameButton = null;
 	private JLabel player1Name = null;
 	private JPanel leftPanel = null;
@@ -73,6 +75,8 @@ public class MancalaGUI {
 	private JLabel player2Space = null;
 	private JLabel player2Score = null;
 	private JLabel player1Score = null;
+	private JTextArea helpText = null;
+	private JScrollBar scrollbar = null;
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -159,7 +163,7 @@ public class MancalaGUI {
 			aboutText = new JTextArea();
 			aboutText.setSize(100, 70);
 			aboutText.setName("About");
-			aboutText.setBackground(SystemColor.activeCaptionBorder);
+			aboutText.setBackground(new Color(238, 238, 238));
 			aboutText.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
 			aboutText.setEditable(false);
 		}
@@ -527,7 +531,7 @@ public class MancalaGUI {
 					JDialog aboutDialog = getTeamDialog();
 					aboutDialog.pack();
 					Point loc = getJFrame().getLocation();
-					loc.translate(260, 80);
+					loc.translate(20, 50);
 					aboutDialog.setLocation(loc);
 					aboutDialog.setVisible(true);
 				}
@@ -549,9 +553,29 @@ public class MancalaGUI {
 			helpDialog.setMinimumSize(new Dimension(300, 200));
 			helpDialog.setMaximumSize(new Dimension(300, 200));
 			helpDialog.setContentPane(getHelp());
+			JScrollPane scrollingArea = new JScrollPane(helpText);
+			
+			helpDialog.add(scrollingArea, BorderLayout.CENTER);
 		}
 		return helpDialog;
 	}
+
+	/**
+	 * This method initializes helpText	
+	 * 	
+	 * @return javax.swing.JTextArea	
+	 */
+	private JTextArea getHelpText() {
+		if (helpText == null) {
+			helpText = new JTextArea();
+			helpText.setText("oiu asdöoiu ölio öiah öioh öi u ou ouyouysgdiufygasduifoyasdf ouytasd fiasuyd iouysdt fioausdytf asudfsduh jksdfhgsdfg ipusdyfg uisdh ludy glduifyg sdliugysd liugdyh lgidjkh glsdiukfjgh sdliukgsdh ifljkgsh figlusdkyf hglidjkfy ghsdilukjgy sdhfghg liuiuh olui guklyjhg uklgkjhgfkujhfgdkjhfgdkfjv ljhv lxjhxcljvhxljvhxliuvjxchvl lijkhxc vljxhvlxikj lijkxchv lizxjkh vlzxiukjvh zxljkvhzx lvjkxh lvizxjkh vzxlijkvh zxlcjvzxh lvjzxkh cvcxjkyhg kjhm lijkg hmng jhmg kjhg kujh gkjh gb,jh g,jhg j,mg ,jmg bj,h g kuhg ukyg kujhg kuyjtg kuyjhg kjhg kjh gkujhg kjhg kujhg kjhmg kjh gkhgykh fgvhkgvkyhg gykhggkh gkjhgjhglujhgluyjgkujhgkjhgkuyjhgkjh");
+			helpText.setBackground(new Color(238, 238, 238));
+			helpText.setLineWrap(true);
+			helpText.setWrapStyleWord(true);
+		}
+		return helpText;
+	}
+
 
 	/**
 	 * This method initializes help
@@ -569,20 +593,6 @@ public class MancalaGUI {
 			help.add(getHelpText(), BorderLayout.CENTER);
 		}
 		return help;
-	}
-
-	/**
-	 * This method initializes helpText
-	 * 
-	 * @return javax.swing.JTextPane
-	 */
-	private JTextPane getHelpText() {
-		if (helpText == null) {
-			helpText = new JTextPane();
-			helpText.setText("... uf khjg jkhg kjhg kjhg bjhg kujhg bjhg \nkjgh kjhg jkh kjh kjhg kjhv kjhv kjhv kjhv ");
-			helpText.setBackground(SystemColor.activeCaptionBorder);
-		}
-		return helpText;
 	}
 
 	/**
