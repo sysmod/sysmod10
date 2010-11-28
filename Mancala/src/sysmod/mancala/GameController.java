@@ -92,15 +92,20 @@ public class GameController {
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
 				if (newgame.getPlayerTwoName().getText().isEmpty()) newgame.getPlayerTwoName().setText("Player2");
 				gui.getPlayer2label().setText(newgame.getPlayerTwoName().getText());
-				playerOne = new HumanPlayer();
-				playerOne.setName(newgame.getPlayerOneName().getText());
+				
 				playerTwo = new HumanPlayer();
 				playerTwo.setName(newgame.getPlayerTwoName().getText());
 			}else{
 				if (newgame.getPlayerOneName().getText().isEmpty()) newgame.getPlayerOneName().setText("Player1");
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
 				gui.getPlayer2label().setText("Computer");
+				
+				playerTwo = new ComputerPlayer();
+				playerTwo.setName("Computer");
 			}
+			playerOne = new HumanPlayer();
+			playerOne.setName(newgame.getPlayerOneName().getText());
+			
 			playerOne.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
 			playerTwo.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
 			playerOne.setOpposite(playerTwo);
@@ -211,6 +216,11 @@ public class GameController {
 		roundSetupCleanup();
 	}
 	
+	private void makeComputerMove(){
+		currentPlayer.makeMove(null);
+		roundSetupCleanup();
+	}
+	
 	private void roundSetupCleanup() {
 		CheckWinVisitor c = new CheckWinVisitor();
 		pits.get(0).accept(c);
@@ -224,24 +234,12 @@ public class GameController {
 				gui.getStatus().setText("It's a draw!");
 			}
 		} else {
-			if(playerOne.getTurn()==null){
-				gui.getStatus().setText("It is "+playerTwo.getName()+"\'s turn.");
-				gui.disablePits(1);
+			if(playerTwo.getTurn()!=null && playerTwo.getClass()==ComputerPlayer.class){
+				gui.getStatus().setText("It is the Computer's turn.");
+				gui.disablePits(0);
 				currentPlayer=playerTwo;
-				
-				if(pits.get(7).getSeeds()==0)
-					gui.getPit7().setEnabled(false);
-				if(pits.get(8).getSeeds()==0)
-					gui.getPit8().setEnabled(false);
-				if(pits.get(9).getSeeds()==0)
-					gui.getPit9().setEnabled(false);
-				if(pits.get(10).getSeeds()==0)
-					gui.getPit10().setEnabled(false);
-				if(pits.get(11).getSeeds()==0)
-					gui.getPit11().setEnabled(false);
-				if(pits.get(12).getSeeds()==0)
-					gui.getPit12().setEnabled(false);
-			}else {
+				makeComputerMove();
+			}else if(playerOne.getTurn()!=null){
 				gui.getStatus().setText("It is "+playerOne.getName()+"\'s turn.");
 				gui.disablePits(2);
 				currentPlayer=playerOne;
@@ -258,6 +256,24 @@ public class GameController {
 					gui.getPit5().setEnabled(false);
 				if(pits.get(5).getSeeds()==0)
 					gui.getPit6().setEnabled(false);
+				
+			}else if(playerTwo.getTurn()!=null){
+				gui.getStatus().setText("It is "+playerTwo.getName()+"\'s turn.");
+				gui.disablePits(1);
+				currentPlayer=playerTwo;
+				
+				if(pits.get(7).getSeeds()==0)
+					gui.getPit7().setEnabled(false);
+				if(pits.get(8).getSeeds()==0)
+					gui.getPit8().setEnabled(false);
+				if(pits.get(9).getSeeds()==0)
+					gui.getPit9().setEnabled(false);
+				if(pits.get(10).getSeeds()==0)
+					gui.getPit10().setEnabled(false);
+				if(pits.get(11).getSeeds()==0)
+					gui.getPit11().setEnabled(false);
+				if(pits.get(12).getSeeds()==0)
+					gui.getPit12().setEnabled(false);
 			}
 		}
 	}
