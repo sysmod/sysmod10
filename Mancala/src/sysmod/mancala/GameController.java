@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -217,6 +218,12 @@ public class GameController {
 	}
 	
 	private void makeComputerMove(){
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		currentPlayer.makeMove(null);
 		roundSetupCleanup();
 	}
@@ -238,7 +245,11 @@ public class GameController {
 				gui.getStatus().setText("It is the Computer's turn.");
 				gui.disablePits(0);
 				currentPlayer=playerTwo;
-				makeComputerMove();
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						makeComputerMove();
+					}
+				});
 			}else if(playerOne.getTurn()!=null){
 				gui.getStatus().setText("It is "+playerOne.getName()+"\'s turn.");
 				gui.disablePits(2);
@@ -276,6 +287,10 @@ public class GameController {
 					gui.getPit12().setEnabled(false);
 			}
 		}
+	}
+	
+	private void writeScore(){
+		
 	}
 
 	public static void main(String[] args) {
