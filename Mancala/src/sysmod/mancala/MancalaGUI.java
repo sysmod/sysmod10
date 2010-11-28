@@ -56,7 +56,7 @@ public class MancalaGUI {
 	private JPanel rightPanel = null;
 	private JButton helpButton = null;
 	private JButton teamButton = null;
-	private JDialog helpDialog = null;  //  @jve:decl-index=0:visual-constraint="333,451"
+	private JDialog helpDialog = null;  //  @jve:decl-index=0:visual-constraint="42,428"
 	private JPanel help = null;
 	private JLabel helpTitle = null;
 	private JButton newgameButton = null;
@@ -76,6 +76,11 @@ public class MancalaGUI {
 	private JLabel player2Score1 = null;
 	private JLabel status = null;
 	private JPanel downPanel = null;
+	private JButton scoresButton = null;
+	private JDialog scoresDialog = null;  //  @jve:decl-index=0:visual-constraint="410,440"
+	private JPanel scoresPanel = null;
+	private JLabel scoresTitle = null;
+	private JTextArea scoresText = null;
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -436,6 +441,9 @@ public class MancalaGUI {
 	 */
 	private JPanel getRightPanel() {
 		if (rightPanel == null) {
+			GridBagConstraints gridBagConstraints26 = new GridBagConstraints();
+			gridBagConstraints26.gridx = 0;
+			gridBagConstraints26.gridy = 0;
 			GridBagConstraints gridBagConstraints37 = new GridBagConstraints();
 			gridBagConstraints37.gridx = 0;
 			gridBagConstraints37.gridy = 0;
@@ -454,6 +462,7 @@ public class MancalaGUI {
 			rightPanel.setBackground(new Color(204, 204, 255));
 			rightPanel.add(getHelpButton(), gridBagConstraints14);
 			rightPanel.add(getTeamButton(), gridBagConstraints15);
+			rightPanel.add(getScoresButton(), gridBagConstraints26);
 		}
 		return rightPanel;
 	}
@@ -532,7 +541,7 @@ public class MancalaGUI {
 	private JTextArea getHelpText() {
 		if (helpText == null) {
 			helpText = new JTextArea();
-			helpText.setText("oiu asd�oiu �lio �iah �ioh �i u ou ouyouysgdiufygasduifoyasdf ouytasd fiasuyd iouysdt fioausdytf asudfsduh jksdfhgsdfg ipusdyfg uisdh ludy glduifyg sdliugysd liugdyh lgidjkh glsdiukfjgh sdliukgsdh ifljkgsh figlusdkyf hglidjkfy ghsdilukjgy sdhfghg liuiuh olui guklyjhg uklgkjhgfkujhfgdkjhfgdkfjv ljhv lxjhxcljvhxljvhxliuvjxchvl lijkhxc vljxhvlxikj lijkxchv lizxjkh vlzxiukjvh zxljkvhzx lvjkxh lvizxjkh vzxlijkvh zxlcjvzxh lvjzxkh cvcxjkyhg kjhm lijkg hmng jhmg kjhg kujh gkjh gb,jh g,jhg j,mg ,jmg bj,h g kuhg ukyg kujhg kuyjtg kuyjhg kjhg kjh gkujhg kjhg kujhg kjhmg kjh gkhgykh fgvhkgvkyhg gykhggkh gkjhgjhglujhgluyjgkujhgkjhgkuyjhgkjh");
+			helpText.setText("oiu asdoiu io iah oh i u ou ouyouysgdiufygasduifoyasdf ouytasd fiasuyd iouysdt fioausdytf asudfsduh jksdfhgsdfg ipusdyfg uisdh ludy glduifyg sdliugysd liugdyh lgidjkh glsdiukfjgh sdliukgsdh ifljkgsh figlusdkyf hglidjkfy ghsdilukjgy sdhfghg liuiuh olui guklyjhg uklgkjhgfkujhfgdkjhfgdkfjv ljhv lxjhxcljvhxljvhxliuvjxchvl lijkhxc vljxhvlxikj lijkxchv lizxjkh vlzxiukjvh zxljkvhzx lvjkxh lvizxjkh vzxlijkvh zxlcjvzxh lvjzxkh cvcxjkyhg kjhm lijkg hmng jhmg kjhg kujh gkjh gb,jh g,jhg j,mg ,jmg bj,h g kuhg ukyg kujhg kuyjtg kuyjhg kjhg kjh gkujhg kjhg kujhg kjhmg kjh gkhgykh fgvhkgvkyhg gykhggkh gkjhgjhglujhgluyjgkujhgkjhgkuyjhgkjh");
 			helpText.setBackground(new Color(238, 238, 238));
 			helpText.setLineWrap(true);
 			helpText.setWrapStyleWord(true);
@@ -766,6 +775,81 @@ public class MancalaGUI {
 			downPanel.add(getStatus(), gridBagConstraints28);
 		}
 		return downPanel;
+	}
+
+	/**
+	 * This method initializes scoresButton	
+	 * 	
+	 * @return javax.swing.JButton	
+	 */
+	private JButton getScoresButton() {
+		if (scoresButton == null) {
+			scoresButton = new JButton();
+			scoresButton.setText("Scores");
+			scoresButton.setFont(new Font("Dialog", Font.BOLD, 14));
+			scoresButton.setPreferredSize(new Dimension(120, 26));
+			scoresButton.addMouseListener(new java.awt.event.MouseAdapter() {
+				public void mouseClicked(java.awt.event.MouseEvent e) {
+					JDialog scoresDialog = getScoresDialog();
+					scoresDialog.pack();
+					Point loc = getJFrame().getLocation();
+					loc.translate(20, 50);
+					scoresDialog.setLocation(loc);
+					scoresDialog.setVisible(true);
+				}
+			});
+		}
+		return scoresButton;
+	}
+
+	/**
+	 * This method initializes scoresDialog	
+	 * 	
+	 * @return javax.swing.JDialog	
+	 */
+	private JDialog getScoresDialog() {
+		if (scoresDialog == null) {
+			scoresDialog = new JDialog(getJFrame());
+			scoresDialog.setTitle("Mancala Scores");
+			scoresDialog.setBounds(new Rectangle(0, 0, 300, 200));
+			scoresDialog.setMinimumSize(new Dimension(300, 200));
+			scoresDialog.setMaximumSize(new Dimension(300, 200));
+			scoresDialog.setContentPane(getScoresPanel());
+		}
+		return scoresDialog;
+	}
+
+	/**
+	 * This method initializes scoresPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */
+	private JPanel getScoresPanel() {
+		if (scoresPanel == null) {
+			scoresTitle = new JLabel();
+			scoresTitle.setText("Mancala Scores");
+			scoresTitle.setFont(new Font("Dialog", Font.BOLD, 14));
+			scoresPanel = new JPanel();
+			scoresPanel.setLayout(new BorderLayout());
+			scoresPanel.add(scoresTitle, BorderLayout.NORTH);
+			scoresPanel.add(getScoresText(), BorderLayout.CENTER);
+		}
+		return scoresPanel;
+	}
+
+	/**
+	 * This method initializes scoresText	
+	 * 	
+	 * @return javax.swing.JTextArea	
+	 */
+	private JTextArea getScoresText() {
+		if (scoresText == null) {
+			scoresText = new JTextArea();
+			scoresText.setLineWrap(true);
+			scoresText.setBackground(new Color(238, 238, 238));
+			scoresText.setWrapStyleWord(true);
+		}
+		return scoresText;
 	}
 
 }
