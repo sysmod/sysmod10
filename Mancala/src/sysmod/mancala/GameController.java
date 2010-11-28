@@ -21,6 +21,7 @@ public class GameController {
 	private List<AbstractPit> pits = new ArrayList<AbstractPit>();
 	private Player playerOne;
 	private Player playerTwo;
+	private Player currentPlayer;
 	private Turn turn;
 
 	private PropertyChangeListener seedsChangeListener = new PropertyChangeListener() {
@@ -40,11 +41,37 @@ public class GameController {
 
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
-
-			System.out.println("Turnchange triggered: " + evt.toString());
-			System.out.println("Player: "+((Player)evt.getSource()).getName());
-			System.out.println("Old value: "+evt.getOldValue());
-			System.out.println("New value: "+evt.getNewValue());
+			if(playerOne.getTurn()==null){
+				gui.getTitle().setText("It is "+playerTwo.getName()+"\'s turn.");
+				gui.getPit1().setEnabled(false);
+				gui.getPit2().setEnabled(false);
+				gui.getPit3().setEnabled(false);
+				gui.getPit4().setEnabled(false);
+				gui.getPit5().setEnabled(false);
+				gui.getPit6().setEnabled(false);
+				gui.getPit7().setEnabled(true);
+				gui.getPit8().setEnabled(true);
+				gui.getPit9().setEnabled(true);
+				gui.getPit10().setEnabled(true);
+				gui.getPit11().setEnabled(true);
+				gui.getPit12().setEnabled(true);
+				currentPlayer=playerTwo;
+			}else {
+				gui.getTitle().setText("It is "+playerOne.getName()+"\'s turn.");
+				gui.getPit1().setEnabled(true);
+				gui.getPit2().setEnabled(true);
+				gui.getPit3().setEnabled(true);
+				gui.getPit4().setEnabled(true);
+				gui.getPit5().setEnabled(true);
+				gui.getPit6().setEnabled(true);
+				gui.getPit7().setEnabled(false);
+				gui.getPit8().setEnabled(false);
+				gui.getPit9().setEnabled(false);
+				gui.getPit10().setEnabled(false);
+				gui.getPit11().setEnabled(false);
+				gui.getPit12().setEnabled(false);
+				currentPlayer=playerOne;
+			}
 		}
 
 	};
@@ -104,6 +131,7 @@ public class GameController {
 			}
 			playerOne.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
 			playerTwo.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
+			playerOne.setOpposite(playerTwo);
 			
 			if(Math.random() <0.5)
 				playerOne.setTurn(Turn.getInstance());
@@ -201,11 +229,23 @@ public class GameController {
 	}
 	
 	private void makeMove(int pit){
-		PitVisitor v = new MakeMoveVisitor();
 		if(pit < 7)
-			pits.get(pit-1).accept(v);
+			currentPlayer.makeMove((Pit) pits.get(pit-1));
 		else
-			pits.get(pit).accept(v);
+			currentPlayer.makeMove((Pit) pits.get(pit));
+		
+		CheckWinVisitor c = new CheckWinVisitor();
+		pits.get(0).accept(c);
+		
+		if(c.isGameOver()){
+			if(playerOne.getStore().getSeeds()>playerTwo.getStore().getSeeds()){
+				gui.getTitle().setText(playerOne.getName() + "is the WINNER!");
+			} else if (playerTwo.getStore().getSeeds() > playerOne.getStore().getSeeds()){
+				gui.getTitle().setText(playerTwo.getName() + "is the WINNER!");
+			} else {
+				gui.getTitle().setText("It's a draw!");
+			}
+		}
 	}
 	/*
 	public void registerMove(int guiPitId) {

@@ -30,9 +30,9 @@ import javax.swing.JScrollBar;
 
 public class MancalaGUI {
 
-	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="33,27"
+	private JFrame jFrame = null; // @jve:decl-index=0:visual-constraint="33,27"
 	private JPanel jContentPane = null;
-	private JDialog teamDialog = null;  //  @jve:decl-index=0:visual-constraint="27,452"
+	private JDialog teamDialog = null; // @jve:decl-index=0:visual-constraint="27,452"
 	private JPanel aboutContentPane = null;
 	private JTextArea aboutText = null;
 	private JLabel aboutTitle = null;
@@ -57,7 +57,7 @@ public class MancalaGUI {
 	private JPanel rightPanel = null;
 	private JButton helpButton = null;
 	private JButton teamButton = null;
-	private JDialog helpDialog = null;  //  @jve:decl-index=0:visual-constraint="333,456"
+	private JDialog helpDialog = null; // @jve:decl-index=0:visual-constraint="333,456"
 	private JPanel help = null;
 	private JLabel helpTitle = null;
 	private JButton newgameButton = null;
@@ -77,6 +77,7 @@ public class MancalaGUI {
 	private JLabel player1Score = null;
 	private JTextArea helpText = null;
 	private JScrollBar scrollbar = null;
+
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -164,7 +165,8 @@ public class MancalaGUI {
 			aboutText.setSize(100, 70);
 			aboutText.setName("About");
 			aboutText.setBackground(new Color(238, 238, 238));
-			aboutText.setText(" - Martin Loginov \n - Hans M�esalu \n - Peeter J�rviste \n - Mari R��tli \n - Sven Aller");
+			aboutText
+					.setText(" - Martin Loginov \n - Hans M�esalu \n - Peeter J�rviste \n - Mari R��tli \n - Sven Aller");
 			aboutText.setEditable(false);
 		}
 		return aboutText;
@@ -240,7 +242,8 @@ public class MancalaGUI {
 			Gameboard.setLayout(new GridBagLayout());
 			Gameboard.setEnabled(false);
 			Gameboard.setBackground(SystemColor.activeCaptionBorder);
-			Gameboard.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			Gameboard.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.RAISED));
 			Gameboard.add(getPit12(), gridBagConstraints);
 			Gameboard.add(getPit11(), gridBagConstraints1);
 			Gameboard.add(getPit1(), gridBagConstraints2);
@@ -259,6 +262,10 @@ public class MancalaGUI {
 			Gameboard.add(player1label, gridBagConstraints22);
 		}
 		return Gameboard;
+	}
+
+	public JLabel getTitle() {
+		return title;
 	}
 
 	/**
@@ -457,7 +464,7 @@ public class MancalaGUI {
 			pit10 = new JButton();
 			pit10.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit10.setPreferredSize(new Dimension(60, 26));
-			}
+		}
 		return pit10;
 	}
 
@@ -480,7 +487,8 @@ public class MancalaGUI {
 			rightPanel = new JPanel();
 			rightPanel.setLayout(new GridBagLayout());
 			rightPanel.setSize(130, 300);
-			rightPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			rightPanel.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.RAISED));
 			rightPanel.setPreferredSize(new Dimension(140, 78));
 			rightPanel.add(getHelpButton(), gridBagConstraints14);
 			rightPanel.add(getTeamButton(), gridBagConstraints15);
@@ -554,16 +562,16 @@ public class MancalaGUI {
 			helpDialog.setMaximumSize(new Dimension(300, 200));
 			helpDialog.setContentPane(getHelp());
 			JScrollPane scrollingArea = new JScrollPane(helpText);
-			
+
 			helpDialog.add(scrollingArea, BorderLayout.CENTER);
 		}
 		return helpDialog;
 	}
 
 	/**
-	 * This method initializes helpText	
-	 * 	
-	 * @return javax.swing.JTextArea	
+	 * This method initializes helpText
+	 * 
+	 * @return javax.swing.JTextArea
 	 */
 	private JTextArea getHelpText() {
 		if (helpText == null) {
@@ -575,7 +583,6 @@ public class MancalaGUI {
 		}
 		return helpText;
 	}
-
 
 	/**
 	 * This method initializes help
@@ -608,7 +615,10 @@ public class MancalaGUI {
 			newgameButton.setPreferredSize(new Dimension(120, 26));
 			newgameButton.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("Start a new game"); // TODO Auto-generated Event stub mouseClicked()
+					System.out.println("Start a new game"); // TODO
+															// Auto-generated
+															// Event stub
+															// mouseClicked()
 					player1Label.setText(newPlayer1.getText());
 					player1label.setText(newPlayer1.getText());
 					if (newPlayer2Type.getSelectedIndex() == 1) {
@@ -625,9 +635,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes leftPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes leftPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getLeftPanel() {
 		if (leftPanel == null) {
@@ -663,7 +673,8 @@ public class MancalaGUI {
 			newPlayer1Label.setFont(new Font("Dialog", Font.BOLD, 14));
 			leftPanel = new JPanel();
 			leftPanel.setLayout(new GridBagLayout());
-			leftPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			leftPanel.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.RAISED));
 			leftPanel.add(newPlayer1Label, gridBagConstraints33);
 			leftPanel.add(getNewPlayer1(), gridBagConstraints27);
 			leftPanel.add(newPlayer2Label, gridBagConstraints34);
@@ -675,9 +686,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes newPlayer1	
-	 * 	
-	 * @return javax.swing.JTextField	
+	 * This method initializes newPlayer1
+	 * 
+	 * @return javax.swing.JTextField
 	 */
 	private JTextField getNewPlayer1() {
 		if (newPlayer1 == null) {
@@ -705,24 +716,32 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes newPlayer2Type	
-	 * 	
-	 * @return javax.swing.JComboBox	
+	 * This method initializes newPlayer2Type
+	 * 
+	 * @return javax.swing.JComboBox
 	 */
 	private JComboBox getNewPlayer2Type() {
 		if (newPlayer2Type == null) {
-			String player2Typelist[] = {"Human", "Computer"};
+			String player2Typelist[] = { "Human", "Computer" };
 			newPlayer2Type = new JComboBox(player2Typelist);
 			newPlayer2Type.addItemListener(new java.awt.event.ItemListener() {
 				public void itemStateChanged(java.awt.event.ItemEvent e) {
 					if (newPlayer2Type.getSelectedIndex() == 1) {
 						newPlayer2.setVisible(false);
-						System.out.println("Opponent is computer"); // TODO Auto-generated Event stub itemStateChanged()
+						System.out.println("Opponent is computer"); // TODO
+																	// Auto-generated
+																	// Event
+																	// stub
+																	// itemStateChanged()
 					} else {
 						newPlayer2.setVisible(true);
-						System.out.println("Opponent is human"); // TODO Auto-generated Event stub itemStateChanged()
+						System.out.println("Opponent is human"); // TODO
+																	// Auto-generated
+																	// Event
+																	// stub
+																	// itemStateChanged()
 					}
-					
+
 				}
 			});
 		}
@@ -730,9 +749,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes newPlayer2	
-	 * 	
-	 * @return javax.swing.JTextField	
+	 * This method initializes newPlayer2
+	 * 
+	 * @return javax.swing.JTextField
 	 */
 	private JTextField getNewPlayer2() {
 		if (newPlayer2 == null) {
@@ -745,9 +764,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes rightPanelScore	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes rightPanelScore
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getRightPanelScore() {
 		if (rightPanelScore == null) {
@@ -793,7 +812,8 @@ public class MancalaGUI {
 			player1Label.setFont(new Font("Dialog", Font.BOLD, 12));
 			rightPanelScore = new JPanel();
 			rightPanelScore.setLayout(new GridBagLayout());
-			rightPanelScore.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+			rightPanelScore.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.LOWERED));
 			rightPanelScore.add(player1Label, gridBagConstraints17);
 			rightPanelScore.add(player1Space, gridBagConstraints19);
 			rightPanelScore.add(player2Label, gridBagConstraints20);
@@ -802,6 +822,25 @@ public class MancalaGUI {
 			rightPanelScore.add(player1Score, gridBagConstraints18);
 		}
 		return rightPanelScore;
+	}
+
+	public void disablePits(int player) {
+		if (player == 0) {
+			getPit1().setEnabled(false);
+			getPit2().setEnabled(false);
+			getPit3().setEnabled(false);
+			getPit4().setEnabled(false);
+			getPit5().setEnabled(false);
+			getPit6().setEnabled(false);
+			getPit7().setEnabled(false);
+			getPit8().setEnabled(false);
+			getPit9().setEnabled(false);
+			getPit10().setEnabled(false);
+			getPit11().setEnabled(false);
+			getPit12().setEnabled(false);
+		} else if (player == 1){
+			
+		}
 	}
 
 }
