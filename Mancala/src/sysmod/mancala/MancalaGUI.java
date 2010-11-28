@@ -74,6 +74,7 @@ public class MancalaGUI {
 	private JLabel player2Label = null;
 	private JLabel player2Space1 = null;
 	private JLabel player2Score1 = null;
+	private JLabel status = null;
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -124,6 +125,14 @@ public class MancalaGUI {
 	 */
 	private JPanel getGameboard() {
 		if (Gameboard == null) {
+			GridBagConstraints gridBagConstraints110 = new GridBagConstraints();
+			gridBagConstraints110.gridx = 3;
+			gridBagConstraints110.gridy = 2;
+			status = new JLabel();
+			status.setText("");
+			status.setHorizontalAlignment(SwingConstants.CENTER);
+			status.setHorizontalTextPosition(SwingConstants.CENTER);
+			status.setFont(new Font("Dialog", Font.BOLD, 14));
 			GridBagConstraints gridBagConstraints22 = new GridBagConstraints();
 			gridBagConstraints22.gridx = 3;
 			gridBagConstraints22.gridwidth = 3;
@@ -204,6 +213,7 @@ public class MancalaGUI {
 			Gameboard.add(getPlayer2Store(), gridBagConstraints12);
 			Gameboard.add(player2label, gridBagConstraints13);
 			Gameboard.add(player1label, gridBagConstraints22);
+			Gameboard.add(status, gridBagConstraints110);
 		}
 		return Gameboard;
 	}
