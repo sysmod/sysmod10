@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.sound.midi.ControllerEventListener;
+import javax.swing.JDialog;
 import javax.swing.SwingUtilities;
 
 import de.upb.tools.fca.SetTools;
@@ -28,7 +29,7 @@ public class GameController {
 		public void propertyChange(PropertyChangeEvent evt) {
 
 			System.out.println("Seedchange triggered: " + evt.toString());
-			//TODO logic still missing
+
 			updateGUI();
 
 		}
@@ -41,8 +42,9 @@ public class GameController {
 		public void propertyChange(PropertyChangeEvent evt) {
 
 			System.out.println("Turnchange triggered: " + evt.toString());
-			//TODO logic still missing
-
+			System.out.println("Player: "+((Player)evt.getSource()).getName());
+			System.out.println("Old value: "+evt.getOldValue());
+			System.out.println("New value: "+evt.getNewValue());
 		}
 
 	};
@@ -76,6 +78,40 @@ public class GameController {
 			}else if (e.getSource()==gui.getPit12()){
 				makeMove(12);
 			}	
+		}
+		
+	};
+	
+	private ActionListener newGameAction = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			NewGameDialogGUI newgame = new NewGameDialogGUI(gui.getJFrame());
+			
+			if(newgame.getComputerPlayerSelected()==null)
+				return;
+			else if(newgame.getComputerPlayerSelected()==false){
+				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
+				gui.getPlayer2label().setText(newgame.getPlayerTwoName().getText());
+				playerOne = new HumanPlayer();
+				playerOne.setName(newgame.getPlayerOneName().getText());
+				
+				playerTwo = new HumanPlayer();
+				playerTwo.setName(newgame.getPlayerTwoName().getText());
+			}else{
+				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
+				gui.getPlayer2label().setText("Computer");
+			}
+			playerOne.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
+			playerTwo.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
+			
+			if(Math.random() <0.5)
+				playerOne.setTurn(Turn.getInstance());
+			else
+				playerTwo.setTurn(Turn.getInstance());
+
+			ResetBoardVisitor v = new ResetBoardVisitor();
+			pits.get(0).accept(v);
 		}
 		
 	};
@@ -126,25 +162,7 @@ public class GameController {
 	}
 	
 	private void initializeGUIlisteners(){
-		gui.getNewgameButton().addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ResetBoardVisitor v = new ResetBoardVisitor();
-				pits.get(0).accept(v);
-				/*
-				System.out.println("new button yeah!");
-				for(int i = 0; i< 14; i++){
-					if(i==6||i==13)
-						pits.get(i).setSeeds(0);
-					else
-						pits.get(i).setSeeds(4);
-				}
-				*/
-				
-			}
-			
-		});
+		gui.getNewgameButton().addActionListener(newGameAction);
 		gui.getPit1().addActionListener(pitClickListener);
 		gui.getPit2().addActionListener(pitClickListener);
 		gui.getPit3().addActionListener(pitClickListener);

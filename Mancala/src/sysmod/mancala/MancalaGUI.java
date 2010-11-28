@@ -164,7 +164,7 @@ public class MancalaGUI {
 			aboutText.setSize(100, 70);
 			aboutText.setName("About");
 			aboutText.setBackground(new Color(238, 238, 238));
-			aboutText.setText(" - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller");
+			aboutText.setText(" - Martin Loginov \n - Hans Mï¿½esalu \n - Peeter Jï¿½rviste \n - Mari Rï¿½ï¿½tli \n - Sven Aller");
 			aboutText.setEditable(false);
 		}
 		return aboutText;
@@ -568,7 +568,7 @@ public class MancalaGUI {
 	private JTextArea getHelpText() {
 		if (helpText == null) {
 			helpText = new JTextArea();
-			helpText.setText("oiu asdöoiu ölio öiah öioh öi u ou ouyouysgdiufygasduifoyasdf ouytasd fiasuyd iouysdt fioausdytf asudfsduh jksdfhgsdfg ipusdyfg uisdh ludy glduifyg sdliugysd liugdyh lgidjkh glsdiukfjgh sdliukgsdh ifljkgsh figlusdkyf hglidjkfy ghsdilukjgy sdhfghg liuiuh olui guklyjhg uklgkjhgfkujhfgdkjhfgdkfjv ljhv lxjhxcljvhxljvhxliuvjxchvl lijkhxc vljxhvlxikj lijkxchv lizxjkh vlzxiukjvh zxljkvhzx lvjkxh lvizxjkh vzxlijkvh zxlcjvzxh lvjzxkh cvcxjkyhg kjhm lijkg hmng jhmg kjhg kujh gkjh gb,jh g,jhg j,mg ,jmg bj,h g kuhg ukyg kujhg kuyjtg kuyjhg kjhg kjh gkujhg kjhg kujhg kjhmg kjh gkhgykh fgvhkgvkyhg gykhggkh gkjhgjhglujhgluyjgkujhgkjhgkuyjhgkjh");
+			helpText.setText("oiu asdï¿½oiu ï¿½lio ï¿½iah ï¿½ioh ï¿½i u ou ouyouysgdiufygasduifoyasdf ouytasd fiasuyd iouysdt fioausdytf asudfsduh jksdfhgsdfg ipusdyfg uisdh ludy glduifyg sdliugysd liugdyh lgidjkh glsdiukfjgh sdliukgsdh ifljkgsh figlusdkyf hglidjkfy ghsdilukjgy sdhfghg liuiuh olui guklyjhg uklgkjhgfkujhfgdkjhfgdkfjv ljhv lxjhxcljvhxljvhxliuvjxchvl lijkhxc vljxhvlxikj lijkxchv lizxjkh vlzxiukjvh zxljkvhzx lvjkxh lvizxjkh vzxlijkvh zxlcjvzxh lvjzxkh cvcxjkyhg kjhm lijkg hmng jhmg kjhg kujh gkjh gb,jh g,jhg j,mg ,jmg bj,h g kuhg ukyg kujhg kuyjtg kuyjhg kjhg kjh gkujhg kjhg kujhg kjhmg kjh gkhgykh fgvhkgvkyhg gykhggkh gkjhgjhglujhgluyjgkujhgkjhgkuyjhgkjh");
 			helpText.setBackground(new Color(238, 238, 238));
 			helpText.setLineWrap(true);
 			helpText.setWrapStyleWord(true);
@@ -686,6 +686,22 @@ public class MancalaGUI {
 			newPlayer1.setFont(new Font("Dialog", Font.PLAIN, 14));
 		}
 		return newPlayer1;
+	}
+
+	public JLabel getPlayer2label() {
+		return player2label;
+	}
+
+	public void setPlayer2label(JLabel player2label) {
+		this.player2label = player2label;
+	}
+
+	public JLabel getPlayer1label() {
+		return player1label;
+	}
+
+	public void setPlayer1label(JLabel player1label) {
+		this.player1label = player1label;
 	}
 
 	/**
