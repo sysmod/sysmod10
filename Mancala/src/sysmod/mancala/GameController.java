@@ -221,9 +221,9 @@ public class GameController {
 		
 		if(c.isGameOver()){
 			if(playerOne.getStore().getSeeds()>playerTwo.getStore().getSeeds()){
-				gui.getStatus().setText(playerOne.getName() + "is the WINNER!");
+				gui.getStatus().setText(playerOne.getName() + " is the WINNER!");
 			} else if (playerTwo.getStore().getSeeds() > playerOne.getStore().getSeeds()){
-				gui.getStatus().setText(playerTwo.getName() + "is the WINNER!");
+				gui.getStatus().setText(playerTwo.getName() + " is the WINNER!");
 			} else {
 				gui.getStatus().setText("It's a draw!");
 			}
