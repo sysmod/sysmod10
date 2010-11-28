@@ -4,6 +4,7 @@
 import sysmod.mancala.Store;
 import de.uni_kassel.features.annotation.util.Property; // requires Fujaba5/libs/features.jar in classpath
 import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/features.jar in classpath
+import sysmod.mancala.HumanPlayer;
 import sysmod.mancala.Player;
 import sysmod.mancala.Pit;
 import sysmod.mancala.Turn;
@@ -64,7 +65,7 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
    /**
     * <pre>
     *           0..1     object_artjom     0..1
-    * Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest ------------------------> Player
+    * Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest ------------------------> HumanPlayer
     *           test               artjom
     * </pre>
     */
@@ -72,17 +73,17 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
 
    @Property( name = PROPERTY_ARTJOM, kind = ReferenceHandler.ReferenceKind.TO_ONE,
          adornment = ReferenceHandler.Adornment.NONE)
-   private Player artjom;
+   private HumanPlayer artjom;
 
    @Property( name = PROPERTY_ARTJOM )
-   public boolean setArtjom (Player value)
+   public boolean setArtjom (HumanPlayer value)
    {
       boolean changed = false;
 
       if (this.artjom != value)
       {
       
-         Player oldValue = this.artjom;
+         HumanPlayer oldValue = this.artjom;
          this.artjom = value;
          changed = true;
       
@@ -91,13 +92,13 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
    }
 
    @Property( name = PROPERTY_ARTJOM )
-   public Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest withArtjom (Player value)
+   public Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest withArtjom (HumanPlayer value)
    {
       setArtjom (value);
       return this;
    }
 
-   public Player getArtjom ()
+   public HumanPlayer getArtjom ()
    {
       return this.artjom;
    }
@@ -1024,14 +1025,14 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
       boolean fujaba__Success = false;
       Store artjomStore = null;
       Pit pit1 = null;
-      Player artjom = null;
+      HumanPlayer artjom = null;
       Pit pit12 = null;
       Pit pit11 = null;
       Pit pit10 = null;
       Pit pit9 = null;
       Pit pit8 = null;
       Pit pit7 = null;
-      Player ulno = null;
+      HumanPlayer ulno = null;
       Store ulnoStore = null;
       Pit pit6 = null;
       Pit pit5 = null;
@@ -1054,7 +1055,7 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
          pit1 = new Pit ( );
 
          // create object artjom
-         artjom = new Player ( );
+         artjom = new HumanPlayer ( );
 
          // create object pit12
          pit12 = new Pit ( );
@@ -1075,7 +1076,7 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
          pit7 = new Pit ( );
 
          // create object ulno
-         ulno = new Player ( );
+         ulno = new HumanPlayer ( );
 
          // create object ulnoStore
          ulnoStore = new Store ( );
@@ -1414,7 +1415,7 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
    /**
     * <pre>
     *           0..1     object_ulno     0..1
-    * Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest ------------------------> Player
+    * Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest ------------------------> HumanPlayer
     *           test               ulno
     * </pre>
     */
@@ -1422,17 +1423,17 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
 
    @Property( name = PROPERTY_ULNO, kind = ReferenceHandler.ReferenceKind.TO_ONE,
          adornment = ReferenceHandler.Adornment.NONE)
-   private Player ulno;
+   private HumanPlayer ulno;
 
    @Property( name = PROPERTY_ULNO )
-   public boolean setUlno (Player value)
+   public boolean setUlno (HumanPlayer value)
    {
       boolean changed = false;
 
       if (this.ulno != value)
       {
       
-         Player oldValue = this.ulno;
+         HumanPlayer oldValue = this.ulno;
          this.ulno = value;
          changed = true;
       
@@ -1441,13 +1442,13 @@ public class Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest extends TestCa
    }
 
    @Property( name = PROPERTY_ULNO )
-   public Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest withUlno (Player value)
+   public Ulno_makes_a_move_from_pit_2_and_gets_a_new_moveTest withUlno (HumanPlayer value)
    {
       setUlno (value);
       return this;
    }
 
-   public Player getUlno ()
+   public HumanPlayer getUlno ()
    {
       return this.ulno;
    }

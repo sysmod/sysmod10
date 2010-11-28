@@ -4,6 +4,7 @@
 import sysmod.mancala.Store;
 import de.uni_kassel.features.annotation.util.Property; // requires Fujaba5/libs/features.jar in classpath
 import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/features.jar in classpath
+import sysmod.mancala.HumanPlayer;
 import sysmod.mancala.Player;
 import sysmod.mancala.Pit;
 import sysmod.mancala.Turn;
@@ -64,7 +65,7 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
    /**
     * <pre>
     *           0..1     object_artjom     0..1
-    * Artjom_makes_a_move_from_house_7Test ------------------------> Player
+    * Artjom_makes_a_move_from_house_7Test ------------------------> HumanPlayer
     *           test               artjom
     * </pre>
     */
@@ -72,17 +73,17 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
 
    @Property( name = PROPERTY_ARTJOM, kind = ReferenceHandler.ReferenceKind.TO_ONE,
          adornment = ReferenceHandler.Adornment.NONE)
-   private Player artjom;
+   private HumanPlayer artjom;
 
    @Property( name = PROPERTY_ARTJOM )
-   public boolean setArtjom (Player value)
+   public boolean setArtjom (HumanPlayer value)
    {
       boolean changed = false;
 
       if (this.artjom != value)
       {
       
-         Player oldValue = this.artjom;
+         HumanPlayer oldValue = this.artjom;
          this.artjom = value;
          changed = true;
       
@@ -91,13 +92,13 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
    }
 
    @Property( name = PROPERTY_ARTJOM )
-   public Artjom_makes_a_move_from_house_7Test withArtjom (Player value)
+   public Artjom_makes_a_move_from_house_7Test withArtjom (HumanPlayer value)
    {
       setArtjom (value);
       return this;
    }
 
-   public Player getArtjom ()
+   public HumanPlayer getArtjom ()
    {
       return this.artjom;
    }
@@ -1018,11 +1019,11 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
       boolean fujaba__Success = false;
       Store artjomStore = null;
       Pit pit1 = null;
-      Player artjom = null;
+      HumanPlayer artjom = null;
       Pit pit12 = null;
       Store ulnoStore = null;
       Pit pit7 = null;
-      Player ulno = null;
+      HumanPlayer ulno = null;
       Pit pit6 = null;
       Pit pit2 = null;
       Pit pit3 = null;
@@ -1048,7 +1049,7 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
          pit1 = new Pit ( );
 
          // create object artjom
-         artjom = new Player ( );
+         artjom = new HumanPlayer ( );
 
          // create object pit12
          pit12 = new Pit ( );
@@ -1060,7 +1061,7 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
          pit7 = new Pit ( );
 
          // create object ulno
-         ulno = new Player ( );
+         ulno = new HumanPlayer ( );
 
          // create object pit6
          pit6 = new Pit ( );
@@ -1404,7 +1405,7 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
    /**
     * <pre>
     *           0..1     object_ulno     0..1
-    * Artjom_makes_a_move_from_house_7Test ------------------------> Player
+    * Artjom_makes_a_move_from_house_7Test ------------------------> HumanPlayer
     *           test               ulno
     * </pre>
     */
@@ -1412,17 +1413,17 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
 
    @Property( name = PROPERTY_ULNO, kind = ReferenceHandler.ReferenceKind.TO_ONE,
          adornment = ReferenceHandler.Adornment.NONE)
-   private Player ulno;
+   private HumanPlayer ulno;
 
    @Property( name = PROPERTY_ULNO )
-   public boolean setUlno (Player value)
+   public boolean setUlno (HumanPlayer value)
    {
       boolean changed = false;
 
       if (this.ulno != value)
       {
       
-         Player oldValue = this.ulno;
+         HumanPlayer oldValue = this.ulno;
          this.ulno = value;
          changed = true;
       
@@ -1431,13 +1432,13 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
    }
 
    @Property( name = PROPERTY_ULNO )
-   public Artjom_makes_a_move_from_house_7Test withUlno (Player value)
+   public Artjom_makes_a_move_from_house_7Test withUlno (HumanPlayer value)
    {
       setUlno (value);
       return this;
    }
 
-   public Player getUlno ()
+   public HumanPlayer getUlno ()
    {
       return this.ulno;
    }

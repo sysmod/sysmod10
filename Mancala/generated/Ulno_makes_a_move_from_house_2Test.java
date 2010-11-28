@@ -4,6 +4,7 @@
 import sysmod.mancala.Store;
 import de.uni_kassel.features.annotation.util.Property; // requires Fujaba5/libs/features.jar in classpath
 import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/features.jar in classpath
+import sysmod.mancala.HumanPlayer;
 import sysmod.mancala.Player;
 import sysmod.mancala.Pit;
 import sysmod.mancala.Turn;
@@ -64,7 +65,7 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
    /**
     * <pre>
     *           0..1     object_artjom     0..1
-    * Ulno_makes_a_move_from_house_2Test ------------------------> Player
+    * Ulno_makes_a_move_from_house_2Test ------------------------> HumanPlayer
     *           test               artjom
     * </pre>
     */
@@ -72,17 +73,17 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
 
    @Property( name = PROPERTY_ARTJOM, kind = ReferenceHandler.ReferenceKind.TO_ONE,
          adornment = ReferenceHandler.Adornment.NONE)
-   private Player artjom;
+   private HumanPlayer artjom;
 
    @Property( name = PROPERTY_ARTJOM )
-   public boolean setArtjom (Player value)
+   public boolean setArtjom (HumanPlayer value)
    {
       boolean changed = false;
 
       if (this.artjom != value)
       {
       
-         Player oldValue = this.artjom;
+         HumanPlayer oldValue = this.artjom;
          this.artjom = value;
          changed = true;
       
@@ -91,13 +92,13 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
    }
 
    @Property( name = PROPERTY_ARTJOM )
-   public Ulno_makes_a_move_from_house_2Test withArtjom (Player value)
+   public Ulno_makes_a_move_from_house_2Test withArtjom (HumanPlayer value)
    {
       setArtjom (value);
       return this;
    }
 
-   public Player getArtjom ()
+   public HumanPlayer getArtjom ()
    {
       return this.artjom;
    }
@@ -1012,9 +1013,9 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
       boolean fujaba__Success = false;
       Store ulnoStore = null;
       Pit pit7 = null;
-      Player ulno = null;
+      HumanPlayer ulno = null;
       Pit pit6 = null;
-      Player artjom = null;
+      HumanPlayer artjom = null;
       Store artjomStore = null;
       Pit pit12 = null;
       Pit pit10 = null;
@@ -1042,13 +1043,13 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
          pit7 = new Pit ( );
 
          // create object ulno
-         ulno = new Player ( );
+         ulno = new HumanPlayer ( );
 
          // create object pit6
          pit6 = new Pit ( );
 
          // create object artjom
-         artjom = new Player ( );
+         artjom = new HumanPlayer ( );
 
          // create object artjomStore
          artjomStore = new Store ( );
@@ -1393,7 +1394,7 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
    /**
     * <pre>
     *           0..1     object_ulno     0..1
-    * Ulno_makes_a_move_from_house_2Test ------------------------> Player
+    * Ulno_makes_a_move_from_house_2Test ------------------------> HumanPlayer
     *           test               ulno
     * </pre>
     */
@@ -1401,17 +1402,17 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
 
    @Property( name = PROPERTY_ULNO, kind = ReferenceHandler.ReferenceKind.TO_ONE,
          adornment = ReferenceHandler.Adornment.NONE)
-   private Player ulno;
+   private HumanPlayer ulno;
 
    @Property( name = PROPERTY_ULNO )
-   public boolean setUlno (Player value)
+   public boolean setUlno (HumanPlayer value)
    {
       boolean changed = false;
 
       if (this.ulno != value)
       {
       
-         Player oldValue = this.ulno;
+         HumanPlayer oldValue = this.ulno;
          this.ulno = value;
          changed = true;
       
@@ -1420,13 +1421,13 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
    }
 
    @Property( name = PROPERTY_ULNO )
-   public Ulno_makes_a_move_from_house_2Test withUlno (Player value)
+   public Ulno_makes_a_move_from_house_2Test withUlno (HumanPlayer value)
    {
       setUlno (value);
       return this;
    }
 
-   public Player getUlno ()
+   public HumanPlayer getUlno ()
    {
       return this.ulno;
    }
