@@ -68,12 +68,8 @@ public class MancalaGUI {
 	private JTextArea helpText = null;
 	private JScrollBar scrollbar = null;
 	private JLabel player1Label = null;
-	private JLabel player1Space = null;
 	private JPanel leftPanelScore = null;
-	private JLabel player1Score = null;
 	private JLabel player2Label = null;
-	private JLabel player2Space1 = null;
-	private JLabel player2Score1 = null;
 	private JLabel status = null;
 	private JPanel downPanel = null;
 	private JButton scoresButton = null;
@@ -599,10 +595,6 @@ public class MancalaGUI {
 			GridBagConstraints gridBagConstraints19 = new GridBagConstraints();
 			gridBagConstraints19.gridx = 0;
 			gridBagConstraints19.gridy = 1;
-			player1Space = new JLabel();
-			player1Space.setText(": ");
-			player1Label = new JLabel();
-			player1Label.setText("Player1");
 			GridBagConstraints gridBagConstraints16 = new GridBagConstraints();
 			gridBagConstraints16.gridx = 0;
 			gridBagConstraints16.gridy = 5;
@@ -643,22 +635,6 @@ public class MancalaGUI {
 		this.player2label = player2label;
 	}
 	
-	public JLabel getPlayer1Label() {
-		return player1Label;
-	}
-
-	public void setPlayer1Label(JLabel player1Label) {
-		this.player1Label = player1label;
-	}
-
-	public JLabel getPlayer2Label() {
-		return player2Label;
-	}
-
-	public void setPlayer2Label(JLabel player2Label) {
-		this.player2Label = player2Label;
-	}
-
 	/**
 	 * This method initializes leftPanelScore	
 	 * 	
@@ -666,42 +642,10 @@ public class MancalaGUI {
 	 */
 	private JPanel getLeftPanelScore() {
 		if (leftPanelScore == null) {
-			GridBagConstraints gridBagConstraints25 = new GridBagConstraints();
-			gridBagConstraints25.gridx = 2;
-			gridBagConstraints25.gridy = 1;
-			player2Score1 = new JLabel();
-			player2Score1.setText("0");
-			GridBagConstraints gridBagConstraints24 = new GridBagConstraints();
-			gridBagConstraints24.gridx = 1;
-			gridBagConstraints24.gridy = 1;
-			player2Space1 = new JLabel();
-			player2Space1.setText(": ");
-			GridBagConstraints gridBagConstraints23 = new GridBagConstraints();
-			gridBagConstraints23.gridx = 0;
-			gridBagConstraints23.gridy = 1;
-			player2Label = new JLabel();
-			player2Label.setText("Player2");
-			GridBagConstraints gridBagConstraints20 = new GridBagConstraints();
-			gridBagConstraints20.gridx = 2;
-			gridBagConstraints20.gridy = 0;
-			player1Score = new JLabel();
-			player1Score.setText("0");
-			GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
-			gridBagConstraints18.gridx = 1;
-			gridBagConstraints18.gridy = 0;
-			GridBagConstraints gridBagConstraints17 = new GridBagConstraints();
-			gridBagConstraints17.gridx = 0;
-			gridBagConstraints17.gridy = 0;
 			leftPanelScore = new JPanel();
 			leftPanelScore.setLayout(new GridBagLayout());
 			leftPanelScore.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 			leftPanelScore.setBackground(new Color(204, 204, 255));
-			leftPanelScore.add(player1Label, gridBagConstraints17);
-			leftPanelScore.add(player1Space, gridBagConstraints18);
-			leftPanelScore.add(player1Score, gridBagConstraints20);
-			leftPanelScore.add(player2Label, gridBagConstraints23);
-			leftPanelScore.add(player2Space1, gridBagConstraints24);
-			leftPanelScore.add(player2Score1, gridBagConstraints25);
 		}
 		return leftPanelScore;
 	}

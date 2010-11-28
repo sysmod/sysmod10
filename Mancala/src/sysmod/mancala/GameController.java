@@ -98,10 +98,8 @@ public class GameController {
 			else if(newgame.getComputerPlayerSelected()==false){
 				if (newgame.getPlayerOneName().getText().isEmpty()) newgame.getPlayerOneName().setText("Player1");
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
-				gui.getPlayer1Label().setText(newgame.getPlayerOneName().getText());
 				if (newgame.getPlayerTwoName().getText().isEmpty()) newgame.getPlayerTwoName().setText("Player2");
 				gui.getPlayer2label().setText(newgame.getPlayerTwoName().getText());
-				gui.getPlayer2Label().setText(newgame.getPlayerTwoName().getText());
 				playerOne = new HumanPlayer();
 				playerOne.setName(newgame.getPlayerOneName().getText());
 				playerTwo = new HumanPlayer();
@@ -109,9 +107,7 @@ public class GameController {
 			}else{
 				if (newgame.getPlayerOneName().getText().isEmpty()) newgame.getPlayerOneName().setText("Player1");
 				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
-				gui.getPlayer1Label().setText(newgame.getPlayerOneName().getText());
 				gui.getPlayer2label().setText("Computer");
-				gui.getPlayer2Label().setText("Computer");
 			}
 			playerOne.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
 			playerTwo.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
