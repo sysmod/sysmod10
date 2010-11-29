@@ -1092,6 +1092,8 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
 
          // assign attribute ulnoStore
          ulnoStore.setSeeds (3);
+         // assign attribute artjom
+         artjom.setName ("Artjom");
          // assign attribute pit1
          pit1.setSeeds (4);
          // assign attribute pit2
@@ -1114,6 +1116,8 @@ public class Ulno_makes_a_move_from_house_2Test extends TestCase
          pit10.setSeeds (1);
          // assign attribute pit12
          pit12.setSeeds (3);
+         // assign attribute ulno
+         ulno.setName ("Ulno");
          // assign attribute pit11
          pit11.setSeeds (1);
          // create link object_visitor from this to visitor

@@ -1082,6 +1082,10 @@ public class Ulno_makes_a_move_from_house_1Test extends TestCase
          ulnoStore.setSeeds (15);
          // assign attribute artjomStore
          artjomStore.setSeeds (5);
+         // assign attribute artjom
+         artjom.setName ("Artjom");
+         // assign attribute ulno
+         ulno.setName ("Ulno");
          // assign attribute pit1
          pit1.setSeeds (1);
          // assign attribute pit2

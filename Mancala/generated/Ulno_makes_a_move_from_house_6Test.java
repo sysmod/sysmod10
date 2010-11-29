@@ -1124,15 +1124,10 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
          pit11.setSeeds (9);
          // assign attribute pit12
          pit12.setSeeds (0);
-         // create link opposite from artjom to ulno
-         artjom.setOpposite (ulno);
-
-         // create link object_ulno from this to ulno
-         this.setUlno (ulno);
-
-         // create link object_artjom from this to artjom
-         this.setArtjom (artjom);
-
+         // assign attribute ulno
+         ulno.setName ("Ulno");
+         // assign attribute artjom
+         artjom.setName ("Artjom");
          // create link object_visitor from this to visitor
          this.setVisitor (visitor);
 
@@ -1285,6 +1280,15 @@ public class Ulno_makes_a_move_from_house_6Test extends TestCase
 
          // create link object_pit12 from this to pit12
          this.setPit12 (pit12);
+
+         // create link opposite from artjom to ulno
+         artjom.setOpposite (ulno);
+
+         // create link object_ulno from this to ulno
+         this.setUlno (ulno);
+
+         // create link object_artjom from this to artjom
+         this.setArtjom (artjom);
 
          // collabStat call
          ulno.makeMove(pit6);

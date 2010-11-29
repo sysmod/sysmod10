@@ -5,7 +5,6 @@ import sysmod.mancala.Store;
 import de.uni_kassel.features.annotation.util.Property; // requires Fujaba5/libs/features.jar in classpath
 import de.uni_kassel.features.ReferenceHandler; // requires Fujaba5/libs/features.jar in classpath
 import sysmod.mancala.HumanPlayer;
-import sysmod.mancala.Player;
 import sysmod.mancala.Pit;
 import sysmod.mancala.Turn;
 import sysmod.mancala.CheckWinVisitor;
@@ -16,7 +15,7 @@ import java.io.StringWriter;
 import junit.framework.TestCase;
 
 
-public class Artjom_makes_a_move_from_house_12Test extends TestCase
+public class Ulno_wins_the_game_againTest extends TestCase
 {
 
 
@@ -24,7 +23,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_artjomStore     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Store
+    * Ulno_wins_the_game_againTest ------------------------> Store
     *           test               artjomStore
     * </pre>
     */
@@ -51,7 +50,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_ARTJOM_STORE )
-   public Artjom_makes_a_move_from_house_12Test withArtjomStore (Store value)
+   public Ulno_wins_the_game_againTest withArtjomStore (Store value)
    {
       setArtjomStore (value);
       return this;
@@ -65,7 +64,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_artjom     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> HumanPlayer
+    * Ulno_wins_the_game_againTest ------------------------> HumanPlayer
     *           test               artjom
     * </pre>
     */
@@ -92,7 +91,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_ARTJOM )
-   public Artjom_makes_a_move_from_house_12Test withArtjom (HumanPlayer value)
+   public Ulno_wins_the_game_againTest withArtjom (HumanPlayer value)
    {
       setArtjom (value);
       return this;
@@ -353,11 +352,8 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // check isomorphic binding between objects pit9 and pit8
          JavaSDM.ensure ( !pit9.equals (pit8), "check isomorphic binding between objects pit9 and pit8" );
 
-         // check link has from ulno to turn
-         JavaSDM.ensure (turn.equals (ulno.getTurn ()), "check link has from ulno to turn");
-
-         // check link has from artjom to turn
-         JavaSDM.ensure (!(turn.equals (artjom.getTurn ())), "check link has from artjom to turn");
+         // check link is winner from visitor to ulno
+         JavaSDM.ensure (ulno.equals (visitor.getWinner ()), "check link is winner from visitor to ulno");
 
          // check link next of from artjomStore to pit1
          JavaSDM.ensure (pit1.equals (artjomStore.getNextPit ()), "check link next of from artjomStore to pit1");
@@ -419,6 +415,9 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // check link opposite of from pit7 to pit6
          JavaSDM.ensure (pit6.equals (pit7.getOppositePit ()), "check link opposite of from pit7 to pit6");
 
+         // check link opposite from ulno to artjom
+         JavaSDM.ensure (artjom.equals (ulno.getOpposite ()), "check link opposite from ulno to artjom");
+
          // check link owns from artjomStore to artjom
          JavaSDM.ensure (artjom.equals (artjomStore.getPlayer ()), "check link owns from artjomStore to artjom");
 
@@ -461,50 +460,56 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // check link owns from ulnoStore to ulno
          JavaSDM.ensure (ulno.equals (ulnoStore.getPlayer ()), "check link owns from ulnoStore to ulno");
 
-         // attribute condition gameOver == false
-         JavaSDM.ensure ( visitor.isGameOver () == false, "attribute condition gameOver == false" );
+         // attribute condition gameOver == true
+         JavaSDM.ensure ( visitor.isGameOver () == true, "attribute condition gameOver == true" );
+
+         // attribute condition name == "Artjom"
+         JavaSDM.ensure ( JavaSDM.stringCompare ((String) artjom.getName (), "Artjom") == 0, "attribute condition name == \"Artjom\"" );
+
+         // attribute condition name == "Ulno"
+         JavaSDM.ensure ( JavaSDM.stringCompare ((String) ulno.getName (), "Ulno") == 0, "attribute condition name == \"Ulno\"" );
 
          // attribute condition seeds == 0
-         JavaSDM.ensure ( pit12.getSeeds () == 0, "attribute condition seeds == 0" );
+         JavaSDM.ensure ( pit1.getSeeds () == 0, "attribute condition seeds == 0" );
 
          // attribute condition seeds == 0
-         JavaSDM.ensure ( ulnoStore.getSeeds () == 0, "attribute condition seeds == 0" );
+         JavaSDM.ensure ( pit2.getSeeds () == 0, "attribute condition seeds == 0" );
+
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit3.getSeeds () == 0, "attribute condition seeds == 0" );
+
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit4.getSeeds () == 0, "attribute condition seeds == 0" );
+
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit5.getSeeds () == 0, "attribute condition seeds == 0" );
+
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit6.getSeeds () == 0, "attribute condition seeds == 0" );
 
          // attribute condition seeds == 0
          JavaSDM.ensure ( pit7.getSeeds () == 0, "attribute condition seeds == 0" );
 
-         // attribute condition seeds == 1
-         JavaSDM.ensure ( pit1.getSeeds () == 1, "attribute condition seeds == 1" );
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit8.getSeeds () == 0, "attribute condition seeds == 0" );
 
-         // attribute condition seeds == 1
-         JavaSDM.ensure ( pit3.getSeeds () == 1, "attribute condition seeds == 1" );
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit9.getSeeds () == 0, "attribute condition seeds == 0" );
 
-         // attribute condition seeds == 1
-         JavaSDM.ensure ( pit5.getSeeds () == 1, "attribute condition seeds == 1" );
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit10.getSeeds () == 0, "attribute condition seeds == 0" );
 
-         // attribute condition seeds == 2
-         JavaSDM.ensure ( pit6.getSeeds () == 2, "attribute condition seeds == 2" );
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit11.getSeeds () == 0, "attribute condition seeds == 0" );
 
-         // attribute condition seeds == 2
-         JavaSDM.ensure ( pit8.getSeeds () == 2, "attribute condition seeds == 2" );
+         // attribute condition seeds == 0
+         JavaSDM.ensure ( pit12.getSeeds () == 0, "attribute condition seeds == 0" );
 
-         // attribute condition seeds == 3
-         JavaSDM.ensure ( pit4.getSeeds () == 3, "attribute condition seeds == 3" );
+         // attribute condition seeds == 14
+         JavaSDM.ensure ( artjomStore.getSeeds () == 14, "attribute condition seeds == 14" );
 
-         // attribute condition seeds == 3
-         JavaSDM.ensure ( pit9.getSeeds () == 3, "attribute condition seeds == 3" );
-
-         // attribute condition seeds == 5
-         JavaSDM.ensure ( artjomStore.getSeeds () == 5, "attribute condition seeds == 5" );
-
-         // attribute condition seeds == 5
-         JavaSDM.ensure ( pit2.getSeeds () == 5, "attribute condition seeds == 5" );
-
-         // attribute condition seeds == 6
-         JavaSDM.ensure ( pit11.getSeeds () == 6, "attribute condition seeds == 6" );
-
-         // attribute condition seeds == 7
-         JavaSDM.ensure ( pit10.getSeeds () == 7, "attribute condition seeds == 7" );
+         // attribute condition seeds == 22
+         JavaSDM.ensure ( ulnoStore.getSeeds () == 22, "attribute condition seeds == 22" );
 
          fujaba__Success = true;
       }
@@ -525,7 +530,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit10     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit10
     * </pre>
     */
@@ -552,7 +557,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT10 )
-   public Artjom_makes_a_move_from_house_12Test withPit10 (Pit value)
+   public Ulno_wins_the_game_againTest withPit10 (Pit value)
    {
       setPit10 (value);
       return this;
@@ -566,7 +571,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit11     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit11
     * </pre>
     */
@@ -593,7 +598,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT11 )
-   public Artjom_makes_a_move_from_house_12Test withPit11 (Pit value)
+   public Ulno_wins_the_game_againTest withPit11 (Pit value)
    {
       setPit11 (value);
       return this;
@@ -607,7 +612,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit12     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit12
     * </pre>
     */
@@ -634,7 +639,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT12 )
-   public Artjom_makes_a_move_from_house_12Test withPit12 (Pit value)
+   public Ulno_wins_the_game_againTest withPit12 (Pit value)
    {
       setPit12 (value);
       return this;
@@ -648,7 +653,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit1     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit1
     * </pre>
     */
@@ -675,7 +680,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT1 )
-   public Artjom_makes_a_move_from_house_12Test withPit1 (Pit value)
+   public Ulno_wins_the_game_againTest withPit1 (Pit value)
    {
       setPit1 (value);
       return this;
@@ -689,7 +694,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit2     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit2
     * </pre>
     */
@@ -716,7 +721,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT2 )
-   public Artjom_makes_a_move_from_house_12Test withPit2 (Pit value)
+   public Ulno_wins_the_game_againTest withPit2 (Pit value)
    {
       setPit2 (value);
       return this;
@@ -730,7 +735,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit3     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit3
     * </pre>
     */
@@ -757,7 +762,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT3 )
-   public Artjom_makes_a_move_from_house_12Test withPit3 (Pit value)
+   public Ulno_wins_the_game_againTest withPit3 (Pit value)
    {
       setPit3 (value);
       return this;
@@ -771,7 +776,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit4     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit4
     * </pre>
     */
@@ -798,7 +803,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT4 )
-   public Artjom_makes_a_move_from_house_12Test withPit4 (Pit value)
+   public Ulno_wins_the_game_againTest withPit4 (Pit value)
    {
       setPit4 (value);
       return this;
@@ -812,7 +817,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit5     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit5
     * </pre>
     */
@@ -839,7 +844,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT5 )
-   public Artjom_makes_a_move_from_house_12Test withPit5 (Pit value)
+   public Ulno_wins_the_game_againTest withPit5 (Pit value)
    {
       setPit5 (value);
       return this;
@@ -853,7 +858,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit6     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit6
     * </pre>
     */
@@ -880,7 +885,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT6 )
-   public Artjom_makes_a_move_from_house_12Test withPit6 (Pit value)
+   public Ulno_wins_the_game_againTest withPit6 (Pit value)
    {
       setPit6 (value);
       return this;
@@ -894,7 +899,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit7     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit7
     * </pre>
     */
@@ -921,7 +926,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT7 )
-   public Artjom_makes_a_move_from_house_12Test withPit7 (Pit value)
+   public Ulno_wins_the_game_againTest withPit7 (Pit value)
    {
       setPit7 (value);
       return this;
@@ -935,7 +940,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit8     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit8
     * </pre>
     */
@@ -962,7 +967,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT8 )
-   public Artjom_makes_a_move_from_house_12Test withPit8 (Pit value)
+   public Ulno_wins_the_game_againTest withPit8 (Pit value)
    {
       setPit8 (value);
       return this;
@@ -976,7 +981,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_pit9     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Pit
+    * Ulno_wins_the_game_againTest ------------------------> Pit
     *           test               pit9
     * </pre>
     */
@@ -1003,7 +1008,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_PIT9 )
-   public Artjom_makes_a_move_from_house_12Test withPit9 (Pit value)
+   public Ulno_wins_the_game_againTest withPit9 (Pit value)
    {
       setPit9 (value);
       return this;
@@ -1021,19 +1026,19 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
       Pit pit1 = null;
       HumanPlayer artjom = null;
       Pit pit12 = null;
-      Store ulnoStore = null;
-      Pit pit7 = null;
-      HumanPlayer ulno = null;
-      Pit pit6 = null;
       Turn turn = null;
-      Pit pit2 = null;
-      Pit pit3 = null;
       Pit pit11 = null;
-      Pit pit4 = null;
       Pit pit10 = null;
-      Pit pit5 = null;
       Pit pit9 = null;
       Pit pit8 = null;
+      Pit pit7 = null;
+      HumanPlayer ulno = null;
+      Store ulnoStore = null;
+      Pit pit6 = null;
+      Pit pit2 = null;
+      Pit pit3 = null;
+      Pit pit4 = null;
+      Pit pit5 = null;
       CheckWinVisitor visitor = null;
 
       // // start situation: 
@@ -1054,38 +1059,14 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create object pit12
          pit12 = new Pit ( );
 
-         // create object ulnoStore
-         ulnoStore = new Store ( );
-
-         // create object pit7
-         pit7 = new Pit ( );
-
-         // create object ulno
-         ulno = new HumanPlayer ( );
-
-         // create object pit6
-         pit6 = new Pit ( );
-
          // create object turn
          turn = Turn.getInstance();
-
-         // create object pit2
-         pit2 = new Pit ( );
-
-         // create object pit3
-         pit3 = new Pit ( );
 
          // create object pit11
          pit11 = new Pit ( );
 
-         // create object pit4
-         pit4 = new Pit ( );
-
          // create object pit10
          pit10 = new Pit ( );
-
-         // create object pit5
-         pit5 = new Pit ( );
 
          // create object pit9
          pit9 = new Pit ( );
@@ -1093,44 +1074,65 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create object pit8
          pit8 = new Pit ( );
 
+         // create object pit7
+         pit7 = new Pit ( );
+
+         // create object ulno
+         ulno = new HumanPlayer ( );
+
+         // create object ulnoStore
+         ulnoStore = new Store ( );
+
+         // create object pit6
+         pit6 = new Pit ( );
+
+         // create object pit2
+         pit2 = new Pit ( );
+
+         // create object pit3
+         pit3 = new Pit ( );
+
+         // create object pit4
+         pit4 = new Pit ( );
+
+         // create object pit5
+         pit5 = new Pit ( );
+
          // create object visitor
          visitor = new CheckWinVisitor ( );
 
          // assign attribute artjomStore
-         artjomStore.setSeeds (4);
+         artjomStore.setSeeds (13);
+         // assign attribute artjom
+         artjom.setName ("Artjom");
          // assign attribute ulnoStore
-         ulnoStore.setSeeds (0);
+         ulnoStore.setSeeds (10);
+         // assign attribute ulno
+         ulno.setName ("Ulno");
          // assign attribute pit1
-         pit1.setSeeds (0);
+         pit1.setSeeds (1);
          // assign attribute pit2
-         pit2.setSeeds (4);
+         pit2.setSeeds (1);
          // assign attribute pit3
          pit3.setSeeds (0);
          // assign attribute pit4
-         pit4.setSeeds (2);
+         pit4.setSeeds (0);
          // assign attribute pit5
-         pit5.setSeeds (0);
+         pit5.setSeeds (8);
          // assign attribute pit6
-         pit6.setSeeds (2);
+         pit6.setSeeds (1);
          // assign attribute pit7
          pit7.setSeeds (0);
          // assign attribute pit8
-         pit8.setSeeds (2);
+         pit8.setSeeds (0);
          // assign attribute pit9
-         pit9.setSeeds (3);
+         pit9.setSeeds (0);
          // assign attribute pit10
-         pit10.setSeeds (7);
+         pit10.setSeeds (0);
          // assign attribute pit11
-         pit11.setSeeds (6);
+         pit11.setSeeds (0);
          // assign attribute pit12
-         pit12.setSeeds (6);
-         // assign attribute artjom
-         artjom.setName ("Artjom");
-         // assign attribute ulno
-         ulno.setName ("Ulno");
-         // create link object_visitor from this to visitor
-         this.setVisitor (visitor);
-
+         pit12.setSeeds (2);
          // create link owns from artjom to artjomStore
          artjom.addToPit (artjomStore);
 
@@ -1139,6 +1141,33 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
 
          // create link object_artjomStore from this to artjomStore
          this.setArtjomStore (artjomStore);
+
+         // create link has from turn to artjom
+         turn.setPlayer (artjom);
+
+         // create link owns from pit12 to artjom
+         pit12.setPlayer (artjom);
+
+         // create link owns from pit11 to artjom
+         pit11.setPlayer (artjom);
+
+         // create link owns from pit10 to artjom
+         pit10.setPlayer (artjom);
+
+         // create link owns from pit9 to artjom
+         pit9.setPlayer (artjom);
+
+         // create link owns from pit8 to artjom
+         pit8.setPlayer (artjom);
+
+         // create link owns from pit7 to artjom
+         pit7.setPlayer (artjom);
+
+         // create link opposite from ulno to artjom
+         ulno.setOpposite (artjom);
+
+         // create link object_artjom from this to artjom
+         this.setArtjom (artjom);
 
          // create link owns from ulno to ulnoStore
          ulno.addToPit (ulnoStore);
@@ -1149,17 +1178,35 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link object_ulnoStore from this to ulnoStore
          this.setUlnoStore (ulnoStore);
 
-         // create link has from artjom to turn
-         artjom.setTurn (turn);
+         // create link owns from pit1 to ulno
+         pit1.setPlayer (ulno);
+
+         // create link owns from pit2 to ulno
+         pit2.setPlayer (ulno);
+
+         // create link owns from pit3 to ulno
+         pit3.setPlayer (ulno);
+
+         // create link owns from pit4 to ulno
+         pit4.setPlayer (ulno);
+
+         // create link owns from pit5 to ulno
+         pit5.setPlayer (ulno);
+
+         // create link owns from pit6 to ulno
+         pit6.setPlayer (ulno);
+
+         // create link object_ulno from this to ulno
+         this.setUlno (ulno);
 
          // create link object_turn from this to turn
          this.setTurn (turn);
 
+         // create link object_visitor from this to visitor
+         this.setVisitor (visitor);
+
          // create link opposite of from pit12 to pit1
          pit12.setOppositePit (pit1);
-
-         // create link owns from ulno to pit1
-         ulno.addToPit (pit1);
 
          // create link next of from artjomStore to pit1
          artjomStore.setNextPit (pit1);
@@ -1170,9 +1217,6 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link opposite of from pit11 to pit2
          pit11.setOppositePit (pit2);
 
-         // create link owns from ulno to pit2
-         ulno.addToPit (pit2);
-
          // create link next of from pit1 to pit2
          pit1.setNextPit (pit2);
 
@@ -1181,9 +1225,6 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
 
          // create link opposite of from pit10 to pit3
          pit10.setOppositePit (pit3);
-
-         // create link owns from ulno to pit3
-         ulno.addToPit (pit3);
 
          // create link next of from pit2 to pit3
          pit2.setNextPit (pit3);
@@ -1194,9 +1235,6 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link opposite of from pit9 to pit4
          pit9.setOppositePit (pit4);
 
-         // create link owns from ulno to pit4
-         ulno.addToPit (pit4);
-
          // create link next of from pit3 to pit4
          pit3.setNextPit (pit4);
 
@@ -1205,9 +1243,6 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
 
          // create link opposite of from pit8 to pit5
          pit8.setOppositePit (pit5);
-
-         // create link owns from ulno to pit5
-         ulno.addToPit (pit5);
 
          // create link next of from pit4 to pit5
          pit4.setNextPit (pit5);
@@ -1218,17 +1253,11 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link opposite of from pit7 to pit6
          pit7.setOppositePit (pit6);
 
-         // create link owns from ulno to pit6
-         ulno.addToPit (pit6);
-
          // create link next of from pit5 to pit6
          pit5.setNextPit (pit6);
 
          // create link object_pit6 from this to pit6
          this.setPit6 (pit6);
-
-         // create link owns from artjom to pit7
-         artjom.addToPit (pit7);
 
          // create link next of from ulnoStore to pit7
          ulnoStore.setNextPit (pit7);
@@ -1236,17 +1265,11 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link object_pit7 from this to pit7
          this.setPit7 (pit7);
 
-         // create link owns from artjom to pit8
-         artjom.addToPit (pit8);
-
          // create link next of from pit7 to pit8
          pit7.setNextPit (pit8);
 
          // create link object_pit8 from this to pit8
          this.setPit8 (pit8);
-
-         // create link owns from artjom to pit9
-         artjom.addToPit (pit9);
 
          // create link next of from pit8 to pit9
          pit8.setNextPit (pit9);
@@ -1254,17 +1277,11 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link object_pit9 from this to pit9
          this.setPit9 (pit9);
 
-         // create link owns from artjom to pit10
-         artjom.addToPit (pit10);
-
          // create link next of from pit9 to pit10
          pit9.setNextPit (pit10);
 
          // create link object_pit10 from this to pit10
          this.setPit10 (pit10);
-
-         // create link owns from artjom to pit11
-         artjom.addToPit (pit11);
 
          // create link next of from pit10 to pit11
          pit10.setNextPit (pit11);
@@ -1272,23 +1289,11 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
          // create link object_pit11 from this to pit11
          this.setPit11 (pit11);
 
-         // create link owns from artjom to pit12
-         artjom.addToPit (pit12);
-
          // create link next of from pit11 to pit12
          pit11.setNextPit (pit12);
 
          // create link object_pit12 from this to pit12
          this.setPit12 (pit12);
-
-         // create link opposite from ulno to artjom
-         ulno.setOpposite (artjom);
-
-         // create link object_artjom from this to artjom
-         this.setArtjom (artjom);
-
-         // create link object_ulno from this to ulno
-         this.setUlno (ulno);
 
          // collabStat call
          artjom.makeMove(pit12);
@@ -1303,7 +1308,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
 
    }
 
-   public void testArtjom_makes_a_move_from_house_12 ()
+   public void testUlno_wins_the_game_again ()
    {
       boolean fujaba__Success = false;
 
@@ -1327,7 +1332,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_turn     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Turn
+    * Ulno_wins_the_game_againTest ------------------------> Turn
     *           test               turn
     * </pre>
     */
@@ -1354,7 +1359,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_TURN )
-   public Artjom_makes_a_move_from_house_12Test withTurn (Turn value)
+   public Ulno_wins_the_game_againTest withTurn (Turn value)
    {
       setTurn (value);
       return this;
@@ -1368,7 +1373,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_ulnoStore     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> Store
+    * Ulno_wins_the_game_againTest ------------------------> Store
     *           test               ulnoStore
     * </pre>
     */
@@ -1395,7 +1400,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_ULNO_STORE )
-   public Artjom_makes_a_move_from_house_12Test withUlnoStore (Store value)
+   public Ulno_wins_the_game_againTest withUlnoStore (Store value)
    {
       setUlnoStore (value);
       return this;
@@ -1409,7 +1414,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_ulno     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> HumanPlayer
+    * Ulno_wins_the_game_againTest ------------------------> HumanPlayer
     *           test               ulno
     * </pre>
     */
@@ -1436,7 +1441,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_ULNO )
-   public Artjom_makes_a_move_from_house_12Test withUlno (HumanPlayer value)
+   public Ulno_wins_the_game_againTest withUlno (HumanPlayer value)
    {
       setUlno (value);
       return this;
@@ -1450,7 +1455,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    /**
     * <pre>
     *           0..1     object_visitor     0..1
-    * Artjom_makes_a_move_from_house_12Test ------------------------> CheckWinVisitor
+    * Ulno_wins_the_game_againTest ------------------------> CheckWinVisitor
     *           test               visitor
     * </pre>
     */
@@ -1477,7 +1482,7 @@ public class Artjom_makes_a_move_from_house_12Test extends TestCase
    }
 
    @Property( name = PROPERTY_VISITOR )
-   public Artjom_makes_a_move_from_house_12Test withVisitor (CheckWinVisitor value)
+   public Ulno_wins_the_game_againTest withVisitor (CheckWinVisitor value)
    {
       setVisitor (value);
       return this;
