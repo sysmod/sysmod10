@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JDialog;
-import javax.swing.JScrollPane;
 
 import java.awt.Dimension;
 import javax.swing.JTextArea;
@@ -20,16 +19,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.SystemColor;
 import javax.swing.BorderFactory;
-import javax.swing.JTextPane;
-import java.awt.Insets;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import javax.swing.border.BevelBorder;
-import javax.swing.JScrollBar;
-import java.awt.Dialog;
 
 public class MancalaGUI {
 
@@ -60,14 +51,9 @@ public class MancalaGUI {
 	private JPanel help = null;
 	private JLabel helpTitle = null;
 	private JButton newgameButton = null;
-	private JLabel player1Name = null;
 	private JPanel leftPanel = null;
-	private JPanel rightPanelScore = null;
-	private JLabel player2Space = null;
-	private JLabel player2Score = null;
 	private JTextArea helpText = null;
 	private JLabel player1Label = null;
-	private JPanel leftPanelScore = null;
 	private JLabel player2Label = null;
 	private JLabel status = null;
 	private JPanel downPanel = null;
@@ -624,7 +610,6 @@ public class MancalaGUI {
 			leftPanel.setBackground(new Color(204, 204, 255));
 			leftPanel.setPreferredSize(new Dimension(140, 78));
 			leftPanel.add(getNewgameButton(), gridBagConstraints16);
-			leftPanel.add(getLeftPanelScore(), gridBagConstraints19);
 		}
 		return leftPanel;
 	}
@@ -644,22 +629,6 @@ public class MancalaGUI {
 	public void setPlayer2label(JLabel player2label) {
 		this.player2label = player2label;
 	}
-	
-	/**
-	 * This method initializes leftPanelScore	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getLeftPanelScore() {
-		if (leftPanelScore == null) {
-			leftPanelScore = new JPanel();
-			leftPanelScore.setLayout(new GridBagLayout());
-			leftPanelScore.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-			leftPanelScore.setBackground(new Color(204, 204, 255));
-		}
-		return leftPanelScore;
-	}
-
 	public void disablePits(int player) {
 		if (player == 0) {
 			getPit1().setEnabled(false);

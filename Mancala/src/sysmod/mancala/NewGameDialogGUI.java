@@ -2,7 +2,6 @@ package sysmod.mancala;
 
 import javax.swing.JPanel;
 import java.awt.Frame;
-import java.awt.BorderLayout;
 import javax.swing.JDialog;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -12,7 +11,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.event.ChangeEvent;
