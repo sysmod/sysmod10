@@ -26,6 +26,8 @@ public class classesAllTests
          suite = new TestSuite ( );
 
          // collabStat call
+         suite.addTestSuite (Artjom_makes_a_move_from_pit_7_and_steals_opponents_seedsTest.class);
+         // collabStat call
          suite.addTestSuite (Artjom_makes_a_move_from_pit_8_and_gets_a_new_moveTest.class);
          // collabStat call
          suite.addTestSuite (Making_a_drawTest.class);
