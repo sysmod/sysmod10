@@ -1124,21 +1124,10 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
          pit11.setSeeds (5);
          // assign attribute pit12
          pit12.setSeeds (5);
-         // create link has from artjom to turn
-         artjom.setTurn (turn);
-
-         // create link object_turn from this to turn
-         this.setTurn (turn);
-
-         // create link opposite from ulno to artjom
-         ulno.setOpposite (artjom);
-
-         // create link object_artjom from this to artjom
-         this.setArtjom (artjom);
-
-         // create link object_ulno from this to ulno
-         this.setUlno (ulno);
-
+         // assign attribute artjom
+         artjom.setName ("Artjom");
+         // assign attribute ulno
+         ulno.setName ("Ulno");
          // create link object_visitor from this to visitor
          this.setVisitor (visitor);
 
@@ -1285,6 +1274,21 @@ public class Artjom_makes_a_move_from_house_7Test extends TestCase
 
          // create link object_pit12 from this to pit12
          this.setPit12 (pit12);
+
+         // create link has from artjom to turn
+         artjom.setTurn (turn);
+
+         // create link object_turn from this to turn
+         this.setTurn (turn);
+
+         // create link opposite from ulno to artjom
+         ulno.setOpposite (artjom);
+
+         // create link object_artjom from this to artjom
+         this.setArtjom (artjom);
+
+         // create link object_ulno from this to ulno
+         this.setUlno (ulno);
 
          // collabStat call
          artjom.makeMove(pit7);

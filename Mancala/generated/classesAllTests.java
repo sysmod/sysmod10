@@ -26,6 +26,8 @@ public class classesAllTests
          suite = new TestSuite ( );
 
          // collabStat call
+         suite.addTestSuite (Ulno_wins_the_game_againTest.class);
+         // collabStat call
          suite.addTestSuite (Artjom_wins_the_game_againTest.class);
          // collabStat call
          suite.addTestSuite (Artjom_makes_a_move_from_pit_10Test.class);
