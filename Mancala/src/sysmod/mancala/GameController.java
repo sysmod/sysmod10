@@ -1,10 +1,17 @@
 package sysmod.mancala;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -184,6 +191,21 @@ public class GameController {
 		gui.getPit10().addActionListener(pitClickListener);
 		gui.getPit11().addActionListener(pitClickListener);
 		gui.getPit12().addActionListener(pitClickListener);
+		
+		gui.getScoresButton().addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gui.getScoresText().setText(readScores());
+				JDialog scoresDialog = gui.getScoresDialog();
+				scoresDialog.pack();
+				Point loc = gui.getJFrame().getLocation();
+				loc.translate(20, 50);
+				scoresDialog.setLocation(loc);
+				scoresDialog.setVisible(true);
+			}
+			
+		});
 	}
 
 	private void updateGUI() {
@@ -240,6 +262,8 @@ public class GameController {
 			} else {
 				gui.getStatus().setText("It's a draw!");
 			}
+			gui.disablePits(0);
+			writeScore();
 		} else {
 			if(playerTwo.getTurn()!=null && playerTwo.getClass()==ComputerPlayer.class){
 				gui.getStatus().setText("It is the Computer's turn.");
@@ -290,7 +314,35 @@ public class GameController {
 	}
 	
 	private void writeScore(){
-		
+		try {
+			FileWriter scorefile = new FileWriter("scoretable", true);
+			BufferedWriter output = new BufferedWriter(scorefile);
+			output.write(playerOne.getName() + " -vs- "+playerTwo.getName()+"  "+pits.get(6).getSeeds()+"/"+pits.get(13).getSeeds());
+			output.newLine();
+			output.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private String readScores(){
+		StringBuffer output = new StringBuffer();
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("scoretable"));
+			String line;
+			while((line=reader.readLine())!=null)
+				output.append(line+'\n');
+			
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return output.toString();
 	}
 
 	public static void main(String[] args) {

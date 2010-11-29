@@ -504,7 +504,7 @@ public class MancalaGUI {
 			teamButton.setFont(new Font("Dialog", Font.BOLD, 14));
 			teamButton.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					JOptionPane.showMessageDialog(null, "Mancala Team 2010:\n - Martin Loginov \n - Hans Mäesalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller", "Mancala Team 2010", JOptionPane.INFORMATION_MESSAGE);   
+					JOptionPane.showMessageDialog(null, "Mancala Team 2010:\n - Martin Loginov \n - Hans Mï¿½esalu \n - Peeter Jï¿½rviste \n - Mari Rï¿½ï¿½tli \n - Sven Aller", "Mancala Team 2010", JOptionPane.INFORMATION_MESSAGE);   
 				}
 			});
 		}
@@ -538,11 +538,11 @@ public class MancalaGUI {
 	private JTextArea getHelpText() {
 		if (helpText == null) {
 			helpText = new JTextArea();
-			helpText.setText("The game board of Mancala consists of 14 pits - 12 regular pits and 2 stores. Each player controls the six pits and their seeds on his side of the board. Player’s score is the number of seeds in his store (the one on the right of his pits). \n");
+			helpText.setText("The game board of Mancala consists of 14 pits - 12 regular pits and 2 stores. Each player controls the six pits and their seeds on his side of the board. Playerï¿½s score is the number of seeds in his store (the one on the right of his pits). \n");
 			helpText.setText(helpText.getText()+"1. At the beginning of the game, three seeds are placed in each pit. \n");
-			helpText.setText(helpText.getText()+"2. Players take turns sowing their seeds. On a turn, the player removes all seeds from one of the pits under his control. Moving counter-clockwise, the player drops one seed in each pit in turn, including the player´s own store (but not his opponent´s). \n");
-			helpText.setText(helpText.getText()+"3. If the last sown seed lands in the player´s store, the player gets an additional move. There is no limit on the number of moves a player can make in his turn. \n");
-			helpText.setText(helpText.getText()+"4. If the last sown seed lands in an empty pit owned by the player, and the opposite pit contains seeds, both the last seed and the opposite seeds are captured and placed into the player´s store. \n");
+			helpText.setText(helpText.getText()+"2. Players take turns sowing their seeds. On a turn, the player removes all seeds from one of the pits under his control. Moving counter-clockwise, the player drops one seed in each pit in turn, including the playerï¿½s own store (but not his opponentï¿½s). \n");
+			helpText.setText(helpText.getText()+"3. If the last sown seed lands in the playerï¿½s store, the player gets an additional move. There is no limit on the number of moves a player can make in his turn. \n");
+			helpText.setText(helpText.getText()+"4. If the last sown seed lands in an empty pit owned by the player, and the opposite pit contains seeds, both the last seed and the opposite seeds are captured and placed into the playerï¿½s store. \n");
 			helpText.setText(helpText.getText()+"5. When one player no longer has any seeds in any of his pits, the game ends. The other player moves all remaining seeds to his store, and the player with the most seeds in his store wins. \n");
 			helpText.setText(helpText.getText()+"It is possible for the game to end in a draw - each player has 18 seeds. ");
 			helpText.setBackground(new Color(238, 238, 238));
@@ -736,22 +736,12 @@ public class MancalaGUI {
 	 * 	
 	 * @return javax.swing.JButton	
 	 */
-	private JButton getScoresButton() {
+	public JButton getScoresButton() {
 		if (scoresButton == null) {
 			scoresButton = new JButton();
 			scoresButton.setText("Scores");
 			scoresButton.setFont(new Font("Dialog", Font.BOLD, 14));
 			scoresButton.setPreferredSize(new Dimension(120, 26));
-			scoresButton.addMouseListener(new java.awt.event.MouseAdapter() {
-				public void mouseClicked(java.awt.event.MouseEvent e) {
-					JDialog scoresDialog = getScoresDialog();
-					scoresDialog.pack();
-					Point loc = getJFrame().getLocation();
-					loc.translate(20, 50);
-					scoresDialog.setLocation(loc);
-					scoresDialog.setVisible(true);
-				}
-			});
 		}
 		return scoresButton;
 	}
@@ -761,7 +751,7 @@ public class MancalaGUI {
 	 * 	
 	 * @return javax.swing.JDialog	
 	 */
-	private JDialog getScoresDialog() {
+	public JDialog getScoresDialog() {
 		if (scoresDialog == null) {
 			scoresDialog = new JDialog(getJFrame());
 			scoresDialog.setTitle("Mancala Scores");
@@ -798,7 +788,7 @@ public class MancalaGUI {
 	 * 	
 	 * @return javax.swing.JTextArea	
 	 */
-	private JTextArea getScoresText() {
+	public JTextArea getScoresText() {
 		if (scoresText == null) {
 			scoresText = new JTextArea();
 			scoresText.setLineWrap(true);
