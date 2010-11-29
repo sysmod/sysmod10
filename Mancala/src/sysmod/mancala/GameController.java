@@ -26,7 +26,6 @@ public class GameController {
 	private Player playerOne;
 	private Player playerTwo;
 	private Player currentPlayer;
-	private Turn turn;
 
 	private PropertyChangeListener seedsChangeListener = new PropertyChangeListener() {
 
@@ -37,15 +36,6 @@ public class GameController {
 
 			updateGUI();
 
-		}
-
-	};
-
-	private PropertyChangeListener turnChangeListener = new PropertyChangeListener() {
-
-		@Override
-		public void propertyChange(PropertyChangeEvent evt) {
-			
 		}
 
 	};
@@ -110,8 +100,6 @@ public class GameController {
 			playerOne = new HumanPlayer();
 			playerOne.setName(newgame.getPlayerOneName().getText());
 			
-			playerOne.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
-			playerTwo.addPropertyChangeListener(Player.PROPERTY_TURN, turnChangeListener);
 			playerOne.setOpposite(playerTwo);
 			
 			initializePits();
