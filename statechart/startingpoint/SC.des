@@ -1,9 +1,0 @@
-STATECHART:
-   A [DS]
-
-TRANSITION:
-   S: A
-   N: A
-   T: 1
-   O: gui.increaseTimeByOne()
-      gui.refreshTimeDisplay()
