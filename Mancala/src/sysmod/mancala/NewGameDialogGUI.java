@@ -30,21 +30,21 @@ public class NewGameDialogGUI extends JDialog {
 	private JButton startButton;
 	private Boolean computerPlayerSelected = null;
 	private JDialog thisDialog;
-	private ChangeListener selectionChangeListener = new ChangeListener(){
+	private ChangeListener selectionChangeListener = new ChangeListener() {
 
 		@Override
 		public void stateChanged(ChangeEvent e) {
-			if(playAgainstHuman.isSelected()){
+			if (playAgainstHuman.isSelected()) {
 				playerTwoNameText.setEnabled(true);
 				playerTwoName.setEnabled(true);
-				
-			}else{
+
+			} else {
 				playerTwoNameText.setEnabled(false);
 				playerTwoName.setEnabled(false);
 			}
-			
+
 		}
-		
+
 	};
 
 	/**
@@ -75,7 +75,7 @@ public class NewGameDialogGUI extends JDialog {
 	 * @return void
 	 */
 	private void initialize() {
-		//this.setSize(300, 200);
+		// this.setSize(300, 200);
 		this.setTitle("New Game");
 		this.setContentPane(getJContentPane());
 		this.pack();
@@ -94,17 +94,17 @@ public class NewGameDialogGUI extends JDialog {
 			jContentPane = new JPanel();
 			jContentPane.setLayout(new GridBagLayout());
 			GridBagConstraints gc = new GridBagConstraints();
-			
+
 			playerOneNameText = new JLabel("Player 1 name:");
 			gc.gridx = 0;
 			gc.gridy = 0;
 			jContentPane.add(playerOneNameText, gc);
-			
+
 			playerOneName = new JTextField(15);
 			gc.gridx = 1;
 			gc.gridy = 0;
 			jContentPane.add(playerOneName, gc);
-			
+
 			playerChoice = new ButtonGroup();
 			playAgainstHuman = new JRadioButton("Play against human");
 			playAgainstHuman.setSelected(true);
@@ -113,48 +113,43 @@ public class NewGameDialogGUI extends JDialog {
 			gc.gridx = 0;
 			gc.gridy = 1;
 			jContentPane.add(playAgainstHuman, gc);
-			
+
 			playerTwoNameText = new JLabel("Player 2 name:");
 			gc.gridx = 0;
 			gc.gridy = 2;
 			jContentPane.add(playerTwoNameText, gc);
-			
+
 			playerTwoName = new JTextField(15);
 			gc.gridx = 1;
 			gc.gridy = 2;
 			jContentPane.add(playerTwoName, gc);
-			
+
 			playAgainstComputer = new JRadioButton("Play against computer");
 			playerChoice.add(playAgainstComputer);
 			playAgainstComputer.addChangeListener(selectionChangeListener);
 			gc.gridx = 0;
 			gc.gridy = 3;
 			jContentPane.add(playAgainstComputer, gc);
-			
+
 			startButton = new JButton("Start new game!");
 			gc.gridx = 0;
 			gc.gridwidth = 2;
 			gc.gridy = 4;
 			jContentPane.add(startButton, gc);
 			startButton.addActionListener(new ActionListener() {
-		
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					if(playAgainstComputer.isSelected())
+					if (playAgainstComputer.isSelected())
 						computerPlayerSelected = true;
 					else
 						computerPlayerSelected = false;
-					
+
 					thisDialog.dispose();
 				}
 			});
 		}
 		return jContentPane;
-	}
-	
-	public static void main(String[] args){
-		JDialog dialog = new NewGameDialogGUI(null);
-		
 	}
 
 }

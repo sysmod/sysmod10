@@ -15,12 +15,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
+/**
+ * GameController class
+ */
 public class GameController {
 
 	public MancalaGUI gui = new MancalaGUI();
-	
+
 	// model objects
 	private List<AbstractPit> pits = new ArrayList<AbstractPit>();
 	private Player playerOne;
@@ -32,94 +36,101 @@ public class GameController {
 		@Override
 		public void propertyChange(PropertyChangeEvent evt) {
 
-			System.out.println("Seedchange triggered: " + evt.toString());
-
 			updateGUI();
 
 		}
 
 	};
-	
-	private ActionListener pitClickListener = new ActionListener(){
+
+	private ActionListener pitClickListener = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource()==gui.getPit1()){
+			if (e.getSource() == gui.getPit1()) {
 				makeMove(1);
-			}else if (e.getSource()==gui.getPit2()){
+			} else if (e.getSource() == gui.getPit2()) {
 				makeMove(2);
-			}else if (e.getSource()==gui.getPit3()){
+			} else if (e.getSource() == gui.getPit3()) {
 				makeMove(3);
-			}else if (e.getSource()==gui.getPit4()){
+			} else if (e.getSource() == gui.getPit4()) {
 				makeMove(4);
-			}else if (e.getSource()==gui.getPit5()){
+			} else if (e.getSource() == gui.getPit5()) {
 				makeMove(5);
-			}else if (e.getSource()==gui.getPit6()){
+			} else if (e.getSource() == gui.getPit6()) {
 				makeMove(6);
-			}else if (e.getSource()==gui.getPit7()){
+			} else if (e.getSource() == gui.getPit7()) {
 				makeMove(7);
-			}else if (e.getSource()==gui.getPit8()){
+			} else if (e.getSource() == gui.getPit8()) {
 				makeMove(8);
-			}else if (e.getSource()==gui.getPit9()){
+			} else if (e.getSource() == gui.getPit9()) {
 				makeMove(9);
-			}else if (e.getSource()==gui.getPit10()){
+			} else if (e.getSource() == gui.getPit10()) {
 				makeMove(10);
-			}else if (e.getSource()==gui.getPit11()){
+			} else if (e.getSource() == gui.getPit11()) {
 				makeMove(11);
-			}else if (e.getSource()==gui.getPit12()){
+			} else if (e.getSource() == gui.getPit12()) {
 				makeMove(12);
-			}	
+			}
 		}
-		
+
 	};
-	
+
 	private ActionListener newGameAction = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			NewGameDialogGUI newgame = new NewGameDialogGUI(gui.getJFrame());
-			
-			if(newgame.getComputerPlayerSelected()==null)
+
+			if (newgame.getComputerPlayerSelected() == null)
 				return;
-			else if(newgame.getComputerPlayerSelected()==false){
-				if (newgame.getPlayerOneName().getText().isEmpty()) newgame.getPlayerOneName().setText("Player1");
-				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
-				if (newgame.getPlayerTwoName().getText().isEmpty()) newgame.getPlayerTwoName().setText("Player2");
-				gui.getPlayer2label().setText(newgame.getPlayerTwoName().getText());
-				
+			else if (newgame.getComputerPlayerSelected() == false) {
+				if (newgame.getPlayerOneName().getText().isEmpty())
+					newgame.getPlayerOneName().setText("Player1");
+				gui.getPlayer1label().setText(
+						newgame.getPlayerOneName().getText());
+				if (newgame.getPlayerTwoName().getText().isEmpty())
+					newgame.getPlayerTwoName().setText("Player2");
+				gui.getPlayer2label().setText(
+						newgame.getPlayerTwoName().getText());
+
 				playerTwo = new HumanPlayer();
 				playerTwo.setName(newgame.getPlayerTwoName().getText());
-			}else{
-				if (newgame.getPlayerOneName().getText().isEmpty()) newgame.getPlayerOneName().setText("Player1");
-				gui.getPlayer1label().setText(newgame.getPlayerOneName().getText());
+			} else {
+				if (newgame.getPlayerOneName().getText().isEmpty())
+					newgame.getPlayerOneName().setText("Player1");
+				gui.getPlayer1label().setText(
+						newgame.getPlayerOneName().getText());
 				gui.getPlayer2label().setText("Computer");
-				
+
 				playerTwo = new ComputerPlayer();
 				playerTwo.setName("Computer");
 			}
 			playerOne = new HumanPlayer();
 			playerOne.setName(newgame.getPlayerOneName().getText());
-			
+
 			playerOne.setOpposite(playerTwo);
-			
+
 			initializePits();
 			ResetBoardVisitor v = new ResetBoardVisitor();
 			pits.get(0).accept(v);
-			
-			if(Math.random() <0.5)
+
+			if (Math.random() < 0.5)
 				playerOne.setTurn(Turn.getInstance());
 			else
 				playerTwo.setTurn(Turn.getInstance());
-			
+
 			roundSetupCleanup();
 		}
-		
+
 	};
-	
-	public GameController(){
+
+	public GameController() {
 		initializeGUIlisteners();
 	}
 
+	/**
+	 * Initializes pits, sets players and opposite players
+	 */
 	private void initializePits() {
 		pits.clear();
 		AbstractPit pit = new Pit();
@@ -134,9 +145,8 @@ public class GameController {
 		for (int i = 2; i <= 14; i++) {
 			if (i == 7 || i == 14)
 				newPit = new Store();
-			else 
+			else
 				newPit = new Pit();
-
 
 			if (i <= 7)
 				newPit.setPlayer(playerOne);
@@ -160,8 +170,11 @@ public class GameController {
 			opit.setOppositePit((Pit) pits.get(12 - i));
 		}
 	}
-	
-	private void initializeGUIlisteners(){
+
+	/**
+	 * Initializes GUI listeners for buttons used
+	 */
+	private void initializeGUIlisteners() {
 		gui.getNewgameButton().addActionListener(newGameAction);
 		gui.getPit1().addActionListener(pitClickListener);
 		gui.getPit2().addActionListener(pitClickListener);
@@ -175,8 +188,8 @@ public class GameController {
 		gui.getPit10().addActionListener(pitClickListener);
 		gui.getPit11().addActionListener(pitClickListener);
 		gui.getPit12().addActionListener(pitClickListener);
-		
-		gui.getScoresButton().addActionListener(new ActionListener(){
+
+		gui.getScoresButton().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -188,10 +201,13 @@ public class GameController {
 				scoresDialog.setLocation(loc);
 				scoresDialog.setVisible(true);
 			}
-			
+
 		});
 	}
 
+	/**
+	 * Updates GUI seed numbers for all pits and stores
+	 */
 	private void updateGUI() {
 
 		gui.getPit1().setText(Integer.toString(this.pits.get(0).getSeeds()));
@@ -213,128 +229,167 @@ public class GameController {
 				Integer.toString(this.pits.get(13).getSeeds()));
 
 	}
-	
-	private void makeMove(int pit){
-		if(pit < 7)
-			currentPlayer.makeMove((Pit) pits.get(pit-1));
+
+	/**
+	 * Makes a move for either player
+	 * 
+	 * @param pit
+	 *            pit id
+	 */
+	private void makeMove(int pit) {
+		if (pit < 7)
+			currentPlayer.makeMove((Pit) pits.get(pit - 1));
 		else
 			currentPlayer.makeMove((Pit) pits.get(pit));
-		
+
 		roundSetupCleanup();
 	}
-	
-	private void makeComputerMove(){
+
+	/**
+	 * Makes a move for the AI player
+	 */
+	private void makeComputerMove() {
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(gui.getJFrame(),
+					"Cannot make a computer move.", "Error",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		currentPlayer.makeMove(null);
 		roundSetupCleanup();
 	}
-	
+
+	/**
+	 * Performs post-round actions: win check, turn changes
+	 */
 	private void roundSetupCleanup() {
 		CheckWinVisitor c = new CheckWinVisitor();
 		pits.get(0).accept(c);
-		
-		if(c.isGameOver()){
-			if(playerOne.getStore().getSeeds()>playerTwo.getStore().getSeeds()){
-				gui.getStatus().setText(playerOne.getName() + " is the WINNER!");
-			} else if (playerTwo.getStore().getSeeds() > playerOne.getStore().getSeeds()){
-				gui.getStatus().setText(playerTwo.getName() + " is the WINNER!");
+
+		if (c.isGameOver()) {
+			if (playerOne.getStore().getSeeds() > playerTwo.getStore()
+					.getSeeds()) {
+				gui.getStatus()
+						.setText(playerOne.getName() + " is the WINNER!");
+			} else if (playerTwo.getStore().getSeeds() > playerOne.getStore()
+					.getSeeds()) {
+				gui.getStatus()
+						.setText(playerTwo.getName() + " is the WINNER!");
 			} else {
 				gui.getStatus().setText("It's a draw!");
 			}
 			gui.disablePits(0);
 			writeScore();
 		} else {
-			if(playerTwo.getTurn()!=null && playerTwo.getClass()==ComputerPlayer.class){
+			if (playerTwo.getTurn() != null
+					&& playerTwo.getClass() == ComputerPlayer.class) {
 				gui.getStatus().setText("It is the Computer's turn.");
 				gui.disablePits(0);
-				currentPlayer=playerTwo;
+				currentPlayer = playerTwo;
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						makeComputerMove();
 					}
 				});
-			}else if(playerOne.getTurn()!=null){
-				gui.getStatus().setText("It is "+playerOne.getName()+"\'s turn.");
+			} else if (playerOne.getTurn() != null) {
+				gui.getStatus().setText(
+						"It is " + playerOne.getName() + "\'s turn.");
 				gui.disablePits(2);
-				currentPlayer=playerOne;
-				
-				if(pits.get(0).getSeeds()==0)
+				currentPlayer = playerOne;
+
+				if (pits.get(0).getSeeds() == 0)
 					gui.getPit1().setEnabled(false);
-				if(pits.get(1).getSeeds()==0)
+				if (pits.get(1).getSeeds() == 0)
 					gui.getPit2().setEnabled(false);
-				if(pits.get(2).getSeeds()==0)
+				if (pits.get(2).getSeeds() == 0)
 					gui.getPit3().setEnabled(false);
-				if(pits.get(3).getSeeds()==0)
+				if (pits.get(3).getSeeds() == 0)
 					gui.getPit4().setEnabled(false);
-				if(pits.get(4).getSeeds()==0)
+				if (pits.get(4).getSeeds() == 0)
 					gui.getPit5().setEnabled(false);
-				if(pits.get(5).getSeeds()==0)
+				if (pits.get(5).getSeeds() == 0)
 					gui.getPit6().setEnabled(false);
-				
-			}else if(playerTwo.getTurn()!=null){
-				gui.getStatus().setText("It is "+playerTwo.getName()+"\'s turn.");
+
+			} else if (playerTwo.getTurn() != null) {
+				gui.getStatus().setText(
+						"It is " + playerTwo.getName() + "\'s turn.");
 				gui.disablePits(1);
-				currentPlayer=playerTwo;
-				
-				if(pits.get(7).getSeeds()==0)
+				currentPlayer = playerTwo;
+
+				if (pits.get(7).getSeeds() == 0)
 					gui.getPit7().setEnabled(false);
-				if(pits.get(8).getSeeds()==0)
+				if (pits.get(8).getSeeds() == 0)
 					gui.getPit8().setEnabled(false);
-				if(pits.get(9).getSeeds()==0)
+				if (pits.get(9).getSeeds() == 0)
 					gui.getPit9().setEnabled(false);
-				if(pits.get(10).getSeeds()==0)
+				if (pits.get(10).getSeeds() == 0)
 					gui.getPit10().setEnabled(false);
-				if(pits.get(11).getSeeds()==0)
+				if (pits.get(11).getSeeds() == 0)
 					gui.getPit11().setEnabled(false);
-				if(pits.get(12).getSeeds()==0)
+				if (pits.get(12).getSeeds() == 0)
 					gui.getPit12().setEnabled(false);
 			}
 		}
 	}
-	
-	private void writeScore(){
+
+	/**
+	 * Writes score into the scoretable
+	 */
+	private void writeScore() {
 		try {
 			FileWriter scorefile = new FileWriter("scoretable", true);
 			BufferedWriter output = new BufferedWriter(scorefile);
-			output.write(playerOne.getName() + " -vs- "+playerTwo.getName()+"  "+pits.get(6).getSeeds()+"/"+pits.get(13).getSeeds());
+			output.write(playerOne.getName() + " -vs- " + playerTwo.getName()
+					+ "  " + pits.get(6).getSeeds() + "/"
+					+ pits.get(13).getSeeds());
 			output.newLine();
 			output.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(gui.getJFrame(),
+					"Writing to scoretable failed.", "Error",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 	}
-	
-	private String readScores(){
+
+	/**
+	 * Reads scores from the file
+	 * 
+	 * @return string containing scoretable contents
+	 */
+	private String readScores() {
 		StringBuffer output = new StringBuffer();
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("scoretable"));
+			BufferedReader reader = new BufferedReader(new FileReader(
+					"scoretable"));
 			String line;
-			while((line=reader.readLine())!=null)
-				output.append(line+'\n');
-			
+			while ((line = reader.readLine()) != null)
+				output.append(line + '\n');
+
 			reader.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(gui.getJFrame(),
+					"File not found exception.", "Error",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			JOptionPane.showMessageDialog(gui.getJFrame(),
+					"Reading from scoretable failed.", "Error",
+					JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
 		}
 		return output.toString();
 	}
 
+	/**
+	 * Main method
+	 * 
+	 * @param args
+	 *            not used
+	 */
 	public static void main(String[] args) {
-		/*
-		controller.initializePits();
-		gui = new MancalaGUI();
-		controller.updateGUI(gui);
-		*/
 		final GameController cntrl = new GameController();
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
