@@ -515,11 +515,12 @@ public class MancalaGUI {
 		if (helpDialog == null) {
 			helpDialog = new JDialog(getJFrame());
 			helpDialog.setTitle("Mancala Help");
-			helpDialog.setMinimumSize(new Dimension(600, 400));
-			helpDialog.setMaximumSize(new Dimension(600, 400));
-			helpDialog.setPreferredSize(new Dimension(600, 400));
 			helpDialog.setLocation(new Point(0, 0));
-			helpDialog.setSize(new Dimension(600, 400));
+			helpDialog.setSize(new Dimension(600, 430));
+			helpDialog.setMaximumSize(new Dimension(600, 430));
+			helpDialog.setMinimumSize(new Dimension(600, 430));
+			helpDialog.setPreferredSize(new Dimension(600, 430));
+			helpDialog.setBounds(new Rectangle(0, 0, 600, 430));
 			helpDialog.setContentPane(getHelp());
 		}
 		return helpDialog;
@@ -552,10 +553,20 @@ public class MancalaGUI {
 							+ "5. When one player no longer has any seeds in any of his pits, the game ends. The other player moves all remaining seeds to his store, and the player with the most seeds in his store wins. \n");
 			helpText
 					.setText(helpText.getText()
-							+ "It is possible for the game to end in a draw - each player has 18 seeds. ");
+							+ "It is possible for the game to end in a draw - each player has 18 seeds. \n\n");
+			helpText
+			.setText(helpText.getText()
+					+ "How to use \n");
+			helpText
+					.setText(helpText.getText()
+							+ "To start a game click \"New game\". Then you can choose whether to play against another human (a two player game) or against the computer. You can also insert names for the player(s). When finished click \"Start new game!\". To make a move click on the pit you want to remove all the seeds from. The seeds count is represented as a number in a pit. \n");
+			helpText
+					.setText(helpText.getText()
+							+ "To view the scoreboard click \"Scores\". To view the help information click \"Help\". To view the team of the authors of this game implementation click \"Team\".\n");
 			helpText.setBackground(new Color(238, 238, 238));
 			helpText.setLineWrap(true);
 			helpText.setPreferredSize(new Dimension(400, 64));
+			helpText.setEditable(false);
 			helpText.setWrapStyleWord(true);
 		}
 		return helpText;
