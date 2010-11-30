@@ -497,7 +497,7 @@ public class MancalaGUI {
 					JOptionPane
 							.showMessageDialog(
 									null,
-									"Mancala Team 2010:\n - Martin Loginov \n - Hans M�salu \n - Peeter J�rviste \n - Mari R��tli \n - Sven Aller",
+									"Mancala Team 2010:\n - Martin Loginov \n - Hans Maesalu \n - Peeter Jurviste \n - Mari Ruutli \n - Sven Aller",
 									"Mancala Team 2010",
 									JOptionPane.INFORMATION_MESSAGE);
 				}
