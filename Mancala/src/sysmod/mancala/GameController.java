@@ -250,7 +250,7 @@ public class GameController {
 	 */
 	private void makeComputerMove() {
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			JOptionPane.showMessageDialog(gui.getJFrame(),
 					"Cannot make a computer move.", "Error",

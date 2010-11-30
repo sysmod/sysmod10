@@ -127,6 +127,7 @@ public class MancalaGUI {
 			player1label.setText("Player 1");
 			player1label.setHorizontalAlignment(SwingConstants.CENTER);
 			player1label.setFont(new Font("Dialog", Font.BOLD, 16));
+			player1label.setForeground(new Color(0, 0, 102));
 			GridBagConstraints gridBagConstraints13 = new GridBagConstraints();
 			gridBagConstraints13.gridx = 3;
 			gridBagConstraints13.gridwidth = 3;
@@ -135,6 +136,7 @@ public class MancalaGUI {
 			player2label.setText("Player 2");
 			player2label.setHorizontalAlignment(SwingConstants.CENTER);
 			player2label.setFont(new Font("Dialog", Font.BOLD, 16));
+			player2label.setForeground(new Color(0, 0, 102));
 			GridBagConstraints gridBagConstraints12 = new GridBagConstraints();
 			gridBagConstraints12.gridx = 0;
 			gridBagConstraints12.gridy = 2;
@@ -730,6 +732,7 @@ public class MancalaGUI {
 			status.setHorizontalAlignment(SwingConstants.CENTER);
 			status.setHorizontalTextPosition(SwingConstants.CENTER);
 			status.setFont(new Font("Dialog", Font.BOLD, 14));
+			status.setForeground(new Color(0, 0, 102));
 			downPanel.add(getStatus(), gridBagConstraints28);
 		}
 		return downPanel;
