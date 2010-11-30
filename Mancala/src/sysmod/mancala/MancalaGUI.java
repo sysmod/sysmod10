@@ -24,7 +24,7 @@ import javax.swing.border.BevelBorder;
 
 public class MancalaGUI {
 
-	private JFrame jFrame = null;  //  @jve:decl-index=0:visual-constraint="33,17"
+	private JFrame jFrame = null; // @jve:decl-index=0:visual-constraint="33,17"
 	private JPanel jContentPane = null;
 	private JPanel Gameboard = null;
 	private JButton pit12 = null;
@@ -47,7 +47,7 @@ public class MancalaGUI {
 	private JPanel rightPanel = null;
 	private JButton helpButton = null;
 	private JButton teamButton = null;
-	private JDialog helpDialog = null;  //  @jve:decl-index=0:visual-constraint="42,428"
+	private JDialog helpDialog = null; // @jve:decl-index=0:visual-constraint="42,428"
 	private JPanel help = null;
 	private JLabel helpTitle = null;
 	private JButton newgameButton = null;
@@ -58,7 +58,7 @@ public class MancalaGUI {
 	private JLabel status = null;
 	private JPanel downPanel = null;
 	private JButton scoresButton = null;
-	private JDialog scoresDialog = null;  //  @jve:decl-index=0:visual-constraint="556,433"
+	private JDialog scoresDialog = null; // @jve:decl-index=0:visual-constraint="556,433"
 	private JPanel scoresPanel = null;
 	private JLabel scoresTitle = null;
 	private JTextArea scoresText = null;
@@ -67,6 +67,7 @@ public class MancalaGUI {
 	private JPanel helpRightPanel = null;
 	private JPanel scoresLeftPanel = null;
 	private JPanel scoresRightPanel = null;
+
 	/**
 	 * This method initializes jFrame
 	 * 
@@ -181,7 +182,8 @@ public class MancalaGUI {
 			Gameboard.setLayout(new GridBagLayout());
 			Gameboard.setEnabled(false);
 			Gameboard.setBackground(Color.white);
-			Gameboard.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			Gameboard.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.RAISED));
 			Gameboard.add(getPit12(), gridBagConstraints);
 			Gameboard.add(getPit11(), gridBagConstraints1);
 			Gameboard.add(getPit1(), gridBagConstraints2);
@@ -416,7 +418,7 @@ public class MancalaGUI {
 			pit10.setFont(new Font("Dialog", Font.BOLD, 14));
 			pit10.setForeground(new Color(0, 0, 102));
 			pit10.setPreferredSize(new Dimension(60, 35));
-			}
+		}
 		return pit10;
 	}
 
@@ -492,7 +494,12 @@ public class MancalaGUI {
 			teamButton.setFont(new Font("Dialog", Font.BOLD, 14));
 			teamButton.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					JOptionPane.showMessageDialog(null, "Mancala Team 2010:\n - Martin Loginov \n - Hans Mäsalu \n - Peeter Jürviste \n - Mari Rüütli \n - Sven Aller", "Mancala Team 2010", JOptionPane.INFORMATION_MESSAGE);   
+					JOptionPane
+							.showMessageDialog(
+									null,
+									"Mancala Team 2010:\n - Martin Loginov \n - Hans Mï¿½salu \n - Peeter Jï¿½rviste \n - Mari Rï¿½ï¿½tli \n - Sven Aller",
+									"Mancala Team 2010",
+									JOptionPane.INFORMATION_MESSAGE);
 				}
 			});
 		}
@@ -526,13 +533,26 @@ public class MancalaGUI {
 	private JTextArea getHelpText() {
 		if (helpText == null) {
 			helpText = new JTextArea();
-			helpText.setText("The game board of Mancala consists of 14 pits - 12 regular pits and 2 stores. Each player controls the six pits and their seeds on his side of the board. Player\'s score is the number of seeds in his store (the one on the right of his pits). \n");
-			helpText.setText(helpText.getText()+"1. At the beginning of the game, three seeds are placed in each pit. \n");
-			helpText.setText(helpText.getText()+"2. Players take turns sowing their seeds. On a turn, the player removes all seeds from one of the pits under his control. Moving counter-clockwise, the player drops one seed in each pit in turn, including the player\'s own store (but not his opponent\'s). \n");
-			helpText.setText(helpText.getText()+"3. If the last sown seed lands in the player\'s store, the player gets an additional move. There is no limit on the number of moves a player can make in his turn. \n");
-			helpText.setText(helpText.getText()+"4. If the last sown seed lands in an empty pit owned by the player, and the opposite pit contains seeds, both the last seed and the opposite seeds are captured and placed into the player\'s store. \n");
-			helpText.setText(helpText.getText()+"5. When one player no longer has any seeds in any of his pits, the game ends. The other player moves all remaining seeds to his store, and the player with the most seeds in his store wins. \n");
-			helpText.setText(helpText.getText()+"It is possible for the game to end in a draw - each player has 18 seeds. ");
+			helpText
+					.setText("The game board of Mancala consists of 14 pits - 12 regular pits and 2 stores. Each player controls the six pits and their seeds on his side of the board. Player\'s score is the number of seeds in his store (the one on the right of his pits). \n");
+			helpText
+					.setText(helpText.getText()
+							+ "1. At the beginning of the game, three seeds are placed in each pit. \n");
+			helpText
+					.setText(helpText.getText()
+							+ "2. Players take turns sowing their seeds. On a turn, the player removes all seeds from one of the pits under his control. Moving counter-clockwise, the player drops one seed in each pit in turn, including the player\'s own store (but not his opponent\'s). \n");
+			helpText
+					.setText(helpText.getText()
+							+ "3. If the last sown seed lands in the player\'s store, the player gets an additional move. There is no limit on the number of moves a player can make in his turn. \n");
+			helpText
+					.setText(helpText.getText()
+							+ "4. If the last sown seed lands in an empty pit owned by the player, and the opposite pit contains seeds, both the last seed and the opposite seeds are captured and placed into the player\'s store. \n");
+			helpText
+					.setText(helpText.getText()
+							+ "5. When one player no longer has any seeds in any of his pits, the game ends. The other player moves all remaining seeds to his store, and the player with the most seeds in his store wins. \n");
+			helpText
+					.setText(helpText.getText()
+							+ "It is possible for the game to end in a draw - each player has 18 seeds. ");
 			helpText.setBackground(new Color(238, 238, 238));
 			helpText.setLineWrap(true);
 			helpText.setPreferredSize(new Dimension(400, 64));
@@ -574,7 +594,6 @@ public class MancalaGUI {
 			newgameButton.setPreferredSize(new Dimension(120, 26));
 			newgameButton.addMouseListener(new java.awt.event.MouseAdapter() {
 				public void mouseClicked(java.awt.event.MouseEvent e) {
-					System.out.println("Start a new game"); // TODO Auto-generated Event stub mouseClicked()
 					player1Label.setText(player1label.getText());
 					player2Label.setText(player2label.getText());
 				}
@@ -608,14 +627,15 @@ public class MancalaGUI {
 			gridBagConstraints27.gridx = 0;
 			leftPanel = new JPanel();
 			leftPanel.setLayout(new GridBagLayout());
-			leftPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			leftPanel.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.RAISED));
 			leftPanel.setBackground(new Color(204, 204, 255));
 			leftPanel.setPreferredSize(new Dimension(140, 78));
 			leftPanel.add(getNewgameButton(), gridBagConstraints16);
 		}
 		return leftPanel;
 	}
-	
+
 	public JLabel getPlayer1label() {
 		return player1label;
 	}
@@ -631,6 +651,7 @@ public class MancalaGUI {
 	public void setPlayer2label(JLabel player2label) {
 		this.player2label = player2label;
 	}
+
 	public void disablePits(int player) {
 		if (player == 0) {
 			getPit1().setEnabled(false);
@@ -645,7 +666,7 @@ public class MancalaGUI {
 			getPit10().setEnabled(false);
 			getPit11().setEnabled(false);
 			getPit12().setEnabled(false);
-		} else if (player == 1){
+		} else if (player == 1) {
 			getPit1().setEnabled(false);
 			getPit2().setEnabled(false);
 			getPit3().setEnabled(false);
@@ -658,7 +679,7 @@ public class MancalaGUI {
 			getPit10().setEnabled(true);
 			getPit11().setEnabled(true);
 			getPit12().setEnabled(true);
-		} else if (player == 2){
+		} else if (player == 2) {
 			getPit1().setEnabled(true);
 			getPit2().setEnabled(true);
 			getPit3().setEnabled(true);
@@ -679,9 +700,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes downPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes downPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getDownPanel() {
 		if (downPanel == null) {
@@ -690,7 +711,8 @@ public class MancalaGUI {
 			gridBagConstraints28.gridy = 0;
 			downPanel = new JPanel();
 			downPanel.setLayout(new GridBagLayout());
-			downPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			downPanel.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.RAISED));
 			downPanel.setBackground(new Color(204, 204, 255));
 			status = new JLabel();
 			status.setText("");
@@ -703,9 +725,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes scoresButton	
-	 * 	
-	 * @return javax.swing.JButton	
+	 * This method initializes scoresButton
+	 * 
+	 * @return javax.swing.JButton
 	 */
 	public JButton getScoresButton() {
 		if (scoresButton == null) {
@@ -718,9 +740,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes scoresDialog	
-	 * 	
-	 * @return javax.swing.JDialog	
+	 * This method initializes scoresDialog
+	 * 
+	 * @return javax.swing.JDialog
 	 */
 	public JDialog getScoresDialog() {
 		if (scoresDialog == null) {
@@ -737,9 +759,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes scoresPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes scoresPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getScoresPanel() {
 		if (scoresPanel == null) {
@@ -757,9 +779,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes scoresText	
-	 * 	
-	 * @return javax.swing.JTextArea	
+	 * This method initializes scoresText
+	 * 
+	 * @return javax.swing.JTextArea
 	 */
 	public JTextArea getScoresText() {
 		if (scoresText == null) {
@@ -773,9 +795,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes upperPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes upperPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getUpperPanel() {
 		if (upperPanel == null) {
@@ -784,7 +806,8 @@ public class MancalaGUI {
 			gridBagConstraints17.gridy = 0;
 			upperPanel = new JPanel();
 			upperPanel.setLayout(new GridBagLayout());
-			upperPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+			upperPanel.setBorder(BorderFactory
+					.createBevelBorder(BevelBorder.RAISED));
 			upperPanel.setPreferredSize(new Dimension(105, 70));
 			upperPanel.setBackground(new Color(204, 204, 255));
 			upperPanel.add(getTitle(), gridBagConstraints17);
@@ -793,9 +816,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes helpLeftPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes helpLeftPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getHelpLeftPanel() {
 		if (helpLeftPanel == null) {
@@ -807,9 +830,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes helpRightPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes helpRightPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getHelpRightPanel() {
 		if (helpRightPanel == null) {
@@ -821,9 +844,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes scoresLeftPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes scoresLeftPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getScoresLeftPanel() {
 		if (scoresLeftPanel == null) {
@@ -835,9 +858,9 @@ public class MancalaGUI {
 	}
 
 	/**
-	 * This method initializes scoresRightPanel	
-	 * 	
-	 * @return javax.swing.JPanel	
+	 * This method initializes scoresRightPanel
+	 * 
+	 * @return javax.swing.JPanel
 	 */
 	private JPanel getScoresRightPanel() {
 		if (scoresRightPanel == null) {

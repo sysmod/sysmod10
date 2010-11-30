@@ -70,7 +70,7 @@ public class NewGameDialogGUI extends JDialog {
 	}
 
 	/**
-	 * This method initializes this
+	 * This method initializes this new game dialog window
 	 * 
 	 * @return void
 	 */
