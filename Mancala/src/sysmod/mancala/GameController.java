@@ -382,19 +382,4 @@ public class GameController {
 		}
 		return output.toString();
 	}
-
-	/**
-	 * Main method
-	 * 
-	 * @param args
-	 *            not used
-	 */
-	public static void main(String[] args) {
-		final GameController cntrl = new GameController();
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				cntrl.gui.getJFrame().setVisible(true);
-			}
-		});
-	}
 }
